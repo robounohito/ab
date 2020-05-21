@@ -1,0 +1,80 @@
+<autobound-login-template>
+
+  <h1>Welcome back!</h1>
+
+  <h3>Please login with your account.</h3>
+
+  <form [formGroup]="form"
+        class="form"
+        *ngIf="{ passwordShow: false } as uiState">
+
+    <div class="form-field">
+      <label for="email">
+        <mat-icon>person</mat-icon>
+        Username / Email
+      </label>
+      <input id="email"
+             type="text"
+             required
+             [ngClass]="form.get('email')?.dirty 
+                          && form.get('email')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Username or Email"
+             formControlName="email">
+      <!-- <mat-error>
+        Please enter a proper email
+      </mat-error> -->
+    </div>
+
+    <div class="form-field">
+      <label for="password">
+        <mat-icon>lock</mat-icon>
+        Password
+      </label>
+      <input id="password"
+             required
+             [ngClass]="form.get('password')?.dirty 
+                          && form.get('password')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Password"
+             formControlName="password"
+             [type]="uiState.passwordShow ? 'text' : 'password'">
+      <button mat-icon-button
+              matSuffix
+              (click)="uiState.passwordShow = !uiState.passwordShow"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="!uiState.passwordShow">
+        <mat-icon>
+          {{uiState.passwordShow ? 'visibility' : 'visibility_off'}}
+        </mat-icon>
+      </button>
+      <!-- <mat-hint>Password should be more than 6 characters</mat-hint>
+      <mat-error>
+        Please enter a proper password
+      </mat-error> -->
+    </div>
+
+    <div class="stretched">
+      <mat-checkbox>Remember me</mat-checkbox>
+      <a [routerLink]="[route.recovery]">
+        Account Recovery
+      </a>
+    </div>
+
+    <button class="large"
+            type="button"
+            [disabled]="form.invalid"
+            (click)="login(form.value)">
+      Login
+    </button>
+
+    <div class="centered">
+      Don't have an account?&nbsp;
+      <a [routerLink]="[route.signup]">
+        Sign Up
+      </a>
+    </div>
+
+  </form>
+
+</autobound-login-template>

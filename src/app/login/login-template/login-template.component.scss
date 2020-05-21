@@ -1,0 +1,57 @@
+.main-container {
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100vh; 
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: url(/assets/img/background.svg) no-repeat center;
+  background-size: cover;
+  z-index: 0;
+
+  .header {
+    margin: 50px 0 30px;
+    background: url(/assets/img/autobound-full.png) no-repeat center;
+    width: 260px;
+    height: 52px;
+    background-size: contain;
+  }
+
+  .content-container {
+
+    .content {
+
+      height: 100%;
+      border-radius: 20px;
+      padding: 35px 50px;
+      background-color: white;
+      position: relative;
+
+      .shadow {
+        position: absolute;
+        display: block;
+        left: 10px;
+        top: 20px;
+        width: 360px;
+        height: 100%;
+        background-color: #b1bfff;
+        z-index: -1;
+        border-radius: 30px;
+        opacity: 0.2;
+      }
+
+    }
+
+  }
+
+  .footer {
+    font-size: 12px;
+    color: white;
+    opacity: 0.65;
+    text-align: center;
+    margin: 15vh 0 24px;
+  }
+
+}

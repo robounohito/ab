@@ -1,0 +1,42 @@
+<autobound-login-template>
+
+  <h1>Recover using Email</h1>
+
+  <h3>Please enter your email and we'll <br>
+    send you a recovery link.</h3>
+
+  <form [formGroup]="form"
+        class="form"
+        *ngIf="{ passwordShow: false } as uiState">
+
+    <div class="form-field last">
+      <label for="email">
+        <mat-icon>person</mat-icon>
+        Email
+      </label>
+      <input id="email"
+             type="text"
+             required
+             [ngClass]="form.get('email')?.dirty 
+                          && form.get('email')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Email"
+             formControlName="email">
+    </div>
+
+    <button class="large"
+            type="button"
+            [disabled]="form.invalid"
+            (click)="recovery(form.value)">
+      Submit
+    </button>
+
+    <div class="centered">
+      <a [routerLink]="['/' + route.login]">
+        Back to Login
+      </a>
+    </div>
+
+  </form>
+
+</autobound-login-template>

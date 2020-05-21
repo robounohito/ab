@@ -1,0 +1,19 @@
+@import '../variables';
+
+body {
+  
+  .mat-checkbox-inner-container {
+    width: 14px;
+    height: 14px;
+  }
+
+  .mat-checkbox-frame, 
+  .mat-checkbox-background {
+    border-radius: 3px;
+  }
+
+  .red-snackbar .mat-button-wrapper {
+    color: $red;
+  }
+
+}

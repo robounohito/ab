@@ -1,0 +1,108 @@
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput
+         (keyup)="applyFilter($event)"
+         placeholder="Filter campaigns">
+</mat-form-field>
+
+<table mat-table
+       [dataSource]="dataSource"
+       matSort
+       class="mat-elevation-z8">
+
+  <ng-container matColumnDef="campaign_name">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Campaign Name
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.campaign_name}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="prospect_name">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Prospect Name
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.prospect_name}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="activation_date">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Campaign Start Date
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.activation_date}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="job_title">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Job Title
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.job_title}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="current_branch">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Current Branch
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.current_branch}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="company_name">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Company Name
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.company_name}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="steps_completed">
+    <th mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+      Completed Steps
+    </th>
+    <td mat-cell
+        *matCellDef="let element">
+      {{element.steps_completed}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row
+      *matHeaderRowDef="displayedColumns">
+  </tr>
+  <tr mat-row
+      *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"
+               showFirstLastButtons>
+</mat-paginator>

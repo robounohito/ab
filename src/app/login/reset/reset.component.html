@@ -1,0 +1,81 @@
+<autobound-login-template>
+
+  <h1>Account reset</h1>
+
+  <h3>Please check your email for<br>
+    account recovery code.</h3>
+
+  <form [formGroup]="form"
+        class="form"
+        *ngIf="{ passwordShow: false } as uiState">
+
+    <div class="form-field">
+      <label for="email">
+        <mat-icon>person</mat-icon>
+        Username / Email
+      </label>
+      <input id="email"
+             type="text"
+             required
+             [ngClass]="form.get('email')?.dirty 
+                          && form.get('email')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Username or Email"
+             formControlName="email">
+    </div>
+
+    <div class="form-field">
+      <label for="code">
+        <mat-icon>code</mat-icon>
+        Recovery code
+      </label>
+      <input id="code"
+             type="text"
+             required
+             [ngClass]="form.get('code')?.dirty 
+                          && form.get('code')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Recovery Code"
+             formControlName="code">
+    </div>
+
+    <div class="form-field last">
+      <label for="password">
+        <mat-icon>lock</mat-icon>
+        Your new password
+      </label>
+      <input id="password"
+             required
+             [ngClass]="form.get('password')?.dirty 
+                          && form.get('password')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your New Password"
+             formControlName="password"
+             [type]="uiState.passwordShow ? 'text' : 'password'">
+      <button mat-icon-button
+              matSuffix
+              (click)="uiState.passwordShow = !uiState.passwordShow"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="!uiState.passwordShow">
+        <mat-icon>
+          {{uiState.passwordShow ? 'visibility' : 'visibility_off'}}
+        </mat-icon>
+      </button>
+    </div>
+
+    <button class="large"
+            type="button"
+            [disabled]="form.invalid"
+            (click)="reset(form.value)">
+      Submit
+    </button>
+
+    <div class="centered">
+      <a [routerLink]="['/' + route.login]">
+        Back to Login
+      </a>
+    </div>
+
+  </form>
+
+</autobound-login-template>

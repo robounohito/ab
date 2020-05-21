@@ -1,0 +1,82 @@
+<autobound-login-template>
+
+  <h1>Welcome!</h1>
+
+  <h3>Please register your account.</h3>
+
+  <form [formGroup]="form"
+        class="form"
+        *ngIf="{ passwordShow: false } as uiState">
+
+    <div class="form-field">
+      <label for="email">
+        <mat-icon>person</mat-icon>
+        Username / Email
+      </label>
+      <input id="email"
+             type="text"
+             required
+             [ngClass]="form.get('email')?.dirty 
+                          && form.get('email')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Username or Email"
+             formControlName="email">
+    </div>
+
+    <div class="form-field">
+      <label for="phone">
+        <mat-icon>phone</mat-icon>
+        Phone
+      </label>
+      <input id="phone"
+             type="text"
+             mask="000 000 0000"
+             required
+             [ngClass]="form.get('phone')?.dirty 
+                          && form.get('phone')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Phone Number"
+             formControlName="phone">
+    </div>
+
+    <div class="form-field last">
+      <label for="password">
+        <mat-icon>lock</mat-icon>
+        Password
+      </label>
+      <input id="password"
+             required
+             [ngClass]="form.get('password')?.dirty 
+                          && form.get('password')?.invalid 
+                          && 'error'"
+             placeholder="Enter Your Password"
+             formControlName="password"
+             [type]="uiState.passwordShow ? 'text' : 'password'">
+      <button mat-icon-button
+              matSuffix
+              (click)="uiState.passwordShow = !uiState.passwordShow"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="!uiState.passwordShow">
+        <mat-icon>
+          {{uiState.passwordShow ? 'visibility' : 'visibility_off'}}
+        </mat-icon>
+      </button>
+    </div>
+
+    <button class="large"
+            type="button"
+            [disabled]="form.invalid"
+            (click)="signup(form.value)">
+      Submit
+    </button>
+
+    <div class="centered">
+      Already have an account?&nbsp;
+      <a [routerLink]="['/' + route.login]">
+        Log in
+      </a>
+    </div>
+
+  </form>
+
+</autobound-login-template>

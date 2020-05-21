@@ -1,0 +1,79 @@
+<ng-container *ngIf="model$ | async as model">
+
+  <div class="main-container"
+       #sidenav
+       *ngIf="{ expanded: false, submenuExpanded: false } as uiState">
+
+    <div class="sidenav"
+         [ngClass]="uiState.expanded && 'expanded'">
+      <div class="collapse">
+        <mat-icon (click)="uiState.expanded=!uiState.expanded">
+          {{!uiState.expanded ? 'chevron_right' : 'chevron_left'}}
+        </mat-icon>
+      </div>
+      <div class="sidenav-container">
+        <div class="autobound"></div>
+        <div class="menu">
+          <div *ngFor="let menuItem of navbarMenu">
+            <a mat-button
+               [routerLink]="!menuItem.submenu ? ['/', menuItem.path] : []"
+               [routerLinkActive]="!menuItem.submenu ? 'active' : ''"
+               (click)="menuItem.submenu ? uiState.submenuExpanded = !uiState.submenuExpanded : null">
+              <mat-icon [matTooltip]="menuItem.title"
+                        matTooltipPosition="right">
+                {{menuItem.icon}}
+              </mat-icon>
+              <span>
+                {{uiState.expanded ? menuItem.title : ''}}
+              </span>
+            </a>
+            <div class="submenu"
+                 *ngIf="uiState.submenuExpanded"
+                 [@slideInOut]>
+              <a *ngFor="let submenu of menuItem.submenu"
+                 mat-button
+                 [routerLink]="'/' + submenu.path"
+                 [routerLinkActive]="'active'">
+                <mat-icon [matTooltip]="submenu.title"
+                          matTooltipPosition="right">
+                  {{submenu.icon}}
+                </mat-icon>
+                <span>
+                  {{uiState.expanded ?  submenu.title : ''}}
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div mat-button
+             class="photo"
+             [matMenuTriggerFor]="menu"
+             [matTooltip]="model.first_name"
+             matTooltipPosition="right">
+          <img src="{{(model.first_name ? 'https://' : '') + model.profile_img_link}}">
+        </div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item
+                  [routerLink]="'/settings'">
+            Settings
+          </button>
+          <button mat-menu-item
+                  (click)="logout()">
+            Logout
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div class="main-content"
+         [ngClass]="uiState.expanded && 'expanded'">
+
+      <div class="router-outlet">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+
+  </div>
+
+</ng-container>
