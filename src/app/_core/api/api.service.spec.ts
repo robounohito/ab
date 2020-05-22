@@ -21,47 +21,29 @@ describe('ApiService', () => {
   });
 
   describe('instance', () => {
-
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
-
   });
 
   describe('request method', () => {
-
     it('should return proper data on valid input', () => {
       service.request({
-        endpoint: service.endpoint.approveExternalCounter,
-        urlParams: { engagementId: 1 },
-        queryParams: { containerId: '2' }
+        endpoint: service.endpoint.getSidebar,
       }).subscribe(data => {
         expect(data).toEqual({ data: 'some data' });
       });
       expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
     });
-
-    it('should throw on invalid input', () => {
-      httpClientSpy.get.calls.reset();
-      expect(() => service.request({ endpoint: null! })).toThrowError(TypeError);
-      expect(httpClientSpy.get.calls.count()).toBe(0, 'no calls');
-    });
-
   });
 
   describe('makeUrl method', () => {
-
     it('should return proper url on valid input', () => {
       expect(service.makeUrl(
-        service.endpoint.getEngagement.url,
-        { engagementId: 1 }
-      )).toEqual('engagements/1');
+        service.endpoint.getHubspotAuth.url,
+        { email: '1' }
+      )).toEqual('autobound/mission_control/integrations/hubspot/userID/1');
     });
-
-    it('should throw on invalid input', () => {
-      expect(() => service.makeUrl(null!, null!)).toThrowError(TypeError);
-    });
-
   });
 
 });
