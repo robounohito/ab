@@ -11,7 +11,7 @@ import { CampaignsTableComponent } from './campaigns-table/campaigns-table.compo
 
 @NgModule({
   declarations: [
-    CampaignsComponent, 
+    CampaignsComponent,
     CampaignsTableComponent
   ],
   imports: [

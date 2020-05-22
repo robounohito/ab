@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpParams, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, EMPTY, throwError } from 'rxjs';
-import { catchError, map, timeout } from 'rxjs/operators';
+import { catchError, timeout } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
 import { navigateToLogin, notification } from 'src/app/app.constants';
