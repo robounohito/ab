@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { forEachObjIndexed, isNil } from 'ramda';
+import { bypassHttpErrorInterceptor } from '../interceptors/http-error.interceptor';
 
 export interface ApiRequest {
   endpoint: {
@@ -10,7 +11,7 @@ export interface ApiRequest {
   };
   urlParams?: {};
   data?: {};
-  queryParams?: { [key: string]: string | string[] };
+  queryParams?: { [key: string]: string | string[] | boolean | number | number[] };
   reportProgress?: boolean;
 }
 
@@ -44,7 +45,7 @@ export class ApiService {
     if (queryParams) {
       let params = new HttpParams();
       for (const key of Object.keys(queryParams)) {
-        ((Array.isArray(queryParams[key]) && key !== 'bypassErrorHttpInterceptor')
+        ((Array.isArray(queryParams[key]) && key !== bypassHttpErrorInterceptor)
           ? queryParams[key] as string[]
           : [queryParams[key] as string]
         ).forEach((item: string) => params = params.append(key, item));

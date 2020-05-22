@@ -22,6 +22,9 @@ h3 {
   text-align: center;
   line-height: normal;
   margin-bottom: 27px;
+  &.error {
+    color: $red;
+  }
 }
 
 .form {
@@ -72,8 +75,8 @@ h3 {
       }
 
       &.error {
-        border: 1px solid $red;
         outline-color: $red;
+        background-color: lighten($red, 25%);
       }
 
     }

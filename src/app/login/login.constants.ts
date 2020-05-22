@@ -1,13 +1,23 @@
 import { createAction, props } from '@ngrx/store';
 
+export const loginReset = createAction(
+  '[Login] Login  Reset',
+);
+
 export const login = createAction(
   '[Login] Login',
   props<{
     payload: {
       email: string;
       password: string;
+      rememberMe: boolean;
     }
   }>()
+);
+
+export const loginError = createAction(
+  '[Login] Login Error',
+  props<{ error: string }>()
 );
 
 export const signup = createAction(
@@ -41,3 +51,5 @@ export const reset = createAction(
     }
   }>()
 );
+
+export const invalidCredentials = 1;

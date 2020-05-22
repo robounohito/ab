@@ -3,7 +3,10 @@ import { FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Route } from 'src/app/app.constants';
 import { Store } from '@ngrx/store';
-import { signup } from '../login.constants';
+import { signup, loginReset } from '../login.constants';
+import { Login } from '../login.types';
+import { Observable } from 'rxjs';
+import { selectLogin } from '../login.model';
 
 interface SignupForm {
   email: string;
@@ -21,6 +24,7 @@ export class SignupComponent implements OnInit {
 
   route = Route;
   form!: FormGroupT<SignupForm>;
+  model$!: Observable<Login>;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +37,8 @@ export class SignupComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       password: ['', [Validators.required, Validators.minLength(7)]]
     });
+    this.model$ = this.store.select(selectLogin);
+    this.store.dispatch(loginReset());
   }
 
   signup({ email, phone, password }: SignupForm) {

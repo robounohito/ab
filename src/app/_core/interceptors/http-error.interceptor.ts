@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpParams, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpParams, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, EMPTY, throwError } from 'rxjs';
 import { catchError, map, timeout } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
 import { navigateToLogin, notification } from 'src/app/app.constants';
 
-const bypassErrorHttpInterceptor = 'bypassErrorHttpInterceptor';
+export const bypassHttpErrorInterceptor = 'bypassHttpErrorInterceptor';
 const unauthorised = 401;
 
 @Injectable({
@@ -22,22 +22,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let newRequest = request;
     let errorsToBypass: boolean | string | null;
-    if (request.params.has(bypassErrorHttpInterceptor)) {
-      errorsToBypass = request.params.get(bypassErrorHttpInterceptor);
+    if (request.params.has(bypassHttpErrorInterceptor)) {
+      errorsToBypass = request.params.get(bypassHttpErrorInterceptor);
       let params = new HttpParams({ fromString: request.params.toString() });
-      params = params.delete(bypassErrorHttpInterceptor);
+      params = params.delete(bypassHttpErrorInterceptor);
       newRequest = request.clone({ params });
     }
     return next.handle(newRequest).pipe(
-      timeout(30000),
-      map(event => {
-        if (event instanceof HttpResponse) {
-          if (event.body.Error === 505) {
-            throw new HttpErrorResponse({ status: unauthorised });
-          }
-        }
-        return event;
-      }),
+      timeout(50000),
       catchError((err: HttpErrorResponse) => {
         if (err.status === unauthorised) {
           this.store.dispatch(navigateToLogin());

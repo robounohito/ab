@@ -1,9 +1,16 @@
-<autobound-login-template>
+<autobound-login-template *ngIf="model$ | async as model">
 
   <h1>Account reset</h1>
 
-  <h3>Please check your email for<br>
-    account recovery code.</h3>
+  <h3 *ngIf="!model.error">
+    Please check your email for<br>
+    account recovery code.
+  </h3>
+
+  <h3 *ngIf="model.error"
+      class="error">
+    {{model.error}}
+  </h3>
 
   <form [formGroup]="form"
         class="form"
@@ -65,7 +72,7 @@
 
     <button class="large"
             type="button"
-            [disabled]="form.invalid"
+            [disabled]="form.invalid || model.loading"
             (click)="reset(form.value)">
       Submit
     </button>
