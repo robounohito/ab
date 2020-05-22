@@ -3,7 +3,7 @@ import { FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Route } from 'src/app/app.constants';
-import { reset, loginReset } from '../login.constants';
+import { reset } from '../login.constants';
 import { Observable } from 'rxjs';
 import { Login } from '../login.types';
 import { selectLogin } from '../login.model';
@@ -38,7 +38,6 @@ export class ResetComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(7)]]
     });
     this.model$ = this.store.select(selectLogin);
-    this.store.dispatch(loginReset());
   }
 
   reset({ email, code, password }: ResetForm) {

@@ -3,7 +3,7 @@ import { FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Route } from 'src/app/app.constants';
-import { recovery, loginReset } from '../login.constants';
+import { recovery } from '../login.constants';
 import { selectLogin } from '../login.model';
 import { Observable } from 'rxjs';
 import { Login } from '../login.types';
@@ -34,7 +34,6 @@ export class RecoveryComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
     });
     this.model$ = this.store.select(selectLogin);
-    this.store.dispatch(loginReset());
   }
 
   recovery({ email }: RecoveryForm) {

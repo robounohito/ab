@@ -12,9 +12,16 @@ import { LoginTemplateComponent } from './login-template/login-template.componen
 import { NgxMaskModule } from 'ngx-mask';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './login.model';
+import { LoginGuard } from './login-guard.service';
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent, RecoveryComponent, ResetComponent, LoginTemplateComponent],
+  declarations: [
+    LoginComponent,
+    SignupComponent,
+    RecoveryComponent,
+    ResetComponent,
+    LoginTemplateComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -22,6 +29,9 @@ import { reducer } from './login.model';
     StoreModule.forFeature('login', reducer),
     EffectsModule.forFeature([LoginEffects]),
     NgxMaskModule.forChild(),
+  ],
+  providers: [
+    LoginGuard,
   ]
 })
 export class LoginModule { }

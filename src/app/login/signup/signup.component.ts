@@ -3,7 +3,7 @@ import { FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Route } from 'src/app/app.constants';
 import { Store } from '@ngrx/store';
-import { signup, loginReset } from '../login.constants';
+import { signup } from '../login.constants';
 import { Login } from '../login.types';
 import { Observable } from 'rxjs';
 import { selectLogin } from '../login.model';
@@ -38,7 +38,6 @@ export class SignupComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(7)]]
     });
     this.model$ = this.store.select(selectLogin);
-    this.store.dispatch(loginReset());
   }
 
   signup({ email, phone, password }: SignupForm) {
