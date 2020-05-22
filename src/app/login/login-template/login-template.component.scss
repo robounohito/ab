@@ -29,7 +29,8 @@
       background-color: white;
       position: relative;
 
-      .shadow {
+      &::after {
+        content: '';
         position: absolute;
         display: block;
         left: 10px;

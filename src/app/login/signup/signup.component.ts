@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.form = formCreate<SignupForm>(this.fb, {
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
+      phone: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(7)]]
     });
     this.model$ = this.store.select(selectLogin);

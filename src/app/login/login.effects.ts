@@ -63,7 +63,6 @@ export class LoginEffects {
     )),
   ));
 
-
   reset$ = createEffect(() => this.actions$.pipe(
     ofType(reset),
     switchMap(({ payload }) => this.api.request<{ account: AuthToken }>({
