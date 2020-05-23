@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DebugElement } from '@angular/core';
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
 
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
