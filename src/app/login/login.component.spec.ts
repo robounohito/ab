@@ -5,12 +5,18 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DebugElement } from '@angular/core';
+import SpyObj = jasmine.SpyObj;
+import { login } from './login.constants';
+import { LoginTemplateComponent } from './login-template/login-template.component';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginComponent', () => {
 
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let page: { [key: string]: HTMLInputElement };
+  let storeSpy: SpyObj<Store>;
 
   const pageObject = (de: DebugElement): { [key: string]: HTMLInputElement } => ({
     get header() { return de.nativeElement.querySelector('h3'); },
@@ -18,18 +24,24 @@ describe('LoginComponent', () => {
     get password() { return de.nativeElement.querySelector('#password'); },
     get passwordButton() { return de.nativeElement.querySelector('.form-field button'); },
     get rememberMe() { return de.nativeElement.querySelector('input[type="checkbox"]'); },
-    get login() { return de.nativeElement.querySelector('button'); },
+    get login() { return de.nativeElement.querySelector('button.large'); },
   });
 
   beforeEach(async(() => {
+
+    storeSpy = jasmine.createSpyObj('Store', ['select', 'dispatch']);
+    storeSpy.select.and.returnValue(of({ error: 'error' }));
+
     TestBed.configureTestingModule({
-      declarations: [LoginComponent],
+      declarations: [LoginTemplateComponent, LoginComponent],
       imports: [
+        RouterTestingModule,
         ReactiveFormsModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatIconModule,
       ],
       providers: [
-        { provide: Store, useValue: { select: () => of({ error: 'error' }) } }
+        { provide: Store, useValue: storeSpy }
       ]
     }).compileComponents();
   }));
@@ -82,15 +94,20 @@ describe('LoginComponent', () => {
   });
 
   it('should populate form on valid submit', () => {
+    storeSpy.select.and.returnValue(of({ error: '' }));
     page.email.value = 'email@email.com';
     page.email.dispatchEvent(new Event('input'));
     page.password.value = 'password';
     page.password.dispatchEvent(new Event('input'));
-    expect(component.form.value).toEqual({
+    fixture.detectChanges();
+    const result = {
       email: 'email@email.com',
       password: 'password',
       rememberMe: false,
-    });
+    };
+    expect(component.form.value).toEqual(result);
+    page.login.click();
+    expect(storeSpy.dispatch).toHaveBeenCalledWith(login({ payload: result }));
   });
 
 });
