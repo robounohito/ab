@@ -65,7 +65,7 @@ export class LoginEffects {
 
   reset$ = createEffect(() => this.actions$.pipe(
     ofType(reset),
-    switchMap(({ payload }) => this.api.request<{ account: AuthToken }>({
+    switchMap(({ payload }) => this.api.request<{ token: AuthToken }>({
       endpoint: this.api.endpoint.postReset,
       data: {
         email: payload.email,
@@ -75,7 +75,7 @@ export class LoginEffects {
       queryParams: { bypassHttpErrorInterceptor: true },
     }).pipe(
       tap(resp => {
-        localStorage.setItem(authTokenKey, JSON.stringify(resp.account));
+        localStorage.setItem(authTokenKey, JSON.stringify(resp.token));
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
