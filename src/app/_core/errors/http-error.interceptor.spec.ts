@@ -23,7 +23,7 @@ describe('HttpErrorInterceptor', () => {
       ]
     });
 
-    interceptor = TestBed.get(HttpErrorInterceptor);
+    interceptor = TestBed.inject(HttpErrorInterceptor);
 
   });
 
