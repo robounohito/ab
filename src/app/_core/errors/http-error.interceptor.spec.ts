@@ -5,6 +5,7 @@ import { HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import { throwError } from 'rxjs/';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('HttpErrorInterceptor', () => {
 
@@ -19,7 +20,8 @@ describe('HttpErrorInterceptor', () => {
     TestBed.configureTestingModule({
       providers: [
         HttpErrorInterceptor,
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        provideMockStore({ initialState: {} }),
       ]
     });
 
@@ -75,25 +77,6 @@ describe('HttpErrorInterceptor', () => {
         ).subscribe({
           error: () => {
             expect(router.navigate).toHaveBeenCalled();
-          }
-        });
-
-    });
-
-    it('should emit redirect to maintenance', () => {
-
-      const router = TestBed.inject(Router);
-
-      httpHandlerSpy.handle.and.returnValue(of('whatever')
-        .pipe(switchMap(() => throwError({ status: 0 }))));
-
-      interceptor.intercept(new HttpRequest('GET', '/'), httpHandlerSpy)
-        .pipe(
-          take(1)
-        ).subscribe({
-          error: (err) => {
-            expect(router.navigate).toHaveBeenCalled();
-            expect(err.status).toEqual(0);
           }
         });
 

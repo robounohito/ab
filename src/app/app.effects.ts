@@ -47,7 +47,6 @@ export class AppEffects {
 
   storage$ = createEffect(() => fromEvent<StorageEvent>(window, 'storage').pipe(
     switchMap(({ key, newValue: authToken }) => {
-      console.log('storage', key);
       if (key === authTokenKey) {
         return [
           readTokenSuccess({ authToken }),
