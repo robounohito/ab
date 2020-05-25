@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { readToken, readTokenSuccess, navigateToLogin, initAuth, logout, notification } from './app.constants';
+import { readToken, readTokenSuccess, navigateToLogin, initAuth, logout, notification, authTokenKey } from './app.constants';
 import { tap, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from './_core/api/api.service';
@@ -14,7 +14,7 @@ export class AppEffects {
   readToken$ = createEffect(() => this.actions$.pipe(
     ofType(readToken),
     switchMap(() => {
-      const authToken = localStorage.getItem('auth_token');
+      const authToken = localStorage.getItem(authTokenKey);
       return [
         readTokenSuccess({
           authToken: authToken ? JSON.parse(authToken) : null
@@ -44,7 +44,7 @@ export class AppEffects {
 
   logout$ = createEffect(() => this.actions$.pipe(
     ofType(logout),
-    tap(() => localStorage.removeItem('auth_token')),
+    tap(() => localStorage.removeItem(authTokenKey)),
     switchMap(() => this.api.request({
       endpoint: this.api.endpoint.getLogout,
     })),
@@ -61,7 +61,7 @@ export class AppEffects {
 
   storage$ = createEffect(() => fromEvent<StorageEvent>(window, 'storage').pipe(
     switchMap(({ key, newValue: authToken }) => {
-      if (key === 'auth_token') {
+      if (key === authTokenKey) {
         return [
           readTokenSuccess({ authToken }),
           ...(!authToken ? [navigateToLogin()] : [])

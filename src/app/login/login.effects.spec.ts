@@ -4,8 +4,8 @@ import { ApiService } from '../_core/api/api.service';
 import { of, Observable, throwError } from 'rxjs';
 import { LoginEffects } from './login.effects';
 import { Action } from '@ngrx/store';
-import { login, loginError, /* signup */ } from './login.constants';
-import { readToken } from '../app.constants';
+import { login, loginError, LoginError, /* signup */ } from './login.constants';
+import { readToken, authTokenKey } from '../app.constants';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
@@ -53,18 +53,18 @@ describe('LoginEffects', () => {
       apiServiceSpy.request.and.returnValue(of({ login: 'token' }));
       effects.login$.subscribe(res => {
         expect(navigateSpy).toHaveBeenCalledWith(['/']);
-        expect(localStorage.setItem).toHaveBeenCalledWith('auth_token', '"token"');
+        expect(localStorage.setItem).toHaveBeenCalledWith(authTokenKey, '"token"');
         expect(res).toEqual(readToken());
       });
     });
 
     it('should dispatch error on error', () => {
       const navigateSpy = spyOn(router, 'navigate');
-      apiServiceSpy.request.and.returnValue(throwError({ error: { message: { error: 'whatever' } } }));
+      apiServiceSpy.request.and.returnValue(throwError({ error: { message: { error: LoginError.invalidInput } } }));
       effects.login$.subscribe((res) => {
         expect(navigateSpy).not.toHaveBeenCalled();
         expect(localStorage.setItem).not.toHaveBeenCalled();
-        expect(res).toEqual(loginError({ error: 'whatever' }));
+        expect(res).toEqual(loginError({ error: LoginError.invalidInput }));
       });
     });
 
@@ -83,7 +83,7 @@ describe('LoginEffects', () => {
     apiServiceSpy.request.and.returnValue(of({ account: 'token' }));
     effects.signup$.subscribe(res => {
       expect(routerSpy.navigate).toHaveBeenCalledWith(['/']);
-      expect(localStorage.setItem).toHaveBeenCalledWith('auth_token', '"token"');
+      expect(localStorage.setItem).toHaveBeenCalledWith(authTokenKey, '"token"');
       expect(res).toEqual(readToken());
     });
   });
@@ -99,7 +99,7 @@ describe('LoginEffects', () => {
     apiServiceSpy.request.and.returnValue(of({ account: 'token' }));
     effects.signup$.subscribe(res => {
       expect(routerSpy.navigate).toHaveBeenCalledWith(['/']);
-      expect(localStorage.setItem).toHaveBeenCalledWith('auth_token', '"token"');
+      expect(localStorage.setItem).toHaveBeenCalledWith(authTokenKey, '"token"');
       expect(res).toEqual(readToken());
     });
   }); */

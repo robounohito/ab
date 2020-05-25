@@ -39,3 +39,5 @@ export enum Route {
   recovery = 'recovery',
   reset = 'reset',
 }
+
+export const authTokenKey = 'auth_token';

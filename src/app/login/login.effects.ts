@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { login, signup, recovery, reset, loginError, LoginError } from './login.constants';
 import { Router } from '@angular/router';
 import { ApiService } from '../_core/api/api.service';
-import { readToken } from '../app.constants';
+import { readToken, authTokenKey } from '../app.constants';
 import { AuthToken } from '../app.types';
 import { Route } from '../app.constants';
 import { of, EMPTY } from 'rxjs';
@@ -24,7 +24,7 @@ export class LoginEffects {
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(resp => {
-        localStorage.setItem('auth_token', JSON.stringify(resp.token));
+        localStorage.setItem(authTokenKey, JSON.stringify(resp.token));
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
@@ -40,7 +40,7 @@ export class LoginEffects {
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(resp => {
-        localStorage.setItem('auth_token', JSON.stringify(resp.token));
+        localStorage.setItem(authTokenKey, JSON.stringify(resp.token));
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
@@ -75,7 +75,7 @@ export class LoginEffects {
       queryParams: { bypassHttpErrorInterceptor: true },
     }).pipe(
       tap(resp => {
-        localStorage.setItem('auth_token', JSON.stringify(resp.account));
+        localStorage.setItem(authTokenKey, JSON.stringify(resp.account));
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
