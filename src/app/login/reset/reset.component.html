@@ -18,8 +18,8 @@
 
     <div class="form-field">
       <label for="email">
-        <mat-icon>person</mat-icon>
-        Username / Email
+        <mat-icon>email</mat-icon>
+        Email
       </label>
       <input id="email"
              type="text"
@@ -27,7 +27,7 @@
              [ngClass]="form.get('email')?.dirty 
                           && form.get('email')?.invalid 
                           && 'error'"
-             placeholder="Enter Your Username or Email"
+             placeholder="Enter Your Email"
              formControlName="email">
     </div>
 
