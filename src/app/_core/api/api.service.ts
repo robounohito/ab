@@ -27,10 +27,11 @@ export class ApiService {
     getSidebar: { method: 'get', url: 'sidebar' },
     getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
     getSettings: { method: 'get', url: 'settings' },
-    postSignup: { method: 'post', url: 'register' },
-    postLogin: { method: 'post', url: 'login' },
-    postRecover: { method: 'post', url: 'recover' },
-    postReset: { method: 'post', url: 'reset' },
+    getLogout: { method: 'get', url: 'auth/logout' },
+    postSignup: { method: 'post', url: 'auth/register' },
+    postLogin: { method: 'post', url: 'auth/login' },
+    postRecover: { method: 'post', url: 'auth/recover' },
+    postReset: { method: 'post', url: 'auth/reset' },
   };
 
   constructor(

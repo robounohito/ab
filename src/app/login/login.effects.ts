@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { switchMap, tap, map, catchError } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { login, signup, recovery, reset, loginError } from './login.constants';
+import { login, signup, recovery, reset, loginError, LoginError } from './login.constants';
 import { Router } from '@angular/router';
 import { ApiService } from '../_core/api/api.service';
 import { readToken } from '../app.constants';
@@ -14,37 +14,37 @@ export class LoginEffects {
 
   login$ = createEffect(() => this.actions$.pipe(
     ofType(login),
-    switchMap(({ payload }) => this.api.request<{ login: AuthToken }>({
+    switchMap(({ payload }) => this.api.request<{ token: AuthToken }>({
       endpoint: this.api.endpoint.postLogin,
       data: {
-        userId: payload.email,
-        pwd: payload.password,
+        email: payload.email,
+        password: payload.password,
         persistSession: payload.rememberMe
       },
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(resp => {
-        localStorage.setItem('auth_token', JSON.stringify(resp.login));
+        localStorage.setItem('auth_token', JSON.stringify(resp.token));
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
-      catchError(err => of(loginError(err.error.message)))
+      catchError(() => of(loginError({ error: LoginError.invalidEmailOrPassword })))
     )),
   ));
 
   signup$ = createEffect(() => this.actions$.pipe(
     ofType(signup),
-    switchMap(({ payload }) => this.api.request<{ account: AuthToken }>({
+    switchMap(({ payload }) => this.api.request<{ token: AuthToken }>({
       endpoint: this.api.endpoint.postSignup,
-      data: { email: payload.email, phone: payload.phone, pwd: payload.password },
+      data: payload,
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(resp => {
-        localStorage.setItem('auth_token', JSON.stringify(resp.account));
+        localStorage.setItem('auth_token', JSON.stringify(resp.token));
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
-      catchError(err => of(loginError(err.error.message)))
+      catchError(() => of(loginError({ error: LoginError.invalidInput })))
     )),
   ));
 
@@ -52,14 +52,14 @@ export class LoginEffects {
     ofType(recovery),
     switchMap(({ payload }) => this.api.request({
       endpoint: this.api.endpoint.postRecover,
-      data: { userId: payload.email, recoveryType: payload.recoveryType, },
+      data: { mail: payload.email, recoveryType: payload.recoveryType, },
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(() => {
         this.router.navigate(['/', Route.login, Route.reset]);
       }),
       switchMap(() => EMPTY),
-      catchError(err => of(loginError(err.error.message))),
+      catchError(() => of(loginError({ error: LoginError.invalidInput }))),
     )),
   ));
 
@@ -68,9 +68,9 @@ export class LoginEffects {
     switchMap(({ payload }) => this.api.request<{ account: AuthToken }>({
       endpoint: this.api.endpoint.postReset,
       data: {
-        userId: payload.email,
-        recoveryCode: payload.recoveryCode,
-        newPwd: payload.password
+        email: payload.email,
+        code: payload.recoveryCode,
+        password: payload.password
       },
       queryParams: { bypassHttpErrorInterceptor: true },
     }).pipe(
@@ -79,7 +79,7 @@ export class LoginEffects {
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
-      catchError(err => of(loginError(err.error.message))),
+      catchError(() => of(loginError({ error: LoginError.invalidInput }))),
     )),
   ));
 

@@ -9,8 +9,4 @@ export interface CurrentUser {
   authToken: AuthToken;
 }
 
-export type AuthToken = {
-  Authorization: string;
-  sessionExpiration: string;
-  sessionId: string;
-} | null;
+export type AuthToken = string | null;

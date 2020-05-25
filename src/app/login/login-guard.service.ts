@@ -15,7 +15,8 @@ export class LoginGuard implements CanActivate {
   canActivate() {
     return this.store.select(selectLogin).pipe(
       take(1),
-      tap(({ error }) => error && this.store.dispatch(loginReset())),
+      tap(({ error, loading }) =>
+        (error || loading) && this.store.dispatch(loginReset())),
       map(() => true),
     );
   }

@@ -17,7 +17,7 @@ export const login = createAction(
 
 export const loginError = createAction(
   '[Login] Login Error',
-  props<{ error: string }>()
+  props<{ error: LoginError }>()
 );
 
 export const signup = createAction(
@@ -52,4 +52,7 @@ export const reset = createAction(
   }>()
 );
 
-export const invalidCredentials = 1;
+export enum LoginError {
+  invalidEmailOrPassword = 'Invalid Email or Password.',
+  invalidInput = 'Invalid Input.'
+}

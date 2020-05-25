@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar.component';
+import { AuthGuard } from '../_core/auth/auth-guard.service';
 
 const routes: Routes = [{
   path: '',
   component: NavbarComponent,
+  canActivate: [AuthGuard],
+  canActivateChild: [AuthGuard],
   children: [
     { path: 'autobot', loadChildren: () => import('../autobot/autobot.module').then(m => m.AutobotModule) },
     { path: 'campaigns', loadChildren: () => import('../campaigns/campaigns.module').then(m => m.CampaignsModule) },
