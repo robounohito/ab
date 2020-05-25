@@ -58,7 +58,7 @@ describe('HttpErrorInterceptor', () => {
 
     it('should emit redirect', () => {
 
-      const router = TestBed.get(Router);
+      const router = TestBed.inject(Router);
 
       httpHandlerSpy.handle.and.returnValue(of('whatever')
         .pipe(switchMap(() => throwError({

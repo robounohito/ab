@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { forEachObjIndexed, isNil } from 'ramda';
-import { bypassHttpErrorInterceptor } from '../interceptors/http-error.interceptor';
+import { bypassHttpErrorInterceptor } from '../errors/http-error.interceptor';
 
 export interface ApiRequest {
   endpoint: {

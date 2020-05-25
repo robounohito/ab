@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './api/api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MockInterceptor } from './interceptors/mock.interceptor';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { MockInterceptor } from './mocks/mock.interceptor';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { HttpErrorInterceptor } from './errors/http-error.interceptor';
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
