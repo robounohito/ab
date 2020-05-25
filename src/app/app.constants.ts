@@ -15,11 +15,6 @@ export const navigateToLogin = createAction(
   '[App] Navigate To Login',
 );
 
-export const initAuth = createAction(
-  '[App] Init Auth',
-  props<{ email: string }>()
-);
-
 export const logout = createAction(
   '[App] Logout',
 );

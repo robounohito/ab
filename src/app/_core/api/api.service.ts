@@ -15,24 +15,26 @@ export interface ApiRequest {
   reportProgress?: boolean;
 }
 
+export const endPoint = {
+  getHubspotAuth: { method: 'get', url: 'autobound/mission_control/integrations/hubspot/userID/{email}' },
+  getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
+  getSidebar: { method: 'get', url: 'sidebar' },
+  getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
+  getSettings: { method: 'get', url: 'settings' },
+  getLogout: { method: 'get', url: 'auth/logout' },
+  postSignup: { method: 'post', url: 'auth/register' },
+  postLogin: { method: 'post', url: 'auth/login' },
+  postRecover: { method: 'post', url: 'auth/recover' },
+  postReset: { method: 'post', url: 'auth/reset' },
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
   baseUrl = 'api/';
-  endpoint = {
-    getHubspotAuth: { method: 'get', url: 'autobound/mission_control/integrations/hubspot/userID/{email}' },
-    getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
-    getSidebar: { method: 'get', url: 'sidebar' },
-    getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
-    getSettings: { method: 'get', url: 'settings' },
-    getLogout: { method: 'get', url: 'auth/logout' },
-    postSignup: { method: 'post', url: 'auth/register' },
-    postLogin: { method: 'post', url: 'auth/login' },
-    postRecover: { method: 'post', url: 'auth/recover' },
-    postReset: { method: 'post', url: 'auth/reset' },
-  };
+  endpoint = endPoint;
 
   constructor(
     private http: HttpClient

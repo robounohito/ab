@@ -1,14 +1,14 @@
 import * as model from './login.model';
-import { loginReset, login, signup, recovery, reset, loginError } from './login.constants';
+import { loginReset, login, signup, recovery, reset, loginError, LoginError } from './login.constants';
 
-describe('Current User model', () => {
+describe('Login model', () => {
 
   describe('reducer', () => {
 
     it('should reset state on loginReset action', () => {
       expect(model.reducer({
         loading: true,
-        error: 'error'
+        error: LoginError.invalidInput
       }, loginReset()
       )).toEqual({
         loading: false,
@@ -31,10 +31,10 @@ describe('Current User model', () => {
       expect(model.reducer({
         loading: true,
         error: ''
-      }, loginError({ error: 'error' })
+      }, loginError({ error: LoginError.invalidEmailOrPassword })
       )).toEqual({
         loading: false,
-        error: 'error'
+        error: LoginError.invalidEmailOrPassword
       });
     });
 
