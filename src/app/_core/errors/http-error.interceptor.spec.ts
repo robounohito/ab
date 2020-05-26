@@ -1,8 +1,7 @@
 import { HttpErrorInterceptor } from './http-error.interceptor';
 import { TestBed } from '@angular/core/testing';
 import { HttpRequest, HttpErrorResponse, HttpHandler, HttpParams } from '@angular/common/http';
-import { of } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { throwError } from 'rxjs/';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import SpyObj = jasmine.SpyObj;
@@ -43,8 +42,9 @@ describe('HttpErrorInterceptor', () => {
     });
 
     it('should emit complete', () => {
-      httpHandlerSpy.handle.and.returnValue(of('whatever')
-        .pipe(switchMap(() => throwError({ error: { message: 'whatever' } }))));
+      httpHandlerSpy.handle.and.returnValue(
+        throwError({ error: { message: 'whatever' } })
+      );
       interceptor.intercept(new HttpRequest('GET', '/'), httpHandlerSpy)
         .pipe(take(1))
         .subscribe({
@@ -56,11 +56,9 @@ describe('HttpErrorInterceptor', () => {
 
     it('should redirect on 401', () => {
       const dispatchSpy = spyOn(store, 'dispatch');
-      httpHandlerSpy.handle.and.returnValue(of('whatever')
-        .pipe(switchMap(() => throwError({
-          url: 'whatever',
-          status: 401,
-        }))));
+      httpHandlerSpy.handle.and.returnValue(
+        throwError({ url: 'whatever', status: 401, })
+      );
       interceptor.intercept(new HttpRequest('GET', '/'), httpHandlerSpy)
         .pipe(
           take(1)
@@ -78,8 +76,7 @@ describe('HttpErrorInterceptor', () => {
         status: 500,
         error: { message: 'whatever', code: 1001 }
       };
-      httpHandlerSpy.handle.and.returnValue(of('whatever')
-        .pipe(switchMap(() => throwError(error))));
+      httpHandlerSpy.handle.and.returnValue(throwError(error));
       interceptor.intercept(new HttpRequest('GET', '/', {
         params: new HttpParams().set('bypassHttpErrorInterceptor', '1001')
       }), httpHandlerSpy).pipe(
@@ -94,12 +91,13 @@ describe('HttpErrorInterceptor', () => {
 
     it('should invoke global errorHandler', () => {
       const dispatchSpy = spyOn(store, 'dispatch');
-      httpHandlerSpy.handle.and.returnValue(of('whatever')
-        .pipe(switchMap(() => throwError({
+      httpHandlerSpy.handle.and.returnValue(
+        throwError({
           url: 'whatever',
           status: 500,
           error: { message: 'whatever', code: 1001 }
-        }))));
+        })
+      );
       interceptor.intercept(new HttpRequest('GET', '/'), httpHandlerSpy)
         .pipe(
           take(1)
