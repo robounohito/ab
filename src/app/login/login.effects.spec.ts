@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions, } from '@ngrx/effects/testing';
-import { ApiService } from '../_core/api/api.service';
+import { ApiService, apiEndpoint } from '../_core/api/api.service';
 import { of, Observable, throwError } from 'rxjs';
 import { LoginEffects } from './login.effects';
 import { Action } from '@ngrx/store';
@@ -8,18 +8,21 @@ import { login, loginError, LoginError, signup, recovery, reset, } from './login
 import { readToken, authTokenKey, Route } from '../app.constants';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import SpyObj = jasmine.SpyObj;
 
-describe('LoginEffects', () => {
+fdescribe('LoginEffects', () => {
 
   let effects: LoginEffects;
   let actions$: Observable<Action>;
   let router: Router;
-
-  const apiServiceSpy = jasmine.createSpyObj('ApiService', ['request', 'endpoint']);
+  let apiServiceSpy: SpyObj<ApiService>;
 
   beforeEach(() => {
 
     spyOn(localStorage, 'setItem');
+
+    apiServiceSpy = jasmine.createSpyObj('ApiService', ['request', 'endpoint']);
+    apiServiceSpy.endpoint = apiEndpoint;
 
     TestBed.configureTestingModule({
       imports: [
@@ -52,6 +55,15 @@ describe('LoginEffects', () => {
       const navigateSpy = spyOn(router, 'navigate');
       apiServiceSpy.request.and.returnValue(of({ token: 'token' }));
       effects.login$.subscribe(res => {
+        expect(apiServiceSpy.request).toHaveBeenCalledWith({
+          endpoint: apiEndpoint.postLogin,
+          data: {
+            email: 'email',
+            password: 'password',
+            persistSession: true,
+          },
+          queryParams: { bypassHttpErrorInterceptor: true }
+        });
         expect(navigateSpy).toHaveBeenCalledWith(['/']);
         expect(localStorage.setItem).toHaveBeenCalledWith(authTokenKey, '"token"');
         expect(res).toEqual(readToken());
@@ -86,6 +98,15 @@ describe('LoginEffects', () => {
       const navigateSpy = spyOn(router, 'navigate');
       apiServiceSpy.request.and.returnValue(of({ token: 'token' }));
       effects.signup$.subscribe(res => {
+        expect(apiServiceSpy.request).toHaveBeenCalledWith({
+          endpoint: apiEndpoint.postSignup,
+          data: {
+            email: 'email',
+            password: 'password',
+            phone: 'phone',
+          },
+          queryParams: { bypassHttpErrorInterceptor: true }
+        });
         expect(navigateSpy).toHaveBeenCalledWith(['/']);
         expect(localStorage.setItem).toHaveBeenCalledWith(authTokenKey, '"token"');
         expect(res).toEqual(readToken());
@@ -120,6 +141,14 @@ describe('LoginEffects', () => {
       apiServiceSpy.request.and.returnValue(of({}));
       effects.recovery$.subscribe({
         complete: () => {
+          expect(apiServiceSpy.request).toHaveBeenCalledWith({
+            endpoint: apiEndpoint.postRecover,
+            data: {
+              email: 'email',
+              recoveryType: 'email',
+            },
+            queryParams: { bypassHttpErrorInterceptor: true }
+          });
           expect(navigateSpy).toHaveBeenCalledWith(['/', Route.login, Route.reset]);
         }
       });
@@ -152,6 +181,15 @@ describe('LoginEffects', () => {
       const navigateSpy = spyOn(router, 'navigate');
       apiServiceSpy.request.and.returnValue(of({ token: 'token' }));
       effects.reset$.subscribe(res => {
+        expect(apiServiceSpy.request).toHaveBeenCalledWith({
+          endpoint: apiEndpoint.postReset,
+          data: {
+            email: 'email',
+            password: 'password',
+            code: 'recoveryCode',
+          },
+          queryParams: { bypassHttpErrorInterceptor: true }
+        });
         expect(navigateSpy).toHaveBeenCalledWith(['/']);
         expect(localStorage.setItem).toHaveBeenCalledWith(authTokenKey, '"token"');
         expect(res).toEqual(readToken());

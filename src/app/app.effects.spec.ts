@@ -5,7 +5,7 @@ import { AppEffects } from './app.effects';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Action } from '@ngrx/store';
 import SpyObj = jasmine.SpyObj;
-import { ApiService, endPoint } from './_core/api/api.service';
+import { ApiService, apiEndpoint } from './_core/api/api.service';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { readToken, authTokenKey, readTokenSuccess, navigateToLogin, Route, logout, notification } from './app.constants';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ describe('AppEffects', () => {
 
     apiServiceSpy = jasmine.createSpyObj('ApiService', ['request', 'endpoint']);
     apiServiceSpy.request.and.returnValue(of({}));
-    apiServiceSpy.endpoint = endPoint;
+    apiServiceSpy.endpoint = apiEndpoint;
 
     snackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
@@ -93,7 +93,7 @@ describe('AppEffects', () => {
     it('should call logout', () => {
       effects.logout$.subscribe(() => {
         expect(apiServiceSpy.request).toHaveBeenCalledWith({
-          endpoint: endPoint.getLogout,
+          endpoint: apiEndpoint.getLogout,
         });
       });
     });

@@ -52,7 +52,7 @@ export class LoginEffects {
     ofType(recovery),
     switchMap(({ payload }) => this.api.request({
       endpoint: this.api.endpoint.postRecover,
-      data: { mail: payload.email, recoveryType: payload.recoveryType, },
+      data: payload,
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(() => {

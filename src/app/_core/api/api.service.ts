@@ -15,7 +15,7 @@ export interface ApiRequest {
   reportProgress?: boolean;
 }
 
-export const endPoint = {
+export const apiEndpoint = {
   getHubspotAuth: { method: 'get', url: 'autobound/mission_control/integrations/hubspot/userID/{email}' },
   getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
   getSidebar: { method: 'get', url: 'sidebar' },
@@ -34,7 +34,7 @@ export const endPoint = {
 export class ApiService {
 
   baseUrl = 'api/';
-  endpoint = endPoint;
+  endpoint = apiEndpoint;
 
   constructor(
     private http: HttpClient
