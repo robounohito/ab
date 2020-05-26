@@ -1,0 +1,18 @@
+name: test-ci
+
+on: 
+  push:
+    branches:
+      - development
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: running development-front-ci.sh script
+      uses: appleboy/ssh-action@master
+      with:
+        host: 35.247.61.4
+        username: root
+        key: ${{ secrets.NEW_DEV_SERVER_RSA }}
+        script: /data/development-front-ci.sh
