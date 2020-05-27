@@ -3,22 +3,44 @@
      [formGroup]="form">
 
   <div class="column left">
+
     <h3>
       Suggested Activities ({{model.suggestedActivities.length}})
     </h3>
-    <div class="accordion-card"
+
+    <div class="accordion"
          *ngFor="let suggested of model.suggestedActivities">
-      <div class="header">
-        <h3>
-          {{suggested.reason}}
-        </h3>
-        <div class="arrow"></div>
+
+      <div class="accordion-card"
+           [ngClass]="form.value.expanded[suggested.campaign_id] && 'expanded'">
+        <div class="header">
+          <h3>
+            {{suggested.reason}}
+          </h3>
+          <div [ngClass]="form.value.expanded[suggested.campaign_id] && 'expanded'"
+               (click)="toggleItem(suggested.campaign_id)">
+            <div class="arrow"></div>
+          </div>
+        </div>
+        <p>{{suggested.prospects.length}} prospects</p>
       </div>
-      <p>{{suggested.prospects.length}} prospects</p>
+
+      <div *ngIf="form.value.expanded[suggested.campaign_id]"
+           [@slideInOut]>
+        <div class="accordion-card sub-item"
+             [routerLink]="['/', 'autobot', prospect.id]"
+             [routerLinkActive]="'active'"
+             *ngFor="let prospect of suggested.prospects">
+          {{prospect.name}}
+        </div>
+      </div>
+
     </div>
+
   </div>
 
   <div class="column middle">
+    <router-outlet></router-outlet>
     <div autoboundEditor
          formControlName="snippets"
          class="editor">
@@ -40,8 +62,10 @@
     </div>
   </div>
 
-  <div class="column right"><h3>
-    Suggested Articles
-  </h3></div>
+  <div class="column right">
+    <h3>
+      Suggested Articles
+    </h3>
+  </div>
 
 </div>

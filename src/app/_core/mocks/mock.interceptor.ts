@@ -8067,9 +8067,9 @@ const suggested: any = {
       {
         reason: 'New Revenue Executives',
         prospects: [
-          'Christian Cecchi',
-          'Colin Marshall',
-          'Jonathan Basiri'
+          { id: 1, name: 'Christian Cecchi' },
+          { id: 2, name: 'Colin Marshall' },
+          { id: 3, name: 'Jonathan Basiri' }
         ],
         activity: 'Initial Contact',
         job_titles: [

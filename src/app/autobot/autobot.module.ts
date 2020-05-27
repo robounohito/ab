@@ -9,9 +9,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AutobotEffects } from './autobot.effects';
 import { reducer } from './autobot.model';
+import { ProspectComponent } from './prospect/prospect.component';
 
 @NgModule({
-  declarations: [AutobotComponent, EditorComponent, EditorDirective],
+  declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent],
   imports: [
     CommonModule,
     SharedModule,
