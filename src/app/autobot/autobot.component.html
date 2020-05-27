@@ -1,7 +1,22 @@
 <div class="container"
+     *ngIf="model$ | async as model"
      [formGroup]="form">
 
-  <div class="column">Activities</div>
+  <div class="column left">
+    <h3>
+      Suggested Activities ({{model.suggestedActivities.length}})
+    </h3>
+    <div class="accordion-card"
+         *ngFor="let suggested of model.suggestedActivities">
+      <div class="header">
+        <h3>
+          {{suggested.reason}}
+        </h3>
+        <div class="arrow"></div>
+      </div>
+      <p>{{suggested.prospects.length}} prospects</p>
+    </div>
+  </div>
 
   <div class="column middle">
     <div autoboundEditor
@@ -25,6 +40,8 @@
     </div>
   </div>
 
-  <div class="column">Articles</div>
+  <div class="column right"><h3>
+    Suggested Articles
+  </h3></div>
 
 </div>

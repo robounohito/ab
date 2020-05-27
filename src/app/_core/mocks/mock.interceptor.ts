@@ -20,14 +20,21 @@ export class MockInterceptor implements HttpInterceptor {
       && request.method === 'GET') {
       // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
       return of(new HttpResponse({
-        status: 200, body: mock
+        status: 200, body: campaigns
+      })).pipe(delay(50));
+    }
+    if (request.url.endsWith('suggested')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: suggested
       })).pipe(delay(50));
     }
     return next.handle(request);
   }
 }
 
-const mock: any = {
+const campaigns: any = {
   Result: 'Success',
   Error: 0,
   ErrorDetails: {
@@ -8045,4 +8052,176 @@ const mock: any = {
       __v: 3
     }
   ]
+};
+
+
+const suggested: any = {
+  Result: 'Success',
+  Error: 0,
+  ErrorDetails: {
+    Error: 0,
+    Description: 'The operation was successful'
+  },
+  campaigns: {
+    campaignsSuggested: [
+      {
+        reason: 'New Revenue Executives',
+        prospects: [
+          'Christian Cecchi',
+          'Colin Marshall',
+          'Jonathan Basiri'
+        ],
+        activity: 'Initial Contact',
+        job_titles: [
+          'Sales Director (EMEA)',
+          'Sales Director'
+        ],
+        companies: [
+          'Flipboard'
+        ],
+        campaign_id: 91
+      },
+      {
+        reason: 'New Product Release',
+        prospects: [
+          'Anastasia Stoljarova',
+          'Alden Bradley',
+          'Ann Griffith',
+          'Alex Grandbury',
+          'Alexandra Kelly',
+          'Andras Horvath',
+          'Ami Silverman',
+          'Alexandra Maher',
+          'Amir Assif',
+          'Aditya Biswas',
+          'Adam Barker',
+          'Akihiro Minamisawa',
+          'Analisa Roberts',
+          'Adam Reed',
+          'Amjad Khan',
+          'Amanda Trouba',
+          'Adam Beacher',
+          'Andrew Yip',
+          'Ann Bradley',
+          'Alex Schudrich',
+          'Amol Shah',
+          'Aleksey Nechiporuk',
+          'Alicia Martin',
+          'Andrew Ford',
+          'Alison Cunard'
+        ],
+        activity: 'Introduce New Product',
+        job_titles: [
+          'Sales Manager (EMEA)',
+          'Business Sales Manager',
+          'Director, US Services Sales Excellence & Operations',
+          'Sales Manager',
+          'Sales, Services, & G&A Talent Partner',
+          'Retail Sales Lead',
+          'Corporate VP, Worldwide Sales & Marketing (Consumer & Devices)',
+          'Sales Operations Manager',
+          'Solution Principal & Manager, Azure (Sales',
+          'Manager, Sales, Operations',
+          'Azure Sales Lead (Asia)',
+          'Sales Development Specialist',
+          'Business Management, Sales Operations & Strategy Specialist (OEM Division)',
+          'Sales Director (Northeast US Education)',
+          'Director, Solution Sales',
+          'Business & Education Sales Specialist',
+          'Sales Director (Retail & Manufacturing Division)',
+          'Partner Sales Executive',
+          'Director, Region Sales Excellence (East)',
+          'Director, PC Category Sales',
+          'Director, Sales, Search Advertising',
+          'Head of Sales Operations',
+          'General Manager, Worldwide Sales &amp, Marketing'
+        ],
+        companies: [
+          'Malwarebytes',
+          'T-Mobile',
+          'Microsoft',
+          'github'
+        ],
+        campaign_id: 96
+      },
+      {
+        reason: 'No Previous Contact',
+        prospects: [
+          'Alberto Escudero',
+          'Alex Rice',
+          'Anthony Rethans',
+          'Alyssa Schoch',
+          'Amanda Evangelista',
+          'Alan Pecci',
+          'Andy Seepersad',
+          'Arif Afandi',
+          'Anil Reddy-Neal',
+          'Andrew Lebowski',
+          'Anthony Rice',
+          'Anne Fisher',
+          'Alex Stanton',
+          'Anthony Narducci',
+          'Anne-Marie Azzi',
+          'Andy Shotz',
+          'Anthony Frattali',
+          'Alyssa Domokos',
+          'Andy Due',
+          'Arnold Britto',
+          'Abdullah Al-Kindi',
+          'Adam Cheer',
+          'Adam Cooper',
+          'Aaron Engram',
+          'Aakash Arya'
+        ],
+        activity: 'Initial Contact',
+        job_titles: [
+          'Director, Diagnostics Sales (EMEA)',
+          'Area Sales Manager',
+          'Director, Sales (Western Region)',
+          'Sales Development Team Lead',
+          'Manager, Ambulatory Inside Sales',
+          'Sales Executive',
+          'Inside Sales Manager',
+          'Senior Manager, Sales',
+          'Salesforce Business System Analyst(Apttus CPQ, CLM, Billing Management',
+          'Chief Sales Officer',
+          'Sales Manager',
+          'Vice President, Presales',
+          'Vice President, Sales',
+          'Manager, Marketing & Sales Enablement',
+          'Director, Enterprise Sales',
+          'Sales Operations Specialist',
+          'Director, Sales',
+          'Area Sales Director',
+          'Manager, Commercial Sales Mountain (West)',
+          'Sales Director'
+        ],
+        companies: [
+          'NanoString Technologies, Inc.',
+          'Tableau',
+          'Apstra',
+          'Pushpay',
+          'NextGen Healthcare',
+          'Oracle',
+          'Ethos Lending',
+          'Cloudely Inc',
+          'Epom',
+          'Bay Equity Home Loans',
+          'Guild Mortgage',
+          'yardi',
+          'Qadium, Inc.',
+          'Cisco',
+          'Degreed',
+          'Procore Technologies, Inc',
+          'MOXA',
+          'Reflektion Inc',
+          'HCL',
+          'rfxcel',
+          'Advantage Solutions',
+          'Amobee, Inc.'
+        ],
+        campaign_id: 98
+      }
+    ]
+  }
 };

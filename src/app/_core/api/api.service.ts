@@ -20,6 +20,7 @@ export const apiEndpoint = {
   getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
   getSidebar: { method: 'get', url: 'sidebar' },
   getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
+  getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
   getSettings: { method: 'get', url: 'settings' },
   getLogout: { method: 'get', url: 'auth/logout' },
   postSignup: { method: 'post', url: 'auth/register' },

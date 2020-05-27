@@ -2,23 +2,23 @@
 
 @mixin label-text {
   font-size: 12px;
-  color: #222f58;
+  color: $richBlack;
 }
 
 @mixin a-text {
   font-size: 12px;
-  color: #222f58;
+  color: $richBlack;
 }
 
 h1 {
   font-weight: bold;
-  color: #222f58;
+  color: $richBlack;
   text-align: center;
   margin-bottom: 7px;
 }
 
 h3 {
-  color: #292059;
+  color: $blueBlack;
   text-align: center;
   line-height: normal;
   margin-bottom: 27px;
@@ -64,8 +64,8 @@ h3 {
       width: 100%;
       height: 45px;
       border-radius: 4px;
-      background-color: #e8e7ef;
-      color: #514f67;
+      background-color: $richWhite;
+      color: $darkViolet;
       font-size: 14px;
       padding: 14px;
       outline-width: 2px;
@@ -87,7 +87,7 @@ h3 {
       right: 3px;
       .mat-icon {
         font-size: 17px;
-        color: #83819e;
+        color: $greyViolet;
       }
     }
 
@@ -118,7 +118,7 @@ h3 {
     height: 45px;
     border: none;
     border-radius: 5px;
-    background-image: linear-gradient(to bottom, #49c5ef, #4092cb);
+    background-image: linear-gradient(to bottom, $lightAqua, $aquaVariant1);
     color: white;
     font-size: 16px;
     font-weight: 500;
@@ -128,7 +128,7 @@ h3 {
     outline-width: 0;
 
     &:hover:not([disabled]) {
-      background-image: linear-gradient(to bottom, #49c5ef, #539cd0);
+      background-image: linear-gradient(to bottom, $lightAqua, $aquaVariant2);
     }
 
     &:disabled,
@@ -140,14 +140,14 @@ h3 {
   }
 
   div.centered {
-    color: #292059;
+    color: $blueBlack;
     font-size: 12px;
   }
 
   a {
     font-size: 12px;
     font-weight: bold;
-    color: #448fdc;
+    color: $darkAqua;
   }
 
 }

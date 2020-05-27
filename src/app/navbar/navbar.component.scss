@@ -121,6 +121,7 @@
   width: 100%;
   display: flex;
   overflow: auto;
+  background-color: $lightGrey;
 
   .router-outlet {
     width: 100%;

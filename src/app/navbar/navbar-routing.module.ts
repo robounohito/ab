@@ -9,6 +9,7 @@ const routes: Routes = [{
   canActivate: [AuthGuard],
   canActivateChild: [AuthGuard],
   children: [
+    { path: '', redirectTo: 'autobot', pathMatch: 'full' },
     { path: 'autobot', loadChildren: () => import('../autobot/autobot.module').then(m => m.AutobotModule) },
     { path: 'campaigns', loadChildren: () => import('../campaigns/campaigns.module').then(m => m.CampaignsModule) },
     { path: 'contacts', loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsModule) },

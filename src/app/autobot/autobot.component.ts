@@ -1,6 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroupT, formCreate, formPatchValue } from '../_core/form/form';
 import { FormBuilder } from '@angular/forms';
+import { Autobot } from './autobot.types';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectAutobot } from './autobot.model';
+import { loadSuggestedActivities } from './autobot.constants';
 
 interface EditorForm {
   snippets: { [key: string]: string };
@@ -14,13 +19,17 @@ interface EditorForm {
 })
 export class AutobotComponent implements OnInit {
 
+  model$!: Observable<Autobot>;
   form!: FormGroupT<EditorForm>;
 
   constructor(
     private fb: FormBuilder,
+    private store: Store,
   ) { }
 
   ngOnInit() {
+    this.model$ = this.store.select(selectAutobot);
+    this.store.dispatch(loadSuggestedActivities());
     this.form = formCreate<EditorForm>(this.fb, {
       snippets: [{
         1: '<h2>Autobot here</h2><h3>Subject: Monthly travel news and inspiration</h3>',
