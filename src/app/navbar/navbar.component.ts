@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { navbarMenu, loadSettings } from './navbar.constants';
+import { navbarMenu, loadSettings, blankProfiilePic } from './navbar.constants';
 import { Store } from '@ngrx/store';
 import { logout } from '../app.constants';
 import { slideInOut } from '../_core/animations/animations';
@@ -18,6 +18,7 @@ import { selectNavbar } from './navbar.model';
 export class NavbarComponent implements OnInit {
 
   navbarMenu = navbarMenu;
+  blankProfiilePic = blankProfiilePic;
   model$!: Observable<Navbar>;
 
   constructor(private store: Store) { }

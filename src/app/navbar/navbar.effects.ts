@@ -10,10 +10,10 @@ export class NavbarEffects {
 
   loadSettings$ = createEffect(() => this.actions$.pipe(
     ofType(loadSettings),
-    switchMap(() => this.api.request<{ settings: { settings: Settings } }>({
+    switchMap(() => this.api.request<Settings>({
       endpoint: this.api.endpoint.getSettings,
     }).pipe(
-      map(resp => loadSettingsSuccess({ settings: resp.settings.settings })),
+      map(resp => loadSettingsSuccess({ settings: resp })),
     )),
   ));
 

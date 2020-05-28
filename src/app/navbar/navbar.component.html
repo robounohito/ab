@@ -19,10 +19,13 @@
                [routerLink]="!menuItem.submenu ? ['/', menuItem.path] : []"
                [routerLinkActive]="!menuItem.submenu ? 'active' : ''"
                (click)="menuItem.submenu ? uiState.submenuExpanded = !uiState.submenuExpanded : null">
-              <mat-icon [matTooltip]="menuItem.title"
+              <!-- <mat-icon [matTooltip]="menuItem.title"
                         matTooltipPosition="right">
                 {{menuItem.icon}}
-              </mat-icon>
+              </mat-icon> -->
+              <img [src]="'/assets/img/' + menuItem.icon"
+                   [matTooltip]="menuItem.title"
+                   matTooltipPosition="right">
               <span>
                 {{uiState.expanded ? menuItem.title : ''}}
               </span>
@@ -45,12 +48,17 @@
             </div>
           </div>
         </div>
-        <div mat-button
-             class="photo"
-             [matMenuTriggerFor]="menu"
-             [matTooltip]="model.first_name"
-             matTooltipPosition="right">
-          <img src="{{(model.first_name ? 'https://' : '') + model.profile_img_link}}">
+        <div class="photo-container">
+          <div mat-button
+               class="photo"
+               [matMenuTriggerFor]="menu"
+               [matTooltip]="model.first_name"
+               matTooltipPosition="right">
+            <img src="{{model.profile_img_link || blankProfiilePic}}">
+          </div>
+          <span *ngIf="uiState.expanded">
+            {{model.first_name}}
+          </span>
         </div>
         <mat-menu #menu="matMenu">
           <button mat-menu-item

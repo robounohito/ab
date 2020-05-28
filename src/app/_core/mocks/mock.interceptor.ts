@@ -30,11 +30,24 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: suggested
       })).pipe(delay(50));
     }
+    if (request.url.endsWith('settings')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: userSettings
+      })).pipe(delay(50));
+    }
     return next.handle(request);
   }
 }
 
-const campaigns: any = {
+const userSettings = {
+  first_name: 'Michael Kilesa',
+  email: 'mkilesa@test.com',
+  profile_img_link: '',
+};
+
+const campaigns = {
   Result: 'Success',
   Error: 0,
   ErrorDetails: {
@@ -8055,7 +8068,7 @@ const campaigns: any = {
 };
 
 
-const suggested: any = {
+const suggested = {
   Result: 'Success',
   Error: 0,
   ErrorDetails: {

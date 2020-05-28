@@ -16,18 +16,18 @@ export const blankProfiilePic = '/assets/img/blank_profile.png';
 export const navbarMenu = [{
   path: 'autobot',
   title: 'Autobot',
-  icon: 'assignment_ind',
+  icon: 'autobot.svg',
 }, {
   path: 'campaigns',
   title: 'Active Campaigns',
-  icon: 'arrow_forward_ios'
+  icon: 'campaign.svg'
 }, {
   path: 'contacts',
   title: 'Contacts to Call',
-  icon: 'phone'
+  icon: 'phone.svg'
 }, {
   title: 'Persona Creation',
-  icon: 'person',
+  icon: 'person.svg',
   collapse: 'person',
   submenu: [
     {
@@ -49,21 +49,17 @@ export const navbarMenu = [{
 }, {
   path: 'triggers',
   title: 'Trigger Selection',
-  icon: 'select_all'
-}, /* {
-  path: 'custom-snippet-creation',
-  title: 'Custom Pitch Creation',
-  icon: 'create'
-}, */ {
+  icon: 'bulb.svg'
+}, {
   path: 'settings',
   title: 'Settings',
-  icon: 'settings'
+  icon: 'cog.svg'
 }, {
   path: 'news',
   title: 'New News Trainer',
-  icon: 'search'
+  icon: 'chat.svg'
 }, {
   path: 'dashboard',
   title: 'Rep Dashboard',
-  icon: 'dashboard'
+  icon: 'globe.svg'
 }];
