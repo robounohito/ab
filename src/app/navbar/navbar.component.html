@@ -19,16 +19,16 @@
                [routerLink]="!menuItem.submenu ? ['/', menuItem.path] : []"
                [routerLinkActive]="!menuItem.submenu ? 'active' : ''"
                (click)="menuItem.submenu ? uiState.submenuExpanded = !uiState.submenuExpanded : null">
-              <!-- <mat-icon [matTooltip]="menuItem.title"
-                        matTooltipPosition="right">
-                {{menuItem.icon}}
-              </mat-icon> -->
               <img [src]="'/assets/img/' + menuItem.icon"
                    [matTooltip]="menuItem.title"
                    matTooltipPosition="right">
               <span>
                 {{uiState.expanded ? menuItem.title : ''}}
               </span>
+              <div class="callout"
+                   *ngIf="menuItem.path === navbarMenu[2].path">
+                {{12}}
+              </div>
             </a>
             <div class="submenu"
                  *ngIf="uiState.submenuExpanded"
