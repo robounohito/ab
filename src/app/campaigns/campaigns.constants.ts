@@ -7,5 +7,5 @@ export const loadCampaigns = createAction(
 
 export const loadCampaignsSuccess = createAction(
   '[Campaigns] Load Campaigns Success',
-  props<{ campaigns: Campaign[] }>()
+  props<{ campaigns: Campaign[]; }>()
 );

@@ -14,7 +14,7 @@ export class LoginEffects {
 
   login$ = createEffect(() => this.actions$.pipe(
     ofType(login),
-    switchMap(({ payload }) => this.api.request<{ token: AuthToken }>({
+    switchMap(({ payload }) => this.api.request<{ token: AuthToken; }>({
       endpoint: this.api.endpoint.postLogin,
       data: {
         email: payload.email,
@@ -34,7 +34,7 @@ export class LoginEffects {
 
   signup$ = createEffect(() => this.actions$.pipe(
     ofType(signup),
-    switchMap(({ payload }) => this.api.request<{ token: AuthToken }>({
+    switchMap(({ payload }) => this.api.request<{ token: AuthToken; }>({
       endpoint: this.api.endpoint.postSignup,
       data: payload,
       queryParams: { bypassHttpErrorInterceptor: true }
@@ -65,7 +65,7 @@ export class LoginEffects {
 
   reset$ = createEffect(() => this.actions$.pipe(
     ofType(reset),
-    switchMap(({ payload }) => this.api.request<{ token: AuthToken }>({
+    switchMap(({ payload }) => this.api.request<{ token: AuthToken; }>({
       endpoint: this.api.endpoint.postReset,
       data: {
         email: payload.email,

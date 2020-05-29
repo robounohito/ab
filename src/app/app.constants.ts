@@ -24,7 +24,7 @@ export const notification = createAction(
   props<{
     message: string;
     action: string;
-    config?: MatSnackBarConfig
+    config?: MatSnackBarConfig;
   }>()
 );
 

@@ -37,9 +37,7039 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: userSettings
       })).pipe(delay(50));
     }
+    if (request.url.endsWith('insights/1')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: insights1
+      })).pipe(delay(50));
+    }
+    if (request.url.endsWith('insights/2')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: insights2
+      })).pipe(delay(50));
+    }
     return next.handle(request);
   }
 }
+
+const insights1 = {
+  Result: 'Success',
+  Error: 0,
+  ErrorDetails: {
+    Error: 0,
+    Description: 'The operation was successful'
+  },
+  hubspot: {
+    insights: {
+      contact_insights: {
+        won: 0,
+        lost: 0,
+        open: 0,
+        past_calls: 0,
+        past_emails: 0,
+        past_demos: 0,
+        past_meetings: 0,
+        past_tasks: 0,
+        past_notes: 0,
+        inbound_calls: 0,
+        outbound_calls: 0,
+        inbound_emails: 0,
+        first_name: 'Christian',
+        last_name: 'Cecchi',
+        industry: '',
+        last_contacted: 'Invalid date',
+        no_contact_time: null,
+        job_title: 'Licensing Deal Management Team',
+        email: 'demo1277@autobound.ai',
+        status: 'lead',
+        created: '2020-03-11 01:10',
+        contact_id: 286748,
+        company_industry: 'computer software',
+        multiple_contacts: true
+      },
+      company_insights: {
+        leads30: 0,
+        leads3060: 0,
+        leads61: 73,
+        past_calls: 0,
+        past_emails: 0,
+        past_demos: 0,
+        past_meetings: 0,
+        won: 0,
+        lost: 0,
+        open: 0,
+        company_name: 'VMware',
+        leads: [
+          {
+            vid: null,
+            lead_date: '1583889034235',
+            last_contacted: ''
+          },
+          {
+            vid: 285815,
+            lead_date: {
+              value: '1583889033574',
+              versions: [
+                {
+                  value: '1583889033574',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033574,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 285953,
+            lead_date: {
+              value: '1583889033246',
+              versions: [
+                {
+                  value: '1583889033246',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033246,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 286123,
+            lead_date: {
+              value: '1583889033755',
+              versions: [
+                {
+                  value: '1583889033755',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033755,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 286275,
+            lead_date: {
+              value: '1583889033757',
+              versions: [
+                {
+                  value: '1583889033757',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033757,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 286479,
+            lead_date: {
+              value: '1583889033892',
+              versions: [
+                {
+                  value: '1583889033892',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033892,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 287552,
+            lead_date: {
+              value: '1583889034100',
+              versions: [
+                {
+                  value: '1583889034100',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889034100,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 287759,
+            lead_date: {
+              value: '1583889034362',
+              versions: [
+                {
+                  value: '1583889034362',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889034362,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 287892,
+            lead_date: {
+              value: '1583889035003',
+              versions: [
+                {
+                  value: '1583889035003',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035003,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288117,
+            lead_date: {
+              value: '1583889034468',
+              versions: [
+                {
+                  value: '1583889034468',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889034468,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288240,
+            lead_date: {
+              value: '1583889035070',
+              versions: [
+                {
+                  value: '1583889035070',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035070,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288609,
+            lead_date: {
+              value: '1583889035051',
+              versions: [
+                {
+                  value: '1583889035051',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035051,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288921,
+            lead_date: {
+              value: '1583889035434',
+              versions: [
+                {
+                  value: '1583889035434',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035434,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 289903,
+            lead_date: {
+              value: '1583889035518',
+              versions: [
+                {
+                  value: '1583889035518',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035518,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290225,
+            lead_date: {
+              value: '1583889036360',
+              versions: [
+                {
+                  value: '1583889036360',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036360,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290289,
+            lead_date: {
+              value: '1583889036695',
+              versions: [
+                {
+                  value: '1583889036695',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036695,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290712,
+            lead_date: {
+              value: '1583889036782',
+              versions: [
+                {
+                  value: '1583889036782',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036782,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290871,
+            lead_date: {
+              value: '1583889036891',
+              versions: [
+                {
+                  value: '1583889036891',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036891,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 291005,
+            lead_date: {
+              value: '1583889036583',
+              versions: [
+                {
+                  value: '1583889036583',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036583,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 291582,
+            lead_date: {
+              value: '1583889037288',
+              versions: [
+                {
+                  value: '1583889037288',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889037288,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 292208,
+            lead_date: {
+              value: '1583889037554',
+              versions: [
+                {
+                  value: '1583889037554',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889037554,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 293188,
+            lead_date: {
+              value: '1583889038456',
+              versions: [
+                {
+                  value: '1583889038456',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038456,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 293409,
+            lead_date: {
+              value: '1583889038241',
+              versions: [
+                {
+                  value: '1583889038241',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038241,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 293708,
+            lead_date: {
+              value: '1583889038287',
+              versions: [
+                {
+                  value: '1583889038287',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038287,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 294008,
+            lead_date: {
+              value: '1583889038482',
+              versions: [
+                {
+                  value: '1583889038482',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038482,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 294374,
+            lead_date: {
+              value: '1583889038998',
+              versions: [
+                {
+                  value: '1583889038998',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038998,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 294897,
+            lead_date: {
+              value: '1583889039513',
+              versions: [
+                {
+                  value: '1583889039513',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889039513,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 296097,
+            lead_date: {
+              value: '1583889040117',
+              versions: [
+                {
+                  value: '1583889040117',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040117,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 296452,
+            lead_date: {
+              value: '1583889039684',
+              versions: [
+                {
+                  value: '1583889039684',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889039684,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297148,
+            lead_date: {
+              value: '1583889040813',
+              versions: [
+                {
+                  value: '1583889040813',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040813,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297312,
+            lead_date: {
+              value: '1583889040427',
+              versions: [
+                {
+                  value: '1583889040427',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040427,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297386,
+            lead_date: {
+              value: '1583889040688',
+              versions: [
+                {
+                  value: '1583889040688',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040688,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297955,
+            lead_date: {
+              value: '1583889040664',
+              versions: [
+                {
+                  value: '1583889040664',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040664,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 298151,
+            lead_date: {
+              value: '1583889040780',
+              versions: [
+                {
+                  value: '1583889040780',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040780,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 298657,
+            lead_date: {
+              value: '1583889040985',
+              versions: [
+                {
+                  value: '1583889040985',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040985,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 298734,
+            lead_date: {
+              value: '1583889041551',
+              versions: [
+                {
+                  value: '1583889041551',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889041551,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299034,
+            lead_date: {
+              value: '1583889041784',
+              versions: [
+                {
+                  value: '1583889041784',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889041784,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299095,
+            lead_date: {
+              value: '1583889042176',
+              versions: [
+                {
+                  value: '1583889042176',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042176,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299290,
+            lead_date: {
+              value: '1583889042359',
+              versions: [
+                {
+                  value: '1583889042359',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042359,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299684,
+            lead_date: {
+              value: '1583889042282',
+              versions: [
+                {
+                  value: '1583889042282',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042282,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300373,
+            lead_date: {
+              value: '1583889042659',
+              versions: [
+                {
+                  value: '1583889042659',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042659,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300571,
+            lead_date: {
+              value: '1583889042672',
+              versions: [
+                {
+                  value: '1583889042672',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042672,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300583,
+            lead_date: {
+              value: '1583889042806',
+              versions: [
+                {
+                  value: '1583889042806',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042806,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300700,
+            lead_date: {
+              value: '1583889043217',
+              versions: [
+                {
+                  value: '1583889043217',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043217,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300770,
+            lead_date: {
+              value: '1583889042845',
+              versions: [
+                {
+                  value: '1583889042845',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042845,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300882,
+            lead_date: {
+              value: '1583889042929',
+              versions: [
+                {
+                  value: '1583889042929',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042929,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301051,
+            lead_date: {
+              value: '1583889042579',
+              versions: [
+                {
+                  value: '1583889042579',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042579,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301339,
+            lead_date: {
+              value: '1583889043325',
+              versions: [
+                {
+                  value: '1583889043325',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043325,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301373,
+            lead_date: {
+              value: '1583889043109',
+              versions: [
+                {
+                  value: '1583889043109',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043109,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301551,
+            lead_date: {
+              value: '1583889043010',
+              versions: [
+                {
+                  value: '1583889043010',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043010,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302005,
+            lead_date: {
+              value: '1583889043189',
+              versions: [
+                {
+                  value: '1583889043189',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043189,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302015,
+            lead_date: {
+              value: '1583889043379',
+              versions: [
+                {
+                  value: '1583889043379',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043379,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302248,
+            lead_date: {
+              value: '1583889043888',
+              versions: [
+                {
+                  value: '1583889043888',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043888,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302482,
+            lead_date: {
+              value: '1583889044108',
+              versions: [
+                {
+                  value: '1583889044108',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044108,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302606,
+            lead_date: {
+              value: '1583889043773',
+              versions: [
+                {
+                  value: '1583889043773',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043773,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302767,
+            lead_date: {
+              value: '1583889044251',
+              versions: [
+                {
+                  value: '1583889044251',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044251,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302821,
+            lead_date: {
+              value: '1583889044361',
+              versions: [
+                {
+                  value: '1583889044361',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044361,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303183,
+            lead_date: {
+              value: '1583889044359',
+              versions: [
+                {
+                  value: '1583889044359',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044359,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303348,
+            lead_date: {
+              value: '1583889044855',
+              versions: [
+                {
+                  value: '1583889044855',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044855,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303596,
+            lead_date: {
+              value: '1583889044879',
+              versions: [
+                {
+                  value: '1583889044879',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044879,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303728,
+            lead_date: {
+              value: '1583889044888',
+              versions: [
+                {
+                  value: '1583889044888',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044888,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 304228,
+            lead_date: {
+              value: '1583889045140',
+              versions: [
+                {
+                  value: '1583889045140',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045140,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 304769,
+            lead_date: {
+              value: '1583889045235',
+              versions: [
+                {
+                  value: '1583889045235',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045235,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 305123,
+            lead_date: {
+              value: '1583889045529',
+              versions: [
+                {
+                  value: '1583889045529',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045529,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 305155,
+            lead_date: {
+              value: '1583889045268',
+              versions: [
+                {
+                  value: '1583889045268',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045268,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 307653,
+            lead_date: {
+              value: '1583889047667',
+              versions: [
+                {
+                  value: '1583889047667',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889047667,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 307972,
+            lead_date: {
+              value: '1583889053058',
+              versions: [
+                {
+                  value: '1583889053058',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889053058,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 309402,
+            lead_date: {
+              value: '1583889049910',
+              versions: [
+                {
+                  value: '1583889049910',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889049910,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 310036,
+            lead_date: {
+              value: '1583889062367',
+              versions: [
+                {
+                  value: '1583889062367',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889062367,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 311601,
+            lead_date: {
+              value: '1583889055017',
+              versions: [
+                {
+                  value: '1583889055017',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889055017,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 313003,
+            lead_date: {
+              value: '1583889061562',
+              versions: [
+                {
+                  value: '1583889061562',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889061562,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 313726,
+            lead_date: {
+              value: '1583889067706',
+              versions: [
+                {
+                  value: '1583889067706',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889067706,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 315976,
+            lead_date: {
+              value: '1583889077117',
+              versions: [
+                {
+                  value: '1583889077117',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889077117,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 317501,
+            lead_date: {
+              value: '1583889077117',
+              versions: [
+                {
+                  value: '1583889077117',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889077117,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          }
+        ],
+        numLeads: 74
+      },
+      colleague_insights: [
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mitch',
+          last_name: 'Stott',
+          industry: '',
+          job_title: 'Manager, Partner Sales',
+          email: 'demo131@autobound.ai',
+          status: 'lead',
+          contact_id: 285815
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Pierre',
+          last_name: 'Ardichvili',
+          industry: '',
+          job_title: 'Director, Network & Security Sales, Southern (Europe)',
+          email: 'demo121@autobound.ai',
+          status: 'lead',
+          contact_id: 285953
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Vinh',
+          last_name: 'Williams',
+          industry: '',
+          job_title: 'Territory Sales Manager (Dell Execution Team)',
+          email: 'demo615@autobound.ai',
+          status: 'lead',
+          contact_id: 286123
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Samantha',
+          last_name: 'Miguel',
+          industry: '',
+          job_title: 'WW Sales Operations, GPO Global Order Management',
+          email: 'demo150@autobound.ai',
+          status: 'lead',
+          contact_id: 286275
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jonathon',
+          last_name: 'Coppolino',
+          industry: '',
+          job_title: 'Sales Operations Analyst',
+          email: 'demo852@autobound.ai',
+          status: 'lead',
+          contact_id: 286479
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Stephanie',
+          last_name: 'Ross',
+          industry: '',
+          job_title: 'Divisional Sales Director, Vmware Dell EMC Synergy Team',
+          email: 'demo1114@autobound.ai',
+          status: 'lead',
+          contact_id: 287552
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Roy',
+          last_name: 'Brittain',
+          industry: '',
+          job_title: 'Regional Sales Director',
+          email: 'demo1145@autobound.ai',
+          status: 'lead',
+          contact_id: 287759
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Zynthia',
+          last_name: 'Deval',
+          industry: '',
+          job_title: 'Sales Manager, Project Operations',
+          email: 'demo1656@autobound.ai',
+          status: 'lead',
+          contact_id: 287892
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Shahzad',
+          last_name: 'Caplan',
+          industry: '',
+          job_title: 'Pre-Sales Solutions Networking & Security (Vmware & Nicira Architect',
+          email: 'demo1741@autobound.ai',
+          status: 'lead',
+          contact_id: 288117
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Xiang',
+          last_name: 'Popko',
+          industry: '',
+          job_title: 'Director, Sales Operations (Americas)',
+          email: 'demo2345@autobound.ai',
+          status: 'lead',
+          contact_id: 288240
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Nicholas',
+          last_name: 'Shao',
+          industry: '',
+          job_title: 'Inside Sales Executive (Healthcare)',
+          email: 'demo1223@autobound.ai',
+          status: 'lead',
+          contact_id: 288609
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Thao',
+          last_name: 'Ayris',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo2469@autobound.ai',
+          status: 'lead',
+          contact_id: 288921
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Tanner',
+          last_name: 'King',
+          industry: '',
+          job_title: 'EUC Sales Specialist (Enterprise Select)',
+          email: 'demo2708@autobound.ai',
+          status: 'lead',
+          contact_id: 289903
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Takaharu',
+          last_name: 'Rizwan',
+          industry: '',
+          job_title: 'Sales Strategy Senior Analyst',
+          email: 'demo3720@autobound.ai',
+          status: 'lead',
+          contact_id: 290225
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mike',
+          last_name: 'Alassaf',
+          industry: '',
+          job_title: 'Finance Director, Worldwide Sales Compensation Finance',
+          email: 'demo4226@autobound.ai',
+          status: 'lead',
+          contact_id: 290289
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Steven',
+          last_name: 'Lopez',
+          industry: '',
+          job_title: 'Sales Director',
+          email: 'demo4028@autobound.ai',
+          status: 'lead',
+          contact_id: 290712
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Vivek',
+          last_name: 'El-Sisy',
+          industry: '',
+          job_title: 'Manager, Global Sales Operations (Renewal Sales)',
+          email: 'demo4949@autobound.ai',
+          status: 'lead',
+          contact_id: 290871
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Sridar',
+          last_name: 'Freiermuth',
+          industry: '',
+          job_title: 'Manager, Sales Enablement Finance',
+          email: 'demo4042@autobound.ai',
+          status: 'lead',
+          contact_id: 291005
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Nacime',
+          last_name: 'Bhatnagar',
+          industry: '',
+          job_title: 'Senior Regional Sales Manager',
+          email: 'demo5321@autobound.ai',
+          status: 'lead',
+          contact_id: 291582
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jon',
+          last_name: 'Martin',
+          industry: '',
+          job_title: 'Sales Manager, Cloud Vmware Cloud Provider Program',
+          email: 'demo5136@autobound.ai',
+          status: 'lead',
+          contact_id: 292208
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mike',
+          last_name: 'Bahner',
+          industry: '',
+          job_title: 'Senior Manager, Commercial Sales (Software Defined Storage)',
+          email: 'demo6596@autobound.ai',
+          status: 'lead',
+          contact_id: 293188
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Shane',
+          last_name: 'Buell',
+          industry: '',
+          job_title: 'Sales Manager (Enterprise Select, West Region)',
+          email: 'demo6910@autobound.ai',
+          status: 'lead',
+          contact_id: 293409
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Rajesh',
+          last_name: 'Allegro',
+          industry: '',
+          job_title: 'Senior Sales SDDC Specialist',
+          email: 'demo7072@autobound.ai',
+          status: 'lead',
+          contact_id: 293708
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mark',
+          last_name: 'Barlow',
+          industry: '',
+          job_title: 'Regional Sales Director',
+          email: 'demo6847@autobound.ai',
+          status: 'lead',
+          contact_id: 294008
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Kim',
+          last_name: 'Leong',
+          industry: '',
+          job_title: 'Director, World Wide Solution Partner RTM Sales',
+          email: 'demo7464@autobound.ai',
+          status: 'lead',
+          contact_id: 294374
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Johnny',
+          last_name: 'Batt',
+          industry: '',
+          job_title: 'Manager, Sales Operations (Global Compliance)',
+          email: 'demo9141@autobound.ai',
+          status: 'lead',
+          contact_id: 294897
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Ellen',
+          last_name: 'Wise',
+          industry: '',
+          job_title: 'Manager, Inside Sales',
+          email: 'demo10147@autobound.ai',
+          status: 'lead',
+          contact_id: 296097
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Okan',
+          last_name: 'Schreiber',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo8958@autobound.ai',
+          status: 'lead',
+          contact_id: 296452
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Linda',
+          last_name: 'Woodbury',
+          industry: '',
+          job_title: 'Senior Inside Sales Manager, Global Accounts',
+          email: 'demo11326@autobound.ai',
+          status: 'lead',
+          contact_id: 297148
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jeff',
+          last_name: 'Wu',
+          industry: '',
+          job_title: 'Director, Global Sales Operations',
+          email: 'demo10729@autobound.ai',
+          status: 'lead',
+          contact_id: 297312
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Justin',
+          last_name: 'Lannelongue',
+          industry: '',
+          job_title: 'Sales Forecasting CoE Leader',
+          email: 'demo10857@autobound.ai',
+          status: 'lead',
+          contact_id: 297386
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jeff',
+          last_name: 'Anand',
+          industry: '',
+          job_title: 'District Sales Manager (Americas Region)',
+          email: 'demo10999@autobound.ai',
+          status: 'lead',
+          contact_id: 297955
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jim',
+          last_name: 'Clouthier',
+          industry: '',
+          job_title: 'Senior Sales Director',
+          email: 'demo10824@autobound.ai',
+          status: 'lead',
+          contact_id: 298151
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Karl',
+          last_name: 'Desai',
+          industry: '',
+          job_title: 'Manager, Sales Operations',
+          email: 'demo11181@autobound.ai',
+          status: 'lead',
+          contact_id: 298657
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jerron',
+          last_name: 'Cerri',
+          industry: '',
+          job_title: 'Senior Sales Manager',
+          email: 'demo12252@autobound.ai',
+          status: 'lead',
+          contact_id: 298734
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Erin',
+          last_name: 'Ekstrom',
+          industry: '',
+          job_title: 'Global Program Manager, Sales Acceleration Team (GSAT',
+          email: 'demo11806@autobound.ai',
+          status: 'lead',
+          contact_id: 299034
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jason',
+          last_name: 'Rotem',
+          industry: '',
+          job_title: 'Regional Director, Corporate Sales',
+          email: 'demo12615@autobound.ai',
+          status: 'lead',
+          contact_id: 299095
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jeff',
+          last_name: 'Tofte',
+          industry: '',
+          job_title: 'Manager, Commercial Sales',
+          email: 'demo13478@autobound.ai',
+          status: 'lead',
+          contact_id: 299290
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jena',
+          last_name: 'Skach',
+          industry: '',
+          job_title: 'Principal End User Computing & Mobility Field Sales Specialist',
+          email: 'demo13090@autobound.ai',
+          status: 'lead',
+          contact_id: 299684
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jared',
+          last_name: 'Tagand',
+          industry: '',
+          job_title: 'Territory Sales Manager, VMware',
+          email: 'demo13692@autobound.ai',
+          status: 'lead',
+          contact_id: 300373
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Elizabeth',
+          last_name: 'Burke',
+          industry: '',
+          job_title: 'Sales Pipeline Leader',
+          email: 'demo14411@autobound.ai',
+          status: 'lead',
+          contact_id: 300571
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dov',
+          last_name: 'Goyal',
+          industry: '',
+          job_title: 'Senior Manager, Sales Operations, BI, COE (Americas)',
+          email: 'demo14565@autobound.ai',
+          status: 'lead',
+          contact_id: 300583
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Douglas',
+          last_name: 'Dugan',
+          industry: '',
+          job_title: 'Senior Manager, Commercial Sales Operations',
+          email: 'demo14488@autobound.ai',
+          status: 'lead',
+          contact_id: 300700
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'John',
+          last_name: 'Wible',
+          industry: '',
+          job_title: 'Senior Sales Director (Americas Region)',
+          email: 'demo10698@autobound.ai',
+          status: 'lead',
+          contact_id: 300770
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Fawn',
+          last_name: 'Patel',
+          industry: '',
+          job_title: 'Senior Manager, Sales Operations (Healthcare Vertical, Americas)',
+          email: 'demo13831@autobound.ai',
+          status: 'lead',
+          contact_id: 300882
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Kathy',
+          last_name: 'Urquhart',
+          industry: '',
+          job_title: 'Manager, Sales Operations',
+          email: 'demo11966@autobound.ai',
+          status: 'lead',
+          contact_id: 301051
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dave',
+          last_name: 'Lombardo',
+          industry: '',
+          job_title: 'End User Computing Sales Specialist',
+          email: 'demo15055@autobound.ai',
+          status: 'lead',
+          contact_id: 301339
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Geoffrey',
+          last_name: 'Koptelova',
+          industry: '',
+          job_title: 'Vice President, Global Cloud Sales',
+          email: 'demo13545@autobound.ai',
+          status: 'lead',
+          contact_id: 301373
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Debbie',
+          last_name: 'Young',
+          industry: '',
+          job_title: 'Senior Manager, Partner Sales',
+          email: 'demo14906@autobound.ai',
+          status: 'lead',
+          contact_id: 301551
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'David',
+          last_name: 'Herning',
+          industry: '',
+          job_title: 'Senior Director, System Integrator Sales (Public Sector)',
+          email: 'demo14893@autobound.ai',
+          status: 'lead',
+          contact_id: 302005
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dave',
+          last_name: 'Crisostomo',
+          industry: '',
+          job_title: 'Manager, Services Sales',
+          email: 'demo15454@autobound.ai',
+          status: 'lead',
+          contact_id: 302015
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Daryl',
+          last_name: 'Carlucci',
+          industry: '',
+          job_title: 'Vice General Manager, President Sales',
+          email: 'demo15490@autobound.ai',
+          status: 'lead',
+          contact_id: 302248
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Daniel',
+          last_name: 'Story',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo15925@autobound.ai',
+          status: 'lead',
+          contact_id: 302482
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dan',
+          last_name: 'Chandrika',
+          industry: '',
+          job_title: 'Senior Director, Sales Operations (Americas)',
+          email: 'demo15767@autobound.ai',
+          status: 'lead',
+          contact_id: 302606
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dan',
+          last_name: 'Pizarro',
+          industry: '',
+          job_title: 'Senior Director, SDDC, EUC & OEM Partner Sales',
+          email: 'demo16218@autobound.ai',
+          status: 'lead',
+          contact_id: 302767
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Chris',
+          last_name: 'Koser',
+          industry: '',
+          job_title: 'Strategic Product Sales Specialist',
+          email: 'demo16244@autobound.ai',
+          status: 'lead',
+          contact_id: 302821
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'David',
+          last_name: 'Wong',
+          industry: '',
+          job_title: 'End User Computing Sales Specialist',
+          email: 'demo15299@autobound.ai',
+          status: 'lead',
+          contact_id: 303183
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Brenda',
+          last_name: 'Leith',
+          industry: '',
+          job_title: 'Global Inside & Commercial Sales Enablement Lead',
+          email: 'demo17796@autobound.ai',
+          status: 'lead',
+          contact_id: 303348
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Michael',
+          last_name: 'Satyamurti',
+          industry: '',
+          job_title: 'Inside Sales Manager',
+          email: 'demo8843@autobound.ai',
+          status: 'lead',
+          contact_id: 303596
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Bob',
+          last_name: 'Oberoi',
+          industry: '',
+          job_title: 'Sales Manager, Area VSAN & Hyper Converged Solutions SLED & Health Care California',
+          email: 'demo17771@autobound.ai',
+          status: 'lead',
+          contact_id: 303728
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Bryan',
+          last_name: 'Salita',
+          industry: '',
+          job_title: 'Regional Sales Manager, Vmware Dell Execution Team',
+          email: 'demo17252@autobound.ai',
+          status: 'lead',
+          contact_id: 304228
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Antonio',
+          last_name: 'Castro',
+          industry: '',
+          job_title: 'Inside Sales Account Manager',
+          email: 'demo18406@autobound.ai',
+          status: 'lead',
+          contact_id: 304769
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Bob',
+          last_name: 'Volberg',
+          industry: '',
+          job_title: 'Director, Dell Commercial Field Sales (West)',
+          email: 'demo17920@autobound.ai',
+          status: 'lead',
+          contact_id: 305123
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Christine',
+          last_name: 'Jolly',
+          industry: '',
+          job_title: 'Manager, Sales Operations',
+          email: 'demo16671@autobound.ai',
+          status: 'lead',
+          contact_id: 305155
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Manuel',
+          last_name: 'Fletcher',
+          industry: '',
+          job_title: 'Senior Manager, Ecommerce Sales',
+          email: 'demo9435@autobound.ai',
+          status: 'lead',
+          contact_id: 307653
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Imran',
+          last_name: 'Nelson',
+          industry: '',
+          job_title: 'Sales Operations Vmware Senior Analyst',
+          email: 'demo13184@autobound.ai',
+          status: 'lead',
+          contact_id: 307972
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jay',
+          last_name: 'Marx',
+          industry: '',
+          job_title: 'Sales Manager',
+          email: 'demo12715@autobound.ai',
+          status: 'lead',
+          contact_id: 309402
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Matthew',
+          last_name: 'Spignese',
+          industry: '',
+          job_title: 'Regional Sales Manager',
+          email: 'demo6802@autobound.ai',
+          status: 'lead',
+          contact_id: 310036
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Murat',
+          last_name: 'Morse',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo9450@autobound.ai',
+          status: 'lead',
+          contact_id: 311601
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dave',
+          last_name: 'Martin',
+          industry: '',
+          job_title: 'NSX Sales Specialist',
+          email: 'demo15326@autobound.ai',
+          status: 'lead',
+          contact_id: 313003
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Eddy',
+          last_name: 'Mehta',
+          industry: '',
+          job_title: 'Manager, Partner Sales',
+          email: 'demo15124@autobound.ai',
+          status: 'lead',
+          contact_id: 313726
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dan',
+          last_name: 'Venkatraman',
+          industry: '',
+          job_title: 'Director, Enterprise Inside Sales (Americas)',
+          email: 'demo15773@autobound.ai',
+          status: 'lead',
+          contact_id: 315976
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'David',
+          last_name: 'Mahaseth',
+          industry: '',
+          job_title: 'Global Senior Manager, Sales Operations',
+          email: 'demo15580@autobound.ai',
+          status: 'lead',
+          contact_id: 317501
+        }
+      ],
+      abcolleague_insights: [
+        {
+          portalId: 6174462,
+          ownerId: 46058427,
+          type: 'PERSON',
+          firstName: 'Danylo',
+          lastName: 'Shapoval',
+          email: 'danylo.shapoval93@gmail.com',
+          createdAt: 1585670173139,
+          updatedAt: 1585749379536,
+          remoteList: [
+            {
+              id: 35234958,
+              portalId: 6174462,
+              ownerId: 46058427,
+              remoteId: '10373175',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 10373175,
+          userIdIncludingInactive: 10373175,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 42219823,
+          type: 'PERSON',
+          firstName: 'Eric',
+          lastName: 'Hamer',
+          email: 'eric@autobound.ai',
+          createdAt: 1578945746708,
+          updatedAt: 1585779967433,
+          remoteList: [
+            {
+              id: 34160983,
+              portalId: 6174462,
+              ownerId: 42219823,
+              remoteId: '9311051',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 9311051,
+          userIdIncludingInactive: 9311051,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 44275547,
+          type: 'PERSON',
+          firstName: 'EricTest',
+          lastName: 'HamerTest',
+          email: 'sockotj@gmail.com',
+          createdAt: 1582151656986,
+          updatedAt: 1588271620582,
+          remoteList: [
+            {
+              id: 34697368,
+              portalId: 6174462,
+              ownerId: 44275547,
+              remoteId: '10032559',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 10032559,
+          userIdIncludingInactive: 10032559,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 46877640,
+          type: 'PERSON',
+          firstName: 'Ivan',
+          lastName: 'Poddubchenko',
+          email: 'design@inveritasoft.com',
+          createdAt: 1587146231978,
+          updatedAt: 1587652672167,
+          remoteList: [
+            {
+              id: 35496687,
+              portalId: 6174462,
+              ownerId: 46877640,
+              remoteId: '10539055',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 10539055,
+          userIdIncludingInactive: 10539055,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 47126759,
+          type: 'PERSON',
+          firstName: 'Kyle',
+          lastName: 'Schu',
+          email: 'kyleschuster93@gmail.com',
+          createdAt: 1587652799058,
+          updatedAt: 1587652799058,
+          remoteList: [
+            {
+              id: 35581076,
+              portalId: 6174462,
+              ownerId: 47126759,
+              remoteId: '8167091',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 8167091,
+          userIdIncludingInactive: 8167091,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        }
+      ],
+      variable_insights: {
+        ab_colleague_first_name: 'Danylo',
+        ab_company_name: 'Autobound',
+        ab_user_first_name: 'Patty',
+        colleague_first_name1: '',
+        colleague_first_name2: '',
+        colleague_first_name: 'Mitch',
+        company_name: 'VMware',
+        contact_first_name: 'Marisol',
+        day_of_week: 'Friday',
+        friendly_time_of_day: 'morning',
+        industry: 'computer software',
+        introduction: '',
+        job_department: '',
+        job_function: 'Sales',
+        last_contact_month: '',
+        last_contact_time: 'a few days ago',
+        last_contacted: null,
+        link: 'http://www.google.com',
+        no_activity: true,
+        some_activity_no_activity_traction: false,
+        activity_traction: false,
+        activity_traction_with_prospect_colleague: false,
+        activity_traction_with_two_colleagues_but_not_current_contact: false,
+        opportunity_traction: false,
+        opportunity_colleague_traction: false,
+        opportunity_traction_with_two_colleagues_but_not_current_contact: false,
+        trigger: 'new_product_release',
+        campaign: 'New Product Release',
+        news_article: [
+          {
+            created_by: '5dc73cf55ff33a28b25ea542',
+            modified_by: '5dc73cf55ff33a28b25ea542',
+            _id: '5e6c16704f62da23b4f2c1fa',
+            owner: '5dc73cf55ff33a28b25ea543',
+            source: {
+              id: null,
+              name: 'Us-cert.gov'
+            },
+            author: 'CISA',
+            title: 'VMware Releases Security Updates for vRealize Operations for Horizon Adapter',
+            description: 'Original release date: February 19, 2020 VMware has released security updates to address multiple vulnerabilities in vRealize Operations for Horizon Adapter. A remote attacker could exploit some of these vulnerabilities to take control of an affected system. …',
+            url: 'https://www.us-cert.gov/ncas/current-activity/2020/02/19/vmware-releases-security-updates-vrealize-operations-horizon',
+            urlToImage: null,
+            publishedAt: '2020-02-19T18:30:13Z',
+            content: 'VMware has released security updates to address multiple vulnerabilities in vRealize Operations for Horizon Adapter. A remote attacker could exploit some of these vulnerabilities to take control of an affected system.\r\nThe Cybersecurity and Infrastructure Security Agency (CISA) encourages users and administrators to review VMware Security Advisory VMSA-2020-0003 and apply the necessary updates.',
+            company: 'VMware',
+            company_id: 3161242323,
+            trigger: '0',
+            keyword: '("VMware" AND "new regional sales") OR ("VMware" AND "new cso") OR ("VMware" AND "new chief sales officer") OR ("VMware" AND "new chief revenue officer") OR ("VMware" AND "new CRO") OR ("VMware" AND "new CSO") OR ("VMware" AND "hires chief revenue officer") OR ("VMware" AND "new head of sales") OR ("VMware" AND "compliance issues") OR ("VMware" AND "regulatory concerns") OR ("VMware" AND "regulatory problems") OR ("VMware" AND "new product") OR ("VMware" AND "launches") OR ("VMware" AND "unveils") OR ("VMware" AND "releases") OR ("VMware" AND "enters new market") OR ("VMware" AND "expands into")-"Results" -"Quarter"',
+            created: '2020-03-13T23:25:36.073Z',
+            modified: '2020-03-13T23:25:36.073Z',
+            __v: 0
+          }
+        ],
+        persona: 1
+      },
+      emails: {
+        intro1: {
+          paragraphs: {
+            subject: {
+              text: 'Sales qualified leads for Vmware',
+              snippet_id: '5ea17aa4e8d6326d589b40a7'
+            },
+            greeting: {
+              text: '<p>Hi Marisol, (last_name)</p>',
+              snippet_id: '5ece9a6db728db1a0f890a33'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            role: {
+              text: 'I\'m a CEO & Co-Founder at New Company, a sales enablement company that helps businesses set more qualified meetings while spending less time prospecting, writing outreach, and creating email sequences.',
+              snippet_id: '5ea17aa4e8d6326d589b4167'
+            },
+            pitch: {
+              text: 'Reason I ask - Most sales leaders I work with have not figured out outbound sales, particularly the messaging around a new product. The decrease of inbound leads (which they have relied heavily on) is destroying the company and employees are being let go.',
+              snippet_id: '5ec2ef0dbbec7409ec727073'
+            },
+            calltoaction: {
+              text: 'If you\'re looking for sales technology that can help your team send highly effective outbound sales emails to make the most out every touchpoint, <a href="https://meetings.hubspot.com/kyle282">Schedule 15 minutes here on my calendar.</a> to learn more about <a href="www.ehamer.us">Autobound</a>.',
+              snippet_id: '5ec2ef0dbbec7409ec72708a'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        },
+        intro2: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: '<p>Hi Marisol, (last_name)</p>',
+              snippet_id: '5ece99f27e72f91a074518b4'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            reason: {
+              text: 'Thought I\'d follow up in case my previous message missed your inbox.',
+              snippet_id: '5ea17aa5e8d6326d589b41f3'
+            },
+            pitch: {
+              text: '<a href="www.ehamer.us">Our personalization technology</a> has hundreds of expert sales strategies built into the system to help you increase conversion rates and push Vmware’s new product into the market.',
+              snippet_id: '5ec2ef0dbbec7409ec727082'
+            },
+            calltoaction: {
+              text: '<a href="https://meetings.hubspot.com/kyle282">Book a 15 min slot</a> at your convenience and let’s talk about how we can save your team hours, daily, on <b>effective email creation</b>, and get more bang for your buck.',
+              snippet_id: '5ec2ef0dbbec7409ec72708c'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        },
+        intro3: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: 'Marisol,',
+              snippet_id: '5ec2ef0dbbec7409ec727063'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            reason: {
+              text: 'Have you had a chance to review my previous message? I\'m happy to recap what we do in the sales automation industry.',
+              snippet_id: '5ea17aa5e8d6326d589b41d6'
+            },
+            pitch: {
+              text: 'I speak to sales reps daily - nearly 100% of them<p>\n1) Are unclear <b>how to write</b> an effective sales sequence<p>\n2) <b>Rarely have time</b> to personalize their message and do the appropriate research<p>\nYet, the most common initiative for sales leaders in 2020 is to increase lead gen from outbound sales.\n',
+              snippet_id: '5ec2ef0dbbec7409ec727085'
+            },
+            calltoaction: {
+              text: 'I recognize your bandwidth is minimal  - I’m happy to answer any questions related to Autobound, or exchange ideas on effective outbound email strategies.<br><br>\n\n<a href="https://meetings.hubspot.com/kyle282">Schedule 15 minutes here on my calendar.</a> here.',
+              snippet_id: '5ec2ef0dbbec7409ec72708f'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        },
+        linkinClicked: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: 'Marisol,',
+              snippet_id: '5ec2ef0dbbec7409ec727063'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            reason: {
+              text: 'Figured I must\'ve sparked interest if you took time to view my LinkedIn. Does Vmware experience an issue related to low quota attainment & high attrition?',
+              snippet_id: '5ea17aa5e8d6326d589b41e9'
+            },
+            pitch: {
+              text: 'know deciding on sales technology solutions is a fulltime job in itself, If we aren’t the right fit, I’ll be the first to tell you, as well as point you in the right direction. I’m here to help you bring your product to the market as fast and as lowcost as possible.',
+              snippet_id: '5ec2ef0dbbec7409ec72707a'
+            },
+            calltoaction: {
+              text: 'What is the best way to get some time on your calendar? If it is convenient for you, feel free to add <a href="https://meetings.hubspot.com/daniel612">time in mine</a>. <br><br> Looking forward to hearing from you. ',
+              snippet_id: '5ea17aa5e8d6326d589b4222'
+            },
+            signoff: {
+              text: 'Best,<br>Eric',
+              snippet_id: '5ea17aa5e8d6326d589b4234'
+            }
+          }
+        },
+        linkinClicked2: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: '<p>Hi Marisol</p>',
+              snippet_id: '5ece9b591109051a0d6efab3'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            pitch: {
+              text: '<a href="www.ehamer.us">Autobound</a> is built by some of the top thought leaders in the sales space. The CEO of Xactly (our advisor) had this to say about our solution:<br><br>\n<I>“Having a data-driven, replicable, and personalized outbound sales process has never been so important. Autobound\'s sales intelligence platform takes that process to a new level. This will soon be a "must-have" for effective sales teams."<I>',
+              snippet_id: '5ec2ef0dbbec7409ec72707d'
+            },
+            calltoaction: {
+              text: 'Are you available to connect briefly during any of <a href="https://meetings.hubspot.com/daniel612">these times</a>?',
+              snippet_id: '5ea17aa5e8d6326d589b4225'
+            },
+            signoff: {
+              text: 'Best regards,<br>Eric',
+              snippet_id: '5ec2ef0dbbec7409ec7270a5'
+            }
+          }
+        },
+        productUrlClicked: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: 'Marisol,',
+              snippet_id: '5ec2ef0dbbec7409ec727063'
+            },
+            opener: {
+              text: 'Saw you had a chance to check out our site. What questions can I help answer that will make the decision on exploring Autobound easy?',
+              snippet_id: '5ec2ef0dbbec7409ec72706a'
+            },
+            pitch: {
+              text: 'Common questions include:<p>\n- How are you able to automatically composes expert emails?<p>\n- What does onboarding look like?<p>\n- When can I start?<p>\n',
+              snippet_id: '5ec2ef0dbbec7409ec727075'
+            },
+            calltoaction: {
+              text: 'I realize you\'re busy, can we tentatively hold 20 minutes to connect next week? Feel free to book me <a href="https://meetings.hubspot.com/daniel612">here</a>.',
+              snippet_id: '5ea17aa5e8d6326d589b4231'
+            },
+            signoff: {
+              text: 'Thanks,<br>Eric<br><br>Sent from my iPhone',
+              snippet_id: '5ec2ef0dbbec7409ec7270a2'
+            }
+          }
+        },
+        productUrlClicked2: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: '<p>Hi Marisol, (last_name)</p>',
+              snippet_id: '5ece9b6e06856c1a13e1c2f2'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            pitch: {
+              text: 'The CEO of Kompyte (our client), said:<br><br>\n<i> "This changes the game for outbound sales engagement. A prospecting and outreach process that used to take 20 minutes and 5 tools can now be done instantly and at scale with <a href="www.ehamer.us">Autobound</a>."<i>',
+              snippet_id: '5ec2ef0dbbec7409ec72707c'
+            },
+            calltoaction: {
+              text: 'I don\'t mean to be a bother, and I realize this decision might not fall into your wheelhouse. If that\'s the case, would you mind pointing me in the right direction? If you are the right person, let me know if you have 15-20 minutes to connect over the next few days.',
+              snippet_id: '5ea17aa5e8d6326d589b4232'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+const insights2 = {
+  Result: 'Success',
+  Error: 0,
+  ErrorDetails: {
+    Error: 0,
+    Description: 'The operation was successful'
+  },
+  hubspot: {
+    insights: {
+      contact_insights: {
+        won: 0,
+        lost: 0,
+        open: 0,
+        past_calls: 0,
+        past_emails: 0,
+        past_demos: 0,
+        past_meetings: 0,
+        past_tasks: 0,
+        past_notes: 0,
+        inbound_calls: 0,
+        outbound_calls: 0,
+        inbound_emails: 0,
+        first_name: 'Marisol',
+        last_name: 'Miller',
+        industry: '',
+        last_contacted: 'Invalid date',
+        no_contact_time: null,
+        job_title: 'Sales Support',
+        email: 'demo1277@autobound.ai',
+        status: 'lead',
+        created: '2020-03-11 01:10',
+        contact_id: 286748,
+        company_industry: 'computer software',
+        multiple_contacts: true
+      },
+      company_insights: {
+        leads30: 0,
+        leads3060: 0,
+        leads61: 73,
+        past_calls: 0,
+        past_emails: 0,
+        past_demos: 0,
+        past_meetings: 0,
+        won: 0,
+        lost: 0,
+        open: 0,
+        company_name: 'VMware',
+        leads: [
+          {
+            vid: null,
+            lead_date: '1583889034235',
+            last_contacted: ''
+          },
+          {
+            vid: 285815,
+            lead_date: {
+              value: '1583889033574',
+              versions: [
+                {
+                  value: '1583889033574',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033574,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 285953,
+            lead_date: {
+              value: '1583889033246',
+              versions: [
+                {
+                  value: '1583889033246',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033246,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 286123,
+            lead_date: {
+              value: '1583889033755',
+              versions: [
+                {
+                  value: '1583889033755',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033755,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 286275,
+            lead_date: {
+              value: '1583889033757',
+              versions: [
+                {
+                  value: '1583889033757',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033757,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 286479,
+            lead_date: {
+              value: '1583889033892',
+              versions: [
+                {
+                  value: '1583889033892',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889033892,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 287552,
+            lead_date: {
+              value: '1583889034100',
+              versions: [
+                {
+                  value: '1583889034100',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889034100,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 287759,
+            lead_date: {
+              value: '1583889034362',
+              versions: [
+                {
+                  value: '1583889034362',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889034362,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 287892,
+            lead_date: {
+              value: '1583889035003',
+              versions: [
+                {
+                  value: '1583889035003',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035003,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288117,
+            lead_date: {
+              value: '1583889034468',
+              versions: [
+                {
+                  value: '1583889034468',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889034468,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288240,
+            lead_date: {
+              value: '1583889035070',
+              versions: [
+                {
+                  value: '1583889035070',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035070,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288609,
+            lead_date: {
+              value: '1583889035051',
+              versions: [
+                {
+                  value: '1583889035051',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035051,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 288921,
+            lead_date: {
+              value: '1583889035434',
+              versions: [
+                {
+                  value: '1583889035434',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035434,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 289903,
+            lead_date: {
+              value: '1583889035518',
+              versions: [
+                {
+                  value: '1583889035518',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889035518,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290225,
+            lead_date: {
+              value: '1583889036360',
+              versions: [
+                {
+                  value: '1583889036360',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036360,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290289,
+            lead_date: {
+              value: '1583889036695',
+              versions: [
+                {
+                  value: '1583889036695',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036695,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290712,
+            lead_date: {
+              value: '1583889036782',
+              versions: [
+                {
+                  value: '1583889036782',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036782,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 290871,
+            lead_date: {
+              value: '1583889036891',
+              versions: [
+                {
+                  value: '1583889036891',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036891,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 291005,
+            lead_date: {
+              value: '1583889036583',
+              versions: [
+                {
+                  value: '1583889036583',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889036583,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 291582,
+            lead_date: {
+              value: '1583889037288',
+              versions: [
+                {
+                  value: '1583889037288',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889037288,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 292208,
+            lead_date: {
+              value: '1583889037554',
+              versions: [
+                {
+                  value: '1583889037554',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889037554,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 293188,
+            lead_date: {
+              value: '1583889038456',
+              versions: [
+                {
+                  value: '1583889038456',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038456,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 293409,
+            lead_date: {
+              value: '1583889038241',
+              versions: [
+                {
+                  value: '1583889038241',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038241,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 293708,
+            lead_date: {
+              value: '1583889038287',
+              versions: [
+                {
+                  value: '1583889038287',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038287,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 294008,
+            lead_date: {
+              value: '1583889038482',
+              versions: [
+                {
+                  value: '1583889038482',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038482,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 294374,
+            lead_date: {
+              value: '1583889038998',
+              versions: [
+                {
+                  value: '1583889038998',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889038998,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 294897,
+            lead_date: {
+              value: '1583889039513',
+              versions: [
+                {
+                  value: '1583889039513',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889039513,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 296097,
+            lead_date: {
+              value: '1583889040117',
+              versions: [
+                {
+                  value: '1583889040117',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040117,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 296452,
+            lead_date: {
+              value: '1583889039684',
+              versions: [
+                {
+                  value: '1583889039684',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889039684,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297148,
+            lead_date: {
+              value: '1583889040813',
+              versions: [
+                {
+                  value: '1583889040813',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040813,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297312,
+            lead_date: {
+              value: '1583889040427',
+              versions: [
+                {
+                  value: '1583889040427',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040427,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297386,
+            lead_date: {
+              value: '1583889040688',
+              versions: [
+                {
+                  value: '1583889040688',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040688,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 297955,
+            lead_date: {
+              value: '1583889040664',
+              versions: [
+                {
+                  value: '1583889040664',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040664,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 298151,
+            lead_date: {
+              value: '1583889040780',
+              versions: [
+                {
+                  value: '1583889040780',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040780,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 298657,
+            lead_date: {
+              value: '1583889040985',
+              versions: [
+                {
+                  value: '1583889040985',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889040985,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 298734,
+            lead_date: {
+              value: '1583889041551',
+              versions: [
+                {
+                  value: '1583889041551',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889041551,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299034,
+            lead_date: {
+              value: '1583889041784',
+              versions: [
+                {
+                  value: '1583889041784',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889041784,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299095,
+            lead_date: {
+              value: '1583889042176',
+              versions: [
+                {
+                  value: '1583889042176',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042176,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299290,
+            lead_date: {
+              value: '1583889042359',
+              versions: [
+                {
+                  value: '1583889042359',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042359,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 299684,
+            lead_date: {
+              value: '1583889042282',
+              versions: [
+                {
+                  value: '1583889042282',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042282,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300373,
+            lead_date: {
+              value: '1583889042659',
+              versions: [
+                {
+                  value: '1583889042659',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042659,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300571,
+            lead_date: {
+              value: '1583889042672',
+              versions: [
+                {
+                  value: '1583889042672',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042672,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300583,
+            lead_date: {
+              value: '1583889042806',
+              versions: [
+                {
+                  value: '1583889042806',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042806,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300700,
+            lead_date: {
+              value: '1583889043217',
+              versions: [
+                {
+                  value: '1583889043217',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043217,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300770,
+            lead_date: {
+              value: '1583889042845',
+              versions: [
+                {
+                  value: '1583889042845',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042845,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 300882,
+            lead_date: {
+              value: '1583889042929',
+              versions: [
+                {
+                  value: '1583889042929',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042929,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301051,
+            lead_date: {
+              value: '1583889042579',
+              versions: [
+                {
+                  value: '1583889042579',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889042579,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301339,
+            lead_date: {
+              value: '1583889043325',
+              versions: [
+                {
+                  value: '1583889043325',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043325,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301373,
+            lead_date: {
+              value: '1583889043109',
+              versions: [
+                {
+                  value: '1583889043109',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043109,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 301551,
+            lead_date: {
+              value: '1583889043010',
+              versions: [
+                {
+                  value: '1583889043010',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043010,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302005,
+            lead_date: {
+              value: '1583889043189',
+              versions: [
+                {
+                  value: '1583889043189',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043189,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302015,
+            lead_date: {
+              value: '1583889043379',
+              versions: [
+                {
+                  value: '1583889043379',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043379,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302248,
+            lead_date: {
+              value: '1583889043888',
+              versions: [
+                {
+                  value: '1583889043888',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043888,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302482,
+            lead_date: {
+              value: '1583889044108',
+              versions: [
+                {
+                  value: '1583889044108',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044108,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302606,
+            lead_date: {
+              value: '1583889043773',
+              versions: [
+                {
+                  value: '1583889043773',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889043773,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302767,
+            lead_date: {
+              value: '1583889044251',
+              versions: [
+                {
+                  value: '1583889044251',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044251,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 302821,
+            lead_date: {
+              value: '1583889044361',
+              versions: [
+                {
+                  value: '1583889044361',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044361,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303183,
+            lead_date: {
+              value: '1583889044359',
+              versions: [
+                {
+                  value: '1583889044359',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044359,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303348,
+            lead_date: {
+              value: '1583889044855',
+              versions: [
+                {
+                  value: '1583889044855',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044855,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303596,
+            lead_date: {
+              value: '1583889044879',
+              versions: [
+                {
+                  value: '1583889044879',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044879,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 303728,
+            lead_date: {
+              value: '1583889044888',
+              versions: [
+                {
+                  value: '1583889044888',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889044888,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 304228,
+            lead_date: {
+              value: '1583889045140',
+              versions: [
+                {
+                  value: '1583889045140',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045140,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 304769,
+            lead_date: {
+              value: '1583889045235',
+              versions: [
+                {
+                  value: '1583889045235',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045235,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 305123,
+            lead_date: {
+              value: '1583889045529',
+              versions: [
+                {
+                  value: '1583889045529',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045529,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 305155,
+            lead_date: {
+              value: '1583889045268',
+              versions: [
+                {
+                  value: '1583889045268',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889045268,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 307653,
+            lead_date: {
+              value: '1583889047667',
+              versions: [
+                {
+                  value: '1583889047667',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889047667,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 307972,
+            lead_date: {
+              value: '1583889053058',
+              versions: [
+                {
+                  value: '1583889053058',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889053058,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 309402,
+            lead_date: {
+              value: '1583889049910',
+              versions: [
+                {
+                  value: '1583889049910',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889049910,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 310036,
+            lead_date: {
+              value: '1583889062367',
+              versions: [
+                {
+                  value: '1583889062367',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889062367,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 311601,
+            lead_date: {
+              value: '1583889055017',
+              versions: [
+                {
+                  value: '1583889055017',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889055017,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 313003,
+            lead_date: {
+              value: '1583889061562',
+              versions: [
+                {
+                  value: '1583889061562',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889061562,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 313726,
+            lead_date: {
+              value: '1583889067706',
+              versions: [
+                {
+                  value: '1583889067706',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889067706,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 315976,
+            lead_date: {
+              value: '1583889077117',
+              versions: [
+                {
+                  value: '1583889077117',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889077117,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          },
+          {
+            vid: 317501,
+            lead_date: {
+              value: '1583889077117',
+              versions: [
+                {
+                  value: '1583889077117',
+                  'source-type': 'IMPORT',
+                  'source-id': '8443223',
+                  'source-label': null,
+                  timestamp: 1583889077117,
+                  selected: false
+                }
+              ]
+            },
+            last_contacted: null
+          }
+        ],
+        numLeads: 74
+      },
+      colleague_insights: [
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mitch',
+          last_name: 'Stott',
+          industry: '',
+          job_title: 'Manager, Partner Sales',
+          email: 'demo131@autobound.ai',
+          status: 'lead',
+          contact_id: 285815
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Pierre',
+          last_name: 'Ardichvili',
+          industry: '',
+          job_title: 'Director, Network & Security Sales, Southern (Europe)',
+          email: 'demo121@autobound.ai',
+          status: 'lead',
+          contact_id: 285953
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Vinh',
+          last_name: 'Williams',
+          industry: '',
+          job_title: 'Territory Sales Manager (Dell Execution Team)',
+          email: 'demo615@autobound.ai',
+          status: 'lead',
+          contact_id: 286123
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Samantha',
+          last_name: 'Miguel',
+          industry: '',
+          job_title: 'WW Sales Operations, GPO Global Order Management',
+          email: 'demo150@autobound.ai',
+          status: 'lead',
+          contact_id: 286275
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jonathon',
+          last_name: 'Coppolino',
+          industry: '',
+          job_title: 'Sales Operations Analyst',
+          email: 'demo852@autobound.ai',
+          status: 'lead',
+          contact_id: 286479
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Stephanie',
+          last_name: 'Ross',
+          industry: '',
+          job_title: 'Divisional Sales Director, Vmware Dell EMC Synergy Team',
+          email: 'demo1114@autobound.ai',
+          status: 'lead',
+          contact_id: 287552
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Roy',
+          last_name: 'Brittain',
+          industry: '',
+          job_title: 'Regional Sales Director',
+          email: 'demo1145@autobound.ai',
+          status: 'lead',
+          contact_id: 287759
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Zynthia',
+          last_name: 'Deval',
+          industry: '',
+          job_title: 'Sales Manager, Project Operations',
+          email: 'demo1656@autobound.ai',
+          status: 'lead',
+          contact_id: 287892
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Shahzad',
+          last_name: 'Caplan',
+          industry: '',
+          job_title: 'Pre-Sales Solutions Networking & Security (Vmware & Nicira Architect',
+          email: 'demo1741@autobound.ai',
+          status: 'lead',
+          contact_id: 288117
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Xiang',
+          last_name: 'Popko',
+          industry: '',
+          job_title: 'Director, Sales Operations (Americas)',
+          email: 'demo2345@autobound.ai',
+          status: 'lead',
+          contact_id: 288240
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Nicholas',
+          last_name: 'Shao',
+          industry: '',
+          job_title: 'Inside Sales Executive (Healthcare)',
+          email: 'demo1223@autobound.ai',
+          status: 'lead',
+          contact_id: 288609
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Thao',
+          last_name: 'Ayris',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo2469@autobound.ai',
+          status: 'lead',
+          contact_id: 288921
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Tanner',
+          last_name: 'King',
+          industry: '',
+          job_title: 'EUC Sales Specialist (Enterprise Select)',
+          email: 'demo2708@autobound.ai',
+          status: 'lead',
+          contact_id: 289903
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Takaharu',
+          last_name: 'Rizwan',
+          industry: '',
+          job_title: 'Sales Strategy Senior Analyst',
+          email: 'demo3720@autobound.ai',
+          status: 'lead',
+          contact_id: 290225
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mike',
+          last_name: 'Alassaf',
+          industry: '',
+          job_title: 'Finance Director, Worldwide Sales Compensation Finance',
+          email: 'demo4226@autobound.ai',
+          status: 'lead',
+          contact_id: 290289
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Steven',
+          last_name: 'Lopez',
+          industry: '',
+          job_title: 'Sales Director',
+          email: 'demo4028@autobound.ai',
+          status: 'lead',
+          contact_id: 290712
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Vivek',
+          last_name: 'El-Sisy',
+          industry: '',
+          job_title: 'Manager, Global Sales Operations (Renewal Sales)',
+          email: 'demo4949@autobound.ai',
+          status: 'lead',
+          contact_id: 290871
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Sridar',
+          last_name: 'Freiermuth',
+          industry: '',
+          job_title: 'Manager, Sales Enablement Finance',
+          email: 'demo4042@autobound.ai',
+          status: 'lead',
+          contact_id: 291005
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Nacime',
+          last_name: 'Bhatnagar',
+          industry: '',
+          job_title: 'Senior Regional Sales Manager',
+          email: 'demo5321@autobound.ai',
+          status: 'lead',
+          contact_id: 291582
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jon',
+          last_name: 'Martin',
+          industry: '',
+          job_title: 'Sales Manager, Cloud Vmware Cloud Provider Program',
+          email: 'demo5136@autobound.ai',
+          status: 'lead',
+          contact_id: 292208
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mike',
+          last_name: 'Bahner',
+          industry: '',
+          job_title: 'Senior Manager, Commercial Sales (Software Defined Storage)',
+          email: 'demo6596@autobound.ai',
+          status: 'lead',
+          contact_id: 293188
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Shane',
+          last_name: 'Buell',
+          industry: '',
+          job_title: 'Sales Manager (Enterprise Select, West Region)',
+          email: 'demo6910@autobound.ai',
+          status: 'lead',
+          contact_id: 293409
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Rajesh',
+          last_name: 'Allegro',
+          industry: '',
+          job_title: 'Senior Sales SDDC Specialist',
+          email: 'demo7072@autobound.ai',
+          status: 'lead',
+          contact_id: 293708
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Mark',
+          last_name: 'Barlow',
+          industry: '',
+          job_title: 'Regional Sales Director',
+          email: 'demo6847@autobound.ai',
+          status: 'lead',
+          contact_id: 294008
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Kim',
+          last_name: 'Leong',
+          industry: '',
+          job_title: 'Director, World Wide Solution Partner RTM Sales',
+          email: 'demo7464@autobound.ai',
+          status: 'lead',
+          contact_id: 294374
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Johnny',
+          last_name: 'Batt',
+          industry: '',
+          job_title: 'Manager, Sales Operations (Global Compliance)',
+          email: 'demo9141@autobound.ai',
+          status: 'lead',
+          contact_id: 294897
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Ellen',
+          last_name: 'Wise',
+          industry: '',
+          job_title: 'Manager, Inside Sales',
+          email: 'demo10147@autobound.ai',
+          status: 'lead',
+          contact_id: 296097
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Okan',
+          last_name: 'Schreiber',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo8958@autobound.ai',
+          status: 'lead',
+          contact_id: 296452
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Linda',
+          last_name: 'Woodbury',
+          industry: '',
+          job_title: 'Senior Inside Sales Manager, Global Accounts',
+          email: 'demo11326@autobound.ai',
+          status: 'lead',
+          contact_id: 297148
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jeff',
+          last_name: 'Wu',
+          industry: '',
+          job_title: 'Director, Global Sales Operations',
+          email: 'demo10729@autobound.ai',
+          status: 'lead',
+          contact_id: 297312
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Justin',
+          last_name: 'Lannelongue',
+          industry: '',
+          job_title: 'Sales Forecasting CoE Leader',
+          email: 'demo10857@autobound.ai',
+          status: 'lead',
+          contact_id: 297386
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jeff',
+          last_name: 'Anand',
+          industry: '',
+          job_title: 'District Sales Manager (Americas Region)',
+          email: 'demo10999@autobound.ai',
+          status: 'lead',
+          contact_id: 297955
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jim',
+          last_name: 'Clouthier',
+          industry: '',
+          job_title: 'Senior Sales Director',
+          email: 'demo10824@autobound.ai',
+          status: 'lead',
+          contact_id: 298151
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Karl',
+          last_name: 'Desai',
+          industry: '',
+          job_title: 'Manager, Sales Operations',
+          email: 'demo11181@autobound.ai',
+          status: 'lead',
+          contact_id: 298657
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jerron',
+          last_name: 'Cerri',
+          industry: '',
+          job_title: 'Senior Sales Manager',
+          email: 'demo12252@autobound.ai',
+          status: 'lead',
+          contact_id: 298734
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Erin',
+          last_name: 'Ekstrom',
+          industry: '',
+          job_title: 'Global Program Manager, Sales Acceleration Team (GSAT',
+          email: 'demo11806@autobound.ai',
+          status: 'lead',
+          contact_id: 299034
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jason',
+          last_name: 'Rotem',
+          industry: '',
+          job_title: 'Regional Director, Corporate Sales',
+          email: 'demo12615@autobound.ai',
+          status: 'lead',
+          contact_id: 299095
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jeff',
+          last_name: 'Tofte',
+          industry: '',
+          job_title: 'Manager, Commercial Sales',
+          email: 'demo13478@autobound.ai',
+          status: 'lead',
+          contact_id: 299290
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jena',
+          last_name: 'Skach',
+          industry: '',
+          job_title: 'Principal End User Computing & Mobility Field Sales Specialist',
+          email: 'demo13090@autobound.ai',
+          status: 'lead',
+          contact_id: 299684
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jared',
+          last_name: 'Tagand',
+          industry: '',
+          job_title: 'Territory Sales Manager, VMware',
+          email: 'demo13692@autobound.ai',
+          status: 'lead',
+          contact_id: 300373
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Elizabeth',
+          last_name: 'Burke',
+          industry: '',
+          job_title: 'Sales Pipeline Leader',
+          email: 'demo14411@autobound.ai',
+          status: 'lead',
+          contact_id: 300571
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dov',
+          last_name: 'Goyal',
+          industry: '',
+          job_title: 'Senior Manager, Sales Operations, BI, COE (Americas)',
+          email: 'demo14565@autobound.ai',
+          status: 'lead',
+          contact_id: 300583
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Douglas',
+          last_name: 'Dugan',
+          industry: '',
+          job_title: 'Senior Manager, Commercial Sales Operations',
+          email: 'demo14488@autobound.ai',
+          status: 'lead',
+          contact_id: 300700
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'John',
+          last_name: 'Wible',
+          industry: '',
+          job_title: 'Senior Sales Director (Americas Region)',
+          email: 'demo10698@autobound.ai',
+          status: 'lead',
+          contact_id: 300770
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Fawn',
+          last_name: 'Patel',
+          industry: '',
+          job_title: 'Senior Manager, Sales Operations (Healthcare Vertical, Americas)',
+          email: 'demo13831@autobound.ai',
+          status: 'lead',
+          contact_id: 300882
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Kathy',
+          last_name: 'Urquhart',
+          industry: '',
+          job_title: 'Manager, Sales Operations',
+          email: 'demo11966@autobound.ai',
+          status: 'lead',
+          contact_id: 301051
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dave',
+          last_name: 'Lombardo',
+          industry: '',
+          job_title: 'End User Computing Sales Specialist',
+          email: 'demo15055@autobound.ai',
+          status: 'lead',
+          contact_id: 301339
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Geoffrey',
+          last_name: 'Koptelova',
+          industry: '',
+          job_title: 'Vice President, Global Cloud Sales',
+          email: 'demo13545@autobound.ai',
+          status: 'lead',
+          contact_id: 301373
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Debbie',
+          last_name: 'Young',
+          industry: '',
+          job_title: 'Senior Manager, Partner Sales',
+          email: 'demo14906@autobound.ai',
+          status: 'lead',
+          contact_id: 301551
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'David',
+          last_name: 'Herning',
+          industry: '',
+          job_title: 'Senior Director, System Integrator Sales (Public Sector)',
+          email: 'demo14893@autobound.ai',
+          status: 'lead',
+          contact_id: 302005
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dave',
+          last_name: 'Crisostomo',
+          industry: '',
+          job_title: 'Manager, Services Sales',
+          email: 'demo15454@autobound.ai',
+          status: 'lead',
+          contact_id: 302015
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Daryl',
+          last_name: 'Carlucci',
+          industry: '',
+          job_title: 'Vice General Manager, President Sales',
+          email: 'demo15490@autobound.ai',
+          status: 'lead',
+          contact_id: 302248
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Daniel',
+          last_name: 'Story',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo15925@autobound.ai',
+          status: 'lead',
+          contact_id: 302482
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dan',
+          last_name: 'Chandrika',
+          industry: '',
+          job_title: 'Senior Director, Sales Operations (Americas)',
+          email: 'demo15767@autobound.ai',
+          status: 'lead',
+          contact_id: 302606
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dan',
+          last_name: 'Pizarro',
+          industry: '',
+          job_title: 'Senior Director, SDDC, EUC & OEM Partner Sales',
+          email: 'demo16218@autobound.ai',
+          status: 'lead',
+          contact_id: 302767
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Chris',
+          last_name: 'Koser',
+          industry: '',
+          job_title: 'Strategic Product Sales Specialist',
+          email: 'demo16244@autobound.ai',
+          status: 'lead',
+          contact_id: 302821
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'David',
+          last_name: 'Wong',
+          industry: '',
+          job_title: 'End User Computing Sales Specialist',
+          email: 'demo15299@autobound.ai',
+          status: 'lead',
+          contact_id: 303183
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Brenda',
+          last_name: 'Leith',
+          industry: '',
+          job_title: 'Global Inside & Commercial Sales Enablement Lead',
+          email: 'demo17796@autobound.ai',
+          status: 'lead',
+          contact_id: 303348
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Michael',
+          last_name: 'Satyamurti',
+          industry: '',
+          job_title: 'Inside Sales Manager',
+          email: 'demo8843@autobound.ai',
+          status: 'lead',
+          contact_id: 303596
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Bob',
+          last_name: 'Oberoi',
+          industry: '',
+          job_title: 'Sales Manager, Area VSAN & Hyper Converged Solutions SLED & Health Care California',
+          email: 'demo17771@autobound.ai',
+          status: 'lead',
+          contact_id: 303728
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Bryan',
+          last_name: 'Salita',
+          industry: '',
+          job_title: 'Regional Sales Manager, Vmware Dell Execution Team',
+          email: 'demo17252@autobound.ai',
+          status: 'lead',
+          contact_id: 304228
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Antonio',
+          last_name: 'Castro',
+          industry: '',
+          job_title: 'Inside Sales Account Manager',
+          email: 'demo18406@autobound.ai',
+          status: 'lead',
+          contact_id: 304769
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Bob',
+          last_name: 'Volberg',
+          industry: '',
+          job_title: 'Director, Dell Commercial Field Sales (West)',
+          email: 'demo17920@autobound.ai',
+          status: 'lead',
+          contact_id: 305123
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Christine',
+          last_name: 'Jolly',
+          industry: '',
+          job_title: 'Manager, Sales Operations',
+          email: 'demo16671@autobound.ai',
+          status: 'lead',
+          contact_id: 305155
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Manuel',
+          last_name: 'Fletcher',
+          industry: '',
+          job_title: 'Senior Manager, Ecommerce Sales',
+          email: 'demo9435@autobound.ai',
+          status: 'lead',
+          contact_id: 307653
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Imran',
+          last_name: 'Nelson',
+          industry: '',
+          job_title: 'Sales Operations Vmware Senior Analyst',
+          email: 'demo13184@autobound.ai',
+          status: 'lead',
+          contact_id: 307972
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Jay',
+          last_name: 'Marx',
+          industry: '',
+          job_title: 'Sales Manager',
+          email: 'demo12715@autobound.ai',
+          status: 'lead',
+          contact_id: 309402
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Matthew',
+          last_name: 'Spignese',
+          industry: '',
+          job_title: 'Regional Sales Manager',
+          email: 'demo6802@autobound.ai',
+          status: 'lead',
+          contact_id: 310036
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:10',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Murat',
+          last_name: 'Morse',
+          industry: '',
+          job_title: 'Territory Sales Manager',
+          email: 'demo9450@autobound.ai',
+          status: 'lead',
+          contact_id: 311601
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dave',
+          last_name: 'Martin',
+          industry: '',
+          job_title: 'NSX Sales Specialist',
+          email: 'demo15326@autobound.ai',
+          status: 'lead',
+          contact_id: 313003
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Eddy',
+          last_name: 'Mehta',
+          industry: '',
+          job_title: 'Manager, Partner Sales',
+          email: 'demo15124@autobound.ai',
+          status: 'lead',
+          contact_id: 313726
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'Dan',
+          last_name: 'Venkatraman',
+          industry: '',
+          job_title: 'Director, Enterprise Inside Sales (Americas)',
+          email: 'demo15773@autobound.ai',
+          status: 'lead',
+          contact_id: 315976
+        },
+        {
+          won: 0,
+          lost: 0,
+          open: 0,
+          past_calls: 0,
+          past_emails: 0,
+          past_demos: 0,
+          past_meetings: 0,
+          past_tasks: 0,
+          past_notes: 0,
+          inbound_calls: 0,
+          outbound_calls: 0,
+          inbound_emails: 0,
+          created: '2020-03-11 01:11',
+          last_contacted: null,
+          no_contact_time: null,
+          first_name: 'David',
+          last_name: 'Mahaseth',
+          industry: '',
+          job_title: 'Global Senior Manager, Sales Operations',
+          email: 'demo15580@autobound.ai',
+          status: 'lead',
+          contact_id: 317501
+        }
+      ],
+      abcolleague_insights: [
+        {
+          portalId: 6174462,
+          ownerId: 46058427,
+          type: 'PERSON',
+          firstName: 'Danylo',
+          lastName: 'Shapoval',
+          email: 'danylo.shapoval93@gmail.com',
+          createdAt: 1585670173139,
+          updatedAt: 1585749379536,
+          remoteList: [
+            {
+              id: 35234958,
+              portalId: 6174462,
+              ownerId: 46058427,
+              remoteId: '10373175',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 10373175,
+          userIdIncludingInactive: 10373175,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 42219823,
+          type: 'PERSON',
+          firstName: 'Eric',
+          lastName: 'Hamer',
+          email: 'eric@autobound.ai',
+          createdAt: 1578945746708,
+          updatedAt: 1585779967433,
+          remoteList: [
+            {
+              id: 34160983,
+              portalId: 6174462,
+              ownerId: 42219823,
+              remoteId: '9311051',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 9311051,
+          userIdIncludingInactive: 9311051,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 44275547,
+          type: 'PERSON',
+          firstName: 'EricTest',
+          lastName: 'HamerTest',
+          email: 'sockotj@gmail.com',
+          createdAt: 1582151656986,
+          updatedAt: 1588271620582,
+          remoteList: [
+            {
+              id: 34697368,
+              portalId: 6174462,
+              ownerId: 44275547,
+              remoteId: '10032559',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 10032559,
+          userIdIncludingInactive: 10032559,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 46877640,
+          type: 'PERSON',
+          firstName: 'Ivan',
+          lastName: 'Poddubchenko',
+          email: 'design@inveritasoft.com',
+          createdAt: 1587146231978,
+          updatedAt: 1587652672167,
+          remoteList: [
+            {
+              id: 35496687,
+              portalId: 6174462,
+              ownerId: 46877640,
+              remoteId: '10539055',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 10539055,
+          userIdIncludingInactive: 10539055,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        },
+        {
+          portalId: 6174462,
+          ownerId: 47126759,
+          type: 'PERSON',
+          firstName: 'Kyle',
+          lastName: 'Schu',
+          email: 'kyleschuster93@gmail.com',
+          createdAt: 1587652799058,
+          updatedAt: 1587652799058,
+          remoteList: [
+            {
+              id: 35581076,
+              portalId: 6174462,
+              ownerId: 47126759,
+              remoteId: '8167091',
+              remoteType: 'HUBSPOT',
+              active: true
+            }
+          ],
+          hasContactsAccess: false,
+          isActive: true,
+          activeUserId: 8167091,
+          userIdIncludingInactive: 8167091,
+          activeSalesforceId: null,
+          past_engagements: {
+            won: 0,
+            lost: 0,
+            open: 0,
+            past_calls: 0,
+            past_emails: 0,
+            past_inbound_calls: 0,
+            past_outbound_calls: 0,
+            past_meetings: 0,
+            past_tasks: 0
+          }
+        }
+      ],
+      variable_insights: {
+        ab_colleague_first_name: 'Danylo',
+        ab_company_name: 'Autobound',
+        ab_user_first_name: 'Patty',
+        colleague_first_name1: '',
+        colleague_first_name2: '',
+        colleague_first_name: 'Mitch',
+        company_name: 'VMware',
+        contact_first_name: 'Marisol',
+        day_of_week: 'Friday',
+        friendly_time_of_day: 'morning',
+        industry: 'computer software',
+        introduction: '',
+        job_department: '',
+        job_function: 'Sales',
+        last_contact_month: '',
+        last_contact_time: 'a few days ago',
+        last_contacted: null,
+        link: 'http://www.google.com',
+        no_activity: true,
+        some_activity_no_activity_traction: false,
+        activity_traction: false,
+        activity_traction_with_prospect_colleague: false,
+        activity_traction_with_two_colleagues_but_not_current_contact: false,
+        opportunity_traction: false,
+        opportunity_colleague_traction: false,
+        opportunity_traction_with_two_colleagues_but_not_current_contact: false,
+        trigger: 'new_product_release',
+        campaign: 'New Product Release',
+        news_article: [
+          {
+            created_by: '5dc73cf55ff33a28b25ea542',
+            modified_by: '5dc73cf55ff33a28b25ea542',
+            _id: '5e6c16704f62da23b4f2c1fa',
+            owner: '5dc73cf55ff33a28b25ea543',
+            source: {
+              id: null,
+              name: 'Us-cert.gov'
+            },
+            author: 'CISA',
+            title: 'VMware Releases Security Updates for vRealize Operations for Horizon Adapter',
+            description: 'Original release date: February 19, 2020 VMware has released security updates to address multiple vulnerabilities in vRealize Operations for Horizon Adapter. A remote attacker could exploit some of these vulnerabilities to take control of an affected system. …',
+            url: 'https://www.us-cert.gov/ncas/current-activity/2020/02/19/vmware-releases-security-updates-vrealize-operations-horizon',
+            urlToImage: null,
+            publishedAt: '2020-02-19T18:30:13Z',
+            content: 'VMware has released security updates to address multiple vulnerabilities in vRealize Operations for Horizon Adapter. A remote attacker could exploit some of these vulnerabilities to take control of an affected system.\r\nThe Cybersecurity and Infrastructure Security Agency (CISA) encourages users and administrators to review VMware Security Advisory VMSA-2020-0003 and apply the necessary updates.',
+            company: 'VMware',
+            company_id: 3161242323,
+            trigger: '0',
+            keyword: '("VMware" AND "new regional sales") OR ("VMware" AND "new cso") OR ("VMware" AND "new chief sales officer") OR ("VMware" AND "new chief revenue officer") OR ("VMware" AND "new CRO") OR ("VMware" AND "new CSO") OR ("VMware" AND "hires chief revenue officer") OR ("VMware" AND "new head of sales") OR ("VMware" AND "compliance issues") OR ("VMware" AND "regulatory concerns") OR ("VMware" AND "regulatory problems") OR ("VMware" AND "new product") OR ("VMware" AND "launches") OR ("VMware" AND "unveils") OR ("VMware" AND "releases") OR ("VMware" AND "enters new market") OR ("VMware" AND "expands into")-"Results" -"Quarter"',
+            created: '2020-03-13T23:25:36.073Z',
+            modified: '2020-03-13T23:25:36.073Z',
+            __v: 0
+          }
+        ],
+        persona: 1
+      },
+      emails: {
+        intro1: {
+          paragraphs: {
+            subject: {
+              text: 'Sales qualified leads for Vmware',
+              snippet_id: '5ea17aa4e8d6326d589b40a7'
+            },
+            greeting: {
+              text: '<p>Hi Marisol, (last_name)</p>',
+              snippet_id: '5ece9a6db728db1a0f890a33'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            role: {
+              text: 'I\'m a CEO & Co-Founder at New Company, a sales enablement company that helps businesses set more qualified meetings while spending less time prospecting, writing outreach, and creating email sequences.',
+              snippet_id: '5ea17aa4e8d6326d589b4167'
+            },
+            pitch: {
+              text: 'Reason I ask - Most sales leaders I work with have not figured out outbound sales, particularly the messaging around a new product. The decrease of inbound leads (which they have relied heavily on) is destroying the company and employees are being let go.',
+              snippet_id: '5ec2ef0dbbec7409ec727073'
+            },
+            calltoaction: {
+              text: 'If you\'re looking for sales technology that can help your team send highly effective outbound sales emails to make the most out every touchpoint, <a href="https://meetings.hubspot.com/kyle282">Schedule 15 minutes here on my calendar.</a> to learn more about <a href="www.ehamer.us">Autobound</a>.',
+              snippet_id: '5ec2ef0dbbec7409ec72708a'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        },
+        intro2: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: '<p>Hi Marisol, (last_name)</p>',
+              snippet_id: '5ece99f27e72f91a074518b4'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            reason: {
+              text: 'Thought I\'d follow up in case my previous message missed your inbox.',
+              snippet_id: '5ea17aa5e8d6326d589b41f3'
+            },
+            pitch: {
+              text: '<a href="www.ehamer.us">Our personalization technology</a> has hundreds of expert sales strategies built into the system to help you increase conversion rates and push Vmware’s new product into the market.',
+              snippet_id: '5ec2ef0dbbec7409ec727082'
+            },
+            calltoaction: {
+              text: '<a href="https://meetings.hubspot.com/kyle282">Book a 15 min slot</a> at your convenience and let’s talk about how we can save your team hours, daily, on <b>effective email creation</b>, and get more bang for your buck.',
+              snippet_id: '5ec2ef0dbbec7409ec72708c'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        },
+        intro3: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: 'Marisol,',
+              snippet_id: '5ec2ef0dbbec7409ec727063'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            reason: {
+              text: 'Have you had a chance to review my previous message? I\'m happy to recap what we do in the sales automation industry.',
+              snippet_id: '5ea17aa5e8d6326d589b41d6'
+            },
+            pitch: {
+              text: 'I speak to sales reps daily - nearly 100% of them<p>\n1) Are unclear <b>how to write</b> an effective sales sequence<p>\n2) <b>Rarely have time</b> to personalize their message and do the appropriate research<p>\nYet, the most common initiative for sales leaders in 2020 is to increase lead gen from outbound sales.\n',
+              snippet_id: '5ec2ef0dbbec7409ec727085'
+            },
+            calltoaction: {
+              text: 'I recognize your bandwidth is minimal  - I’m happy to answer any questions related to Autobound, or exchange ideas on effective outbound email strategies.<br><br>\n\n<a href="https://meetings.hubspot.com/kyle282">Schedule 15 minutes here on my calendar.</a> here.',
+              snippet_id: '5ec2ef0dbbec7409ec72708f'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        },
+        linkinClicked: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: 'Marisol,',
+              snippet_id: '5ec2ef0dbbec7409ec727063'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            reason: {
+              text: 'Figured I must\'ve sparked interest if you took time to view my LinkedIn. Does Vmware experience an issue related to low quota attainment & high attrition?',
+              snippet_id: '5ea17aa5e8d6326d589b41e9'
+            },
+            pitch: {
+              text: 'know deciding on sales technology solutions is a fulltime job in itself, If we aren’t the right fit, I’ll be the first to tell you, as well as point you in the right direction. I’m here to help you bring your product to the market as fast and as lowcost as possible.',
+              snippet_id: '5ec2ef0dbbec7409ec72707a'
+            },
+            calltoaction: {
+              text: 'What is the best way to get some time on your calendar? If it is convenient for you, feel free to add <a href="https://meetings.hubspot.com/daniel612">time in mine</a>. <br><br> Looking forward to hearing from you. ',
+              snippet_id: '5ea17aa5e8d6326d589b4222'
+            },
+            signoff: {
+              text: 'Best,<br>Eric',
+              snippet_id: '5ea17aa5e8d6326d589b4234'
+            }
+          }
+        },
+        linkinClicked2: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: '<p>Hi Marisol</p>',
+              snippet_id: '5ece9b591109051a0d6efab3'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            pitch: {
+              text: '<a href="www.ehamer.us">Autobound</a> is built by some of the top thought leaders in the sales space. The CEO of Xactly (our advisor) had this to say about our solution:<br><br>\n<I>“Having a data-driven, replicable, and personalized outbound sales process has never been so important. Autobound\'s sales intelligence platform takes that process to a new level. This will soon be a "must-have" for effective sales teams."<I>',
+              snippet_id: '5ec2ef0dbbec7409ec72707d'
+            },
+            calltoaction: {
+              text: 'Are you available to connect briefly during any of <a href="https://meetings.hubspot.com/daniel612">these times</a>?',
+              snippet_id: '5ea17aa5e8d6326d589b4225'
+            },
+            signoff: {
+              text: 'Best regards,<br>Eric',
+              snippet_id: '5ec2ef0dbbec7409ec7270a5'
+            }
+          }
+        },
+        productUrlClicked: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: 'Marisol,',
+              snippet_id: '5ec2ef0dbbec7409ec727063'
+            },
+            opener: {
+              text: 'Saw you had a chance to check out our site. What questions can I help answer that will make the decision on exploring Autobound easy?',
+              snippet_id: '5ec2ef0dbbec7409ec72706a'
+            },
+            pitch: {
+              text: 'Common questions include:<p>\n- How are you able to automatically composes expert emails?<p>\n- What does onboarding look like?<p>\n- When can I start?<p>\n',
+              snippet_id: '5ec2ef0dbbec7409ec727075'
+            },
+            calltoaction: {
+              text: 'I realize you\'re busy, can we tentatively hold 20 minutes to connect next week? Feel free to book me <a href="https://meetings.hubspot.com/daniel612">here</a>.',
+              snippet_id: '5ea17aa5e8d6326d589b4231'
+            },
+            signoff: {
+              text: 'Thanks,<br>Eric<br><br>Sent from my iPhone',
+              snippet_id: '5ec2ef0dbbec7409ec7270a2'
+            }
+          }
+        },
+        productUrlClicked2: {
+          paragraphs: {
+            subject: {
+              text: 'Thoughts on New Company?',
+              snippet_id: '5ea17aa4e8d6326d589b40d4'
+            },
+            greeting: {
+              text: '<p>Hi Marisol, (last_name)</p>',
+              snippet_id: '5ece9b6e06856c1a13e1c2f2'
+            },
+            opener: {
+              text: '<p>Just browsed Vmware</p>',
+              snippet_id: '5ea9ab93461e041abd148164'
+            },
+            pitch: {
+              text: 'The CEO of Kompyte (our client), said:<br><br>\n<i> "This changes the game for outbound sales engagement. A prospecting and outreach process that used to take 20 minutes and 5 tools can now be done instantly and at scale with <a href="www.ehamer.us">Autobound</a>."<i>',
+              snippet_id: '5ec2ef0dbbec7409ec72707c'
+            },
+            calltoaction: {
+              text: 'I don\'t mean to be a bother, and I realize this decision might not fall into your wheelhouse. If that\'s the case, would you mind pointing me in the right direction? If you are the right person, let me know if you have 15-20 minutes to connect over the next few days.',
+              snippet_id: '5ea17aa5e8d6326d589b4232'
+            },
+            signoff: {
+              text: '<p>Best,</p><p>Kyle</p>',
+              snippet_id: '5ea89253ff19c660ca2c58dd'
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
 const userSettings = {
   first_name: 'Michael Kilesa',

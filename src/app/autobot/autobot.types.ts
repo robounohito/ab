@@ -1,5 +1,6 @@
 export interface Autobot {
   suggestedActivities: SuggestedActivity[];
+  currentProspect: Prospect;
 }
 
 export interface SuggestedActivity {
@@ -12,9 +13,13 @@ export interface SuggestedActivity {
 }
 
 export interface Prospect {
+  loading: boolean;
   id: string;
   name: string;
+  first_name: string;
+  last_name: string;
   title: string;
+  job_title: string;
   company: string;
   image: string;
 }

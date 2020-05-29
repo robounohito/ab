@@ -11,13 +11,13 @@ export const login = createAction(
       email: string;
       password: string;
       rememberMe: boolean;
-    }
+    };
   }>()
 );
 
 export const loginError = createAction(
   '[Login] Login Error',
-  props<{ error: LoginError }>()
+  props<{ error: LoginError; }>()
 );
 
 export const signup = createAction(
@@ -27,7 +27,7 @@ export const signup = createAction(
       email: string;
       phone: string;
       password: string;
-    }
+    };
   }>()
 );
 
@@ -37,7 +37,7 @@ export const recovery = createAction(
     payload: {
       email: string;
       recoveryType: 'email' | 'phone';
-    }
+    };
   }>()
 );
 
@@ -48,7 +48,7 @@ export const reset = createAction(
       email: string;
       recoveryCode: string;
       password: string;
-    }
+    };
   }>()
 );
 

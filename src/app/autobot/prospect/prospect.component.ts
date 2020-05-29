@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectRouteParam } from 'src/app/app.model';
 import { App } from 'src/app/app.types';
 import { FormGroupT, formCreate, formPatchValue } from '../../_core/form/form';
 import { FormBuilder } from '@angular/forms';
 import { blankProfiilePic } from 'src/app/app.constants';
+import { selectCurrentProspect } from '../autobot.model';
 
 interface ProspectForm {
   expanded: { [key: string]: boolean };
@@ -21,7 +21,7 @@ interface ProspectForm {
 export class ProspectComponent implements OnInit {
 
   blankProfiilePic = blankProfiilePic;
-  currentRoute$!: Observable<any>;
+  model$!: Observable<any>;
   form!: FormGroupT<ProspectForm>;
 
   constructor(
@@ -30,7 +30,7 @@ export class ProspectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentRoute$ = this.store.select(selectRouteParam('prospectId'));
+    this.model$ = this.store.select(selectCurrentProspect);
     this.form = formCreate<ProspectForm>(this.fb, {
       expanded: [{ 1: true, 2: true }],
       snippets: [{

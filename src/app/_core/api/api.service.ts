@@ -21,6 +21,7 @@ export const apiEndpoint = {
   getSidebar: { method: 'get', url: 'sidebar' },
   getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
   getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
+  getInsights: { method: 'get', url: 'autobound/insights/{contactId}' },
   getSettings: { method: 'get', url: 'settings' },
   getLogout: { method: 'get', url: 'auth/logout' },
   postSignup: { method: 'post', url: 'auth/register' },

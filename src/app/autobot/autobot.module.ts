@@ -12,6 +12,7 @@ import { reducer } from './autobot.model';
 import { ProspectComponent } from './prospect/prospect.component';
 import { ChartistModule } from 'ng-chartist';
 import { ChartComponent } from './prospect/chart/chart.component';
+import { ProspectGuard } from './prospect-guard.service';
 
 @NgModule({
   declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent, ChartComponent],
@@ -22,6 +23,9 @@ import { ChartComponent } from './prospect/chart/chart.component';
     StoreModule.forFeature('autobot', reducer),
     EffectsModule.forFeature([AutobotEffects]),
     ChartistModule,
+  ],
+  providers: [
+    ProspectGuard
   ]
 })
 export class AutobotModule { }
