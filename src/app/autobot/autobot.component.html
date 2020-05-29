@@ -31,7 +31,21 @@
              [routerLink]="['/', 'autobot', prospect.id]"
              [routerLinkActive]="'active'"
              *ngFor="let prospect of suggested.prospects">
-          {{prospect.name}}
+          <div class="picture">
+            <img [src]="prospect.image || blankProfiilePic"
+                 alt="Prospect's picture">
+          </div>
+          <div>
+            <div class="text-header">
+              {{prospect.name}}
+            </div>
+            <div class="text-subheader">
+              {{prospect.title}}
+            </div>
+            <div class="text-subheader">
+              {{prospect.company}}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -40,11 +54,19 @@
   </div>
 
   <div class="column middle">
+
     <router-outlet></router-outlet>
+
+    <x-chartist [type]="type"
+                [options]="chartOptions"
+                [data]="chartData">
+    </x-chartist>
+
     <div autoboundEditor
          formControlName="snippets"
          class="editor">
     </div>
+
     <div>
       <button mat-raised-button
               style="margin-right: 20px;"
@@ -60,6 +82,7 @@
         Submit form
       </button>
     </div>
+
   </div>
 
   <div class="column right">

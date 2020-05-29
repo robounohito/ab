@@ -54,7 +54,8 @@
                [matMenuTriggerFor]="menu"
                [matTooltip]="model.first_name"
                matTooltipPosition="right">
-            <img src="{{model.profile_img_link || blankProfiilePic}}">
+            <img src="{{model.profile_img_link || blankProfiilePic}}"
+                 alt="Current user's picture">
           </div>
           <span *ngIf="uiState.expanded">
             {{model.first_name}}

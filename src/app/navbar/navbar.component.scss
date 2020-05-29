@@ -115,11 +115,18 @@
     }
 
     a.active {
+
       color: $lightBlue;
       border-radius: 0;
+      
       img {
         filter: brightness(0) saturate(100%) invert(60%) sepia(29%) saturate(764%) hue-rotate(164deg) brightness(90%) contrast(85%); 
       }
+
+      .callout {
+        color: white;
+      }
+      
     }
 
     .mat-icon {

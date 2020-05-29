@@ -1,6 +1,7 @@
 import { on, createReducer, Action, createFeatureSelector } from '@ngrx/store';
-import { loadSettingsSuccess, blankProfiilePic } from './navbar.constants';
+import { loadSettingsSuccess } from './navbar.constants';
 import { Navbar } from './navbar.types';
+import { blankProfiilePic } from '../app.constants';
 
 const initialState: Navbar = {
   profile_img_link: blankProfiilePic

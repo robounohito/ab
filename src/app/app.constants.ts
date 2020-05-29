@@ -36,3 +36,5 @@ export enum Route {
 }
 
 export const authTokenKey = 'auth_token';
+
+export const blankProfiilePic = '/assets/img/blank_profile.png';

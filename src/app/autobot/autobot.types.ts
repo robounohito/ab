@@ -14,4 +14,7 @@ export interface SuggestedActivity {
 export interface Prospect {
   id: string;
   name: string;
+  title: string;
+  company: string;
+  image: string;
 }

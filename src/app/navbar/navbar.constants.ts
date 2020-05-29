@@ -11,8 +11,6 @@ export const loadSettingsSuccess = createAction(
   props<{ settings: Settings }>()
 );
 
-export const blankProfiilePic = '/assets/img/blank_profile.png';
-
 export const navbarMenu = [{
   path: 'autobot',
   title: 'Autobot',

@@ -7,6 +7,9 @@ import { Store } from '@ngrx/store';
 import { selectAutobot } from './autobot.model';
 import { loadSuggestedActivities } from './autobot.constants';
 import { slideInOut } from '../_core/animations/animations';
+import { ChartType } from 'ng-chartist';
+// import { IChartistData } from 'chartist';
+import { blankProfiilePic } from '../app.constants';
 
 interface EditorForm {
   expanded: { [key: string]: boolean };
@@ -22,8 +25,12 @@ interface EditorForm {
 })
 export class AutobotComponent implements OnInit {
 
+  blankProfiilePic = blankProfiilePic;
   model$!: Observable<Autobot>;
   form!: FormGroupT<EditorForm>;
+  type: ChartType = 'Pie';
+  chartOptions!: any;
+  chartData!: any; //IChartistData;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +49,20 @@ export class AutobotComponent implements OnInit {
         4: '<h3>Walking the capitals of Europe: Warsaw</h3><p><a href="#">Find out more</a></p',
       }],
     });
+
+
+    this.chartOptions = {
+      donut: true,
+      donutWidth: 40,
+      donutSolid: true,
+      startAngle: 270,
+      showLabel: false,
+    };
+
+    this.chartData = {
+      series: [{value: 20, className: 'series1'}, 10, 30, 40],
+    };
+
   }
 
   changeData() {

@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AutobotEffects } from './autobot.effects';
 import { reducer } from './autobot.model';
 import { ProspectComponent } from './prospect/prospect.component';
+import { ChartistModule } from 'ng-chartist';
 
 @NgModule({
   declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent],
@@ -19,6 +20,7 @@ import { ProspectComponent } from './prospect/prospect.component';
     AutobotRoutingModule,
     StoreModule.forFeature('autobot', reducer),
     EffectsModule.forFeature([AutobotEffects]),
+    ChartistModule,
   ]
 })
 export class AutobotModule { }

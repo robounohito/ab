@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { navbarMenu, loadSettings, blankProfiilePic } from './navbar.constants';
+import { navbarMenu, loadSettings } from './navbar.constants';
 import { Store } from '@ngrx/store';
-import { logout } from '../app.constants';
+import { logout, blankProfiilePic } from '../app.constants';
 import { slideInOut } from '../_core/animations/animations';
 import { Observable } from 'rxjs';
 import { Navbar } from './navbar.types';
