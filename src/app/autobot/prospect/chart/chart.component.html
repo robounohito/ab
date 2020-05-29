@@ -1,0 +1,12 @@
+<div class="chart">
+  <x-chartist [type]="type"
+              [options]="chartOptions"
+              [data]="chartData">
+  </x-chartist>
+  <div class="legend">
+    <div [ngClass]="item.className"
+         *ngFor="let item of series">
+      {{item.meta}}:&ensp;<span>{{item.value}}</span>
+    </div>
+  </div>
+</div>

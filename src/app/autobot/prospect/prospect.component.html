@@ -1,12 +1,61 @@
 <div class="column middle"
      [formGroup]="form">
 
-  <p>current prospect is {{currentRoute$ | async}}</p>
-
-  <x-chartist [type]="type"
-              [options]="chartOptions"
-              [data]="chartData">
-  </x-chartist>
+  <div class="accordion">
+    <div class="accordion-header">
+      <div [ngClass]="form.value.expanded[1] && 'expanded'"
+           (click)="toggleItem('1')">
+        <div class="arrow"></div>
+      </div>
+      <h3>Prospect Overview</h3>
+    </div>
+    <div class="accordion-line"
+         *ngIf="!form.value.expanded[1]">
+    </div>
+    <div class="accordion-card"
+         *ngIf="form.value.expanded[1]">
+      <div class="card-item">
+        <div class="picture">
+          <img [src]="blankProfiilePic"
+               alt="Prospect's picture">
+        </div>
+        <div>
+          <div class="card-item-header">
+            Richard Hunter
+          </div>
+          <div class="card-item-subheader">
+            Head of Sales
+          </div>
+          <div class="card-item-subheader">
+            Microsoft
+          </div>
+          <div class="icons">
+            <i class="linkedin"></i>
+            <i class="hubspot"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card-chart">
+        <div class="card-chart-header">
+          Prospect Activities:&ensp;<span>12</span>
+        </div>
+        <div>
+          <autobound-chart
+                           [series]="[{ value: 8, className: 'chart-blue-1', meta: 'Emails'}, { value: 3, className: 'chart-blue-2', meta: 'Calls'}, { value: 1, className: 'chart-blue-3', meta: 'Meetings'}]">
+          </autobound-chart>
+        </div>
+      </div>
+      <div class="card-chart">
+        <div class="card-chart-header">
+          Prospect Opportunities:&ensp;<span>20</span>
+        </div>
+        <div>
+          <autobound-chart [series]="[{ value: 12, className: 'chart-green', meta: 'Open'}, { value: 5, className: 'chart-blue-2', meta: 'Won'}, { value: 3, className: 'chart-red', meta: 'Lost'}]">
+          </autobound-chart>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div autoboundEditor
        formControlName="snippets"

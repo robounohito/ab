@@ -2,6 +2,7 @@ import { on, createReducer, Action, createFeatureSelector } from '@ngrx/store';
 import { assoc } from 'ramda';
 import { Autobot } from './autobot.types';
 import { loadSuggestedSuccess } from './autobot.constants';
+// import { selectRouteParam } from '../app.model';
 
 const initialState: Autobot = {
   suggestedActivities: [],
@@ -20,3 +21,8 @@ export function reducer(state: Autobot, action: Action) {
 }
 
 export const selectAutobot = createFeatureSelector<Autobot>('autobot');
+
+/* export const selectCurrentProspect = createSelector(
+  selectRouteParam('prospectId'),
+
+); */

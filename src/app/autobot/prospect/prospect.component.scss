@@ -1,21 +1,152 @@
+@use '../../../styles/variables' as var;
+@use '../autobot.component';
+
 :host {
   display: inherit;
 }
 
-.editor {
-  height: 100%;
-  width: 100%;
-  display: flex;
+.middle {
+
+  width: 760px;
+  max-width: 1140px;
+  /* display: flex;
   flex-direction: column;
+  align-items: center; */
+  margin: 0 20px;
+  // padding: 20px;
+  
+  .accordion {
+
+    margin: 20px 0 10px 0;
+    height: auto;
+    transition: height 1s ease-in-out;
+
+    .accordion-header {
+      
+      display: flex;
+      
+      @include autobot.arrow(20px);
+
+      div, div.expanded {
+        margin-right: 10px;
+        background-color: white;
+      }
+
+      h3 {
+        margin-bottom: 14px;
+      }
+
+    }
+
+    .accordion-line {
+      border-bottom: solid 1px var.$lightGrey2;
+    }
+
+    .accordion-card {
+
+      border-radius: 4px;
+      border: solid 1px var.$lightGrey2;
+      background-color: white;
+      padding: 20px 44px 12px 15px;
+      display: flex;
+      justify-content: space-between;
+
+      .card-item {
+
+        display: flex;
+        
+        .picture {
+
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 15px;
+          
+          img {
+            width: 60px;
+            height: 60px;
+          }
+
+        }
+
+        .card-item-header {
+          font-size: 16px;
+          font-weight: 500;
+          letter-spacing: 0.27px;
+          color: var.$richBlack2;
+          margin-bottom: 5px;
+        }
+
+        .card-item-subheader {
+          @include autobot.card-item-subheader;
+        }
+
+        .icons {
+
+          margin-top: 15px;
+
+          i {            
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            &.linkedin {
+              background: url(/assets/img/linkedin-icon.svg) no-repeat center;
+            }  
+            &.hubspot {              
+              background: url(/assets/img/hubspot-icon.svg) no-repeat center;
+            }
+          }
+
+        }
+    
+      }
+
+      .card-chart {
+
+        .card-chart-header {
+          font-size: 12px;
+          font-weight: bold;
+          line-height: 1.17;
+          letter-spacing: 0.2px;
+          color: var.$grey;
+          text-transform: uppercase;
+          margin-bottom: 8px;
+          span {
+            font-size: 14px;
+            color: var.$richBlack2;
+          }
+        }
+
+        div {
+          & > :first-child:not(span) {
+            display: flex;
+            align-items: center;
+            margin-left: -5px;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  button {
+    margin-top: 20px;
+  }
+
 }
 
+.editor {
+  /* height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column; */
+}
 
-
-
-
-
-::ng-deep .series1 .ct-slice-donut-solid {
-  fill: hsl(120, 40%, 60%);
-  stroke: white;
-  stroke-width: 1px;
+.right {
+  width: 282px;
+  max-width: 423px;
 }

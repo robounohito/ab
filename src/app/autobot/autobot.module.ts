@@ -11,9 +11,10 @@ import { AutobotEffects } from './autobot.effects';
 import { reducer } from './autobot.model';
 import { ProspectComponent } from './prospect/prospect.component';
 import { ChartistModule } from 'ng-chartist';
+import { ChartComponent } from './prospect/chart/chart.component';
 
 @NgModule({
-  declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent],
+  declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent, ChartComponent],
   imports: [
     CommonModule,
     SharedModule,
