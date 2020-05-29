@@ -51,12 +51,17 @@
       display: flex;
       justify-content: space-between;
 
+      & > div {
+        max-width: 33%;
+      }
+
       .card-item {
 
         display: flex;
         
         .picture {
 
+          flex-shrink: 0;
           width: 60px;
           height: 60px;
           border-radius: 50%;

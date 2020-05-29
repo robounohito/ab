@@ -32,7 +32,7 @@ export class ProspectComponent implements OnInit {
   ngOnInit(): void {
     this.currentRoute$ = this.store.select(selectRouteParam('prospectId'));
     this.form = formCreate<ProspectForm>(this.fb, {
-      expanded: [{ 1: true }],
+      expanded: [{ 1: true, 2: true }],
       snippets: [{
         1: '<h2>Autobot here</h2><h3>Subject: Monthly travel news and inspiration</h3>',
         2: '<h3>Destination of the Month</h3><h4>Valletta</h4><p>The capital city of <a href="https://en.wikipedia.org/wiki/Malta" target="_blank" rel="external"> Malta </a> is the top destination this summer. It’s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun.It’s also a top destination for filmmakers, so you can take a tour through locations familiar to you from Game of Thrones, Gladiator, Troy and many more.</p>',
