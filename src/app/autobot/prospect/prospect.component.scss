@@ -1,0 +1,21 @@
+:host {
+  display: inherit;
+}
+
+.editor {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+::ng-deep .series1 .ct-slice-donut-solid {
+  fill: hsl(120, 40%, 60%);
+  stroke: white;
+  stroke-width: 1px;
+}

@@ -1,8 +1,8 @@
 <div class="container"
-     *ngIf="model$ | async as model"
-     [formGroup]="form">
+     *ngIf="model$ | async as model">
 
-  <div class="column left">
+  <div class="column left"
+       *ngIf="{} as expanded">
 
     <h3>
       Suggested Activities ({{model.suggestedActivities.length}})
@@ -12,20 +12,20 @@
          *ngFor="let suggested of model.suggestedActivities">
 
       <div class="accordion-card"
-           [ngClass]="form.value.expanded[suggested.campaign_id] && 'expanded'">
+           [ngClass]="expanded[suggested.campaign_id] && 'expanded'">
         <div class="header">
           <h3>
             {{suggested.reason}}
           </h3>
-          <div [ngClass]="form.value.expanded[suggested.campaign_id] && 'expanded'"
-               (click)="toggleItem(suggested.campaign_id)">
+          <div [ngClass]="expanded[suggested.campaign_id] && 'expanded'"
+               (click)="expanded[suggested.campaign_id] = !expanded[suggested.campaign_id]">
             <div class="arrow"></div>
           </div>
         </div>
         <p>{{suggested.prospects.length}} prospects</p>
       </div>
 
-      <div *ngIf="form.value.expanded[suggested.campaign_id]"
+      <div *ngIf="expanded[suggested.campaign_id]"
            [@slideInOut]>
         <div class="accordion-card sub-item"
              [routerLink]="['/', 'autobot', prospect.id]"
@@ -53,42 +53,6 @@
 
   </div>
 
-  <div class="column middle">
-
-    <router-outlet></router-outlet>
-
-    <x-chartist [type]="type"
-                [options]="chartOptions"
-                [data]="chartData">
-    </x-chartist>
-
-    <div autoboundEditor
-         formControlName="snippets"
-         class="editor">
-    </div>
-
-    <div>
-      <button mat-raised-button
-              style="margin-right: 20px;"
-              type="button"
-              [disabled]="form.invalid"
-              (click)="changeData()">
-        Change Data
-      </button>
-      <button mat-raised-button
-              type="button"
-              [disabled]="form.invalid"
-              (click)="getData(form.value)">
-        Submit form
-      </button>
-    </div>
-
-  </div>
-
-  <div class="column right">
-    <h3>
-      Suggested Articles
-    </h3>
-  </div>
+  <router-outlet></router-outlet>
 
 </div>
