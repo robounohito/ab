@@ -1,6 +1,25 @@
+@use '../variables' as var;
 
 .editor-container {
-  height: 500px;
+  max-height: 500px;
   overflow: auto;
   display: block;
+  // font-size: 12px;
+  color: var.$richBlack2;
+  letter-spacing: 0.2px;
+  padding: 8px 65px 25px 100px;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.editor .ck.ck-toolbar {
+
+  border: none;
+  background-color: var.$grey2;
+
+  .ck.ck-toolbar__separator {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
 }

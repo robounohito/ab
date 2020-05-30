@@ -19,7 +19,7 @@
     &.expanded {
 
       border-radius: 4px;
-      background-color: var.$darkGrey;
+      background-color: var.$lightGrey3;
       
       .arrow {
         transform: unset;
@@ -88,8 +88,6 @@
     .accordion {
 
       margin-bottom: 10px;
-      height: auto;
-      transition: height 1s ease-in-out;
 
       .accordion-card {
 
@@ -172,7 +170,7 @@
 
         &.active {
           outline: none;
-          background-color: var.$darkGrey;
+          background-color: var.$lightGrey3;
         }
 
       }

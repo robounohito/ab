@@ -16,7 +16,8 @@
            *ngIf="!form.value.expanded[1]">
       </div>
       <div class="accordion-card"
-           *ngIf="form.value.expanded[1]">
+           *ngIf="form.value.expanded[1]"
+           [@slideInOut]>
         <div class="card-item">
           <div class="picture">
             <img [src]="blankProfiilePic"
@@ -73,7 +74,8 @@
            *ngIf="!form.value.expanded[2]">
       </div>
       <div class="accordion-card"
-           *ngIf="form.value.expanded[2]">
+           *ngIf="form.value.expanded[2]"
+           [@slideInOut]>
         <div class="card-item">
           <div class="picture">
             <img [src]="blankProfiilePic"
@@ -115,34 +117,55 @@
       </div>
     </div>
 
-    <div class="editor-header">
+    <div class="sequence-header">
       <div>
         <h3>Entire Sequence</h3>
-        Autobound Score 8.0
+        <p>
+          Autobound Score <span>8.0</span> <span class="autobound-icon"></span>
+        </p>
       </div>
       <div>
         <button mat-raised-button
-                style="margin-right: 20px;"
                 type="button"
-                [disabled]="form.invalid"
-                (click)="changeData()">
+                [disabled]="form.invalid">
           Reject
         </button>
         <button mat-raised-button
                 type="button"
-                [disabled]="form.invalid"
-                (click)="getData(form.value)">
+                color="primary"
+                [disabled]="form.invalid">
           Start Campaign
         </button>
       </div>
     </div>
 
-    <div autoboundEditor
-         formControlName="snippets"
-         class="editor">
+    <div class="sequence-container">
+      <div class="toolbar">
+        <div>
+          <span>
+            <i class="info"></i>
+            Step 1
+          </span>
+          <span>
+            <i class="fas fa-envelope"></i>
+            Send immediately
+          </span>
+        </div>
+        <div>
+          <div [ngClass]="form.value.expanded[3] && 'expanded'"
+               (click)="toggleItem('3')">
+            <div class="arrow"></div>
+          </div>
+        </div>
+      </div>
+      <div autoboundEditor
+           formControlName="snippets"
+           class="editor">
+      </div>
+      <div class="toolbar"></div>
     </div>
 
-    <div>
+    <!-- <div>
       <button mat-raised-button
               style="margin-right: 20px;"
               type="button"
@@ -156,7 +179,7 @@
               (click)="getData(form.value)">
         Submit form
       </button>
-    </div>
+    </div> -->
 
   </div>
 

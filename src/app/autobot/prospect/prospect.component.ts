@@ -6,6 +6,7 @@ import { FormGroupT, formCreate, formPatchValue } from '../../_core/form/form';
 import { FormBuilder } from '@angular/forms';
 import { blankProfiilePic } from 'src/app/app.constants';
 import { selectCurrentProspect } from '../autobot.model';
+import { slideInOut } from 'src/app/_core/animations/animations';
 
 interface ProspectForm {
   expanded: { [key: string]: boolean };
@@ -16,6 +17,7 @@ interface ProspectForm {
   selector: 'autobound-prospect',
   templateUrl: './prospect.component.html',
   styleUrls: ['../autobot.component.scss', './prospect.component.scss'],
+  animations: [slideInOut],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProspectComponent implements OnInit {
