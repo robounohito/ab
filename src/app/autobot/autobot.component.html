@@ -1,58 +1,67 @@
-<div class="container"
-     *ngIf="model$ | async as model">
+<ng-container *ngIf="model$ | async as model">
 
-  <div class="column left"
-       *ngIf="{} as expanded">
+  <mat-progress-bar mode="indeterminate"
+                    *ngIf="model.currentProspect.loading">
+  </mat-progress-bar>
 
-    <h3>
-      Suggested Activities ({{model.suggestedActivities.length}})
-    </h3>
+  <div class="container">
 
-    <div class="accordion"
-         *ngFor="let suggested of model.suggestedActivities">
+    <div class="column left"
+         *ngIf="{} as expanded">
 
-      <div class="accordion-card"
-           [ngClass]="expanded[suggested.campaign_id] && 'expanded'">
-        <div class="header">
-          <h3>
-            {{suggested.reason}}
-          </h3>
-          <div [ngClass]="expanded[suggested.campaign_id] && 'expanded'"
-               (click)="expanded[suggested.campaign_id] = !expanded[suggested.campaign_id]">
-            <div class="arrow"></div>
+      <h3>
+        Suggested Activities ({{model.suggestedActivities.length}})
+      </h3>
+
+      <div class="accordion"
+           *ngFor="let suggested of model.suggestedActivities">
+
+        <div class="accordion-card"
+             [ngClass]="expanded[suggested.campaign_id] && 'expanded'">
+          <div class="header">
+            <h3>
+              {{suggested.reason}}
+            </h3>
+            <div [ngClass]="expanded[suggested.campaign_id] && 'expanded'"
+                 (click)="expanded[suggested.campaign_id] = !expanded[suggested.campaign_id]">
+              <div class="arrow"></div>
+            </div>
+          </div>
+          <p>{{suggested.prospects.length}} prospects</p>
+        </div>
+
+        <div *ngIf="expanded[suggested.campaign_id]"
+             [@slideInOut]>
+          <div class="accordion-card sub-item"
+               [routerLink]="['/', 'autobot', prospect.id]"
+               [routerLinkActive]="'active'"
+               *ngFor="let prospect of suggested.prospects">
+            <div class="picture">
+              <img [src]="prospect.image || blankProfiilePic"
+                   alt="Prospect's picture">
+            </div>
+            <div>
+              <div class="text-header">
+                {{prospect.name}}
+              </div>
+              <div class="text-subheader">
+                {{prospect.title}}
+              </div>
+              <div class="text-subheader">
+                {{prospect.company}}
+              </div>
+            </div>
           </div>
         </div>
-        <p>{{suggested.prospects.length}} prospects</p>
-      </div>
 
-      <div *ngIf="expanded[suggested.campaign_id]"
-           [@slideInOut]>
-        <div class="accordion-card sub-item"
-             [routerLink]="['/', 'autobot', prospect.id]"
-             [routerLinkActive]="'active'"
-             *ngFor="let prospect of suggested.prospects">
-          <div class="picture">
-            <img [src]="prospect.image || blankProfiilePic"
-                 alt="Prospect's picture">
-          </div>
-          <div>
-            <div class="text-header">
-              {{prospect.name}}
-            </div>
-            <div class="text-subheader">
-              {{prospect.title}}
-            </div>
-            <div class="text-subheader">
-              {{prospect.company}}
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
 
+    <section [@columnFadeAnimation]="o.isActivated ? (o.activatedRoute.paramMap | async)?.get('prospectId') : ''">
+      <router-outlet #o="outlet"></router-outlet>
+    </section>
+
   </div>
 
-  <router-outlet></router-outlet>
-
-</div>
+</ng-container>

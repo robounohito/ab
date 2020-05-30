@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAutobot } from './autobot.model';
 import { loadSuggestedActivities } from './autobot.constants';
-import { slideInOut } from '../_core/animations/animations';
+import { slideInOut, columnFadeAnimation } from '../_core/animations/animations';
 import { blankProfiilePic } from '../app.constants';
 
 @Component({
   selector: 'autobound-autobot',
   templateUrl: './autobot.component.html',
   styleUrls: ['./autobot.component.scss'],
-  animations: [slideInOut],
+  animations: [slideInOut, columnFadeAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutobotComponent implements OnInit {

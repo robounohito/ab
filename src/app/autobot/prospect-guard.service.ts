@@ -17,7 +17,6 @@ export class ProspectGuard implements CanActivate {
     return this.store.select(selectRouteParam('prospectId')).pipe(
       take(1),
       tap(prospectId => {
-        console.log('prospectId', prospectId);
         return prospectId && this.store.dispatch(loadProspect({ prospectId }));
       }),
       map(() => true),

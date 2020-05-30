@@ -49,7 +49,7 @@ export class MockInterceptor implements HttpInterceptor {
       // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
       return of(new HttpResponse({
         status: 200, body: insights2
-      })).pipe(delay(50));
+      })).pipe(delay(250));
     }
     return next.handle(request);
   }

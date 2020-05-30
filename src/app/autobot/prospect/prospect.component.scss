@@ -51,8 +51,9 @@
       display: flex;
       justify-content: space-between;
 
-      & > div {
-        max-width: 33%;
+
+      & > div:first-child {
+        width: 31%;
       }
 
       .card-item {
@@ -136,6 +137,11 @@
 
     }
 
+  }
+
+  .editor-header {
+    display: flex;
+    justify-content: space-between;
   }
 
   button {
