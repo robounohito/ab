@@ -230,14 +230,48 @@
 
       .editor {
         position: relative;
-        &::before {
-          content: '';
-          position: absolute;
-          width: 22px;
-          height: 88px;
-          background-color: var.$grey2;
-          right: 0;
-          border-radius: 4px 0 0 4px;
+      }      
+
+      .editor-panel {
+
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: 50px;
+        right: 0;
+        width: 22px;
+        height: 88px;
+        background-color: var.$grey2;
+        border-radius: 4px 0 0 4px;
+        padding: 7px 0 0 2px;
+
+        i {
+          margin-bottom: 11px;
+          font-size: 10px;
+          color: var.$grey6;
+          cursor: pointer;
+        }
+
+      }
+
+    }
+
+    .branch {
+
+      font-size: 12px;
+      line-height: 1.33;
+      letter-spacing: 0.2px;
+      color: var.$grey5;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0 0 -15px;
+
+      img {
+        margin-left: 20px;
+        &:first-child {
+          margin: 10px -5px 0 10px;
         }
       }
 

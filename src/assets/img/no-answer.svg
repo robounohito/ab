@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" viewBox="0 0 36 36">
+    <defs>
+        <filter id="prefix__a" width="200%" height="200%" x="-50%" y="-25%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" radius="1" result="shadowSpreadOuter1"/>
+            <feOffset dy="6" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.337869297 0 0 0 0 0.675232385 0 0 0 0 0.867102582 0 0 0 0.500710227 0"/>
+        </filter>
+        <rect id="prefix__b" width="24" height="24" x="0" y="0" rx="4"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(6)">
+        <use fill="#000" filter="url(#prefix__a)" xlink:href="#prefix__b"/>
+        <rect width="23" height="23" x=".5" y=".5" fill="#2DB2E6" stroke="#FFF" stroke-linejoin="square" rx="4"/>
+        <path fill="#FFF" fill-rule="nonzero" d="M12 5c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7zm4.172 4.243l-6.93 6.929c.791.523 1.739.828 2.758.828 2.761 0 5-2.239 5-5 0-1.02-.305-1.967-.828-2.757zM12 7c-2.761 0-5 2.239-5 5 0 1.02.305 1.967.828 2.757l6.93-6.929C13.966 7.305 13.018 7 12 7z"/>
+    </g>
+</svg>
