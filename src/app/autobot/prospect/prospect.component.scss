@@ -173,14 +173,30 @@
       }
 
       button {
+
         margin: 0px;
-        &.mat-button-base {
+        height: 30px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: normal;
+        box-shadow: none;
+
+        &:first-child {
+          width: 100px;
+          color: var.$richBlack3;
+          border: solid 1px var.$lightGrey2;
           background-color: var.$grey2;
           margin-right: 10px;
         }
-        &.mat-primary {
+
+        &:nth-child(2) {
+          width: 110px;
+          color: white;
+          padding: 0;
           background-color: var.$aquaVariant3;
         }
+        
       }
 
     }
