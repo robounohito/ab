@@ -8,6 +8,8 @@ import { blankProfiilePic } from 'src/app/app.constants';
 import { selectCurrentProspect } from '../autobot.model';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { faFileSignature, faSync, faTrashAlt, faRedo, faPencilAlt, faTimes, faReply, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog, } from '@angular/material/dialog';
+import { EditorComponent } from '../editor/editor.component';
 
 interface ProspectForm {
   expanded: { [key: string]: boolean };
@@ -31,6 +33,7 @@ export class ProspectComponent implements OnInit {
   constructor(
     private store: Store<App>,
     private fb: FormBuilder,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +67,17 @@ export class ProspectComponent implements OnInit {
       expanded: {
         ...this.form.controls.expanded.value,
         [id]: !this.form.controls.expanded.value[id]
+      }
+    });
+  }
+
+  edit() {
+    this.dialog.open(EditorComponent, {
+      width: '450px',
+      data: {
+        cb: (result: any) => {
+          console.log('The dialog was closed with result', result);
+        }
       }
     });
   }

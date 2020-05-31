@@ -26,6 +26,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ChartistModule,
     FontAwesomeModule,
   ],
+  entryComponents: [
+    EditorComponent,
+  ],
   providers: [
     ProspectGuard
   ]

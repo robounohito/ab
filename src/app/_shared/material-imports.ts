@@ -11,6 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export const materialImports = [
   MatFormFieldModule,
@@ -26,4 +27,5 @@ export const materialImports = [
   MatMenuModule,
   MatCheckboxModule,
   MatProgressBarModule,
+  MatDialogModule,
 ];

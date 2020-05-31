@@ -57,6 +57,11 @@ export class EditorDirective implements ControlValueAccessor, OnDestroy {
             });
           }
         });
+       /*  newEditor.editing.view.document.on('change:isFocused', (event: Record<string, any>, _: any, isFocused: boolean) => {
+          if (isFocused) {
+            console.log('focused event', event, newEditor.ui.focusTracker.focusedElement);
+          }
+        }); */
       }).catch((err: any) => {
         console.error(err.stack);
       });

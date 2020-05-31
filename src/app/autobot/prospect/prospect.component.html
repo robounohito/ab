@@ -166,7 +166,9 @@
         </div>
         <div class="editor-vertical-panel">
           <fa-icon [icon]="fa.faRedo"></fa-icon>
-          <fa-icon [icon]="fa.faPencilAlt"></fa-icon>
+          <fa-icon [icon]="fa.faPencilAlt"
+                   (click)="edit()">
+          </fa-icon>
           <fa-icon [icon]="fa.faTimes"></fa-icon>
           <fa-icon [icon]="fa.faReply"></fa-icon>
         </div>
