@@ -13,6 +13,7 @@ import { ProspectComponent } from './prospect/prospect.component';
 import { ChartistModule } from 'ng-chartist';
 import { ChartComponent } from './prospect/chart/chart.component';
 import { ProspectGuard } from './prospect-guard.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent, ChartComponent],
@@ -23,6 +24,7 @@ import { ProspectGuard } from './prospect-guard.service';
     StoreModule.forFeature('autobot', reducer),
     EffectsModule.forFeature([AutobotEffects]),
     ChartistModule,
+    FontAwesomeModule,
   ],
   providers: [
     ProspectGuard

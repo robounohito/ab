@@ -7,6 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { blankProfiilePic } from 'src/app/app.constants';
 import { selectCurrentProspect } from '../autobot.model';
 import { slideInOut } from 'src/app/_core/animations/animations';
+import { faFileSignature, faSync, faTrashAlt, faRedo, faPencilAlt, faTimes, faReply, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 interface ProspectForm {
   expanded: { [key: string]: boolean };
@@ -22,6 +23,7 @@ interface ProspectForm {
 })
 export class ProspectComponent implements OnInit {
 
+  fa = { faFileSignature, faSync, faTrashAlt, faRedo, faPencilAlt, faTimes, faReply, faEnvelope };
   blankProfiilePic = blankProfiilePic;
   model$!: Observable<any>;
   form!: FormGroupT<ProspectForm>;
