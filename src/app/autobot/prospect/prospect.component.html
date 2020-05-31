@@ -1,6 +1,6 @@
 <ng-container *ngIf="model$ | async as model">
 
-  <div class="column middle"
+  <div class="column middle animate"
        [style.visibility]="model.loading ? 'hidden' : 'visible'"
        [formGroup]="form">
 
@@ -140,7 +140,7 @@
     </div>
 
     <div class="sequence-container">
-      <div class="toolbar">
+      <div class="toolbar-top">
         <div>
           <span>
             <i class="info"></i>
@@ -158,11 +158,14 @@
           </div>
         </div>
       </div>
-      <div autoboundEditor
-           formControlName="snippets"
-           class="editor">
+      <div class="step-container"
+           [hidden]="!form.value.expanded[3]">
+        <div autoboundEditor
+             formControlName="snippets"
+             class="editor">
+        </div>
       </div>
-      <div class="toolbar"></div>
+      <div class="toolbar-top"></div>
     </div>
 
     <!-- <div>
@@ -183,7 +186,7 @@
 
   </div>
 
-  <div class="column right">
+  <div class="column right animate">
     <h3>
       Suggested Articles
     </h3>

@@ -58,7 +58,7 @@
 
     </div>
 
-    <section [@columnFadeAnimation]="o.isActivated ? (o.activatedRoute.paramMap | async)?.get('prospectId') : ''">
+    <section [@customFadeAnimation]="o.isActivated ? (o.activatedRoute.paramMap | async)?.get('prospectId') : ''">
       <router-outlet #o="outlet"></router-outlet>
     </section>
 

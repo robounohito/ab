@@ -10,7 +10,7 @@ export const slideInOut = trigger('slideInOut', [
   ])
 ]);
 
-export const columnFadeAnimation = trigger('columnFadeAnimation', [
+export const customFadeAnimation = trigger('customFadeAnimation', [
   transition('* => *', [
     query(':leave', [
       style({
@@ -18,21 +18,41 @@ export const columnFadeAnimation = trigger('columnFadeAnimation', [
         position: 'absolute',
         top: '-9999px'
       })
-    ],
-      { optional: true }
+    ], { optional: true }
     ),
-    query('.column',
-      [
+    query('.animate', [
+      style({
+        opacity: 0,
+      }),
+      animate('.5s',
         style({
-          opacity: 0
-        }),
-        animate('.5s',
-          style({
-            opacity: 1,
-          })
-        )
-      ],
-      { optional: true }
+          opacity: 1,
+        })
+      )
+    ], { optional: true }
     ),
+  ])
+]);
+
+export const routerFadeAnimation = trigger('routerFadeAnimation', [
+  transition('* => *', [
+    query(':leave', [
+      style({
+        opacity: 0,
+        position: 'absolute',
+        top: '-9999px'
+      })
+    ], { optional: true }
+    ),
+    query(':enter', [
+      style({
+        opacity: 0,
+        display: 'inherit',
+      }),
+      animate('.5s',
+        style({ opacity: 1 })
+      ),
+    ], { optional: true }
+    )
   ])
 ]);

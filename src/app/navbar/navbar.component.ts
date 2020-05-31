@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { navbarMenu, loadSettings } from './navbar.constants';
 import { Store } from '@ngrx/store';
 import { logout, blankProfiilePic } from '../app.constants';
-import { slideInOut } from '../_core/animations/animations';
+import { slideInOut, routerFadeAnimation } from '../_core/animations/animations';
 import { Observable } from 'rxjs';
 import { Navbar } from './navbar.types';
 import { selectNavbar } from './navbar.model';
@@ -11,7 +11,7 @@ import { selectNavbar } from './navbar.model';
   selector: 'autobound-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  animations: [slideInOut],
+  animations: [slideInOut, routerFadeAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
