@@ -49,6 +49,6 @@ export const navbarMenu = [{
   icon: 'globe.svg'
 }, {
   path: 'admin',
-  title: 'Admin',
+  title: 'Admin panel',
   icon: 'cog.svg'
 }];
