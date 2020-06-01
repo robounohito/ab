@@ -210,9 +210,34 @@
   </div>
 
   <div class="column right animate">
-    <h3>
-      Suggested Articles
-    </h3>
+    <div class="accordion">
+      <div class="accordion-header">
+        <div [ngClass]="form.value.expanded[4] && 'expanded'"
+             (click)="toggleItem('4')">
+          <div class="arrow"></div>
+        </div>
+        <h3>Suggested Articles</h3>
+      </div>
+      <div class="accordion-line"
+           *ngIf="!form.value.expanded[4]">
+      </div>
+      <div class="accordion-card articles"
+           *ngIf="form.value.expanded[4]"
+           [@slideInOut]>
+        <div class="article">
+          <div class="leadin">Feb 13, 2020, 7:39:01 PM</div>
+          <div class="caption">STP Investment Services Acquires Accusou</div>
+          <div class="text">WEST CHESTER, Pa.- (BUSINESS WIRE) -#assetmanagement - STP Investment Services today
+            announces that it has acquired Accusource to expand on …</div>
+        </div>
+        <div class="article">
+          <div class="leadin">Feb 13, 2020, 7:39:01 PM</div>
+          <div class="caption">Particle, a back-end IoT startup that raised $40M Series C in October 2019…</div>
+          <div class="text">San Francisco-based startup Particle was one of the rising stars in the Internet of Things
+            space, raising more than $81 million…</div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </ng-container>
