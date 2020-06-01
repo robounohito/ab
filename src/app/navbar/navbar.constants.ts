@@ -47,4 +47,8 @@ export const navbarMenu = [{
   path: 'dashboard',
   title: 'Rep Dashboard',
   icon: 'globe.svg'
+}, {
+  path: 'admin',
+  title: 'Admin',
+  icon: 'cog.svg'
 }];

@@ -18,6 +18,7 @@ const routes: Routes = [{
     { path: 'settings', loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule) },
     { path: 'news', loadChildren: () => import('../news/news.module').then(m => m.NewsModule) },
     { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
+    { path: 'admin', loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule) },
   ]
 }];
 
