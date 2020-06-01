@@ -51,9 +51,20 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: insights2
       })).pipe(delay(250));
     }
+    if (request.url.endsWith('stats')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: stats
+      })).pipe(delay(250));
+    }
     return next.handle(request);
   }
 }
+
+const stats = {
+  contactsToCall: 14
+};
 
 const insights1 = {
   Result: 'Success',

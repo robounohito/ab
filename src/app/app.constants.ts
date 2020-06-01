@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AuthToken } from './app.types';
+import { AuthToken, CurrentUser } from './app.types';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 
 export const readToken = createAction(
@@ -27,6 +27,21 @@ export const notification = createAction(
     config?: MatSnackBarConfig;
   }>()
 );
+
+
+export const loadUserProfile = createAction(
+  '[Navbar] Load User Profile',
+);
+
+export const loadUserProfileSuccess = createAction(
+  '[Navbar] Load User Profile Success',
+  props<{ userProfile: CurrentUser }>()
+);
+
+export enum Role {
+  admin = 'admin',
+  user = 'user'
+}
 
 export enum Route {
   login = 'login',

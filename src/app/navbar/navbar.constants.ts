@@ -1,16 +1,3 @@
-
-import { createAction, props } from '@ngrx/store';
-import { Settings } from './navbar.types';
-
-export const loadSettings = createAction(
-  '[Navbar] Load Settings',
-);
-
-export const loadSettingsSuccess = createAction(
-  '[Navbar] Load Settings Success',
-  props<{ settings: Settings }>()
-);
-
 export const navbarMenu = [{
   path: 'autobot',
   title: 'Autobot',

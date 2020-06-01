@@ -27,7 +27,7 @@
               </span>
               <div class="callout"
                    *ngIf="menuItem.path === navbarMenu[2].path">
-                {{12}}
+                {{model.contactsToCall}}
               </div>
             </a>
             <div class="submenu"
@@ -52,13 +52,13 @@
           <div mat-button
                class="photo"
                [matMenuTriggerFor]="menu"
-               [matTooltip]="model.first_name"
+               [matTooltip]="model.firstName + ' ' + model.lastName"
                matTooltipPosition="right">
-            <img src="{{model.profile_img_link || blankProfiilePic}}"
+            <img src="{{api.getAttachment(model.image)}}"
                  alt="Current user's picture">
           </div>
           <span *ngIf="uiState.expanded">
-            {{model.first_name}}
+            {{model.firstName + ' ' + model.lastName}}
           </span>
         </div>
         <mat-menu #menu="matMenu">

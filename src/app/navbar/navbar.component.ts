@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { navbarMenu, loadSettings } from './navbar.constants';
+import { navbarMenu } from './navbar.constants';
 import { Store } from '@ngrx/store';
-import { logout, blankProfiilePic } from '../app.constants';
+import { logout, loadUserProfile } from '../app.constants';
 import { slideInOut, routerFadeAnimation } from '../_core/animations/animations';
 import { Observable } from 'rxjs';
-import { Navbar } from './navbar.types';
-import { selectNavbar } from './navbar.model';
+import { ApiService } from '../_core/api/api.service';
+import { selectCurrentUser } from '../app.model';
+import { CurrentUser, App } from '../app.types';
 
 @Component({
   selector: 'autobound-navbar',
@@ -18,14 +19,16 @@ import { selectNavbar } from './navbar.model';
 export class NavbarComponent implements OnInit {
 
   navbarMenu = navbarMenu;
-  blankProfiilePic = blankProfiilePic;
-  model$!: Observable<Navbar>;
+  model$!: Observable<CurrentUser>;
 
-  constructor(private store: Store) { }
+  constructor(
+    private store: Store<App>,
+    public api: ApiService,
+  ) { }
 
   ngOnInit() {
-    this.store.dispatch(loadSettings());
-    this.model$ = this.store.select(selectNavbar);
+    this.model$ = this.store.select(selectCurrentUser);
+    this.store.dispatch(loadUserProfile());
   }
 
   logout() {

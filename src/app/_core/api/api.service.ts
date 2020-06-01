@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { forEachObjIndexed, isNil } from 'ramda';
 import { bypassHttpErrorInterceptor } from '../errors/http-error.interceptor';
+import { blankProfiilePic } from 'src/app/app.constants';
 
 export interface ApiRequest {
   endpoint: {
@@ -22,7 +23,11 @@ export const apiEndpoint = {
   getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
   getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
   getInsights: { method: 'get', url: 'autobound/insights/{contactId}' },
-  getSettings: { method: 'get', url: 'settings' },
+  getAttachment: { method: 'get', url: 'attachments/{id}' },
+  postAttachment: { method: 'post', url: 'attachments' },
+  getStats: { method: 'get', url: 'stats' },
+  getUserProfile: { method: 'get', url: 'userProfile' },
+  postUserProfile: { method: 'post', url: 'userProfile' },
   getLogout: { method: 'get', url: 'auth/logout' },
   postSignup: { method: 'post', url: 'auth/register' },
   postLogin: { method: 'post', url: 'auth/login' },
@@ -72,7 +77,13 @@ export class ApiService {
     );
   }
 
-  makeUrl(pattern: string, params: { [key: string]: string | number } = {}): string {
+  getAttachment(id: string) {
+    return id
+      ? this.baseUrl + this.makeUrl(apiEndpoint.getAttachment.url, { id })
+      : blankProfiilePic;
+  }
+
+  private makeUrl(pattern: string, params: { [key: string]: string | number } = {}): string {
     let result = pattern;
     forEachObjIndexed((value: string | number = '', key) => {
       const regx = new RegExp('{' + key + '}', 'ig');

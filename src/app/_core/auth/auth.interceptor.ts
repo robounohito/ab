@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
         ? next.handle(
           request.clone({
             headers: request.headers
-              .set('Authorization', 'Bearer ' + authToken)
+              .set('auth', authToken)
               .set('Content-Type', 'application/json'),
             withCredentials: true,
           }))

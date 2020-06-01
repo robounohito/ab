@@ -37,13 +37,13 @@ describe('ApiService', () => {
     });
   });
 
-  describe('makeUrl method', () => {
+  /* describe('makeUrl method', () => {
     it('should return proper url on valid input', () => {
       expect(service.makeUrl(
         service.endpoint.getHubspotAuth.url,
         { email: '1' }
       )).toEqual('autobound/mission_control/integrations/hubspot/userID/1');
     });
-  });
+  }); */
 
 });
