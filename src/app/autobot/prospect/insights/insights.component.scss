@@ -190,36 +190,3 @@
   background-color: white;
   padding: 9px;
 }
-
-::ng-deep .mat-form-field-underline {
-  display: none;
-}
-
-::ng-deep .insight-tabs {
-  
-  .mat-tab-label {
-    width: 141px;
-    height: 30px;
-    background-color: var.$grey2;
-    min-width: unset;
-    font-size: 10px;
-    text-transform: uppercase;
-  }
-
-  .mat-tab-label:first-child {
-    border-right: solid 1px var.$lightGrey2;
-  }
-
-  .mat-tab-label-active {
-    background-color: white;
-  }
-
-  .mat-ink-bar {
-    display: none;
-  }
-
-  .mat-tab-body-content {
-    overflow: hidden;
-  }
-
-}

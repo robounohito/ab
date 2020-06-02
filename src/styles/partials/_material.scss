@@ -1,4 +1,4 @@
-@import '../variables';
+@use '../variables' as var;
 
 body {
   
@@ -12,8 +12,56 @@ body {
     border-radius: 3px;
   }
 
-  .red-snackbar .mat-button-wrapper {
-    color: $red;
+}
+
+.red-snackbar .mat-button-wrapper {
+  color: var.$red;
+}
+
+.head .mat-form-field-underline {
+  display: none;
+}
+
+.head .mat-select-arrow {
+  
+  border: none;
+  
+  &::after {
+    font-family: "Material Icons"; 
+    content: "keyboard_arrow_down";
+    font-size: 16px;
+    line-height: 0;
+    position: absolute;
+    right: -3px;
+  }
+
+}
+
+.insight-tabs {
+  
+  .mat-tab-label {
+    width: 141px;
+    height: 30px;
+    background-color: var.$grey2;
+    min-width: unset;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .mat-tab-label:first-child {
+    border-right: solid 1px var.$lightGrey2;
+  }
+
+  .mat-tab-label-active {
+    background-color: white;
+  }
+
+  .mat-ink-bar {
+    display: none;
+  }
+
+  .mat-tab-body-content {
+    overflow: hidden;
   }
 
 }
