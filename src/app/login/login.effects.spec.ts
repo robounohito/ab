@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import SpyObj = jasmine.SpyObj;
 
-fdescribe('LoginEffects', () => {
+describe('LoginEffects', () => {
 
   let effects: LoginEffects;
   let actions$: Observable<Action>;
