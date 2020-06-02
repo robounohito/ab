@@ -2,7 +2,22 @@
 
   <div class="header">
     <h4>Insights</h4>
-    <h2>Prospect</h2>
+    <h2>
+      Prospect
+      <button mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span>Prospect</span>
+        </button>
+        <button mat-menu-item>
+          <span>Company</span>
+        </button>
+      </mat-menu>
+    </h2>
   </div>
 
   <mat-form-field>
@@ -15,16 +30,130 @@
 </div>
 
 <div class="insight-tabs">
+
   <mat-tab-group disablePagination="true">
+
     <mat-tab label="Activities">
+
       <div class="tab-content">
-        Select activity type
+
+        <div class="activity-type">
+          <div>
+            Select activity type:
+          </div>
+          <div class="filter">
+            <input type="checkbox"
+                   id="emails"
+                   name="emails"
+                   checked="true">
+            <label for="emails">
+              <fa-icon [icon]="fa.faEnvelope"></fa-icon>
+              Emails
+            </label>
+            <input type="checkbox"
+                   id="calls"
+                   name="calls">
+            <label for="calls">
+              <fa-icon [icon]="fa.faPhone"></fa-icon>
+              Calls
+            </label>
+            <input type="checkbox"
+                   id="meetings"
+                   name="meetings">
+            <label for="meetings">
+              <fa-icon [icon]="fa.faPhone"></fa-icon>
+              Meetings
+            </label>
+          </div>
+        </div>
+
+        <div *ngFor="let activity of activities"
+             class="activity">
+          <div class="date">
+            <fa-icon [icon]="fa.faEnvelope"></fa-icon>
+            {{activity.date}}
+          </div>
+          <div class="from-to">
+            <div>
+              <span>From</span>
+              {{activity.from}}
+            </div>
+            <div>
+              <span>To</span>
+              {{activity.to}}
+            </div>
+          </div>
+          <div class="caption">
+            {{activity.caption}}
+          </div>
+          <div class="text">
+            {{activity.text}}
+          </div>
+          <div class="response">
+            Responses: {{activity.responses}}
+          </div>
+        </div>
+
       </div>
+
     </mat-tab>
+
     <mat-tab label="Opportunities">
+
       <div class="tab-content">
-        Select opportunity type
+
+        <div class="activity-type">
+          <div>
+            Select opportunity type:
+          </div>
+          <div class="filter">
+            <input type="checkbox"
+                   id="open"
+                   name="open"
+                   checked="true">
+            <label for="open">Open</label>
+            <input type="checkbox"
+                   id="won"
+                   name="won">
+            <label for="won">Won</label>
+            <input type="checkbox"
+                   id="lost"
+                   name="lost">
+            <label for="lost">Lost</label>
+          </div>
+        </div>
+
+        <div class="activity"
+             *ngFor="let opportunity of opportunities">
+          <div class="date">
+            <fa-icon [icon]="fa.faEnvelope"></fa-icon>
+            {{opportunity.date}}
+          </div>
+          <div class="caption">
+            {{opportunity.caption}}
+          </div>
+          <div class="valuation">
+            {{opportunity.valuation}}
+          </div>
+          <div class="text">
+            {{opportunity.text}}
+          </div>
+          <div class="from-to">
+            <div>
+              <span>Close date:</span>
+              {{opportunity.closeDate}}
+            </div>
+            <div>
+              <span>Owner:</span>
+              {{opportunity.owner}}
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </mat-tab>
+
   </mat-tab-group>
+
 </div>

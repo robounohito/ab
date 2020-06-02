@@ -24,12 +24,29 @@
     }
   
     h2 {
+
       font-size: 18px;
       font-weight: 500;
       letter-spacing: 0.3px;
       line-height: normal;
       color: var.$aqua;
       margin: 0;
+      display: inline-flex;
+
+      button {
+
+        width: 20px;
+        height: 30px;
+        font-size: 14px;
+
+        .mat-icon {
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 0.3;
+        }
+
+      }
+
     }
 
   }
@@ -42,27 +59,127 @@
   border: solid 1px var.$lightGrey2;
   background-color: white;
 
-  /* .mat-tab-label {
-    width: 141px;
-    height: 30px;
-    border-radius: 4px;
-    border: solid 1px var.$lightGrey2;
-    min-width: unset;
-  } */
-
   .tab-content {
+
     padding: 10px;
+    font-size: 10px;
+    color: var.$grey;
+
+    .filter {
+
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0 10px;
+
+      input[type=checkbox] {
+        display: none;
+      }
+
+      input[type=checkbox] + label:hover { 
+        cursor: pointer;
+      }
+
+      input[type=checkbox] + label {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: var.$grey;
+        font-size: 10px;
+        width: 84px;
+        height: 24px;
+        border-radius: 4px;
+        background-color: var.$lightGrey3;
+        fa-icon {
+          margin-right: 10px;
+        }
+      } 
+
+      input[type=checkbox]:checked + label {
+        color: white;
+        background-color: var.$aquaVariant3;
+      }
+
+    }
+
+    .activity {
+
+      border-radius: 4px;
+      border: solid 1px var.$grey8;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      .date {
+        fa-icon {
+          color: var.$blue1;
+          margin-right: 5px;
+        }
+      }
+
+      .from-to {
+
+        margin: 5px 0 8px;
+        font-weight: 500;
+        color: var.$richBlack2;
+        line-height: 1.2;
+        letter-spacing: 0.17px;
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          width: 50%;
+          span {
+            color: var.$grey;
+            font-weight: normal;
+            display: block;
+          }
+        }
+
+      }
+
+      .caption {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.29;
+        letter-spacing: 0.23px;
+        color: var.$richBlack2;
+        margin: 5px 0 10px;
+      }
+
+      .valuation {
+        margin: -5px 0 6px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: normal;
+        letter-spacing: 0.27px;
+        color: var.$aquaVariant3;
+      }
+
+      .text {
+        font-size: 12px;
+        line-height: 1.33;
+        letter-spacing: 0.2px;
+        color: var.$richBlack2;
+        margin-bottom: 10px;
+      }
+
+      .response {
+        margin-top: -4px;
+        font-weight: 500;
+        color: var.$aquaVariant3;
+      }
+
+    }
+
   }
 
 }
 
 .mat-form-field {
-  // background: red;
   width: 120px;
 
 }
 
-::ng-deep .mat-select {
+.mat-select {
   width: 120px;
   height: 33px;
   border-radius: 4px;
@@ -70,8 +187,8 @@
   font-size: 12px;
   font-weight: 500;
   color: var.$richBlack2;
+  background-color: white;
   padding: 9px;
-
 }
 
 ::ng-deep .mat-form-field-underline {
@@ -84,8 +201,6 @@
     width: 141px;
     height: 30px;
     background-color: var.$grey2;
-    /* border-radius: 0 4px 0 0;
-    border: solid 1px var.$lightGrey2; */
     min-width: unset;
     font-size: 10px;
     text-transform: uppercase;
@@ -99,12 +214,12 @@
     background-color: white;
   }
 
-}
+  .mat-ink-bar {
+    display: none;
+  }
 
-/* ::ng-deep .insight-tabs .mat-tab-label:first-child {
-  border-right: solid 1px var.$lightGrey2;
-} */
+  .mat-tab-body-content {
+    overflow: hidden;
+  }
 
-::ng-deep .mat-ink-bar {
-  display: none;
 }
