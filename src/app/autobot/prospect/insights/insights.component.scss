@@ -1,0 +1,110 @@
+@use '../../../../styles/variables' as var;
+
+.head {
+  
+  margin: 5px 0 0;
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  height: 55px;
+  
+  .header {
+
+    height: auto;
+    margin: 0;
+
+    h4 {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.17px;
+      line-height: normal;
+      color: var.$grey;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      line-height: normal;
+      color: var.$aqua;
+      margin: 0;
+    }
+
+  }
+
+}
+
+.mat-tab-group {
+
+  border-radius: 4px;
+  border: solid 1px var.$lightGrey2;
+  background-color: white;
+
+  /* .mat-tab-label {
+    width: 141px;
+    height: 30px;
+    border-radius: 4px;
+    border: solid 1px var.$lightGrey2;
+    min-width: unset;
+  } */
+
+  .tab-content {
+    padding: 10px;
+  }
+
+}
+
+.mat-form-field {
+  // background: red;
+  width: 120px;
+
+}
+
+::ng-deep .mat-select {
+  width: 120px;
+  height: 33px;
+  border-radius: 4px;
+  border: solid 1px var.$grey7;
+  font-size: 12px;
+  font-weight: 500;
+  color: var.$richBlack2;
+  padding: 9px;
+
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .insight-tabs {
+  
+  .mat-tab-label {
+    width: 141px;
+    height: 30px;
+    background-color: var.$grey2;
+    /* border-radius: 0 4px 0 0;
+    border: solid 1px var.$lightGrey2; */
+    min-width: unset;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .mat-tab-label:first-child {
+    border-right: solid 1px var.$lightGrey2;
+  }
+
+  .mat-tab-label-active {
+    background-color: white;
+  }
+
+}
+
+/* ::ng-deep .insight-tabs .mat-tab-label:first-child {
+  border-right: solid 1px var.$lightGrey2;
+} */
+
+::ng-deep .mat-ink-bar {
+  display: none;
+}

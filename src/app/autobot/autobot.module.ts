@@ -14,9 +14,10 @@ import { ChartistModule } from 'ng-chartist';
 import { ChartComponent } from './prospect/chart/chart.component';
 import { ProspectGuard } from './prospect-guard.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InsightsComponent } from './prospect/insights/insights.component';
 
 @NgModule({
-  declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent, ChartComponent],
+  declarations: [AutobotComponent, EditorComponent, EditorDirective, ProspectComponent, ChartComponent, InsightsComponent],
   imports: [
     CommonModule,
     SharedModule,
