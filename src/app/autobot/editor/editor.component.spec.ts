@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditorComponent } from './editor.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
 describe('EditorComponent', () => {
 
@@ -10,6 +10,9 @@ describe('EditorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EditorComponent],
+      imports: [
+        MatDialogModule
+      ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} },

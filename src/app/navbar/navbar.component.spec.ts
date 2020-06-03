@@ -7,8 +7,9 @@ import { of } from 'rxjs';
 import SpyObj = jasmine.SpyObj;
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NavbarComponent', () => {
 
@@ -25,7 +26,7 @@ describe('NavbarComponent', () => {
   beforeEach(async(() => {
 
     storeSpy = jasmine.createSpyObj('Store', ['select', 'dispatch']);
-    storeSpy.select.and.returnValue(of({ contactsToCall: 1, image: 'image' }));
+    storeSpy.select.and.returnValue(of({ contactsToCall: 1, image: 'favicon.ico' }));
 
     const apiServiceSpy = jasmine.createSpyObj('ApiService', ['request', 'endpoint', 'getAttachment']);
     apiServiceSpy.getAttachment.and.callFake((id: string) => id);
@@ -34,9 +35,10 @@ describe('NavbarComponent', () => {
       declarations: [NavbarComponent],
       imports: [
         MatMenuModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         RouterTestingModule,
         MatTooltipModule,
+        MatIconModule,
       ],
       providers: [
         { provide: Store, useValue: storeSpy },
@@ -61,8 +63,8 @@ describe('NavbarComponent', () => {
     expect(page.callout.textContent).toEqual(' 1 ');
   });
 
-  it('should display user name', () => {
-    expect(page.image.src).toContain('image');
+  it('should display user\'s image', () => {
+    expect(page.image.src).toContain('favicon.ico');
   });
 
 });

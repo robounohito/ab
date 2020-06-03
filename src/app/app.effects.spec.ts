@@ -7,9 +7,13 @@ import { Action } from '@ngrx/store';
 import SpyObj = jasmine.SpyObj;
 import { ApiService, apiEndpoint } from './_core/api/api.service';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { readToken, authTokenKey, readTokenSuccess, navigateToLogin, Route, logout, notification } from './app.constants';
+import {
+  readToken, authTokenKey, readTokenSuccess, navigateToLogin, Route, logout, notification,
+  loadUserProfile, loadUserProfileSuccess
+} from './app.constants';
 import { Router } from '@angular/router';
 import { toArray } from 'rxjs/operators';
+import { CurrentUser } from './app.types';
 
 describe('AppEffects', () => {
 
@@ -138,6 +142,25 @@ describe('AppEffects', () => {
         key: authTokenKey,
         newValue: 'authToken'
       }));
+    });
+
+  });
+
+  describe('loadUserProfile$', () => {
+
+    beforeEach(() => {
+      actions$ = of(loadUserProfile());
+    });
+
+    it('should load user\'s profile', () => {
+      const test = {
+        firstName: 'firstName',
+        contactsToCall: 12,
+      } as CurrentUser;
+      apiServiceSpy.request.and.returnValue(of(test));
+      effects.loadUserProfile$.subscribe(res => {
+        expect(res).toEqual(loadUserProfileSuccess({ userProfile: test }));
+      });
     });
 
   });
