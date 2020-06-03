@@ -3,13 +3,12 @@
 
   <h2>Dashboard</h2>
 
-  <div class="head-container"
-       [formGroup]="form">
+  <div class="head-container">
 
     <div class="head">
       <h3>Outreach Metrics</h3>
       <mat-form-field>
-        <mat-select [value]=form.value.selectedOutreach
+        <mat-select [value]=outreach.all
                     (selectionChange)="selectionChange($event)">
           <mat-option [value]=outreach.all>All</mat-option>
           <mat-option [value]=outreach.daily>Daily</mat-option>
