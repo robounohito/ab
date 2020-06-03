@@ -1,1 +1,59 @@
-<p>New dashboard</p>
+<div class="container"
+     *ngIf="model$ | async as model">
+
+  <h2>Dashboard</h2>
+
+  <div class="head-container"
+       [formGroup]="form">
+
+    <div class="head">
+      <h3>Outreach Metrics</h3>
+      <mat-form-field>
+        <mat-select [value]=form.value.selectedOutreach
+                    (selectionChange)="selectionChange($event)">
+          <mat-option [value]=outreach.all>All</mat-option>
+          <mat-option [value]=outreach.daily>Daily</mat-option>
+          <mat-option [value]=outreach.weekly>Weekly</mat-option>
+          <mat-option [value]=outreach.monthly>Monthly</mat-option>
+          <mat-option [value]=outreach.yearly>Yearly</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="block-container">
+
+      <div class="block">
+        <div class="block-head">
+          <h4>
+            Emails Sent
+          </h4>
+          <fa-icon [icon]="fa.faEnvelope"></fa-icon>
+        </div>
+        <h1>{{model.total_email}}</h1>
+      </div>
+
+      <div class="block">
+        <div class="block-head">
+          <h4>
+            Open Rate
+          </h4>
+          <fa-icon [icon]="fa.faEnvelopeOpen"></fa-icon>
+        </div>
+        <h1>{{model.open_rate}}</h1>
+      </div>
+
+      <div class="block">
+        <div class="block-head">
+          <h4>
+            Reply Rate
+          </h4>
+          <fa-icon [icon]="fa.faReply"></fa-icon>
+        </div>
+        <h1>{{model.replied_rate}}</h1>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

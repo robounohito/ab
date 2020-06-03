@@ -17,22 +17,23 @@ export interface ApiRequest {
 }
 
 export const apiEndpoint = {
-  getHubspotAuth: { method: 'get', url: 'autobound/mission_control/integrations/hubspot/userID/{email}' },
-  getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
-  getSidebar: { method: 'get', url: 'sidebar' },
-  getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
-  getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
-  getInsights: { method: 'get', url: 'autobound/insights/{contactId}' },
   getAttachment: { method: 'get', url: 'attachments/{id}' },
-  postAttachment: { method: 'post', url: 'attachments' },
-  getStats: { method: 'get', url: 'stats' },
-  getUserProfile: { method: 'get', url: 'userProfile' },
-  postUserProfile: { method: 'post', url: 'userProfile' },
+  getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
+  getOutreachMetrics: { method: 'get', url: 'sales_rep_dashboard' },
+  getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
+  getHubspotAuth: { method: 'get', url: 'autobound/mission_control/integrations/hubspot/userID/{email}' },
+  getInsights: { method: 'get', url: 'autobound/insights/{contactId}' },
   getLogout: { method: 'get', url: 'auth/logout' },
-  postSignup: { method: 'post', url: 'auth/register' },
+  getSidebar: { method: 'get', url: 'sidebar' },
+  getStats: { method: 'get', url: 'stats' },
+  getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
+  getUserProfile: { method: 'get', url: 'userProfile' },
+  postAttachment: { method: 'post', url: 'attachments' },
   postLogin: { method: 'post', url: 'auth/login' },
   postRecover: { method: 'post', url: 'auth/recover' },
   postReset: { method: 'post', url: 'auth/reset' },
+  postSignup: { method: 'post', url: 'auth/register' },
+  postUserProfile: { method: 'post', url: 'userProfile' },
 };
 
 @Injectable({

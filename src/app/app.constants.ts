@@ -30,11 +30,11 @@ export const notification = createAction(
 
 
 export const loadUserProfile = createAction(
-  '[Navbar] Load User Profile',
+  '[App] Load User Profile',
 );
 
 export const loadUserProfileSuccess = createAction(
-  '[Navbar] Load User Profile Success',
+  '[App] Load User Profile Success',
   props<{ userProfile: CurrentUser }>()
 );
 

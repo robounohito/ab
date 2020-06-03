@@ -58,9 +58,27 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: stats
       })).pipe(delay(250));
     }
+    if (request.url.endsWith('sales_rep_dashboard')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: dashboard()
+      })).pipe(delay(50));
+    }
     return next.handle(request);
   }
 }
+
+const dashboard = () => ([{
+  _id: 1,
+  email_open: 92,
+  email_not_open: 64,
+  email_replied: 0,
+  email_not_replied: 156,
+  total_email: Math.floor(Math.random() * 501),
+  open_rate: (Math.random() * 101).toFixed(2).toString() + '%',
+  replied_rate: (Math.random() * 101).toFixed(2).toString() + '%'
+}]);
 
 const stats = {
   contactsToCall: 14
