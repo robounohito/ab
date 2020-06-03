@@ -1,16 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ChartComponent } from './chart.component';
+import { ChartistModule } from 'ng-chartist';
 
 describe('ChartComponent', () => {
+
   let component: ChartComponent;
   let fixture: ComponentFixture<ChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartComponent ]
-    })
-    .compileComponents();
+      declarations: [ChartComponent],
+      imports: [ChartistModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +23,5 @@ describe('ChartComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

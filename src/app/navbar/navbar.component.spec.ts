@@ -18,7 +18,6 @@ describe('NavbarComponent', () => {
   let storeSpy: SpyObj<Store>;
 
   const pageObject = (de: DebugElement): { [key: string]: HTMLInputElement } => ({
-    get expander() { return de.nativeElement.querySelector('.collapse'); },
     get callout() { return de.nativeElement.querySelector('.callout'); },
     get image() { return de.nativeElement.querySelector('.photo > img'); },
   });
@@ -50,7 +49,6 @@ describe('NavbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-    (component as any).outlet = {};
     fixture.detectChanges();
     page = pageObject(fixture.debugElement);
   });

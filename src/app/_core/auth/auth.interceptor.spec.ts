@@ -31,24 +31,24 @@ describe('AuthInterceptor', () => {
     expect(interceptor).toBeTruthy();
   });
 
-  it('should add Authorization header when there is authToken', () => {
+  it('should add auth header when there is authToken', () => {
     store.setState({ shared: { currentUser: { authToken: 'authToken' } } });
     httpHandlerSpy.handle.and.callFake(req => of(new HttpResponse(req)));
     interceptor.intercept(new HttpRequest('GET', '/'), httpHandlerSpy).pipe(
       take(1),
     ).subscribe(res => {
-      const authHeader = (res as HttpResponse<any>).headers.get('Authorization');
-      expect(authHeader).toEqual('Bearer authToken');
+      const authHeader = (res as HttpResponse<any>).headers.get('auth');
+      expect(authHeader).toEqual('authToken');
     });
   });
 
-  it('should not add Authorization header when there is no authToken', () => {
+  it('should not add auth header when there is no authToken', () => {
     store.setState({ shared: { currentUser: { authToken: null } } });
     httpHandlerSpy.handle.and.callFake(req => of(new HttpResponse(req)));
     interceptor.intercept(new HttpRequest('GET', '/'), httpHandlerSpy).pipe(
       take(1),
     ).subscribe(res => {
-      const authHeader = (res as HttpResponse<any>).headers.get('Authorization');
+      const authHeader = (res as HttpResponse<any>).headers.get('auth');
       expect(authHeader).toBeNull();
     });
   });

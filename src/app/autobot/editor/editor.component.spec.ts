@@ -1,16 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EditorComponent } from './editor.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 describe('EditorComponent', () => {
+
   let component: EditorComponent;
   let fixture: ComponentFixture<EditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditorComponent ]
-    })
-    .compileComponents();
+      declarations: [EditorComponent],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} },
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +26,5 @@ describe('EditorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
