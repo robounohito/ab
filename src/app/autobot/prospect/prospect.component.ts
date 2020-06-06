@@ -9,7 +9,7 @@ import { selectCurrentProspect } from '../autobot.model';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { faFileSignature, faSync, faTrashAlt, faRedo, faPencilAlt, faTimes, faReply, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, } from '@angular/material/dialog';
-import { EditorComponent } from '../editor/editor.component';
+import { EditorComponent } from './editor/editor.component';
 
 interface ProspectForm {
   expanded: { [key: string]: boolean };

@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AutobotComponent } from './autobot.component';
 import { Store } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EditorComponent } from './editor/editor.component';
-import { EditorDirective } from './editor/editor.directive';
+import { EditorComponent } from './prospect/editor/editor.component';
+import { EditorDirective } from './prospect/editor/editor.directive';
 
 describe('AutobotComponent', () => {
 

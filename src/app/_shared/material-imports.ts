@@ -14,6 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 
 export const materialImports = [
   MatFormFieldModule,
@@ -32,4 +33,5 @@ export const materialImports = [
   MatDialogModule,
   MatTabsModule,
   MatSelectModule,
+  MatChipsModule,
 ];

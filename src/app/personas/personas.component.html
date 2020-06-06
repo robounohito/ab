@@ -1,2 +1,36 @@
 <p>personas works!</p>
 <p>this is persona {{currentRoute$ | async}}</p>
+
+<mat-form-field>
+
+  <mat-label>Toppings</mat-label>
+  
+  <mat-select [formControl]="toppingsControl" multiple>
+    <mat-select-trigger>
+      <mat-chip-list>
+        <mat-chip *ngFor="let topping of toppingsControl.value"
+          [removable]="true" (removed)="onToppingRemoved(topping)">
+          {{ topping }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-select-trigger>
+
+    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+
+  </mat-select>
+  
+</mat-form-field>
+
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let topping of toppingList">3
+      {{topping}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New topping..."
+           [matChipInputFor]="chipList"
+           [matChipInputAddOnBlur]="true"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
