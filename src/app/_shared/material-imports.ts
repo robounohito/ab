@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export const materialImports = [
   MatFormFieldModule,
@@ -34,4 +35,5 @@ export const materialImports = [
   MatTabsModule,
   MatSelectModule,
   MatChipsModule,
+  DragDropModule,
 ];
