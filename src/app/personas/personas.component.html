@@ -1,51 +1,61 @@
-<mat-form-field>
+<div class="container">
 
-  <mat-label>Toppings</mat-label>
+  <div class="column left">
 
-  <mat-select [formControl]="toppingsControl"
-              multiple>
+    <mat-form-field>
 
-    <mat-select-trigger>
-      <mat-chip-list autoboundTagsTruncate>
-        <mat-chip *ngFor="let topping of toppingsControl.value"
-                  [removable]="true"
-                  (removed)="onToppingRemoved(topping)">
+      <mat-label>Toppings</mat-label>
+
+      <mat-select [formControl]="toppingsControl"
+                  multiple>
+
+        <mat-select-trigger>
+          <mat-chip-list autoboundTagsTruncate>
+            <mat-chip *ngFor="let topping of toppingsControl.value"
+                      [removable]="true"
+                      (removed)="onToppingRemoved(topping)">
+              {{topping}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </mat-select-trigger>
+
+        <mat-option *ngFor="let topping of toppingList"
+                    [value]="topping">{{topping}}</mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field class="example-chip-list">
+      <mat-chip-list #chipList
+                     aria-label="Fruit selection">
+        <mat-chip *ngFor="let topping of toppingList">
           {{topping}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
+        <input placeholder="New topping..."
+               [matChipInputFor]="chipList"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event)">
       </mat-chip-list>
-    </mat-select-trigger>
+    </mat-form-field>
 
-    <mat-option *ngFor="let topping of toppingList"
-                [value]="topping">{{topping}}</mat-option>
+    <div class="draggable"
+         cdkDrag>
+      Drag me
+    </div>
 
-  </mat-select>
+    <a mat-button
+       [routerLink]="['/persona/1']"
+       [routerLinkActive]="'active'">
+      Click me right
+    </a>
 
-</mat-form-field>
+  </div>
 
-<mat-form-field class="example-chip-list">
-  <mat-chip-list #chipList
-                 aria-label="Fruit selection">
-    <mat-chip *ngFor="let topping of toppingList">
-      {{topping}}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-    <input placeholder="New topping..."
-           [matChipInputFor]="chipList"
-           [matChipInputAddOnBlur]="true"
-           (matChipInputTokenEnd)="add($event)">
-  </mat-chip-list>
-</mat-form-field>
+  <div class="column right">
+    <router-outlet></router-outlet>
+  </div>
 
-<div class="draggable"
-     cdkDrag>
-  Drag me
 </div>
-
-<a mat-button
-   [routerLink]="['/persona/1']"
-   [routerLinkActive]="'active'">
-   Click me right
-</a>
-
-<router-outlet></router-outlet>
