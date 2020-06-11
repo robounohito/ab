@@ -8,9 +8,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducer } from './personas.model';
 import { PersonasEffects } from './personas.effects';
 import { TagsTruncateDirective } from './tags-truncate/tags-truncate.directive';
+import { PersonaContactsComponent } from './personas-contacts/personas-contacts.component';
 
 @NgModule({
-  declarations: [PersonasComponent, TagsTruncateDirective],
+  declarations: [
+    PersonasComponent,
+    TagsTruncateDirective,
+    PersonaContactsComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

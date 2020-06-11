@@ -1,6 +1,3 @@
-<p>personas works!</p>
-<p>this is persona {{currentRoute$ | async}}</p>
-
 <mat-form-field>
 
   <mat-label>Toppings</mat-label>
@@ -45,56 +42,10 @@
   Drag me
 </div>
 
-<ng-container *ngIf="model$ | async as model">
+<a mat-button
+   [routerLink]="['/persona/1']"
+   [routerLinkActive]="'active'">
+   Click me right
+</a>
 
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input matInput
-           (keyup)="applyFilter($event)"
-           placeholder="Filter prospects">
-  </mat-form-field>
-
-  <table mat-table
-         [dataSource]="model.prospects"
-         matSort
-         class="mat-elevation-z8">
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header>
-        Name
-      </th>
-      <td mat-cell
-          *matCellDef="let element">
-        {{element.name}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="title">
-      <th mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header>
-        Title
-      </th>
-      <td mat-cell
-          *matCellDef="let element">
-        {{element.title}}
-      </td>
-    </ng-container>
-
-    <tr mat-header-row
-        *matHeaderRowDef="displayedColumns">
-    </tr>
-    <tr mat-row
-        *matRowDef="let row; columns: displayedColumns;">
-    </tr>
-
-  </table>
-
-</ng-container>
-
-<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"
-               [length]="(model$ | async)?.prospects.length"
-               showFirstLastButtons>
-</mat-paginator>
+<router-outlet></router-outlet>

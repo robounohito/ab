@@ -11,26 +11,9 @@ export const navbarMenu = [{
   title: 'Contacts to Call',
   icon: 'phone.svg'
 }, {
+  path: 'persona',
   title: 'Persona Creation',
-  icon: 'person.svg',
-  collapse: 'person',
-  submenu: [
-    {
-      path: 'persona/1',
-      title: 'Persona 1',
-      icon: 'looks_one'
-    },
-    {
-      path: 'persona/2',
-      title: 'Persona 2',
-      icon: 'looks_two'
-    },
-    {
-      path: 'persona/3',
-      title: 'Persona 3',
-      icon: 'looks_3'
-    }
-  ]
+  icon: 'persona.svg',
 }, {
   path: 'triggers',
   title: 'Trigger Selection',

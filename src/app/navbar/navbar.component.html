@@ -16,9 +16,8 @@
         <div class="menu">
           <div *ngFor="let menuItem of navbarMenu">
             <a mat-button
-               [routerLink]="!menuItem.submenu ? ['/', menuItem.path] : []"
-               [routerLinkActive]="!menuItem.submenu ? 'active' : ''"
-               (click)="menuItem.submenu ? uiState.submenuExpanded = !uiState.submenuExpanded : null">
+               [routerLink]="['/', menuItem.path]"
+               [routerLinkActive]="'active'">
               <img [src]="'/assets/img/' + menuItem.icon"
                    [matTooltip]="menuItem.title"
                    matTooltipPosition="right">
@@ -30,22 +29,6 @@
                 {{model.contactsToCall}}
               </div>
             </a>
-            <div class="submenu"
-                 *ngIf="uiState.submenuExpanded"
-                 [@slideInOut]>
-              <a *ngFor="let submenu of menuItem.submenu"
-                 mat-button
-                 [routerLink]="'/' + submenu.path"
-                 [routerLinkActive]="'active'">
-                <mat-icon [matTooltip]="submenu.title"
-                          matTooltipPosition="right">
-                  {{submenu.icon}}
-                </mat-icon>
-                <span>
-                  {{uiState.expanded ?  submenu.title : ''}}
-                </span>
-              </a>
-            </div>
           </div>
         </div>
         <div class="photo-container">
