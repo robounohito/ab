@@ -65,9 +65,21 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: dashboard()
       })).pipe(delay(50));
     }
+    if (request.url.endsWith('searchProspects')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: prospects()
+      })).pipe(delay(50));
+    }
     return next.handle(request);
   }
 }
+
+const prospects = () => {
+  const random = Math.floor(Math.random() * 3);
+  return suggested.campaigns.campaignsSuggested[random].prospects;
+};
 
 const dashboard = () => ([{
   _id: 1,

@@ -24,3 +24,15 @@ export interface CurrentUser {
 }
 
 export type AuthToken = string | null;
+
+export interface Prospect {
+  loading: boolean;
+  id: string;
+  name: string;
+  first_name: string;
+  last_name: string;
+  title: string;
+  job_title: string;
+  company: string;
+  image: string;
+}

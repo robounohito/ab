@@ -28,6 +28,7 @@ export const apiEndpoint = {
   getStats: { method: 'get', url: 'stats' },
   getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
   getUserProfile: { method: 'get', url: 'userProfile' },
+  getProspects: { method: 'get', url: 'searchProspects' },
   postAttachment: { method: 'post', url: 'attachments' },
   postLogin: { method: 'post', url: 'auth/login' },
   postRecover: { method: 'post', url: 'auth/recover' },

@@ -4,7 +4,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
 import { loadSuggestedActivities, loadSuggestedSuccess, loadProspect, loadProspectSuccess } from './autobot.constants';
 import { EMPTY } from 'rxjs';
-import { SuggestedActivity, Prospect } from './autobot.types';
+import { SuggestedActivity } from './autobot.types';
+import { Prospect } from '../app.types';
 
 @Injectable()
 export class AutobotEffects {

@@ -1,7 +1,8 @@
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { assoc } from 'ramda';
-import { Autobot, Prospect } from './autobot.types';
+import { Autobot } from './autobot.types';
 import { loadSuggestedSuccess, loadProspectSuccess, loadProspect } from './autobot.constants';
+import { Prospect } from '../app.types';
 
 const initialState: Autobot = {
   suggestedActivities: [],
