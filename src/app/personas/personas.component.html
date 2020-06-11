@@ -2,6 +2,19 @@
 
   <div class="column left">
 
+    <div cdkDropList
+         class="example-list"
+         (cdkDropListDropped)="drop()">
+      <div class="example-box"
+           *ngFor="let movie of [1, 2, 3, 4, 5]"
+           cdkDrag>
+        <div class="example-custom-placeholder"
+             *cdkDragPlaceholder>
+        </div>
+        {{movie}}
+      </div>
+    </div>
+
     <mat-form-field>
 
       <mat-label>Toppings</mat-label>
@@ -40,11 +53,6 @@
                (matChipInputTokenEnd)="add($event)">
       </mat-chip-list>
     </mat-form-field>
-
-    <div class="draggable"
-         cdkDrag>
-      Drag me
-    </div>
 
     <a mat-button
        [routerLink]="['/persona/1']"

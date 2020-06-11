@@ -52,6 +52,8 @@ export class PersonasComponent implements OnInit {
     return [...arr, 'whatever'];
   }
 
+  drop() { }
+
   private removeFirst<T>(array: T[], toRemove: T): void {
     const index = array.indexOf(toRemove);
     if (index !== -1) {
