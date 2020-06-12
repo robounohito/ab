@@ -15,7 +15,7 @@ interface ResetForm {
 }
 
 @Component({
-  selector: 'autobound-reset',
+  selector: 'ab-reset',
   templateUrl: './reset.component.html',
   styleUrls: ['../login.component.scss', './reset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { Campaign } from '../campaigns.types';
 
 @Component({
-  selector: 'autobound-campaigns-table',
+  selector: 'ab-campaigns-table',
   templateUrl: './campaigns-table.component.html',
   styleUrls: ['./campaigns-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

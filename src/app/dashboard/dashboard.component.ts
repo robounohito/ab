@@ -8,7 +8,7 @@ import { loadDashboard, Outreach } from './dashboard.constants';
 import { MatSelectChange } from '@angular/material/select';
 
 @Component({
-  selector: 'autobound-dashboard',
+  selector: 'ab-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

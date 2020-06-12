@@ -19,13 +19,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "autobound",
+      "ab",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "autobound",
+      "ab",
       "kebab-case"
     ],
     "eofline": true,

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { faEnvelope, faPhone, faHandshake } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'autobound-insights',
+  selector: 'ab-insights',
   templateUrl: './insights.component.html',
   styleUrls: ['./insights.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -3,7 +3,7 @@ import { ChartType } from 'ng-chartist';
 import { IChartistData, IChartistSeriesData } from 'chartist';
 
 @Component({
-  selector: 'autobound-chart',
+  selector: 'ab-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,5 +1,11 @@
 <ng-container *ngIf="model$ | async as model">
 
+  <h3>Persona 1</h3>
+
+  <h1>Head of Sales</h1>
+
+  <p>34 contacts</p>
+
   <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput
@@ -48,6 +54,5 @@
 </ng-container>
 
 <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"
-               [length]="(model$ | async)?.prospects.length"
-               showFirstLastButtons>
+               [length]="(model$ | async)?.prospects.length">
 </mat-paginator>

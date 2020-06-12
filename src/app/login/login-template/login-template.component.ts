@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'autobound-login-template',
+  selector: 'ab-login-template',
   templateUrl: './login-template.component.html',
   styleUrls: ['./login-template.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

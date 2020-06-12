@@ -44,9 +44,9 @@
             Prospect Activities:&ensp;<span>12</span>
           </div>
           <div>
-            <autobound-chart
+            <ab-chart
                              [series]="[{ value: 8, className: 'chart-blue-1', meta: 'Emails'}, { value: 3, className: 'chart-blue-2', meta: 'Calls'}, { value: 1, className: 'chart-blue-3', meta: 'Meetings'}]">
-            </autobound-chart>
+            </ab-chart>
           </div>
         </div>
         <div class="card-chart">
@@ -54,9 +54,9 @@
             Prospect Opportunities:&ensp;<span>20</span>
           </div>
           <div>
-            <autobound-chart
+            <ab-chart
                              [series]="[{ value: 12, className: 'chart-green', meta: 'Open'}, { value: 5, className: 'chart-blue-2', meta: 'Won'}, { value: 3, className: 'chart-red', meta: 'Lost'}]">
-            </autobound-chart>
+            </ab-chart>
           </div>
         </div>
       </div>
@@ -99,9 +99,9 @@
             Company Activities:&ensp;<span>25</span>
           </div>
           <div>
-            <autobound-chart
+            <ab-chart
                              [series]="[{ value: 15, className: 'chart-blue-1', meta: 'Emails'}, { value: 8, className: 'chart-blue-2', meta: 'Calls'}, { value: 2, className: 'chart-blue-3', meta: 'Meetings'}]">
-            </autobound-chart>
+            </ab-chart>
           </div>
         </div>
         <div class="card-chart">
@@ -109,9 +109,9 @@
             Company Opportunities:&ensp;<span>37</span>
           </div>
           <div>
-            <autobound-chart
+            <ab-chart
                              [series]="[{ value: 20, className: 'chart-green', meta: 'Open'}, { value: 6, className: 'chart-blue-2', meta: 'Won'}, { value: 11, className: 'chart-red', meta: 'Lost'}]">
-            </autobound-chart>
+            </ab-chart>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@
       <div>
         <h3>Entire Sequence</h3>
         <p>
-          Autobound Score <span>8.0</span> <span class="autobound-icon"></span>
+          Autobound Score <span>8.0</span> <span class="ab-icon"></span>
         </p>
       </div>
       <div>
@@ -161,7 +161,7 @@
       <div class="step-container"
            [hidden]="!form.value.expanded[3]"
            [@slideInOut]>
-        <div autoboundEditor
+        <div abEditor
              formControlName="snippets"
              class="editor">
         </div>
@@ -240,7 +240,7 @@
       </div>
     </div>
 
-    <autobound-insights></autobound-insights>
+    <ab-insights></ab-insights>
 
   </div>
 

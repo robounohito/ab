@@ -7,7 +7,7 @@ import { App } from '../app.types';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'autobound-campaigns',
+  selector: 'ab-campaigns',
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -8,7 +8,7 @@ import { slideInOut, customFadeAnimation } from '../_core/animations/animations'
 import { blankProfiilePic } from '../app.constants';
 
 @Component({
-  selector: 'autobound-autobot',
+  selector: 'ab-autobot',
   templateUrl: './autobot.component.html',
   styleUrls: ['./autobot.component.scss'],
   animations: [slideInOut, customFadeAnimation],

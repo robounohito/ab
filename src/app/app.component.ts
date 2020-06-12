@@ -4,7 +4,7 @@ import { App } from './app.types';
 import { readToken } from './app.constants';
 
 @Component({
-  selector: 'autobound-root',
+  selector: 'ab-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

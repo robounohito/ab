@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { loadProspects } from '../personas.constants';
 
 @Component({
-  selector: 'autobound-contacts',
+  selector: 'ab-contacts',
   templateUrl: './personas-contacts.component.html',
   styleUrls: ['./personas-contacts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

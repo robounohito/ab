@@ -15,7 +15,7 @@ interface LoginForm {
 }
 
 @Component({
-  selector: 'autobound-login',
+  selector: 'ab-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,11 +3,11 @@ import { LoginTemplateComponent } from './login-template.component';
 import { Component, DebugElement } from '@angular/core';
 
 @Component({
-  template: `<autobound-login-template>Test</autobound-login-template>`
+  template: `<ab-login-template>Test</ab-login-template>`
 })
 export class TestComponent { }
 
-describe('LoginTemplateComponent', () => {
+fdescribe('LoginTemplateComponent', () => {
 
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;

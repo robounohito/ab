@@ -3,7 +3,7 @@ import MultirootEditor from '@ckeditor/ckeditor5-build-multiroot-document';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
-  selector: '[autoboundEditor]',
+  selector: '[abEditor]',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => EditorDirective),

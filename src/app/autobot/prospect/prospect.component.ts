@@ -17,7 +17,7 @@ interface ProspectForm {
 }
 
 @Component({
-  selector: 'autobound-prospect',
+  selector: 'ab-prospect',
   templateUrl: './prospect.component.html',
   styleUrls: ['../autobot.component.scss', './prospect.component.scss'],
   animations: [slideInOut],

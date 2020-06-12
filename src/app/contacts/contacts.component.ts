@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'autobound-contacts',
+  selector: 'ab-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

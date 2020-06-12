@@ -15,7 +15,7 @@ interface SignupForm {
 }
 
 @Component({
-  selector: 'autobound-signup',
+  selector: 'ab-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['../login.component.scss', './signup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

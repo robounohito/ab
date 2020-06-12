@@ -9,7 +9,7 @@ import { Personas } from './personas.types';
 import { selectPersonas } from './personas.model';
 
 @Component({
-  selector: 'autobound-personas',
+  selector: 'ab-personas',
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

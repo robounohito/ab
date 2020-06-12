@@ -9,7 +9,7 @@ import { selectCurrentUser } from '../app.model';
 import { CurrentUser, App } from '../app.types';
 
 @Component({
-  selector: 'autobound-navbar',
+  selector: 'ab-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   animations: [slideInOut, routerFadeAnimation],

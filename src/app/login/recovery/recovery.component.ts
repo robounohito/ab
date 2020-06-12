@@ -13,7 +13,7 @@ interface RecoveryForm {
 }
 
 @Component({
-  selector: 'autobound-recovery',
+  selector: 'ab-recovery',
   templateUrl: './recovery.component.html',
   styleUrls: ['../login.component.scss', './recovery.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
