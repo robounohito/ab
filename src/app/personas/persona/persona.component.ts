@@ -1,17 +1,19 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
+import {  FormBuilder } from '@angular/forms';
 import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { Persona } from '../personas.types';
+import { slideInOut } from 'src/app/_core/animations/animations';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
+  jobDepartment: string[];
 }
 
 @Component({
   selector: 'ab-persona',
   templateUrl: './persona.component.html',
   styleUrls: ['./persona.component.scss'],
+  animations: [slideInOut],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonaComponent implements OnInit {
@@ -22,8 +24,7 @@ export class PersonaComponent implements OnInit {
 
 
 
-  toppingsControl = new FormControl(['Extra cheese']);
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  jobDepartments: string[] = ['Job 1', 'Another one', 'Department', 'Something else', 'Whatever'];
 
 
   constructor(
@@ -32,7 +33,8 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
-      expanded: [{ 1: true }],
+      expanded: [{ block: true, contacts: true, company: true }],
+      jobDepartment: [[]],
     });
   }
 
@@ -49,13 +51,15 @@ export class PersonaComponent implements OnInit {
 
 
 
-  onToppingRemoved(topping: string) {
-    const toppings = this.toppingsControl.value as string[];
-    this.removeFirst(toppings, topping);
-    this.toppingsControl.setValue(toppings);
+  onTagRemoved(job: string) {
+    const jd = this.form.value.jobDepartment as string[];
+    this.removeFirst(jd, job);
+    formPatchValue(this.form, {
+      jobDepartment: jd
+    });
   }
 
-  add(event: MatChipInputEvent): void {
+ /*  add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
@@ -64,7 +68,7 @@ export class PersonaComponent implements OnInit {
     if (input) {
       input.value = '';
     }
-  }
+  } */
 
   truncate(arr: string[]) {
     return [...arr, 'whatever'];

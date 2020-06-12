@@ -8,10 +8,10 @@
 
     <div cdkDropList
          class="personas-list"
-         (cdkDropListDropped)="drop()">
+         (cdkDropListDropped)="drop($event)">
 
       <div class="persona-item"
-           *ngFor="let item of [1, 2, 3, 4, 5]"
+           *ngFor="let item of array"
            cdkDrag>
 
         <div class="persona-drag-placeholder"

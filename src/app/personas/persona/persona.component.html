@@ -13,8 +13,8 @@
         <div class="text">ON</div>
       </div>
     </div>
-    <ab-arrow [expanded]="form.value.expanded[1]"
-              (toggle)="toggleItem('1')">
+    <ab-arrow [expanded]="form.value.expanded['block']"
+              (toggle)="toggleItem('block')">
     </ab-arrow>
   </div>
 
@@ -23,46 +23,120 @@
   <p>34 contacts</p>
 
   <div class="block-wrapper"
-       *ngIf="form.value.expanded[1]">
+       *ngIf="form.value.expanded['block']"
+       [formGroup]="form"
+       [@slideInOut]>
 
-    <mat-form-field>
+    <div class="info-block">
 
-      <mat-label>Job department</mat-label>
+      <div class="info-block-header">
+        <h4>
+          <mat-icon>person</mat-icon>
+          Contacts attributes
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['contacts']"
+                  (toggle)="toggleItem('contacts')">
+        </ab-arrow>
+      </div>
 
-      <mat-select [formControl]="toppingsControl"
-                  multiple>
+      <mat-form-field *ngIf="form.value.expanded['contacts']">
 
-        <mat-select-trigger>
-          <mat-chip-list abTagsTruncate>
-            <mat-chip *ngFor="let topping of toppingsControl.value"
-                      [removable]="true"
-                      (removed)="onToppingRemoved(topping)">
-              {{topping}}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-          </mat-chip-list>
-        </mat-select-trigger>
+        <mat-label>Job department</mat-label>
 
-        <mat-option *ngFor="let topping of toppingList"
-                    [value]="topping">{{topping}}</mat-option>
+        <mat-select formControlName="jobDepartment"
+                    multiple>
 
-      </mat-select>
+          <mat-select-trigger>
+            <mat-chip-list abTagsTruncate>
+              <mat-chip *ngFor="let job of form.value.jobDepartment"
+                        [removable]="true"
+                        (removed)="onTagRemoved(job)">
+                {{job}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </mat-select-trigger>
 
-    </mat-form-field>
+          <mat-option *ngFor="let job of jobDepartments"
+                      [value]="job">{{job}}</mat-option>
 
-    <!-- <mat-form-field class="example-chip-list">
-      <mat-chip-list #chipList
-                     aria-label="Fruit selection">
-        <mat-chip *ngFor="let topping of toppingList">
-          {{topping}}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-        <input placeholder="New topping..."
-               [matChipInputFor]="chipList"
-               [matChipInputAddOnBlur]="true"
-               (matChipInputTokenEnd)="add($event)">
-      </mat-chip-list>
-    </mat-form-field> -->
+        </mat-select>
+
+      </mat-form-field>
+
+      <!-- <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList
+                       aria-label="Fruit selection">
+          <mat-chip *ngFor="let topping of toppingList">
+            {{topping}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="New topping..."
+                 [matChipInputFor]="chipList"
+                 [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field> -->
+
+    </div>
+
+    <div class="info-block">
+
+      <div class="info-block-header">
+        <h4>
+          <mat-icon>corporate_fare</mat-icon>
+          Company attributes
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['company']"
+                  (toggle)="toggleItem('company')">
+        </ab-arrow>
+      </div>
+
+      <!-- <mat-form-field *ngIf="form.value.expanded['company']">
+
+        <mat-label>Job department</mat-label>
+
+        <mat-select [formControl]="toppingsControl"
+                    multiple>
+
+          <mat-select-trigger>
+            <mat-chip-list abTagsTruncate>
+              <mat-chip *ngFor="let topping of toppingsControl.value"
+                        [removable]="true"
+                        (removed)="onToppingRemoved(topping)">
+                {{topping}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </mat-select-trigger>
+
+          <mat-option *ngFor="let topping of toppingList"
+                      [value]="topping">{{topping}}</mat-option>
+
+        </mat-select>
+
+      </mat-form-field> -->
+
+      <!-- <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList
+                       aria-label="Fruit selection">
+          <mat-chip *ngFor="let topping of toppingList">
+            {{topping}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="New topping..."
+                 [matChipInputFor]="chipList"
+                 [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field> -->
+
+    </div>
+
+    <!-- 
+      Industry
+      Location
+      Technologies -->
 
   </div>
 

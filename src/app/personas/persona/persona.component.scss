@@ -105,13 +105,50 @@
 
   .block-wrapper {
 
-    border-radius: 4px;
-    border: solid 1px var.$lightGrey2;
-    background-color: var.$lightGrey3;
-    padding: 10px;
+    .info-block {
 
-    .mat-form-field {
-      width: 100%;
+      border-radius: 4px;
+      border: solid 1px var.$lightGrey2;
+      background-color: var.$lightGrey3;
+      padding: 10px;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .info-block-header {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 8px;
+        border-bottom: solid 1px var.$grey12;
+        margin-bottom: 10px;
+
+        h4 {
+
+          font-size: 14px;
+          line-height: normal;
+          letter-spacing: 0.23px;
+          color: var.$grey11;
+          display: flex;
+          margin: 0;
+          align-items: center;
+
+          .mat-icon {
+            font-size: 17px;
+            height: auto;
+            width: 21px;
+          }
+
+        }
+
+      }
+
+      .mat-form-field {
+        width: 100%;
+      }
+
     }
 
   }

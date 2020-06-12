@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { selectRouteParam } from '../app.model';
 import { Personas } from './personas.types';
 import { selectPersonas } from './personas.model';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ab-personas',
@@ -18,7 +19,7 @@ export class PersonasComponent implements OnInit {
   currentRoute$!: Observable<any>;
 
 
-
+  array = [1, 2, 3, 4, 5];
 
 
 
@@ -32,6 +33,8 @@ export class PersonasComponent implements OnInit {
     this.model$ = this.store.select(selectPersonas);
   }
 
-  drop() { }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.array, event.previousIndex, event.currentIndex);
+  }
 
 }
