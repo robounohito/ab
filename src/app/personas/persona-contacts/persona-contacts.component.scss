@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as var;
+@use '../personas.component';
+@use '../persona/persona.component';
+  
+h1 {
+  @include persona.h1-text;
+}
+
+h3 {
+  @include personas.h3-text;
+  margin-bottom: 5px;
+}
+
+p {
+  @include personas.p-text;
+}

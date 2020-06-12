@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonasComponent } from './personas.component';
-import { PersonaContactsComponent } from './personas-contacts/personas-contacts.component';
+import { PersonaContactsComponent } from './persona-contacts/persona-contacts.component';
 
 const routes: Routes = [{
   path: '',

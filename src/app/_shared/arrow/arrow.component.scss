@@ -1,0 +1,48 @@
+@use '../../../styles/variables' as var;
+
+div {
+
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.expanded {
+
+    border-radius: 4px;
+    background-color: var.$lightGrey3;
+    
+    .arrow {
+      transform: unset;
+      transition: transform .5s;
+      background-color: var.$aqua;
+    }
+
+  }
+
+  &.filed, &.filled.expanded, &.left, &.left.expanded {
+    background-color: white;
+  }
+
+  &.left, &.left.expanded {
+    margin-right: 10px;
+  }
+
+  &.arrow {
+    margin: 0;
+    background-color: var.$grey;
+    width: 8px;
+    height: 5px;
+    transform: rotate(-180deg);
+    transition: transform .5s;
+    mask: url(/assets/img/arrow-icon.svg) no-repeat center;
+  }
+
+}

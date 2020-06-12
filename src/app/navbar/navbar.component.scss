@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@use '../../styles/variables' as var;
 
 .main-container {
   display: flex;
@@ -14,7 +14,7 @@
   width: 67px;
   height: 100vh;
   color: white;
-  background-color: $darkBlue;
+  background-color: var.$darkBlue;
   transition: width 125ms cubic-bezier(0.4,0.0,0.2,1);
 
   &:hover .collapse .mat-icon {
@@ -30,7 +30,7 @@
     right: -15px;
   
     .mat-icon {
-      background: $darkBlue;
+      background: var.$darkBlue;
       color: whitesmoke;
       width: 26px;
       height: 26px;
@@ -39,11 +39,11 @@
       border-radius: 50px;
       text-align: center;
       cursor: pointer;
-      border: 1px solid lighten($darkBlue, 40%);
+      border: 1px solid lighten(var.$darkBlue, 40%);
       opacity: 0;
       transition: 0.4s ease-in-out;
       &:hover {
-        background-color: darken($lightBlue, 20%);
+        background-color: darken(var.$lightBlue, 20%);
       }
     }
     
@@ -106,7 +106,7 @@
         top: -2px;
         left: 36px;
         border-radius: 50%;
-        background-color: #fe5d83;
+        background-color: var.$brightRed;
         text-align: center;
         line-height: 19px;
 
@@ -116,7 +116,7 @@
 
     a.active {
 
-      color: $lightBlue;
+      color: var.$lightBlue;
       border-radius: 0;
       
       img {
@@ -188,7 +188,7 @@
   width: 100%;
   display: flex;
   overflow: auto;
-  background-color: $lightGrey;
+  background-color: var.$lightGrey;
 
   .router-outlet {
     width: 100%;

@@ -16,13 +16,6 @@
   .accordion-header {
     
     display: flex;
-    
-    @include autobot.arrow(20px);
-
-    div, div.expanded {
-      margin-right: 10px;
-      background-color: white;
-    }
 
     h3 {
       margin-bottom: 14px;
@@ -403,14 +396,6 @@
 
         }
 
-      }
-
-      div:nth-child(2) {
-        @include autobot.arrow(20px);
-        padding: 8px 10px 10px;
-        div.expanded {
-          background-color: white;
-        }
       }
 
     }

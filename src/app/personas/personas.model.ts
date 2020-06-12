@@ -5,13 +5,15 @@ import { loadProspectsSuccess } from './personas.constants';
 
 const initialState: Personas = {
   loading: false,
+  personas: [],
   prospects: [],
 };
 
 const personasReducer = createReducer(initialState,
 
-  on(loadProspectsSuccess, (_, { prospects }) => {
+  on(loadProspectsSuccess, (state, { prospects }) => {
     return {
+      ...state,
       loading: false,
       prospects,
     };

@@ -22,10 +22,9 @@
             <h3>
               {{suggested.reason}}
             </h3>
-            <div [ngClass]="expanded[suggested.campaign_id] && 'expanded'"
-                 (click)="expanded[suggested.campaign_id] = !expanded[suggested.campaign_id]">
-              <div class="arrow"></div>
-            </div>
+            <ab-arrow [expanded]="expanded[suggested.campaign_id]"
+                      (toggle)="expanded[suggested.campaign_id] = !expanded[suggested.campaign_id]">
+            </ab-arrow>
           </div>
           <p>{{suggested.prospects.length}} prospects</p>
         </div>

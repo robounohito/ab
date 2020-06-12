@@ -8,13 +8,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducer } from './personas.model';
 import { PersonasEffects } from './personas.effects';
 import { TagsTruncateDirective } from './tags-truncate/tags-truncate.directive';
-import { PersonaContactsComponent } from './personas-contacts/personas-contacts.component';
+import { PersonaContactsComponent } from './persona-contacts/persona-contacts.component';
+import { PersonaComponent } from './persona/persona.component';
 
 @NgModule({
   declarations: [
     PersonasComponent,
     TagsTruncateDirective,
-    PersonaContactsComponent
+    PersonaContactsComponent,
+    PersonaComponent
   ],
   imports: [
     CommonModule,

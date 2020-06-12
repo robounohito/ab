@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { PersonaContactsComponent } from './personas-contacts.component';
+import { PersonaContactsComponent } from './persona-contacts.component';
 
 describe('PersonaContactsComponent', () => {
 

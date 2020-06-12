@@ -1,48 +1,5 @@
 @use '../../styles/variables' as var;
 
-@mixin arrow($size) {
-
-  div {
-
-    margin-top: 2px;
-    width: $size;
-    height: $size;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &.expanded {
-
-      border-radius: 4px;
-      background-color: var.$lightGrey3;
-      
-      .arrow {
-        transform: unset;
-        transition: transform .5s;
-        background-color: var.$aqua;
-      }
-
-    }
-
-    &.arrow {
-      margin: 0;
-      background-color: var.$grey;
-      width: 8px;
-      height: 5px;
-      transform: rotate(-180deg);
-      transition: transform .5s;
-      mask: url(/assets/img/arrow-icon.svg) no-repeat center;
-    }
-
-  }
-
-}
-
 @mixin card-item-subheader {
   font-size: 12px;
   font-weight: normal;
@@ -155,8 +112,6 @@
           h3 {
             margin-bottom: 6px;
           }
-
-          @include arrow(18px);
 
         }   
 

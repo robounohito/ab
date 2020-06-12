@@ -10,8 +10,8 @@ import { loadProspects } from '../personas.constants';
 
 @Component({
   selector: 'ab-contacts',
-  templateUrl: './personas-contacts.component.html',
-  styleUrls: ['./personas-contacts.component.scss'],
+  templateUrl: './persona-contacts.component.html',
+  styleUrls: ['./persona-contacts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonaContactsComponent implements OnInit {

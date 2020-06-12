@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { materialImports } from './material-imports';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ArrowComponent } from './arrow/arrow.component';
 
 @NgModule({
-  declarations: [NotFoundComponent],
+  declarations: [
+    NotFoundComponent,
+    ArrowComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -13,6 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   exports: [
     ReactiveFormsModule,
+    ArrowComponent,
     ...materialImports
   ]
 })
