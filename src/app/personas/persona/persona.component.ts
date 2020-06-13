@@ -3,10 +3,12 @@ import {  FormBuilder } from '@angular/forms';
 import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { Persona } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
   jobDepartment: string[];
+  jobTitleOption: '1' | '2' | '3' | '4';
 }
 
 @Component({
@@ -24,8 +26,8 @@ export class PersonaComponent implements OnInit {
 
 
 
-  jobDepartments: string[] = ['Job 1', 'Another one', 'Department', 'Something else', 'Whatever'];
-
+  jobDepartments: string[] = ['Sales', 'Marketing', 'Information Technology', 'Product', 'Engineering'];
+  jobTitles: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +37,7 @@ export class PersonaComponent implements OnInit {
     this.form = formCreate<PersonaForm>(this.fb, {
       expanded: [{ block: true, contacts: true, company: true }],
       jobDepartment: [[]],
+      jobTitleOption: ['1'],
     });
   }
 
@@ -59,22 +62,16 @@ export class PersonaComponent implements OnInit {
     });
   }
 
- /*  add(event: MatChipInputEvent): void {
+  add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      this.toppingList.push(value.trim());
+      this.jobTitles.push(value.trim());
     }
     if (input) {
       input.value = '';
     }
-  } */
-
-  truncate(arr: string[]) {
-    return [...arr, 'whatever'];
   }
-
-  drop() { }
 
   private removeFirst<T>(array: T[], toRemove: T): void {
     const index = array.indexOf(toRemove);

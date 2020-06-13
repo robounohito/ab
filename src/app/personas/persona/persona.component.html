@@ -39,44 +39,105 @@
         </ab-arrow>
       </div>
 
-      <mat-form-field *ngIf="form.value.expanded['contacts']">
+      <div class="group-wrapper"
+           *ngIf="form.value.expanded['contacts']"
+           [@slideInOut]>
 
-        <mat-label>Job department</mat-label>
+        <div class="group">
 
-        <mat-select formControlName="jobDepartment"
-                    multiple>
+          <div class="group-label">Job department</div>
 
-          <mat-select-trigger>
-            <mat-chip-list abTagsTruncate>
-              <mat-chip *ngFor="let job of form.value.jobDepartment"
-                        [removable]="true"
-                        (removed)="onTagRemoved(job)">
-                {{job}}
-                <mat-icon matChipRemove>cancel</mat-icon>
-              </mat-chip>
-            </mat-chip-list>
-          </mat-select-trigger>
+          <mat-form-field class="ab"
+                          [floatLabel]="'never'">
 
-          <mat-option *ngFor="let job of jobDepartments"
-                      [value]="job">{{job}}</mat-option>
+            <mat-select formControlName="jobDepartment"
+                        placeholder="Select job department"
+                        multiple>
 
-        </mat-select>
+              <mat-select-trigger>
+                <mat-chip-list abTagsTruncate>
+                  <mat-chip *ngFor="let job of form.value.jobDepartment"
+                            [removable]="true"
+                            (removed)="onTagRemoved(job)">
+                    {{job}}
+                    <mat-icon matChipRemove>close</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-select-trigger>
 
-      </mat-form-field>
+              <mat-option *ngFor="let job of jobDepartments"
+                          [value]="job">{{job}}</mat-option>
 
-      <!-- <mat-form-field class="example-chip-list">
-        <mat-chip-list #chipList
-                       aria-label="Fruit selection">
-          <mat-chip *ngFor="let topping of toppingList">
-            {{topping}}
-            <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
-          <input placeholder="New topping..."
-                 [matChipInputFor]="chipList"
-                 [matChipInputAddOnBlur]="true"
-                 (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-      </mat-form-field> -->
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+
+        <div class="group">
+
+          <div class="group-label">Job title</div>
+
+          <mat-radio-group aria-label="Select an option"
+                           class="radio-group ab chips-input"
+                           formControlName="jobTitleOption">
+
+            <mat-radio-button value="1">Contains</mat-radio-button>
+
+            <ng-container *ngIf="form.value.jobTitleOption==='1' 
+                                  || form.value.jobTitleOption==='3'
+                                  || form.value.jobTitleOption==='4'">
+              <ng-container *ngTemplateOutlet="chipsInput">
+              </ng-container>
+            </ng-container>
+
+            <mat-radio-button value="2">Doesn't contain</mat-radio-button>
+
+            <ng-container *ngIf="form.value.jobTitleOption==='2'">
+              <ng-container *ngTemplateOutlet="chipsInput">
+              </ng-container>
+            </ng-container>
+
+            <mat-radio-button value="3">Is known</mat-radio-button>
+
+            <mat-radio-button value="4">Is unknown</mat-radio-button>
+
+          </mat-radio-group>
+
+        </div>
+
+        <div class="group">
+
+          <div class="group-label">Seniority</div>
+
+          <mat-form-field class="ab"
+                          [floatLabel]="'never'">
+
+            <mat-select formControlName="jobDepartment"
+                        placeholder="Select seniority"
+                        multiple>
+
+              <mat-select-trigger>
+                <mat-chip-list abTagsTruncate>
+                  <mat-chip *ngFor="let job of form.value.jobDepartment"
+                            [removable]="true"
+                            (removed)="onTagRemoved(job)">
+                    {{job}}
+                    <mat-icon matChipRemove>close</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-select-trigger>
+
+              <mat-option *ngFor="let job of jobDepartments"
+                          [value]="job">{{job}}</mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+
+      </div>
 
     </div>
 
@@ -92,45 +153,6 @@
         </ab-arrow>
       </div>
 
-      <!-- <mat-form-field *ngIf="form.value.expanded['company']">
-
-        <mat-label>Job department</mat-label>
-
-        <mat-select [formControl]="toppingsControl"
-                    multiple>
-
-          <mat-select-trigger>
-            <mat-chip-list abTagsTruncate>
-              <mat-chip *ngFor="let topping of toppingsControl.value"
-                        [removable]="true"
-                        (removed)="onToppingRemoved(topping)">
-                {{topping}}
-                <mat-icon matChipRemove>cancel</mat-icon>
-              </mat-chip>
-            </mat-chip-list>
-          </mat-select-trigger>
-
-          <mat-option *ngFor="let topping of toppingList"
-                      [value]="topping">{{topping}}</mat-option>
-
-        </mat-select>
-
-      </mat-form-field> -->
-
-      <!-- <mat-form-field class="example-chip-list">
-        <mat-chip-list #chipList
-                       aria-label="Fruit selection">
-          <mat-chip *ngFor="let topping of toppingList">
-            {{topping}}
-            <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
-          <input placeholder="New topping..."
-                 [matChipInputFor]="chipList"
-                 [matChipInputAddOnBlur]="true"
-                 (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-      </mat-form-field> -->
-
     </div>
 
     <!-- 
@@ -141,3 +163,19 @@
   </div>
 
 </div>
+
+<ng-template #chipsInput>
+  <mat-form-field [floatLabel]="'never'">
+    <mat-chip-list #chipList
+                   aria-label="Job title selection">
+      <mat-chip *ngFor="let job of jobTitles">
+        {{job}}
+        <mat-icon matChipRemove>close</mat-icon>
+      </mat-chip>
+      <input placeholder="Input job titles"
+             [matChipInputFor]="chipList"
+             [matChipInputAddOnBlur]="true"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</ng-template>
