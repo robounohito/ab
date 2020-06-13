@@ -6,11 +6,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ArrowComponent } from './arrow/arrow.component';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { ENTER, TAB } from '@angular/cdk/keycodes';
+import { ToggleComponent } from './toggle/toggle.component';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
-    ArrowComponent
+    ArrowComponent,
+    ToggleComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { ENTER, TAB } from '@angular/cdk/keycodes';
   exports: [
     ReactiveFormsModule,
     ArrowComponent,
+    ToggleComponent,
     ...materialImports
   ],
   providers: [

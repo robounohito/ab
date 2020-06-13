@@ -55,6 +55,11 @@
       margin-left: -3px;
       align-items: center;
 
+      & > span {
+        display: inherit;
+        cursor: pointer;
+      }
+
       .mat-icon {
         font-size: 16px;
         color: var.$grey10;
@@ -63,33 +68,6 @@
         margin-right: 3px;
       }
   
-      .switch {
-
-        width: 40px;
-        height: 20px;
-        border-radius: 10px;
-        background-color: var.$aqua;
-        display: flex;
-        align-items: center;
-
-        .circle {
-          width: 14px;
-          height: 14px;
-          background-color: white;
-          border-radius: 50%;
-          margin: 0 3px;
-        }
-
-        .text {
-          font-size: 8px;
-          font-weight: 500;
-          line-height: 1.13;
-          letter-spacing: 0.13px;
-          color: white;
-        }
-
-      }
-
     }
 
   }
@@ -121,9 +99,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // padding-bottom: 8px;
-        // border-bottom: solid 1px var.$grey12;
-        // margin-bottom: 10px;
 
         h4 {
 
@@ -204,6 +179,5 @@
     }
 
   }
-
 
 }

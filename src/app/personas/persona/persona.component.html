@@ -3,15 +3,24 @@
   <h3>Persona 12</h3>
 </div>
 
-<div class="wrapper">
+<div class="wrapper"
+     [formGroup]="form">
 
   <div class="controls-wrapper">
     <div>
-      <mat-icon>more_vert</mat-icon>
-      <div class="switch">
-        <div class="circle"></div>
-        <div class="text">ON</div>
-      </div>
+      <span mat-icon-button
+            [matMenuTriggerFor]="removeMenu"
+            aria-label="Remove persona">
+        <mat-icon>more_vert</mat-icon>
+      </span>
+      <mat-menu #removeMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Remove persona</span>
+        </button>
+      </mat-menu>
+      <ab-toggle inputFormControlName="disabled">
+      </ab-toggle>
     </div>
     <ab-arrow [expanded]="form.value.expanded['block']"
               (toggle)="toggleItem('block')">
@@ -24,7 +33,6 @@
 
   <div class="block-wrapper"
        *ngIf="form.value.expanded['block']"
-       [formGroup]="form"
        [@slideInOut]>
 
     <div class="info-block">
@@ -155,10 +163,47 @@
 
     </div>
 
-    <!-- 
-      Industry
-      Location
-      Technologies -->
+    <div class="info-block">
+
+      <div class="info-block-header">
+        <h4>
+          <mat-icon>business_center</mat-icon>
+          Industry
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['industry']"
+                  (toggle)="toggleItem('industry')">
+        </ab-arrow>
+      </div>
+
+    </div>
+
+    <div class="info-block">
+
+      <div class="info-block-header">
+        <h4>
+          <mat-icon>location_on</mat-icon>
+          Location
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['location']"
+                  (toggle)="toggleItem('location')">
+        </ab-arrow>
+      </div>
+
+    </div>
+
+    <div class="info-block">
+
+      <div class="info-block-header">
+        <h4>
+          <mat-icon>construction</mat-icon>
+          Technologies
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['technologies']"
+                  (toggle)="toggleItem('technologies')">
+        </ab-arrow>
+      </div>
+
+    </div>
 
   </div>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import {  FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form';
 import { Persona } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
@@ -7,6 +7,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
+  disabled: boolean;
   jobDepartment: string[];
   jobTitleOption: '1' | '2' | '3' | '4';
 }
@@ -36,6 +37,7 @@ export class PersonaComponent implements OnInit {
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
       expanded: [{ block: true, contacts: true, company: true }],
+      disabled: [true],
       jobDepartment: [[]],
       jobTitleOption: ['1'],
     });
