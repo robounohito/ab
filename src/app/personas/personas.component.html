@@ -11,7 +11,9 @@
          (cdkDropListDropped)="drop($event)">
 
       <div class="persona-item"
-           *ngFor="let item of array"
+           [routerLink]="['/persona/' + (index + 1)]"
+           [routerLinkActive]="'active'"
+           *ngFor="let item of array; let index = index;"
            cdkDrag>
 
         <div class="persona-drag-placeholder"

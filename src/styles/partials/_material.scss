@@ -96,6 +96,11 @@ body {
 
   }
 
+  .mat-select-value {
+    vertical-align: middle;
+    line-height: normal;
+  }
+
   .mat-chip, .mat-standard-chip.mat-chip-with-trailing-icon {
 
     display: inline-flex;
