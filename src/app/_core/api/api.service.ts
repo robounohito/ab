@@ -25,7 +25,7 @@ export const apiEndpoint = {
   getLogout: { method: 'get', url: 'auth/logout' },
   getOutreachMetrics: { method: 'get', url: 'sales_rep_dashboard' },
   getPersonas: { method: 'get', url: 'personas' },
-  getProspects: { method: 'get', url: 'searchProspects' },
+  getContacts: { method: 'get', url: 'contacts' },
   getSidebar: { method: 'get', url: 'sidebar' },
   getStats: { method: 'get', url: 'stats' },
   getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },

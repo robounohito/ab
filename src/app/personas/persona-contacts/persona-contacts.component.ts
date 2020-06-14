@@ -17,7 +17,7 @@ export class PersonaContactsComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  displayedColumns = ['name', 'title'];
+  displayedColumns = ['firstName', 'lastName', 'email'];
 
   model$!: Observable<Persona | undefined>;
 

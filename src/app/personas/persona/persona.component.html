@@ -29,7 +29,7 @@
 
   <h1>{{persona.name}}</h1>
 
-  <p>34 contacts</p>
+  <p>{{persona.contacts ? persona.contacts.length : 34}} contacts</p>
 
   <div class="block-wrapper"
        *ngIf="form.value.expanded['block']"
