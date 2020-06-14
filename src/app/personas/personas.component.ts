@@ -2,10 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { App } from '../app.types';
 import { Store } from '@ngrx/store';
-import { selectRouteParam } from '../app.model';
-import { Personas } from './personas.types';
+import { Personas, Persona } from './personas.types';
 import { selectPersonas } from './personas.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { loadPersonas, reorderPersonas } from './personas.constants';
 
 @Component({
   selector: 'ab-personas',
@@ -16,12 +16,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class PersonasComponent implements OnInit {
 
   model$!: Observable<Personas>;
-  currentRoute$!: Observable<any>;
-
-
-  array = [1, 2, 3, 4, 5];
-
-
 
   constructor(
     private store: Store<App>,
@@ -29,12 +23,21 @@ export class PersonasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentRoute$ = this.store.select(selectRouteParam('personaId'));
     this.model$ = this.store.select(selectPersonas);
+    this.store.dispatch(loadPersonas());
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.array, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<string[]>, personas: Persona[]) {
+    const moved = [...personas];
+    moveItemInArray(moved, event.previousIndex, event.currentIndex);
+    this.store.dispatch(reorderPersonas({
+      original: personas,
+      moved: moved.map((persona, i) => ({ ...persona, order: i + 1 })),
+    }));
+  }
+
+  trackByFn(index: number, item: Persona) {
+    return item.id || index;
   }
 
 }

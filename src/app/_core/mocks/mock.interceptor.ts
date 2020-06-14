@@ -72,9 +72,82 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: prospects()
       })).pipe(delay(50));
     }
+    if (request.url.endsWith('personas')
+      && request.method === 'GET') {
+      // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
+      return of(new HttpResponse({
+        status: 200, body: personas
+      })).pipe(delay(50));
+    }
     return next.handle(request);
   }
 }
+
+const personas = [{
+  id: '12',
+  order: 1,
+  name: 'Head of Sales',
+  contactAttributes: {
+    jobDepartment: ['Sales', 'Marketing', 'Product'],
+    jobTitle: {
+      condition: 0,
+      keywords: ['senior', 'manager'],
+    },
+    seniority: ['junior'],
+  },
+  companyAttributes: null,
+  industry: null,
+  location: null,
+  technologies: null,
+}, {
+  id: '123',
+  order: 2,
+  name: 'Head of Marketing',
+  contactAttributes: {
+    jobDepartment: ['Test', 'Marketing', 'Information Technology'],
+    jobTitle: {
+      condition: 0,
+      keywords: ['head', 'marketing'],
+    },
+    seniority: ['senior'],
+  },
+  companyAttributes: null,
+  industry: null,
+  location: null,
+  technologies: null,
+}, {
+  id: '1234',
+  order: 3,
+  name: 'CEO',
+  contactAttributes: {
+    jobDepartment: ['Legal'],
+    jobTitle: {
+      condition: 0,
+      keywords: ['keyword'],
+    },
+    seniority: ['mid-level'],
+  },
+  companyAttributes: null,
+  industry: null,
+  location: null,
+  technologies: null,
+}, {
+  id: '12345',
+  order: 4,
+  name: 'CTO',
+  contactAttributes: {
+    jobDepartment: ['Technology'],
+    jobTitle: {
+      condition: 0,
+      keywords: ['keyword12'],
+    },
+    seniority: ['senior'],
+  },
+  companyAttributes: null,
+  industry: null,
+  location: null,
+  technologies: null,
+}];
 
 const prospects = () => {
   const random = Math.floor(Math.random() * 3);

@@ -1,14 +1,32 @@
 
 import { Injectable } from '@angular/core';
-import { switchMap, map, startWith } from 'rxjs/operators';
+import { switchMap, map, startWith, tap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
 import { Prospect } from '../app.types';
-import { loadProspects, loadProspectsSuccess } from './personas.constants';
+import { loadProspects, loadProspectsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas } from './personas.constants';
 import { of } from 'rxjs';
+import { Persona } from './personas.types';
 
 @Injectable()
 export class PersonasEffects {
+
+  loadPersonas$ = createEffect(() => this.actions$.pipe(
+    ofType(loadPersonas),
+    switchMap(() => this.api.request<Persona[]>({
+      endpoint: this.api.endpoint.getPersonas,
+    }).pipe(
+      map(resp => loadPersonasSuccess({ personas: resp }))
+    )))
+  );
+
+  reorderPersonas$ = createEffect(() => this.actions$.pipe(
+    ofType(reorderPersonas),
+    tap(({ original, moved }) => console.log(
+      'reorder effect',
+      moved.filter((m, i) => m.id !== original[i].id)
+    ))
+  ), { dispatch: false });
 
   loadProspects$ = createEffect(() => this.actions$.pipe(
     ofType(loadProspects),

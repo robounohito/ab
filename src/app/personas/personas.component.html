@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container"
+     *ngIf="model$ | async as model">
 
   <div class="column left">
 
@@ -8,32 +9,21 @@
 
     <div cdkDropList
          class="personas-list"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event, model.personas)">
 
       <div class="persona-item"
-           [routerLink]="['/persona/' + (index + 1)]"
+           *ngFor="let persona of model.personas; trackBy: trackByFn;"
+           [routerLink]="['/persona/' + persona.id]"
            [routerLinkActive]="'active'"
-           *ngFor="let item of array; let index = index;"
            cdkDrag>
-
         <div class="persona-drag-placeholder"
              *cdkDragPlaceholder>
         </div>
-
-        <ab-persona>
+        <ab-persona [persona]="persona">
         </ab-persona>
-
       </div>
 
     </div>
-
-
-
-    <a mat-button
-       [routerLink]="['/persona/1']"
-       [routerLinkActive]="'active'">
-      Click me right
-    </a>
 
   </div>
 

@@ -1,21 +1,34 @@
 
 import { on, createReducer, Action, createFeatureSelector } from '@ngrx/store';
-import { Personas } from './personas.types';
-import { loadProspectsSuccess } from './personas.constants';
+import { Personas, Persona } from './personas.types';
+import { loadProspectsSuccess, loadPersonasSuccess, reorderPersonas } from './personas.constants';
+import { sortWith, ascend, prop, assoc } from 'ramda';
 
 const initialState: Personas = {
   loading: false,
   personas: [],
-  prospects: [],
+  currentContacts: [],
 };
 
 const personasReducer = createReducer(initialState,
+
+  on(loadPersonasSuccess, (state, { personas }) => {
+    return {
+      ...state,
+      loading: false,
+      personas: sortPersonas(personas),
+    };
+  }),
+
+  on(reorderPersonas, (state, { moved }) => {
+    return assoc('personas', moved)(state);
+  }),
 
   on(loadProspectsSuccess, (state, { prospects }) => {
     return {
       ...state,
       loading: false,
-      prospects,
+      currentContacts: prospects,
     };
   }),
 
@@ -26,3 +39,7 @@ export function reducer(state: Personas, action: Action) {
 }
 
 export const selectPersonas = createFeatureSelector<Personas>('personas');
+
+const sortPersonas = sortWith<Persona>([
+  ascend(prop('order'))
+]);
