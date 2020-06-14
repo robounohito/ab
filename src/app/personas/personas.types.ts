@@ -3,8 +3,7 @@ import { Condition } from './personas.constants';
 
 export interface Personas {
   loading: boolean;
-  personas: Persona[];
-  currentContacts: Prospect[];
+  personas: Persona[] | null;
 }
 
 export interface Persona {
@@ -16,6 +15,7 @@ export interface Persona {
   industry: any;
   location: any;
   technologies: any;
+  contacts?: Prospect[];
 }
 
 interface ContactAttributes {

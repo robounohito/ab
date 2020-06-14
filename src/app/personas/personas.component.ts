@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Personas, Persona } from './personas.types';
 import { selectPersonas } from './personas.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { loadPersonas, reorderPersonas } from './personas.constants';
+import { reorderPersonas } from './personas.constants';
 
 @Component({
   selector: 'ab-personas',
@@ -24,7 +24,6 @@ export class PersonasComponent implements OnInit {
 
   ngOnInit() {
     this.model$ = this.store.select(selectPersonas);
-    this.store.dispatch(loadPersonas());
   }
 
   drop(event: CdkDragDrop<string[]>, personas: Persona[]) {

@@ -10,6 +10,8 @@ import { PersonasEffects } from './personas.effects';
 import { TagsTruncateDirective } from './tags-truncate/tags-truncate.directive';
 import { PersonaContactsComponent } from './persona-contacts/persona-contacts.component';
 import { PersonaComponent } from './persona/persona.component';
+import { PersonaGuard } from './persona-guard.service';
+import { PersonasGuard } from './personas-guard.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,10 @@ import { PersonaComponent } from './persona/persona.component';
     PersonasRoutingModule,
     StoreModule.forFeature('personas', reducer),
     EffectsModule.forFeature([PersonasEffects]),
+  ],
+  providers: [
+    PersonaGuard,
+    PersonasGuard,
   ]
 })
 export class PersonasModule { }

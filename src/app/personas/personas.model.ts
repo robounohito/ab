@@ -1,20 +1,19 @@
 
-import { on, createReducer, Action, createFeatureSelector } from '@ngrx/store';
+import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { Personas, Persona } from './personas.types';
-import { loadProspectsSuccess, loadPersonasSuccess, reorderPersonas } from './personas.constants';
-import { sortWith, ascend, prop, assoc } from 'ramda';
+import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas } from './personas.constants';
+import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over } from 'ramda';
+import { selectRouteParam } from '../app.model';
 
 const initialState: Personas = {
   loading: false,
-  personas: [],
-  currentContacts: [],
+  personas: null,
 };
 
 const personasReducer = createReducer(initialState,
 
-  on(loadPersonasSuccess, (state, { personas }) => {
+  on(loadPersonasSuccess, (_, { personas }) => {
     return {
-      ...state,
       loading: false,
       personas: sortPersonas(personas),
     };
@@ -24,12 +23,14 @@ const personasReducer = createReducer(initialState,
     return assoc('personas', moved)(state);
   }),
 
-  on(loadProspectsSuccess, (state, { prospects }) => {
-    return {
-      ...state,
-      loading: false,
-      currentContacts: prospects,
-    };
+  on(loadContactsSuccess, (state, { personaId, contacts }) => {
+    const personaLens = lensIndex(
+      findIndex(whereEq({ id: personaId }))(state.personas ?? [])
+    );
+    return evolve({
+      loading: always(false),
+      personas: over(personaLens, assoc('contacts', contacts)) as () => Persona[],
+    })(state);
   }),
 
 );
@@ -39,6 +40,12 @@ export function reducer(state: Personas, action: Action) {
 }
 
 export const selectPersonas = createFeatureSelector<Personas>('personas');
+
+export const selectCurrentPersona = createSelector(
+  selectRouteParam('personaId'),
+  selectPersonas,
+  (personaId, { personas }) => find(whereEq({ id: personaId }), personas ?? [])
+);
 
 const sortPersonas = sortWith<Persona>([
   ascend(prop('order'))

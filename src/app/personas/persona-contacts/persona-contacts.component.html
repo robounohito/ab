@@ -1,10 +1,10 @@
 <ng-container *ngIf="model$ | async as model">
 
-  <h3>Persona 1</h3>
+  <h3>Persona {{model.order}}</h3>
 
-  <h1>Head of Sales</h1>
+  <h1>{{model.name}}</h1>
 
-  <p>34 contacts</p>
+  <p>{{model.contacts?.length}} contacts</p>
 
   <mat-form-field>
     <mat-label>Search</mat-label>
@@ -14,7 +14,7 @@
   </mat-form-field>
 
   <table mat-table
-         [dataSource]="model.currentContacts"
+         [dataSource]="model.contacts"
          matSort
          class="mat-elevation-z8">
 
@@ -54,5 +54,5 @@
 </ng-container>
 
 <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"
-               [length]="(model$ | async)?.currentContacts.length">
+               [length]="(model$ | async)?.contacts?.length">
 </mat-paginator>

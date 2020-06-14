@@ -1,8 +1,6 @@
 
 import { createAction, props } from '@ngrx/store';
 import { Prospect } from '../app.types';
-import { PageEvent } from '@angular/material/paginator';
-import { Observable } from 'rxjs';
 import { Persona } from './personas.types';
 
 export const loadPersonas = createAction(
@@ -19,14 +17,14 @@ export const reorderPersonas = createAction(
   props<{ original: Persona[]; moved: Persona[]; }>()
 );
 
-export const loadProspects = createAction(
-  '[Personas] Load Prospects',
-  props<{ page: Observable<PageEvent>; }>()
+export const loadContacts = createAction(
+  '[Personas] Load Contacts',
+  props<{ personaId: string; page: number; }>()
 );
 
-export const loadProspectsSuccess = createAction(
-  '[Personas] Load Prospects Success',
-  props<{ prospects: Prospect[]; }>()
+export const loadContactsSuccess = createAction(
+  '[Personas] Load Contacts Success',
+  props<{ personaId: string; contacts: Prospect[]; }>()
 );
 
 export enum Condition {
