@@ -146,6 +146,36 @@ body {
 
   }
 
+  &.mat-paginator {
+
+    background: transparent;
+  
+    .mat-paginator-container {
+  
+      justify-content: space-between;
+      padding: 0;
+  
+      .mat-paginator-page-size {
+
+        order: 2;
+        margin-right: 0;
+        align-items: center;
+        height: 30px;
+
+        .mat-form-field {
+          margin-right: 0;
+        }
+
+      }
+
+      .mat-paginator-range-label {
+        margin-left: 5px;
+      }
+  
+    }
+  
+  }
+
 }
 
 .insight-tabs {

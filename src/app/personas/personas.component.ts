@@ -6,11 +6,13 @@ import { Personas, Persona } from './personas.types';
 import { selectPersonas } from './personas.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { reorderPersonas } from './personas.constants';
+import { customFadeAnimation } from '../_core/animations/animations';
 
 @Component({
   selector: 'ab-personas',
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.scss'],
+  animations: [customFadeAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonasComponent implements OnInit {

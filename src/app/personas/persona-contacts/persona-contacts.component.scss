@@ -52,8 +52,14 @@
     }
 
     .mat-cell {
+
       font-size: 12px;
       letter-spacing: 0.2px;
+
+      &:first-child {
+        color: var.$aqua;
+      }
+
     }
 
   }
@@ -76,8 +82,4 @@
     padding-right: 10px;
   } */
 
-}
-
-.mat-paginator {
-  background: transparent;
 }

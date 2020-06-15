@@ -35,8 +35,9 @@
 
   </div>
 
-  <div class="column right">
-    <router-outlet></router-outlet>
+  <div class="column right"
+       [@customFadeAnimation]="o.isActivated ? (o.activatedRoute.paramMap | async)?.get('personaId') : ''">
+    <router-outlet #o="outlet"></router-outlet>
   </div>
 
 </div>
