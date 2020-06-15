@@ -19,7 +19,7 @@ export class PersonaGuard implements CanActivate {
       filter(persona => !!persona),
       take(1),
       tap(persona => {
-        return persona && this.store.dispatch(loadContacts({ personaId: persona.id, page: 1 }));
+        return persona && this.store.dispatch(loadContacts({ personaId: persona.id, offset: 0, limit: 10 }));
       }),
       map(() => true),
     );

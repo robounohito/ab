@@ -4,7 +4,7 @@
 
   <h1>{{model.name}}</h1>
 
-  <p>{{model.contacts?.length}} contacts</p>
+  <p>{{model.contactsCount}} contacts</p>
 
   <mat-form-field>
     <mat-label>Search</mat-label>
@@ -65,6 +65,8 @@
 
 </ng-container>
 
-<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"
-               [length]="(model$ | async)?.contactsCount">
+<mat-paginator *ngIf="model$ | async as model"
+               [pageSizeOptions]="[10, 25, 50, 100]"
+               [length]="model?.contactsCount"
+               (page)="pageChange($event, model.id)">
 </mat-paginator>

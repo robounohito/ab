@@ -19,14 +19,14 @@ export const reorderPersonas = createAction(
 
 export const loadContacts = createAction(
   '[Personas] Load Contacts',
-  props<{ personaId: string; page: number; }>()
+  props<{ personaId: string; offset: number; limit: number; }>()
 );
 
 export const loadContactsSuccess = createAction(
   '[Personas] Load Contacts Success',
-  props<{ 
-    personaId: string; 
-    contacts: Prospect[]; 
+  props<{
+    personaId: string;
+    contacts: Prospect[];
     contactsCount: number;
   }>()
 );

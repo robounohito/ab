@@ -4,8 +4,9 @@ import { App } from 'src/app/app.types';
 import { selectCurrentPersona } from '../personas.model';
 import { Observable } from 'rxjs';
 import { Persona } from '../personas.types';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { loadContacts } from '../personas.constants';
 
 @Component({
   selector: 'ab-contacts',
@@ -29,6 +30,14 @@ export class PersonaContactsComponent implements OnInit {
 
   ngOnInit(): void {
     this.model$ = this.store.select(selectCurrentPersona);
+  }
+
+  pageChange(event: PageEvent, personaId: string) {
+    this.store.dispatch(loadContacts({
+      personaId,
+      offset: (event.pageIndex * event.pageSize),
+      limit: event.pageSize
+    }));
   }
 
 }
