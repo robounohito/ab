@@ -29,11 +29,15 @@ export class PersonasEffects {
 
   loadContacts$ = createEffect(() => this.actions$.pipe(
     ofType(loadContacts),
-    switchMap(({ personaId }) => this.api.request<{ contacts: Prospect[] }>({
+    switchMap(({ personaId }) => this.api.request<{ contacts: Prospect[]; count: number; }>({
       endpoint: this.api.endpoint.getContacts,
       queryParams: { limit: 10, offset: 0 },
     }).pipe(
-      map(resp => loadContactsSuccess({ personaId, contacts: resp.contacts }))
+      map(resp => loadContactsSuccess({
+        personaId,
+        contacts: resp.contacts,
+        contactsCount: resp.count,
+      }))
     ))
   ));
 

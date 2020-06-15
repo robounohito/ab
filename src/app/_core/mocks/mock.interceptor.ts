@@ -65,11 +65,11 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: dashboard()
       })).pipe(delay(50));
     }
-    if (request.url.endsWith('contacts-')
+    if (request.url.endsWith('contacts')
       && request.method === 'GET') {
       // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
       return of(new HttpResponse({
-        status: 200, body: prospects()
+        status: 200, body: contacts // prospects()
       })).pipe(delay(50));
     }
     if (request.url.endsWith('personas')
@@ -82,6 +82,12 @@ export class MockInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 }
+
+const contacts = {
+  success: true,
+  count: 200,
+  contacts: [{ job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Stacy', lastName: 'Lowden', email: 'slowden0@techcrunch.com', id: '5ee66ce9ca61ba0629e7fc8a' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Terrijo', lastName: 'Stillman', email: 'tstillman1@cocolog-nifty.com', id: '5ee66ce9ca61ba0629e7fc8b' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Elmira', lastName: 'Hofer', email: 'ehofer2@a8.net', id: '5ee66ce9ca61ba0629e7fc8c' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Fayette', lastName: 'Sillito', email: 'fsillito3@bloglines.com', id: '5ee66ce9ca61ba0629e7fc8d' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Madlin', lastName: 'Hubner', email: 'mhubner4@webeden.co.uk', id: '5ee66ce9ca61ba0629e7fc8e' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Staford', lastName: 'Jumel', email: 'sjumel5@over-blog.com', id: '5ee66ce9ca61ba0629e7fc8f' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Frayda', lastName: 'Liggett', email: 'fliggett6@4shared.com', id: '5ee66ce9ca61ba0629e7fc90' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Teddie', lastName: 'Lambourn', email: 'tlambourn7@walmart.com', id: '5ee66ce9ca61ba0629e7fc91' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Murvyn', lastName: 'Jeff', email: 'mjeff8@prlog.org', id: '5ee66ce9ca61ba0629e7fc92' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Korry', lastName: 'Lewnden', email: 'klewnden9@fda.gov', id: '5ee66ce9ca61ba0629e7fc93' }]
+};
 
 const personas = [{
   id: '12',
@@ -149,10 +155,10 @@ const personas = [{
   technologies: null,
 }];
 
-const prospects = () => {
+/* const prospects = () => {
   const random = Math.floor(Math.random() * 3);
   return suggested.campaigns.campaignsSuggested[random].prospects;
-};
+}; */
 
 const dashboard = () => ([{
   _id: 1,

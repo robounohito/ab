@@ -35,6 +35,8 @@ export class PersonasComponent implements OnInit {
     }));
   }
 
+  addPersona() { }
+
   trackByFn(index: number, item: Persona) {
     return item.id || index;
   }

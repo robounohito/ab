@@ -7,7 +7,14 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArrowComponent {
+
   @Input() expanded = false;
   @Input() style: '' | 'left' | 'filled' = '';
   @Output() toggle = new EventEmitter();
+
+  click(event: Event) {
+    event.stopPropagation();
+    this.toggle.emit();
+  }
+
 }

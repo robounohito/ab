@@ -16,6 +16,7 @@ export interface Persona {
   location: any;
   technologies: any;
   contacts?: Prospect[];
+  contactsCount: number;
 }
 
 interface ContactAttributes {

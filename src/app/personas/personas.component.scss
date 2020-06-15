@@ -45,9 +45,43 @@
     }
 
     &.left {
+
       width: 250px;
       max-width: 400px;
       margin-right: 20px;
+
+      .add-persona {
+
+        // border: 2px dotted var.$grey4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        margin: 10px 0;
+        padding: 15px;
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='rgb(183,190,216)' stroke-width='5' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
+        button {
+
+          color: var.$grey4;
+
+          .mat-icon {
+            font-size: 18px;
+            width: auto;
+            height: auto;
+            margin-right: 5px;
+            font-weight: bold;
+          }
+  
+          span {
+            font-size: 20px;
+            font-weight: bold;
+          }
+
+        }
+
+      }
+
     }
 
     &.right {

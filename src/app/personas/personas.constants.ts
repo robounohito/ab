@@ -24,7 +24,11 @@ export const loadContacts = createAction(
 
 export const loadContactsSuccess = createAction(
   '[Personas] Load Contacts Success',
-  props<{ personaId: string; contacts: Prospect[]; }>()
+  props<{ 
+    personaId: string; 
+    contacts: Prospect[]; 
+    contactsCount: number;
+  }>()
 );
 
 export enum Condition {
