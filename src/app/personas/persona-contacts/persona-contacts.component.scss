@@ -1,16 +1,83 @@
 @use '../../../styles/variables' as var;
 @use '../personas.component';
 @use '../persona/persona.component';
+
+.header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .header-text {
+
+    h1 {
+      @include persona.h1-text;
+    }
+    
+    h3 {
+      @include personas.h3-text;
+      margin-bottom: 5px;
+    }
+    
+    p {
+      @include personas.p-text;
+    }
+
+  }
+
+}
+
+.mat-table.ab {
+
+  box-shadow: none;
+  background: transparent;
+
+  .mat-header-row {
+    border-bottom: none;
+  }
+
+  .mat-row {
+
+    height: 44px;
+    position: relative;
+    padding: 10px;
+    border: 1px solid var.$lightGrey2;
+    border-radius: 4px;
+    background-color: white;
+    margin-bottom: 5px;
+
+    &:hover {
+      box-shadow: 0 15px 20px -5px rgba(171, 174, 199, 0.5);
+      z-index: 2;
+    }
+
+    .mat-cell {
+      font-size: 12px;
+      letter-spacing: 0.2px;
+    }
+
+  }
+
+
+  /* .mat-cell {
+    padding: 10px 0;
+    border-bottom: 1px solid var.$lightGrey2;
+    border-top: 1px solid var.$lightGrey2;
+    background-color: white;
+   }
+
+  .mat-cell:first-child {
+    padding-left: 10px;
+    border-left: 1px solid var.$lightGrey2;
+  }
   
-h1 {
-  @include persona.h1-text;
+  .mat-cell:last-child {
+    border-right: 1px solid var.$lightGrey2;
+    padding-right: 10px;
+  } */
+
 }
 
-h3 {
-  @include personas.h3-text;
-  margin-bottom: 5px;
-}
-
-p {
-  @include personas.p-text;
+.mat-paginator {
+  background: transparent;
 }
