@@ -33,7 +33,16 @@
   background: transparent;
 
   .mat-header-row {
+    
     border-bottom: none;
+    padding: 0 10px;
+
+    .mat-header-cell {
+      padding: 0 5px;
+      position: relative;
+      hyphens: auto;
+    }
+
   }
 
   .mat-row {
@@ -55,6 +64,13 @@
 
       font-size: 12px;
       letter-spacing: 0.2px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      display: block;
+      line-height: 24px;
+      min-height: 24px;
+      padding: 0 5px;
 
       &:first-child {
         color: var.$aqua;
@@ -63,23 +79,5 @@
     }
 
   }
-
-
-  /* .mat-cell {
-    padding: 10px 0;
-    border-bottom: 1px solid var.$lightGrey2;
-    border-top: 1px solid var.$lightGrey2;
-    background-color: white;
-   }
-
-  .mat-cell:first-child {
-    padding-left: 10px;
-    border-left: 1px solid var.$lightGrey2;
-  }
-  
-  .mat-cell:last-child {
-    border-right: 1px solid var.$lightGrey2;
-    padding-right: 10px;
-  } */
 
 }

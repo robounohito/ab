@@ -4,11 +4,14 @@ import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form'
 import { Persona } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { JobDepartment, Seniority } from '../personas.constants';
+import { MatSelectChange } from '@angular/material/select';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
   disabled: boolean;
   jobDepartment: string[];
+  seniority: string[];
   jobTitleOption: '1' | '2' | '3' | '4';
 }
 
@@ -21,13 +24,12 @@ interface PersonaForm {
 })
 export class PersonaComponent implements OnInit {
 
+  jobDepartments: string[] = Object.values(JobDepartment);
+  seniority: string[] = Object.values(Seniority);
   @Input() persona!: Persona;
   form!: FormGroupT<PersonaForm>;
 
 
-
-
-  jobDepartments: string[] = ['Sales', 'Marketing', 'Information Technology', 'Product', 'Engineering'];
   jobTitles: string[] = [];
 
   constructor(
@@ -39,6 +41,7 @@ export class PersonaComponent implements OnInit {
       expanded: [{ block: true, contacts: true }],
       disabled: [true],
       jobDepartment: [[]],
+      seniority: [[]],
       jobTitleOption: ['1'],
     });
   }
@@ -50,6 +53,10 @@ export class PersonaComponent implements OnInit {
         [id]: !this.form.controls.expanded.value[id]
       }
     });
+  }
+
+  selectChange(event: MatSelectChange) {
+    console.log(event);
   }
 
 

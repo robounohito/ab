@@ -22,26 +22,47 @@
 
   <mat-table mat-table
              [dataSource]="model.contacts"
+             [trackBy]="trackByFn"
              matSort
+             (matSortChange)="sortContacts($event)"
+             [matSortDisableClear]="'true'"
+             matSortActive="fullName"
+             matSortDirection="asc"
              class="ab mat-elevation-z8">
 
-    <ng-container matColumnDef="firstName">
+    <ng-container matColumnDef="fullName">
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header>
-        First Name
+        Full name
       </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{element.firstName}}
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.fullName"
+                matTooltipPosition="above">
+        {{element.fullName}}
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="lastName">
+    <ng-container matColumnDef="jobTitle">
       <mat-header-cell *matHeaderCellDef
                        mat-sort-header>
-        Last Name
+        Job title
       </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{element.lastName}}
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.jobTitle"
+                matTooltipPosition="above">
+        {{element.jobTitle}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastActivityDate">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Last activity date
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.lastActivityDate"
+                matTooltipPosition="above">
+        {{element.lastActivityDate}}
       </mat-cell>
     </ng-container>
 
@@ -50,8 +71,106 @@
                        mat-sort-header>
         Email
       </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.email"
+                matTooltipPosition="above">
         {{element.email}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Phone
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.phone"
+                matTooltipPosition="above">
+        {{element.phone}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Company
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.company"
+                matTooltipPosition="above">
+        {{element.company}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="industry">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Industry
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.industry"
+                matTooltipPosition="above">
+        {{element.industry}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="companyLocation">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Company location
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.companyLocation"
+                matTooltipPosition="above">
+        {{element.companyLocation}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="technologies">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Technologies
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.technologies"
+                matTooltipPosition="above">
+        {{element.technologies[0]}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="contactLocation">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Contact location
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.contactLocation"
+                matTooltipPosition="above">
+        {{element.contactLocation}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fundingStage">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Funding stage
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.fundingStage"
+                matTooltipPosition="above">
+        {{element.fundingStage}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="numberOfEmployees">
+      <mat-header-cell *matHeaderCellDef
+                       mat-sort-header>
+        Number of employees
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"
+                [matTooltip]="element.numberOfEmployees"
+                matTooltipPosition="above">
+        {{element.numberOfEmployees}}
       </mat-cell>
     </ng-container>
 
@@ -62,11 +181,10 @@
 
   </mat-table>
 
-</div>
+  <mat-paginator class="ab"
+                 [pageSizeOptions]="[10, 25, 50, 100]"
+                 [length]="model?.contactsCount"
+                 (page)="pageChange($event, model.id)">
+  </mat-paginator>
 
-<mat-paginator class="ab"
-               *ngIf="model$ | async as model"
-               [pageSizeOptions]="[10, 25, 50, 100]"
-               [length]="model?.contactsCount"
-               (page)="pageChange($event, model.id)">
-</mat-paginator>
+</div>

@@ -60,6 +60,7 @@
 
             <mat-select formControlName="jobDepartment"
                         placeholder="Select job department"
+                        (selectionChange)="selectChange($event)"
                         multiple>
 
               <mat-select-trigger>
@@ -74,7 +75,9 @@
               </mat-select-trigger>
 
               <mat-option *ngFor="let job of jobDepartments"
-                          [value]="job">{{job}}</mat-option>
+                          [value]="job">
+                {{job}}
+              </mat-option>
 
             </mat-select>
 
@@ -92,9 +95,7 @@
 
             <mat-radio-button value="1">Contains</mat-radio-button>
 
-            <ng-container *ngIf="form.value.jobTitleOption==='1' 
-                                  || form.value.jobTitleOption==='3'
-                                  || form.value.jobTitleOption==='4'">
+            <ng-container *ngIf="form.value.jobTitleOption==='1'">
               <ng-container *ngTemplateOutlet="chipsInput">
               </ng-container>
             </ng-container>
@@ -121,23 +122,25 @@
           <mat-form-field class="ab"
                           [floatLabel]="'never'">
 
-            <mat-select formControlName="jobDepartment"
+            <mat-select formControlName="seniority"
                         placeholder="Select seniority"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate>
-                  <mat-chip *ngFor="let job of form.value.jobDepartment"
+                  <mat-chip *ngFor="let level of form.value.seniority"
                             [removable]="true"
-                            (removed)="onTagRemoved(job)">
-                    {{job}}
+                            (removed)="onTagRemoved(level)">
+                    {{level}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
                 </mat-chip-list>
               </mat-select-trigger>
 
-              <mat-option *ngFor="let job of jobDepartments"
-                          [value]="job">{{job}}</mat-option>
+              <mat-option *ngFor="let level of seniority"
+                          [value]="level">
+                {{level}}
+              </mat-option>
 
             </mat-select>
 

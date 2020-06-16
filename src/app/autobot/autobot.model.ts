@@ -2,7 +2,7 @@ import { on, createReducer, Action, createFeatureSelector, createSelector } from
 import { assoc } from 'ramda';
 import { Autobot } from './autobot.types';
 import { loadSuggestedSuccess, loadProspectSuccess, loadProspect } from './autobot.constants';
-import { Prospect } from '../app.types';
+import { Prospect } from './autobot.types';
 
 const initialState: Autobot = {
   suggestedActivities: [],

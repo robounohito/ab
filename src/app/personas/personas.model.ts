@@ -1,6 +1,6 @@
 
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
-import { Personas, Persona } from './personas.types';
+import { Personas, Persona, Contact, ContactDto } from './personas.types';
 import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas } from './personas.constants';
 import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose } from 'ramda';
 import { selectRouteParam } from '../app.model';
@@ -56,3 +56,21 @@ export const selectCurrentPersona = createSelector(
 const sortPersonas = sortWith<Persona>([
   ascend(prop('order'))
 ]);
+
+export function contactCtor(contact: ContactDto): Contact {
+  return {
+    id: contact.id,
+    fullName: contact.firstName + ' ' + contact.lastName,
+    jobTitle: contact.job.title || 'Mock job title',
+    lastActivityDate: '' || 'Mock date',
+    email: contact.email,
+    phone: contact.phoneNumber || 'mock 111 11 11',
+    company: contact.company || 'Mock company',
+    industry: '' || 'Mock industry',
+    companyLocation: '' || 'Mock company location',
+    technologies: ['Mock technology'],
+    contactLocation: '' || 'Mock contact location',
+    fundingStage: '' || 'Mock funding stage',
+    numberOfEmployees: 0,
+  };
+}

@@ -1,7 +1,6 @@
 
 import { createAction, props } from '@ngrx/store';
-import { Prospect } from '../app.types';
-import { Persona } from './personas.types';
+import { Persona, Contact } from './personas.types';
 
 export const loadPersonas = createAction(
   '[Personas] Load Personas',
@@ -26,7 +25,7 @@ export const loadContactsSuccess = createAction(
   '[Personas] Load Contacts Success',
   props<{
     personaId: string;
-    contacts: Prospect[];
+    contacts: Contact[];
     contactsCount: number;
   }>()
 );
@@ -36,4 +35,38 @@ export enum Condition {
   doesNotContain,
   isKnown,
   isUnknown,
+}
+
+export enum JobDepartment {
+  sales = 'Sales',
+  marketing = 'Marketing',
+  product = 'Product',
+  informationTechnology = 'Information Technology',
+  engineering = 'Engineering',
+  legal = 'Legal',
+  administration = 'Administration',
+  researchAndDevelopment = 'Research and Development',
+  humanResources = 'Human Resources',
+  finance = 'Finance',
+  customerSuccess = 'Customer Success',
+  operations = 'Operations',
+  publicRelations = 'Public Relations',
+  investor = 'Investor',
+  compliance = 'Compliance',
+}
+
+export enum Seniority {
+  owner = 'Owner',
+  founder = 'Founder',
+  cSuite = 'C-Suite',
+  partner = 'Partner',
+  president = 'President',
+  head = 'Head',
+  vp = 'VP',
+  director = 'Director',
+  manager = 'Manager',
+  senior = 'Senior',
+  entry = 'Entry',
+  intern = 'Intern',
+  other = 'Other (search)',
 }

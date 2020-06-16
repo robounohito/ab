@@ -176,6 +176,62 @@ body {
   
   }
 
+  .mat-sort-header-arrow {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  [aria-sort='descending'] {
+    .mat-sort-header-button {
+      &::before {
+        border-bottom: 3px solid black;
+      }
+    }
+  }
+  
+  [aria-sort='ascending'] {
+    .mat-sort-header-button  {
+      &::after {
+        border-top: 3px solid black;
+      }
+    }
+  }
+
+  .mat-sort-header-button {
+
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.17;
+    letter-spacing: 0.2px;
+    color: var.$grey9;
+    text-align: left;
+  
+    &::before {
+      content: "";
+      width: 0; 
+      height: 0; 
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-bottom: 3px solid var.$grey10;
+      position: absolute;
+      right: -11px;
+      bottom: calc(50% + 1px);
+    }
+  
+    &::after {
+      content: "";
+      width: 0; 
+      height: 0; 
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-top: 3px solid var.$grey10;
+      position: absolute;
+      right: -11px;
+      bottom: calc(50% - 4px);
+    }
+  
+  }
+
 }
 
 .insight-tabs {

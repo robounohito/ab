@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { SuggestedActivity } from './autobot.types';
-import { Prospect } from '../app.types';
+import { Prospect } from './autobot.types';
 
 export const loadSuggestedActivities = createAction(
   '[Autobot] Load Suggested Activities',
