@@ -5,18 +5,22 @@ import { Persona, SelectOptions, Personas } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelectChange } from '@angular/material/select';
+import { Condition } from '../personas.constants';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
   disabled: boolean;
   jobDepartment: string[];
   seniority: string[];
-  jobTitleOption: '1' | '2' | '3' | '4';
+  jobTitleOption: Condition;
+  jobTitles: string[];
   fundingStage: SelectOptions;
   numberOfEmployees: SelectOptions;
-  revenueOption: '1' | '2' | '3' | '4';
+  revenueOption: Condition;
   revenueMin: string;
   revenueMax: string;
+  industryOption: Condition;
+  industries: string[];
 }
 
 @Component({
@@ -28,12 +32,10 @@ interface PersonaForm {
 })
 export class PersonaComponent implements OnInit {
 
+  condition = Condition;
   @Input() persona!: Persona;
   @Input() selectOptions!: Personas['selectOptions'];
   form!: FormGroupT<PersonaForm>;
-
-
-  jobTitles: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -41,16 +43,19 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
-      expanded: [{ block: true, company: true }],
+      expanded: [{ block: true, industry: true }],
       disabled: [true],
       jobDepartment: [[]],
       seniority: [[]],
-      jobTitleOption: ['1'],
-      revenueOption: ['1'],
+      jobTitleOption: [Condition.contains],
+      jobTitles: [[]],
+      revenueOption: [Condition.contains],
       revenueMin: [''],
       revenueMax: [''],
       fundingStage: [[]],
       numberOfEmployees: [[]],
+      industryOption: [Condition.contains],
+      industries: [[]],
     });
   }
 
@@ -67,33 +72,26 @@ export class PersonaComponent implements OnInit {
     console.log(event);
   }
 
-
-
-
-
-  onTagRemoved(job: string) {
-    const jd = this.form.value.jobDepartment as string[];
-    this.removeFirst(jd, job);
+  tagRemove(controlName: keyof PersonaForm, item: string) {
     formPatchValue(this.form, {
-      jobDepartment: jd
+      [controlName]: (this.form.value[controlName] as string[])
+        .filter(v => v !== item)
     });
   }
 
-  add(event: MatChipInputEvent): void {
+  tagAdd(controlName: keyof PersonaForm, event: MatChipInputEvent) {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      this.jobTitles.push(value.trim());
+      formPatchValue(this.form, {
+        [controlName]: [
+          ...this.form.value[controlName] as string[],
+          value.trim()
+        ]
+      });
     }
     if (input) {
       input.value = '';
-    }
-  }
-
-  private removeFirst<T>(array: T[], toRemove: T): void {
-    const index = array.indexOf(toRemove);
-    if (index !== -1) {
-      array.splice(index, 1);
     }
   }
 

@@ -67,7 +67,7 @@
                 <mat-chip-list abTagsTruncate>
                   <mat-chip *ngFor="let job of form.value.jobDepartment"
                             [removable]="true"
-                            (removed)="onTagRemoved(job)">
+                            (removed)="tagRemove('jobDepartment', job)">
                     {{job}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -93,25 +93,35 @@
                            class="radio-group ab chips-input"
                            formControlName="jobTitleOption">
 
-            <mat-radio-button value="1">Contains</mat-radio-button>
+            <mat-radio-button [value]="condition.contains">
+              Contains
+            </mat-radio-button>
 
-            <ng-container *ngIf="form.value.jobTitleOption==='1' 
-                                  || form.value.jobTitleOption==='3' 
-                                  || form.value.jobTitleOption==='4'">
-              <ng-container *ngTemplateOutlet="chipsInput">
+            <ng-container *ngIf="form.value.jobTitleOption===condition.contains 
+                                  || form.value.jobTitleOption===condition.isKnown 
+                                  || form.value.jobTitleOption===condition.isUnknown">
+              <ng-container *ngTemplateOutlet="chipsInput; 
+                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
               </ng-container>
             </ng-container>
 
-            <mat-radio-button value="2">Doesn't contain</mat-radio-button>
+            <mat-radio-button [value]="condition.doesNotContain">
+              Doesn't contain
+            </mat-radio-button>
 
-            <ng-container *ngIf="form.value.jobTitleOption==='2'">
-              <ng-container *ngTemplateOutlet="chipsInput">
+            <ng-container *ngIf="form.value.jobTitleOption===condition.doesNotContain">
+              <ng-container *ngTemplateOutlet="chipsInput; 
+                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
               </ng-container>
             </ng-container>
 
-            <mat-radio-button value="3">Is known</mat-radio-button>
+            <mat-radio-button [value]="condition.isKnown">
+              Is known
+            </mat-radio-button>
 
-            <mat-radio-button value="4">Is unknown</mat-radio-button>
+            <mat-radio-button [value]="condition.isUnknown">
+              Is unknown
+            </mat-radio-button>
 
           </mat-radio-group>
 
@@ -132,7 +142,7 @@
                 <mat-chip-list abTagsTruncate>
                   <mat-chip *ngFor="let level of form.value.seniority"
                             [removable]="true"
-                            (removed)="onTagRemoved(level)">
+                            (removed)="tagRemove('seniority', level)">
                     {{level}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -178,7 +188,9 @@
                            class="radio-group ab chips-input"
                            formControlName="revenueOption">
 
-            <mat-radio-button value="1">Is between</mat-radio-button>
+            <mat-radio-button [value]="condition.contains">
+              Is between
+            </mat-radio-button>
 
             <div class="range-inputs-wrapper">
               <label>
@@ -190,9 +202,13 @@
               </label>
             </div>
 
-            <mat-radio-button value="3">Is known</mat-radio-button>
+            <mat-radio-button [value]="condition.isKnown">
+              Is known
+            </mat-radio-button>
 
-            <mat-radio-button value="4">Is unknown</mat-radio-button>
+            <mat-radio-button [value]="condition.isUnknown">
+              Is unknown
+            </mat-radio-button>
 
           </mat-radio-group>
 
@@ -214,7 +230,7 @@
                 <mat-chip-list abTagsTruncate>
                   <mat-chip *ngFor="let stage of form.value.fundingStage"
                             [removable]="true"
-                            (removed)="onTagRemoved(stage)">
+                            (removed)="tagRemove('fundingStage', stage)">
                     {{stage}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -248,7 +264,7 @@
                 <mat-chip-list abTagsTruncate>
                   <mat-chip *ngFor="let number of form.value.numberOfEmployees"
                             [removable]="true"
-                            (removed)="onTagRemoved(number)">
+                            (removed)="tagRemove('numberOfEmployees', number)">
                     {{number}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -280,6 +296,52 @@
         <ab-arrow [expanded]="form.value.expanded['industry']"
                   (toggle)="toggleItem('industry')">
         </ab-arrow>
+      </div>
+
+      <div class="group-wrapper"
+           *ngIf="form.value.expanded['industry']"
+           [@slideInOut]>
+
+        <div class="group">
+
+          <mat-radio-group aria-label="Select an option"
+                           class="radio-group ab chips-input"
+                           formControlName="industryOption">
+
+            <mat-radio-button [value]="condition.contains">
+              Is any of
+            </mat-radio-button>
+
+            <ng-container *ngIf="form.value.industryOption===condition.contains 
+                                  || form.value.industryOption===condition.isKnown 
+                                  || form.value.industryOption===condition.isUnknown">
+              <ng-container *ngTemplateOutlet="chipsInput; 
+                context: { controlName: 'industries', placeholder: 'Input industries' }">
+              </ng-container>
+            </ng-container>
+
+            <mat-radio-button [value]="condition.doesNotContain">
+              Is none of
+            </mat-radio-button>
+
+            <ng-container *ngIf="form.value.industryOption===condition.doesNotContain">
+              <ng-container *ngTemplateOutlet="chipsInput; 
+                context: { controlName: 'industries', placeholder: 'Input industries' }">
+              </ng-container>
+            </ng-container>
+
+            <mat-radio-button [value]="condition.isKnown">
+              Is known
+            </mat-radio-button>
+
+            <mat-radio-button [value]="condition.isUnknown">
+              Is unknown
+            </mat-radio-button>
+
+          </mat-radio-group>
+
+        </div>
+
       </div>
 
     </div>
@@ -316,18 +378,23 @@
 
 </div>
 
-<ng-template #chipsInput>
+<ng-template #chipsInput
+             let-controlName="controlName"
+             let-placeholder="placeholder">
   <mat-form-field [floatLabel]="'never'">
     <mat-chip-list #chipList
-                   aria-label="Job title selection">
-      <mat-chip *ngFor="let job of jobTitles">
+                   aria-label="Tags selection">
+      <mat-chip *ngFor="let job of form.get(controlName)?.value"
+                [removable]="true"
+                (removed)="tagRemove(controlName, job)">
         {{job}}
         <mat-icon matChipRemove>close</mat-icon>
       </mat-chip>
-      <input placeholder="Input job titles"
+      <input autocomplete="off"
+             [placeholder]="placeholder"
              [matChipInputFor]="chipList"
              [matChipInputAddOnBlur]="true"
-             (matChipInputTokenEnd)="add($event)">
+             (matChipInputTokenEnd)="tagAdd(controlName, $event)">
     </mat-chip-list>
   </mat-form-field>
 </ng-template>
