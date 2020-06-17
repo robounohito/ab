@@ -12,6 +12,7 @@ import { PersonaContactsComponent } from './persona-contacts/persona-contacts.co
 import { PersonaComponent } from './persona/persona.component';
 import { PersonaGuard } from './persona-guard.service';
 import { PersonasGuard } from './personas-guard.service';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PersonasGuard } from './personas-guard.service';
     PersonasRoutingModule,
     StoreModule.forFeature('personas', reducer),
     EffectsModule.forFeature([PersonasEffects]),
+    NgxMaskModule.forChild(),
   ],
   providers: [
     PersonaGuard,

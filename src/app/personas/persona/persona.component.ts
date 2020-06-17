@@ -45,7 +45,7 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
-      expanded: [{ block: true, technologies: true }],
+      expanded: [{ block: true, /* location: true */ }],
       disabled: [true],
       jobDepartment: [[]],
       seniority: [[]],
