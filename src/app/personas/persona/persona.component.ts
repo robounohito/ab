@@ -21,6 +21,8 @@ interface PersonaForm {
   revenueMax: string;
   industryOption: Condition;
   industries: string[];
+  technologiesOption: Condition;
+  technologies: string[];
 }
 
 @Component({
@@ -43,7 +45,7 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
-      expanded: [{ block: true, industry: true }],
+      expanded: [{ block: true, technologies: true }],
       disabled: [true],
       jobDepartment: [[]],
       seniority: [[]],
@@ -56,6 +58,8 @@ export class PersonaComponent implements OnInit {
       numberOfEmployees: [[]],
       industryOption: [Condition.contains],
       industries: [[]],
+      technologiesOption: [Condition.contains],
+      technologies: [[]],
     });
   }
 

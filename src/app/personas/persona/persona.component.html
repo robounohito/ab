@@ -372,6 +372,52 @@
         </ab-arrow>
       </div>
 
+      <div class="group-wrapper"
+           *ngIf="form.value.expanded['technologies']"
+           [@slideInOut]>
+
+        <div class="group">
+
+          <mat-radio-group aria-label="Select an option"
+                           class="radio-group ab chips-input"
+                           formControlName="technologiesOption">
+
+            <mat-radio-button [value]="condition.contains">
+              Is any of
+            </mat-radio-button>
+
+            <ng-container *ngIf="form.value.technologiesOption===condition.contains 
+                                  || form.value.technologiesOption===condition.isKnown 
+                                  || form.value.technologiesOption===condition.isUnknown">
+              <ng-container *ngTemplateOutlet="chipsInput; 
+                context: { controlName: 'technologies', placeholder: 'Input technologies' }">
+              </ng-container>
+            </ng-container>
+
+            <mat-radio-button [value]="condition.doesNotContain">
+              Is none of
+            </mat-radio-button>
+
+            <ng-container *ngIf="form.value.technologiesOption===condition.doesNotContain">
+              <ng-container *ngTemplateOutlet="chipsInput; 
+                context: { controlName: 'technologies', placeholder: 'Input technologies' }">
+              </ng-container>
+            </ng-container>
+
+            <mat-radio-button [value]="condition.isKnown">
+              Is known
+            </mat-radio-button>
+
+            <mat-radio-button [value]="condition.isUnknown">
+              Is unknown
+            </mat-radio-button>
+
+          </mat-radio-group>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
