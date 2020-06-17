@@ -14,6 +14,7 @@ export interface Personas {
 export interface Persona {
   id: string;
   order: number;
+  active: boolean;
   name: string;
   contactsAttributes: ContactsAttributes;
   contactsLocation: Location;

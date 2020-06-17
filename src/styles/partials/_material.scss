@@ -124,6 +124,12 @@ body {
 
   }
 
+  .mat-chip.mat-standard-chip.mat-chip-disabled,
+  .mat-select-disabled .mat-chip {
+    opacity: 0.9;
+    color: var.$grey11;
+  }
+
   .mat-select-placeholder {
     display: none !important;
   }

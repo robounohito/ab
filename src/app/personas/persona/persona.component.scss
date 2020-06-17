@@ -53,6 +53,11 @@
   border: solid 1px var.$lightGrey2;
   padding: 10px;
 
+  .block-disabled {
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
   .controls-wrapper {
 
     display: flex;

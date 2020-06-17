@@ -19,7 +19,7 @@
           <span>Remove persona</span>
         </button>
       </mat-menu>
-      <ab-toggle inputFormControlName="disabled">
+      <ab-toggle inputFormControlName="active">
       </ab-toggle>
     </div>
     <ab-arrow [expanded]="form.value.expanded['block']"
@@ -32,6 +32,7 @@
   <p>{{persona.contacts ? persona.contactsCount : 34}} contacts</p>
 
   <div class="block-wrapper"
+       [ngClass]="!form.value.active && 'block-disabled'"
        *ngIf="form.value.expanded['block']">
 
     <div class="info-block">
@@ -61,10 +62,12 @@
             <mat-select formControlName="jobDepartment"
                         placeholder="Select job department"
                         (selectionChange)="selectChange($event)"
+                        [disabled]="!form.value.active"
                         multiple>
 
               <mat-select-trigger>
-                <mat-chip-list abTagsTruncate>
+                <mat-chip-list abTagsTruncate
+                               [disabled]="!form.value.active">
                   <mat-chip *ngFor="let job of form.value.jobDepartment"
                             [removable]="true"
                             (removed)="tagRemove('jobDepartment', job)">
@@ -91,7 +94,8 @@
 
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
-                           formControlName="jobTitleOption">
+                           formControlName="jobTitleOption"
+                           [disabled]="!form.value.active">
 
             <mat-radio-button [value]="condition.contains">
               Contains
@@ -136,10 +140,12 @@
 
             <mat-select formControlName="seniority"
                         placeholder="Select seniority"
+                        [disabled]="!form.value.active"
                         multiple>
 
               <mat-select-trigger>
-                <mat-chip-list abTagsTruncate>
+                <mat-chip-list abTagsTruncate
+                               [disabled]="!form.value.active">
                   <mat-chip *ngFor="let level of form.value.seniority"
                             [removable]="true"
                             (removed)="tagRemove('seniority', level)">
@@ -470,6 +476,7 @@
              let-placeholder="placeholder">
   <mat-form-field [floatLabel]="'never'">
     <mat-chip-list #chipList
+                   [disabled]="!form.value.active"
                    aria-label="Tags selection">
       <mat-chip *ngFor="let job of form.get(controlName)?.value"
                 [removable]="true"

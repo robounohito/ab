@@ -9,7 +9,7 @@ import { Condition } from '../personas.constants';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
-  disabled: boolean;
+  active: boolean;
   jobDepartment: string[];
   seniority: string[];
   jobTitleOption: Condition;
@@ -54,7 +54,7 @@ export class PersonaComponent implements OnInit {
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
       expanded: [{ block: true, /* location: true */ }],
-      disabled: [true],
+      active: [true],
       jobDepartment: [[]],
       seniority: [[]],
       jobTitleOption: [Condition.contains],
