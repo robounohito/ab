@@ -16,8 +16,9 @@ export class PersonasGuard implements CanActivate {
   canActivate() {
     return this.store.select(selectPersonas).pipe(
       take(1),
-      tap(({ personas }) => {
-        if (!personas) { this.store.dispatch(loadPersonas()); }
+      tap(() => {
+        console.log('loadPersonas');
+        this.store.dispatch(loadPersonas());
       }),
       map(() => true),
     );

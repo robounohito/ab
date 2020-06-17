@@ -7,6 +7,7 @@ import { Persona, Contact } from '../personas.types';
 import { PageEvent } from '@angular/material/paginator';
 import { loadContacts } from '../personas.constants';
 import { Sort } from '@angular/material/sort';
+import { ApiService } from 'src/app/_core/api/api.service';
 
 @Component({
   selector: 'ab-contacts',
@@ -24,6 +25,7 @@ export class PersonaContactsComponent implements OnInit {
 
   constructor(
     private store: Store<App>,
+    public api: ApiService,
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,10 @@ export class PersonaContactsComponent implements OnInit {
 
   sortContacts(sort: Sort) {
     console.log('sort', sort);
+  }
+
+  userInitials(fullName: string) {
+    return fullName.split(' ').map(n => n.charAt(0).toUpperCase()).join('');
   }
 
   trackByFn(index: number, item: Contact) {

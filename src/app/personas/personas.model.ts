@@ -8,14 +8,21 @@ import { selectRouteParam } from '../app.model';
 const initialState: Personas = {
   loading: false,
   personas: null,
+  selectOptions: {
+    fundingStage: [],
+    seniority: [],
+    jobDepartment: [],
+    numberOfEmployees: [],
+  },
 };
 
 const personasReducer = createReducer(initialState,
 
-  on(loadPersonasSuccess, (_, { personas }) => {
+  on(loadPersonasSuccess, (_, { personas, dataSets }) => {
     return {
       loading: false,
       personas: sortPersonas(personas),
+      selectOptions: dataSets,
     };
   }),
 
@@ -60,6 +67,7 @@ const sortPersonas = sortWith<Persona>([
 export function contactCtor(contact: ContactDto): Contact {
   return {
     id: contact.id,
+    image: contact.image,
     fullName: contact.firstName + ' ' + contact.lastName,
     jobTitle: contact.job.title || 'Mock job title',
     lastActivityDate: '' || 'Mock date',
@@ -73,4 +81,14 @@ export function contactCtor(contact: ContactDto): Contact {
     fundingStage: '' || 'Mock funding stage',
     numberOfEmployees: 0,
   };
+}
+
+export function numberOfEmployeesCtor(
+  { min, max }: { min: number; max: number; }
+): string {
+  if (max !== -1) {
+    return `${min}-${max} employees`;
+  } else {
+    return `${min}+ employees`;
+  }
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form';
-import { Persona } from '../personas.types';
+import { Persona, SelectOptions, Personas } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { JobDepartment, Seniority } from '../personas.constants';
 import { MatSelectChange } from '@angular/material/select';
 
 interface PersonaForm {
@@ -13,6 +12,11 @@ interface PersonaForm {
   jobDepartment: string[];
   seniority: string[];
   jobTitleOption: '1' | '2' | '3' | '4';
+  fundingStage: SelectOptions;
+  numberOfEmployees: SelectOptions;
+  revenueOption: '1' | '2' | '3' | '4';
+  revenueMin: string;
+  revenueMax: string;
 }
 
 @Component({
@@ -24,9 +28,8 @@ interface PersonaForm {
 })
 export class PersonaComponent implements OnInit {
 
-  jobDepartments: string[] = Object.values(JobDepartment);
-  seniority: string[] = Object.values(Seniority);
   @Input() persona!: Persona;
+  @Input() selectOptions!: Personas['selectOptions'];
   form!: FormGroupT<PersonaForm>;
 
 
@@ -38,11 +41,16 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
-      expanded: [{ block: true, contacts: true }],
+      expanded: [{ block: true, company: true }],
       disabled: [true],
       jobDepartment: [[]],
       seniority: [[]],
       jobTitleOption: ['1'],
+      revenueOption: ['1'],
+      revenueMin: [''],
+      revenueMax: [''],
+      fundingStage: [[]],
+      numberOfEmployees: [[]],
     });
   }
 

@@ -19,16 +19,18 @@ export interface ApiRequest {
 export const apiEndpoint = {
   getAttachment: { method: 'get', url: 'attachments/{id}' },
   getCampaigns: { method: 'get', url: 'autobound/sequences/list' },
-  getGmailAuth: { method: 'get', url: 'autobound/mission_control/integrations/gmail/authorization' },
-  getHubspotAuth: { method: 'get', url: 'autobound/mission_control/integrations/hubspot/userID/{email}' },
-  getInsights: { method: 'get', url: 'autobound/insights/{contactId}' },
-  getLogout: { method: 'get', url: 'auth/logout' },
-  getOutreachMetrics: { method: 'get', url: 'sales_rep_dashboard' },
-  getPersonas: { method: 'get', url: 'personas' },
   getContacts: { method: 'get', url: 'contacts' },
-  getSidebar: { method: 'get', url: 'sidebar' },
-  getStats: { method: 'get', url: 'stats' },
-  getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' },
+  getFundingStage: { method: 'get', url: 'misc/values/fundingStage' },
+  getInsights: { method: 'get', url: 'autobound/insights/{contactId}' },
+  getJobDepartment: { method: 'get', url: 'misc/values/jobDepartment' },
+  getLogout: { method: 'get', url: 'auth/logout' },
+  getNumberOfEmployees: { method: 'get', url: 'misc/values/numberOfEmployees' },
+  getOutreachMetrics: { method: 'get', url: 'sales_rep_dashboard' }, // not implemented
+  getPersonas: { method: 'get', url: 'personas' }, // not implemented
+  getSeniority: { method: 'get', url: 'misc/values/seniority' },
+  getSidebar: { method: 'get', url: 'sidebar' }, // not implemented
+  getStats: { method: 'get', url: 'stats' }, // not implemented
+  getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' }, // not implemented
   getUserProfile: { method: 'get', url: 'userProfile' },
   postAttachment: { method: 'post', url: 'attachments' },
   postLogin: { method: 'post', url: 'auth/login' },

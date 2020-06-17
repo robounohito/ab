@@ -185,6 +185,47 @@
                 margin-bottom: 10px;
               }
 
+              &.mat-radio-checked {
+                color: var.$richBlack2;
+              }
+
+            }
+
+          }
+
+          .range-inputs-wrapper {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 0 12px;
+            font-size: 12px;
+            color: var.$richBlack2;
+
+            label {
+
+              position: relative;
+
+              &::before {
+                content: "$";
+                position: absolute;
+                top: 5px;
+                left: 8px;
+                color: var.$grey11;
+              }
+
+              input {
+                width: 82px;
+                height: 30px;
+                padding: 5px 5px 5px 19px;
+                border-radius: 4px;
+                font-size: 12px;
+                color: var.$richBlack2;
+                border: solid 1px var.$grey4;
+                background-color: white;
+                outline: none;
+              }
+
             }
 
           }

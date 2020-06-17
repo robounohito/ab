@@ -1,6 +1,6 @@
 
 import { createAction, props } from '@ngrx/store';
-import { Persona, Contact } from './personas.types';
+import { Persona, Contact, Personas } from './personas.types';
 
 export const loadPersonas = createAction(
   '[Personas] Load Personas',
@@ -8,7 +8,10 @@ export const loadPersonas = createAction(
 
 export const loadPersonasSuccess = createAction(
   '[Personas] Load Personas Success',
-  props<{ personas: Persona[]; }>()
+  props<{
+    personas: Persona[];
+    dataSets: Personas['selectOptions'];
+  }>()
 );
 
 export const reorderPersonas = createAction(

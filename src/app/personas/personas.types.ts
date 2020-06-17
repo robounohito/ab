@@ -3,6 +3,12 @@ import { Condition } from './personas.constants';
 export interface Personas {
   loading: boolean;
   personas: Persona[] | null;
+  selectOptions: {
+    fundingStage: SelectOptions;
+    seniority: SelectOptions;
+    jobDepartment: SelectOptions;
+    numberOfEmployees: SelectOptions;
+  };
 }
 
 export interface Persona {
@@ -29,6 +35,7 @@ interface ContactAttributes {
 
 export interface Contact {
   id: string;
+  image: string;
   fullName: string;
   jobTitle: string;
   lastActivityDate: string;
@@ -45,6 +52,7 @@ export interface Contact {
 
 export interface ContactDto {
   id: string;
+  image: string;
   firstName: string;
   lastName: string;
   company: string;
@@ -62,3 +70,5 @@ export interface ContactDto {
   };
   phoneNumber: string;
 }
+
+export type SelectOptions = string[];

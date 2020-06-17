@@ -35,7 +35,7 @@
   .mat-header-row {
     
     border-bottom: none;
-    padding: 0 10px;
+    padding: 0 10px 0 5px;
 
     .mat-header-cell {
       padding: 0 5px;
@@ -49,7 +49,7 @@
 
     height: 44px;
     position: relative;
-    padding: 10px;
+    padding: 10px 10px 10px 5px;
     border: 1px solid var.$lightGrey2;
     border-radius: 4px;
     background-color: white;
@@ -74,6 +74,41 @@
 
       &:first-child {
         color: var.$aqua;
+      }
+
+      & > div {
+
+        display: flex;
+
+        & > div:first-child {
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          margin-right: 8px;
+          border-radius: 50%;
+          font-size: 10px;
+          line-height: normal;
+          letter-spacing: 0.17px;
+          color: white;
+          background-color: var.$aqua;
+          flex-shrink: 0;
+  
+          img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+          }
+
+        }
+
+        & > div:nth-child(2) {
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        
       }
 
     }

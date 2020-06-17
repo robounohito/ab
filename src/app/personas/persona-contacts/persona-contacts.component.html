@@ -38,7 +38,13 @@
       <mat-cell *matCellDef="let element"
                 [matTooltip]="element.fullName"
                 matTooltipPosition="above">
-        {{element.fullName}}
+        <div>
+          <div>
+            <!-- <img src="{{this.api.getAttachment(element.image)}}" alt="User's picture"> -->
+            {{userInitials(element.fullName)}}
+          </div>
+          <div>{{element.fullName}}</div>
+        </div>
       </mat-cell>
     </ng-container>
 

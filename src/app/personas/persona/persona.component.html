@@ -74,7 +74,7 @@
                 </mat-chip-list>
               </mat-select-trigger>
 
-              <mat-option *ngFor="let job of jobDepartments"
+              <mat-option *ngFor="let job of selectOptions.jobDepartment"
                           [value]="job">
                 {{job}}
               </mat-option>
@@ -95,7 +95,9 @@
 
             <mat-radio-button value="1">Contains</mat-radio-button>
 
-            <ng-container *ngIf="form.value.jobTitleOption==='1'">
+            <ng-container *ngIf="form.value.jobTitleOption==='1' 
+                                  || form.value.jobTitleOption==='3' 
+                                  || form.value.jobTitleOption==='4'">
               <ng-container *ngTemplateOutlet="chipsInput">
               </ng-container>
             </ng-container>
@@ -137,7 +139,7 @@
                 </mat-chip-list>
               </mat-select-trigger>
 
-              <mat-option *ngFor="let level of seniority"
+              <mat-option *ngFor="let level of selectOptions.seniority"
                           [value]="level">
                 {{level}}
               </mat-option>
@@ -162,6 +164,108 @@
         <ab-arrow [expanded]="form.value.expanded['company']"
                   (toggle)="toggleItem('company')">
         </ab-arrow>
+      </div>
+
+      <div class="group-wrapper"
+           *ngIf="form.value.expanded['company']"
+           [@slideInOut]>
+
+        <div class="group">
+
+          <div class="group-label">Revenue</div>
+
+          <mat-radio-group aria-label="Select an option"
+                           class="radio-group ab chips-input"
+                           formControlName="revenueOption">
+
+            <mat-radio-button value="1">Is between</mat-radio-button>
+
+            <div class="range-inputs-wrapper">
+              <label>
+                <input formControlName="revenueMin">
+              </label>
+              and
+              <label>
+                <input formControlName="revenueMax">
+              </label>
+            </div>
+
+            <mat-radio-button value="3">Is known</mat-radio-button>
+
+            <mat-radio-button value="4">Is unknown</mat-radio-button>
+
+          </mat-radio-group>
+
+        </div>
+
+        <div class="group">
+
+          <div class="group-label">Funding stage</div>
+
+          <mat-form-field class="ab"
+                          [floatLabel]="'never'">
+
+            <mat-select formControlName="fundingStage"
+                        placeholder="Select funding stage"
+                        (selectionChange)="selectChange($event)"
+                        multiple>
+
+              <mat-select-trigger>
+                <mat-chip-list abTagsTruncate>
+                  <mat-chip *ngFor="let stage of form.value.fundingStage"
+                            [removable]="true"
+                            (removed)="onTagRemoved(stage)">
+                    {{stage}}
+                    <mat-icon matChipRemove>close</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-select-trigger>
+
+              <mat-option *ngFor="let stage of selectOptions.fundingStage"
+                          [value]="stage">
+                {{stage}}
+              </mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+
+        <div class="group">
+
+          <div class="group-label">Number of employees</div>
+
+          <mat-form-field class="ab"
+                          [floatLabel]="'never'">
+
+            <mat-select formControlName="numberOfEmployees"
+                        placeholder="Select number of employees"
+                        (selectionChange)="selectChange($event)"
+                        multiple>
+
+              <mat-select-trigger>
+                <mat-chip-list abTagsTruncate>
+                  <mat-chip *ngFor="let number of form.value.numberOfEmployees"
+                            [removable]="true"
+                            (removed)="onTagRemoved(number)">
+                    {{number}}
+                    <mat-icon matChipRemove>close</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-select-trigger>
+
+              <mat-option *ngFor="let number of selectOptions.numberOfEmployees"
+                          [value]="number">
+                {{number}}
+              </mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+
       </div>
 
     </div>
