@@ -167,6 +167,31 @@
     <div class="info-block">
 
       <div class="info-block-header"
+           (click)="toggleItem('contactsLocation')">
+        <h4>
+          <mat-icon>location_on</mat-icon>
+          Contacts Location
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['contactsLocation']"
+                  (toggle)="toggleItem('contactsLocation')">
+        </ab-arrow>
+      </div>
+
+      <div class="group-wrapper"
+           *ngIf="form.value.expanded['contactsLocation']"
+           [@slideInOut]>
+
+        <ng-container *ngTemplateOutlet="location; 
+           context: { controlNamePrefix: 'contacts' }">
+        </ng-container>
+
+      </div>
+
+    </div>
+
+    <div class="info-block">
+
+      <div class="info-block-header"
            (click)="toggleItem('company')">
         <h4>
           <mat-icon>corporate_fare</mat-icon>
@@ -292,6 +317,31 @@
     <div class="info-block">
 
       <div class="info-block-header"
+           (click)="toggleItem('companyLocation')">
+        <h4>
+          <mat-icon>location_on</mat-icon>
+          Company Location
+        </h4>
+        <ab-arrow [expanded]="form.value.expanded['companyLocation']"
+                  (toggle)="toggleItem('companyLocation')">
+        </ab-arrow>
+      </div>
+
+      <div class="group-wrapper"
+           *ngIf="form.value.expanded['companyLocation']"
+           [@slideInOut]>
+
+        <ng-container *ngTemplateOutlet="location; 
+           context: { controlNamePrefix: 'company' }">
+        </ng-container>
+
+      </div>
+
+    </div>
+
+    <div class="info-block">
+
+      <div class="info-block-header"
            (click)="toggleItem('industry')">
         <h4>
           <mat-icon>business_center</mat-icon>
@@ -331,196 +381,6 @@
             <ng-container *ngIf="form.value.industryOption===condition.doesNotContain">
               <ng-container *ngTemplateOutlet="chipsInput; 
                 context: { controlName: 'industries', placeholder: 'Input industries' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.isKnown">
-              Is known
-            </mat-radio-button>
-
-            <mat-radio-button [value]="condition.isUnknown">
-              Is unknown
-            </mat-radio-button>
-
-          </mat-radio-group>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="info-block">
-
-      <div class="info-block-header"
-           (click)="toggleItem('location')">
-        <h4>
-          <mat-icon>location_on</mat-icon>
-          Location
-        </h4>
-        <ab-arrow [expanded]="form.value.expanded['location']"
-                  (toggle)="toggleItem('location')">
-        </ab-arrow>
-      </div>
-
-      <div class="group-wrapper"
-           *ngIf="form.value.expanded['location']"
-           [@slideInOut]>
-
-        <div class="group">
-
-          <div class="group-label">City</div>
-
-          <mat-radio-group aria-label="Select an option"
-                           class="radio-group ab chips-input"
-                           formControlName="jobTitleOption">
-
-            <mat-radio-button [value]="condition.contains">
-              Is any of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.contains 
-                                  || form.value.jobTitleOption===condition.isKnown 
-                                  || form.value.jobTitleOption===condition.isUnknown">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.doesNotContain">
-              Is none of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.doesNotContain">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.isKnown">
-              Is known
-            </mat-radio-button>
-
-            <mat-radio-button [value]="condition.isUnknown">
-              Is unknown
-            </mat-radio-button>
-
-          </mat-radio-group>
-
-        </div>
-
-        <div class="group">
-
-          <div class="group-label">State</div>
-
-          <mat-radio-group aria-label="Select an option"
-                           class="radio-group ab chips-input"
-                           formControlName="jobTitleOption">
-
-            <mat-radio-button [value]="condition.contains">
-              Is any of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.contains 
-                                  || form.value.jobTitleOption===condition.isKnown 
-                                  || form.value.jobTitleOption===condition.isUnknown">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.doesNotContain">
-              Is none of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.doesNotContain">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.isKnown">
-              Is known
-            </mat-radio-button>
-
-            <mat-radio-button [value]="condition.isUnknown">
-              Is unknown
-            </mat-radio-button>
-
-          </mat-radio-group>
-
-        </div>
-
-        <div class="group">
-
-          <div class="group-label">Country</div>
-
-          <mat-radio-group aria-label="Select an option"
-                           class="radio-group ab chips-input"
-                           formControlName="jobTitleOption">
-
-            <mat-radio-button [value]="condition.contains">
-              Is any of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.contains 
-                                  || form.value.jobTitleOption===condition.isKnown 
-                                  || form.value.jobTitleOption===condition.isUnknown">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.doesNotContain">
-              Is none of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.doesNotContain">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.isKnown">
-              Is known
-            </mat-radio-button>
-
-            <mat-radio-button [value]="condition.isUnknown">
-              Is unknown
-            </mat-radio-button>
-
-          </mat-radio-group>
-
-        </div>
-
-
-        <div class="group">
-
-          <div class="group-label">Zipcode</div>
-
-          <mat-radio-group aria-label="Select an option"
-                           class="radio-group ab chips-input"
-                           formControlName="jobTitleOption">
-
-            <mat-radio-button [value]="condition.contains">
-              Is any of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.contains 
-                                  || form.value.jobTitleOption===condition.isKnown 
-                                  || form.value.jobTitleOption===condition.isUnknown">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
-              </ng-container>
-            </ng-container>
-
-            <mat-radio-button [value]="condition.doesNotContain">
-              Is none of
-            </mat-radio-button>
-
-            <ng-container *ngIf="form.value.jobTitleOption===condition.doesNotContain">
-              <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
               </ng-container>
             </ng-container>
 
@@ -624,4 +484,45 @@
              (matChipInputTokenEnd)="tagAdd(controlName, $event)">
     </mat-chip-list>
   </mat-form-field>
+</ng-template>
+
+<ng-template #location
+             let-controlNamePrefix="controlNamePrefix">
+
+  <div class="group">
+    <div class="group-label">City</div>
+    <div class="ab chips-input">
+      <ng-container *ngTemplateOutlet="chipsInput; 
+        context: { controlName: controlNamePrefix + 'Cities', placeholder: 'Input cities' }">
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">State</div>
+    <div class="ab chips-input">
+      <ng-container *ngTemplateOutlet="chipsInput; 
+        context: { controlName: controlNamePrefix + 'States', placeholder: 'Input states' }">
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Country</div>
+    <div class="ab chips-input">
+      <ng-container *ngTemplateOutlet="chipsInput; 
+        context: { controlName: controlNamePrefix + 'Countries', placeholder: 'Input countries' }">
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Zip code</div>
+    <div class="ab chips-input">
+      <ng-container *ngTemplateOutlet="chipsInput; 
+        context: { controlName: controlNamePrefix +  'ZipCodes', placeholder: 'Input zip codes' }">
+      </ng-container>
+    </div>
+  </div>
+
 </ng-template>

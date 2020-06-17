@@ -23,6 +23,14 @@ interface PersonaForm {
   industries: string[];
   technologiesOption: Condition;
   technologies: string[];
+  contactsCities: string[];
+  contactsCountries: string[];
+  contactsStates: string[];
+  contactsZipCodes: string[];
+  companyCities: string[];
+  companyCountries: string[];
+  companyStates: string[];
+  companyZipCodes: string[];
 }
 
 @Component({
@@ -60,6 +68,14 @@ export class PersonaComponent implements OnInit {
       industries: [[]],
       technologiesOption: [Condition.contains],
       technologies: [[]],
+      contactsCities: [[]],
+      contactsCountries: [[]],
+      contactsStates: [[]],
+      contactsZipCodes: [[]],
+      companyCities: [[]],
+      companyCountries: [[]],
+      companyStates: [[]],
+      companyZipCodes: [[]],
     });
   }
 

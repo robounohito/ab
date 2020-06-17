@@ -15,22 +15,30 @@ export interface Persona {
   id: string;
   order: number;
   name: string;
-  contactAttributes: ContactAttributes;
-  companyAttributes: any;
-  industry: any;
-  location: any;
-  technologies: any;
+  contactsAttributes: ContactsAttributes;
+  contactsLocation: Location;
+  companyAttributes: CompanyAttributes;
+  companyLocation: Location;
+  industry: ConditionalKeywords;
+  technologies: ConditionalKeywords;
   contacts?: Contact[];
   contactsCount: number;
 }
 
-interface ContactAttributes {
+interface ContactsAttributes {
   jobDepartment: string[];
-  jobTitle: {
-    condition: Condition;
-    keywords: string[];
-  };
+  jobTitle: ConditionalKeywords;
   seniority: string[];
+}
+
+interface CompanyAttributes {
+  revenue: {
+    condition: Condition;
+    min: number;
+    max: number;
+  };
+  fundingStage: string[];
+  numberOfEmployee: string[];
 }
 
 export interface Contact {
@@ -72,3 +80,15 @@ export interface ContactDto {
 }
 
 export type SelectOptions = string[];
+
+type ConditionalKeywords = {
+  condition: Condition;
+  keywords: string[];
+};
+
+interface Location {
+  city: string[];
+  state: string[];
+  country: string[];
+  zipCode: string[];
+}
