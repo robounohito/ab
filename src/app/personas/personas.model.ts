@@ -97,9 +97,9 @@ export function numberOfEmployeesMapper(
   { min, max }: { min: number; max: number; }
 ): string {
   if (max !== -1) {
-    return `${min}-${max} employees`;
+    return `${min}-${max}`;
   } else {
-    return `${min}+ employees`;
+    return `${min}+`;
   }
 }
 
