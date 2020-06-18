@@ -33,9 +33,18 @@ export const loadContactsSuccess = createAction(
   }>()
 );
 
+export const personaSelectionChange = createAction(
+  '[Personas] Persona Selection Change',
+  props<{
+    personaId: string;
+    path: string[];
+    value: string[] | string;
+  }>()
+);
+
 export enum Condition {
-  contains,
-  doesNotContain,
+  isAnyOf,
+  isNoneOf,
   isKnown,
   isUnknown,
 }

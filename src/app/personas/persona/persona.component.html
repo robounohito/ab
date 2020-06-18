@@ -59,18 +59,18 @@
           <mat-form-field class="ab"
                           [floatLabel]="'never'">
 
-            <mat-select formControlName="jobDepartment"
-                        placeholder="Select job department"
-                        (selectionChange)="selectChange($event)"
+            <mat-select placeholder="Select job department"
+                        (selectionChange)="selectChange(['contactsAttributes', 'jobDepartment'], $event)"
+                        [value]="persona.contactsAttributes.jobDepartment"
                         [disabled]="!form.value.active"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate
                                [disabled]="!form.value.active">
-                  <mat-chip *ngFor="let job of form.value.jobDepartment"
+                  <mat-chip *ngFor="let job of persona.contactsAttributes.jobDepartment"
                             [removable]="true"
-                            (removed)="tagRemove('jobDepartment', job)">
+                            (removed)="tagRemove(['contactsAttributes', 'jobDepartment'], job)">
                     {{job}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -94,28 +94,29 @@
 
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
-                           formControlName="jobTitleOption"
+                           [value]="persona.contactsAttributes.jobTitle.condition"
+                           (change)="selectChange(['contactsAttributes', 'jobTitle', 'condition'], $event)"
                            [disabled]="!form.value.active">
 
-            <mat-radio-button [value]="condition.contains">
+            <mat-radio-button [value]="condition.isAnyOf">
               Contains
             </mat-radio-button>
 
-            <ng-container *ngIf="form.value.jobTitleOption===condition.contains 
-                                  || form.value.jobTitleOption===condition.isKnown 
-                                  || form.value.jobTitleOption===condition.isUnknown">
+            <ng-container *ngIf="persona.contactsAttributes.jobTitle.condition===condition.isAnyOf 
+                                  || persona.contactsAttributes.jobTitle.condition===condition.isKnown 
+                                  || persona.contactsAttributes.jobTitle.condition===condition.isUnknown">
               <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
+                context: { pathTo: ['contactsAttributes', 'jobTitle', 'keywords'], placeholder: 'Input job titles' }">
               </ng-container>
             </ng-container>
 
-            <mat-radio-button [value]="condition.doesNotContain">
+            <mat-radio-button [value]="condition.isNoneOf">
               Doesn't contain
             </mat-radio-button>
 
-            <ng-container *ngIf="form.value.jobTitleOption===condition.doesNotContain">
+            <ng-container *ngIf="persona.contactsAttributes.jobTitle.condition===condition.isNoneOf">
               <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'jobTitles', placeholder: 'Input job titles' }">
+                context: { pathTo: ['contactsAttributes', 'jobTitle', 'keywords'], placeholder: 'Input job titles' }">
               </ng-container>
             </ng-container>
 
@@ -138,17 +139,18 @@
           <mat-form-field class="ab"
                           [floatLabel]="'never'">
 
-            <mat-select formControlName="seniority"
-                        placeholder="Select seniority"
+            <mat-select placeholder="Select seniority"
+                        [value]="persona.contactsAttributes.seniority"
+                        (selectionChange)="selectChange(['contactsAttributes', 'seniority'], $event)"
                         [disabled]="!form.value.active"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate
                                [disabled]="!form.value.active">
-                  <mat-chip *ngFor="let level of form.value.seniority"
+                  <mat-chip *ngFor="let level of persona.contactsAttributes.seniority"
                             [removable]="true"
-                            (removed)="tagRemove('seniority', level)">
+                            (removed)="tagRemove(['contactsAttributes', 'seniority'], level)">
                     {{level}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -175,7 +177,7 @@
       <div class="info-block-header"
            (click)="toggleItem('contactsLocation')">
         <h4>
-          <mat-icon>location_on</mat-icon>
+          <mat-icon>person_pin_circle</mat-icon>
           Contacts Location
         </h4>
         <ab-arrow [expanded]="form.value.expanded['contactsLocation']"
@@ -188,7 +190,7 @@
            [@slideInOut]>
 
         <ng-container *ngTemplateOutlet="location; 
-           context: { controlNamePrefix: 'contacts' }">
+           context: { parent: 'contactsLocation' }">
         </ng-container>
 
       </div>
@@ -218,25 +220,28 @@
 
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
-                           formControlName="revenueOption">
+                           [value]="persona.companyAttributes.revenue.condition"
+                           (change)="selectChange(['companyAttributes', 'revenue', 'condition'], $event)">
 
-            <mat-radio-button [value]="condition.contains">
+            <mat-radio-button [value]="condition.isAnyOf">
               Is between
             </mat-radio-button>
 
             <div class="range-inputs-wrapper">
               <label>
-                <input formControlName="revenueMin"
+                <input (blur)="inputBlur(['companyAttributes', 'revenue', 'min'], $event)"
+                       (change)="$event.stopPropagation()"
                        mask="000000000000000">
               </label>
               and
               <label>
-                <input formControlName="revenueMax">
+                <input mask="000000000000000"
+                       (change)="$event.stopPropagation()"
+                       (blur)="inputBlur(['companyAttributes', 'revenue', 'max'], $event)">
               </label>
             </div>
 
-            <mat-radio-button [value]="condition.isKnown"
-                              mask="000000000000000">
+            <mat-radio-button [value]="condition.isKnown">
               Is known
             </mat-radio-button>
 
@@ -255,16 +260,16 @@
           <mat-form-field class="ab"
                           [floatLabel]="'never'">
 
-            <mat-select formControlName="fundingStage"
-                        placeholder="Select funding stage"
-                        (selectionChange)="selectChange($event)"
+            <mat-select placeholder="Select funding stage"
+                        [value]="persona.companyAttributes.fundingStage"
+                        (selectionChange)="selectChange(['companyAttributes', 'fundingStage'], $event)"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate>
-                  <mat-chip *ngFor="let stage of form.value.fundingStage"
+                  <mat-chip *ngFor="let stage of persona.companyAttributes.fundingStage"
                             [removable]="true"
-                            (removed)="tagRemove('fundingStage', stage)">
+                            (removed)="tagRemove(['companyAttributes', 'fundingStage'], stage)">
                     {{stage}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -289,16 +294,16 @@
           <mat-form-field class="ab"
                           [floatLabel]="'never'">
 
-            <mat-select formControlName="numberOfEmployees"
-                        placeholder="Select number of employees"
-                        (selectionChange)="selectChange($event)"
+            <mat-select placeholder="Select number of employees"
+                        [value]="persona.companyAttributes.numberOfEmployees"
+                        (selectionChange)="selectChange(['companyAttributes', 'numberOfEmployees'], $event)"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate>
-                  <mat-chip *ngFor="let number of form.value.numberOfEmployees"
+                  <mat-chip *ngFor="let number of persona.companyAttributes.numberOfEmployees"
                             [removable]="true"
-                            (removed)="tagRemove('numberOfEmployees', number)">
+                            (removed)="tagRemove(['companyAttributes', 'numberOfEmployees'], number)">
                     {{number}}
                     <mat-icon matChipRemove>close</mat-icon>
                   </mat-chip>
@@ -325,7 +330,7 @@
       <div class="info-block-header"
            (click)="toggleItem('companyLocation')">
         <h4>
-          <mat-icon>location_on</mat-icon>
+          <mat-icon>place</mat-icon>
           Company Location
         </h4>
         <ab-arrow [expanded]="form.value.expanded['companyLocation']"
@@ -338,7 +343,7 @@
            [@slideInOut]>
 
         <ng-container *ngTemplateOutlet="location; 
-           context: { controlNamePrefix: 'company' }">
+           context: { parent: 'companyLocation' }">
         </ng-container>
 
       </div>
@@ -366,27 +371,28 @@
 
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
-                           formControlName="industryOption">
+                           [value]="persona.industry.condition"
+                           (change)="selectChange(['industry', 'condition'], $event)">
 
-            <mat-radio-button [value]="condition.contains">
+            <mat-radio-button [value]="condition.isAnyOf">
               Is any of
             </mat-radio-button>
 
-            <ng-container *ngIf="form.value.industryOption===condition.contains 
-                                  || form.value.industryOption===condition.isKnown 
-                                  || form.value.industryOption===condition.isUnknown">
+            <ng-container *ngIf="persona.industry.condition===condition.isAnyOf 
+                                  || persona.industry.condition===condition.isKnown 
+                                  || persona.industry.condition===condition.isUnknown">
               <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'industries', placeholder: 'Input industries' }">
+                context: { pathTo: ['industry', 'keywords'], placeholder: 'Input industries' }">
               </ng-container>
             </ng-container>
 
-            <mat-radio-button [value]="condition.doesNotContain">
+            <mat-radio-button [value]="condition.isNoneOf">
               Is none of
             </mat-radio-button>
 
-            <ng-container *ngIf="form.value.industryOption===condition.doesNotContain">
+            <ng-container *ngIf="persona.industry.condition===condition.isNoneOf">
               <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'industries', placeholder: 'Input industries' }">
+                context: { pathTo: ['industry', 'keywords'], placeholder: 'Input industries' }">
               </ng-container>
             </ng-container>
 
@@ -427,27 +433,28 @@
 
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
-                           formControlName="technologiesOption">
+                           [value]="persona.technologies.condition"
+                           (change)="selectChange(['technologies', 'condition'], $event)">
 
-            <mat-radio-button [value]="condition.contains">
+            <mat-radio-button [value]="condition.isAnyOf">
               Is any of
             </mat-radio-button>
 
-            <ng-container *ngIf="form.value.technologiesOption===condition.contains 
-                                  || form.value.technologiesOption===condition.isKnown 
-                                  || form.value.technologiesOption===condition.isUnknown">
+            <ng-container *ngIf="persona.technologies.condition===condition.isAnyOf 
+                                  || persona.technologies.condition===condition.isKnown 
+                                  || persona.technologies.condition===condition.isUnknown">
               <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'technologies', placeholder: 'Input technologies' }">
+                context: { pathTo: ['technologies', 'keywords'], placeholder: 'Input technologies' }">
               </ng-container>
             </ng-container>
 
-            <mat-radio-button [value]="condition.doesNotContain">
+            <mat-radio-button [value]="condition.isNoneOf">
               Is none of
             </mat-radio-button>
 
-            <ng-container *ngIf="form.value.technologiesOption===condition.doesNotContain">
+            <ng-container *ngIf="persona.technologies.condition===condition.isNoneOf">
               <ng-container *ngTemplateOutlet="chipsInput; 
-                context: { controlName: 'technologies', placeholder: 'Input technologies' }">
+                context: { pathTo: ['technologies', 'keywords'], placeholder: 'Input technologies' }">
               </ng-container>
             </ng-container>
 
@@ -472,35 +479,35 @@
 </div>
 
 <ng-template #chipsInput
-             let-controlName="controlName"
+             let-pathTo="pathTo"
              let-placeholder="placeholder">
   <mat-form-field [floatLabel]="'never'">
     <mat-chip-list #chipList
                    [disabled]="!form.value.active"
                    aria-label="Tags selection">
-      <mat-chip *ngFor="let job of form.get(controlName)?.value"
+      <mat-chip *ngFor="let item of valueFromPath(pathTo)"
                 [removable]="true"
-                (removed)="tagRemove(controlName, job)">
-        {{job}}
+                (removed)="tagRemove(pathTo, item)">
+        {{item}}
         <mat-icon matChipRemove>close</mat-icon>
       </mat-chip>
       <input autocomplete="off"
              [placeholder]="placeholder"
              [matChipInputFor]="chipList"
              [matChipInputAddOnBlur]="true"
-             (matChipInputTokenEnd)="tagAdd(controlName, $event)">
+             (matChipInputTokenEnd)="tagAdd(pathTo, $event)">
     </mat-chip-list>
   </mat-form-field>
 </ng-template>
 
 <ng-template #location
-             let-controlNamePrefix="controlNamePrefix">
+             let-parent="parent">
 
   <div class="group">
     <div class="group-label">City</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { controlName: controlNamePrefix + 'Cities', placeholder: 'Input cities' }">
+        context: { pathTo: [parent, 'cities'], placeholder: 'Input cities' }">
       </ng-container>
     </div>
   </div>
@@ -509,7 +516,7 @@
     <div class="group-label">State</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { controlName: controlNamePrefix + 'States', placeholder: 'Input states' }">
+        context: { pathTo: [parent, 'states'], placeholder: 'Input states' }">
       </ng-container>
     </div>
   </div>
@@ -518,7 +525,7 @@
     <div class="group-label">Country</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { controlName: controlNamePrefix + 'Countries', placeholder: 'Input countries' }">
+        context: { pathTo: [parent, 'countries'], placeholder: 'Input countries' }">
       </ng-container>
     </div>
   </div>
@@ -527,7 +534,7 @@
     <div class="group-label">Zip code</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { controlName: controlNamePrefix +  'ZipCodes', placeholder: 'Input zip codes' }">
+        context: { pathTo: [parent, 'zipCodes'], placeholder: 'Input zip codes' }">
       </ng-container>
     </div>
   </div>

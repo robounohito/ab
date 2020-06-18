@@ -89,71 +89,7 @@ const contacts = {
   contacts: [{ job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Stacy', lastName: 'Lowden', email: 'slowden0@techcrunch.com', id: '5ee66ce9ca61ba0629e7fc8a' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Terrijo', lastName: 'Stillman', email: 'tstillman1@cocolog-nifty.com', id: '5ee66ce9ca61ba0629e7fc8b' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Elmira', lastName: 'Hofer', email: 'ehofer2@a8.net', id: '5ee66ce9ca61ba0629e7fc8c' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Fayette', lastName: 'Sillito', email: 'fsillito3@bloglines.com', id: '5ee66ce9ca61ba0629e7fc8d' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Madlin', lastName: 'Hubner', email: 'mhubner4@webeden.co.uk', id: '5ee66ce9ca61ba0629e7fc8e' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Staford', lastName: 'Jumel', email: 'sjumel5@over-blog.com', id: '5ee66ce9ca61ba0629e7fc8f' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Frayda', lastName: 'Liggett', email: 'fliggett6@4shared.com', id: '5ee66ce9ca61ba0629e7fc90' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Teddie', lastName: 'Lambourn', email: 'tlambourn7@walmart.com', id: '5ee66ce9ca61ba0629e7fc91' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Murvyn', lastName: 'Jeff', email: 'mjeff8@prlog.org', id: '5ee66ce9ca61ba0629e7fc92' }, { job: { seniority: null, department: null, title: null }, location: { city: null, state: null, country: null, zipCode: null }, phoneNumber: null, company: null, firstName: 'Korry', lastName: 'Lewnden', email: 'klewnden9@fda.gov', id: '5ee66ce9ca61ba0629e7fc93' }]
 };
 
-const personas = [{
-  id: '12',
-  order: 1,
-  name: 'Head of Sales',
-  contactAttributes: {
-    jobDepartment: ['Sales', 'Marketing', 'Product'],
-    jobTitle: {
-      condition: 0,
-      keywords: ['senior', 'manager'],
-    },
-    seniority: ['junior'],
-  },
-  companyAttributes: null,
-  industry: null,
-  location: null,
-  technologies: null,
-}, {
-  id: '123',
-  order: 2,
-  name: 'Head of Marketing',
-  contactAttributes: {
-    jobDepartment: ['Test', 'Marketing', 'Information Technology'],
-    jobTitle: {
-      condition: 0,
-      keywords: ['head', 'marketing'],
-    },
-    seniority: ['senior'],
-  },
-  companyAttributes: null,
-  industry: null,
-  location: null,
-  technologies: null,
-}, {
-  id: '1234',
-  order: 3,
-  name: 'CEO',
-  contactAttributes: {
-    jobDepartment: ['Legal'],
-    jobTitle: {
-      condition: 0,
-      keywords: ['keyword'],
-    },
-    seniority: ['mid-level'],
-  },
-  companyAttributes: null,
-  industry: null,
-  location: null,
-  technologies: null,
-}, {
-  id: '12345',
-  order: 4,
-  name: 'CTO',
-  contactAttributes: {
-    jobDepartment: ['Technology'],
-    jobTitle: {
-      condition: 0,
-      keywords: ['keyword12'],
-    },
-    seniority: ['senior'],
-  },
-  companyAttributes: null,
-  industry: null,
-  location: null,
-  technologies: null,
-}];
+const personas = { success: true, personas: [{ job: { title: { known: false, unKnown: false, anyOf: ['title1', 'title', 'title6', 'title4'], noneOf: [] }, department: ['Engineering', 'Finance', 'Legal'], seniority: ['Founder', 'C-Suite', 'Partner', 'President'] }, location: { city: { known: false, unKnown: false, anyOf: ['city5', 'city3', 'city4', 'city1'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity3'] }, industry: { known: false, unKnown: false, anyOf: ['ind1', 'ind4', 'ind3'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev1'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 60 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4', 'tech2'], noneOf: [] } }, order: 33, active: true, name: 'Rank', id: '5eeb237432f83814e611620f' }, { job: { title: { known: false, unKnown: false, anyOf: ['title', 'title6', 'title1', 'title7'], noneOf: [] }, department: ['Legal', 'Finance'], seniority: ['Founder', 'President', 'Partner'] }, location: { city: { known: false, unKnown: false, anyOf: ['city1'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity3'] }, industry: { known: false, unKnown: false, anyOf: ['ind1', 'ind2', 'ind3'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev4', 'rev2', 'rev1'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 88 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4'], noneOf: [] } }, order: 35, active: true, name: 'Sonsing', id: '5eeb237432f83814e611620e' }, { job: { title: { known: false, unKnown: false, anyOf: ['title2', 'title5'], noneOf: [] }, department: ['Legal'], seniority: ['Founder', 'C-Suite', 'Owner', 'Partner'] }, location: { city: { known: false, unKnown: false, anyOf: ['city1', 'city4', 'city2'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity1'] }, industry: { known: false, unKnown: false, anyOf: ['ind4', 'ind2', 'ind3'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev1', 'rev4', 'rev3'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 96 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4', 'tech2'], noneOf: [] } }, order: 46, active: false, name: 'Zamit', id: '5eeb237432f83814e611620a' }, { job: { title: { known: false, unKnown: false, anyOf: ['title1', 'title4', 'title3', 'title6'], noneOf: [] }, department: ['Administration', 'Human Resources'], seniority: ['President', 'C-Suite'] }, location: { city: { known: false, unKnown: false, anyOf: ['city1'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity3'] }, industry: { known: false, unKnown: false, anyOf: ['ind2', 'ind4', 'ind1'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev1', 'rev3'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 75 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4', 'tech2', 'tech3', 'tech1'], noneOf: [] } }, order: 47, active: true, name: 'Treeflex', id: '5eeb237432f83814e611620d' }, { job: { title: { known: false, unKnown: false, anyOf: ['title1', 'title3'], noneOf: [] }, department: ['Finance', 'Administration'], seniority: ['Owner', 'Founder'] }, location: { city: { known: false, unKnown: false, anyOf: ['city2'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity1', 'comcity4'] }, industry: { known: false, unKnown: false, anyOf: ['ind2', 'ind1', 'ind3', 'ind4'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev2', 'rev3', 'rev1', 'rev4'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 30 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4'], noneOf: [] } }, order: 48, active: false, name: 'Prodder', id: '5eeb237432f83814e6116210' }, { job: { title: { known: false, unKnown: false, anyOf: ['title7'], noneOf: [] }, department: ['Engineering', 'Legal'], seniority: ['Owner', 'President'] }, location: { city: { known: false, unKnown: false, anyOf: ['city2'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity4', 'comcity1'] }, industry: { known: false, unKnown: false, anyOf: ['ind4'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev1', 'rev3', 'rev2'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 59 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4'], noneOf: [] } }, order: 59, active: false, name: 'Temp', id: '5eeb237432f83814e611620b' }, { job: { title: { known: false, unKnown: false, anyOf: ['title5'], noneOf: [] }, department: ['Engineering', 'Human Resources', 'Finance', 'Administration'], seniority: ['Partner', 'Owner', 'President'] }, location: { city: { known: false, unKnown: false, anyOf: ['city3'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity1', 'comcity3'] }, industry: { known: false, unKnown: false, anyOf: ['ind1', 'ind2', 'ind4', 'ind3'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev1'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 26 }, technologies: { known: false, unKnown: false, anyOf: ['tech 4'], noneOf: [] } }, order: 73, active: true, name: 'Quo Lux', id: '5eeb237432f83814e6116211' }, { job: { title: { known: false, unKnown: false, anyOf: ['title4', 'title', 'title5', 'title6'], noneOf: [] }, department: ['Legal'], seniority: ['Partner'] }, location: { city: { known: false, unKnown: false, anyOf: ['city3'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity1', 'comcity4'] }, industry: { known: false, unKnown: false, anyOf: ['ind3', 'ind1'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev3', 'rev2', 'rev4'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 98 }, technologies: { known: false, unKnown: false, anyOf: ['tech1', 'tech2'], noneOf: [] } }, order: 86, active: false, name: 'Wrapsafe', id: '5eeb237432f83814e611620c' }, { job: { title: { known: false, unKnown: false, anyOf: ['title6', 'title5', 'title7', 'title'], noneOf: [] }, department: ['Human Resources', 'Finance', 'Administration', 'Legal'], seniority: ['President'] }, location: { city: { known: false, unKnown: false, anyOf: ['city2', 'city5', 'city1'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity3', 'comcity2', 'comcity4'] }, industry: { known: false, unKnown: false, anyOf: ['ind1', 'ind4', 'ind3'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev1'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 74 }, technologies: { known: false, unKnown: false, anyOf: ['tech2', 'tech 4', 'tech1', 'tech3'], noneOf: [] } }, order: 87, active: false, name: 'Regrant', id: '5eeb237432f83814e6116209' }, { job: { title: { known: false, unKnown: false, anyOf: ['title4', 'title6', 'title7'], noneOf: [] }, department: ['Legal', 'Administration'], seniority: ['C-Suite', 'Founder', 'Partner'] }, location: { city: { known: false, unKnown: false, anyOf: ['city4', 'city1', 'city3'], noneOf: [] }, state: null, country: null, zipCode: null }, company: { location: { city: null, state: null, country: null, zipCode: null, anyOf: ['comcity4'] }, industry: { known: false, unKnown: false, anyOf: ['ind4', 'ind1', 'ind3', 'ind2'], noneOf: [] }, revenue: { known: false, unKnown: false, min: 0, max: 0, anyOf: ['rev2', 'rev3', 'rev1'] }, fundingStage: [], employees: { unKnown: false, min: 0, max: 63 }, technologies: { known: false, unKnown: false, anyOf: ['tech3'], noneOf: [] } }, order: 89, active: false, name: 'Konklab', id: '5eeb237432f83814e6116208' }], count: 0 };
 
 /* const prospects = () => {
   const random = Math.floor(Math.random() * 3);

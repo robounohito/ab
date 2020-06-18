@@ -1,8 +1,8 @@
 
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
-import { Personas, Persona, Contact, ContactDto } from './personas.types';
-import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas } from './personas.constants';
-import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose } from 'ramda';
+import { Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto, ConditionalKeywords } from './personas.types';
+import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaSelectionChange, Condition } from './personas.constants';
+import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose, lensPath, set } from 'ramda';
 import { selectRouteParam } from '../app.model';
 
 const initialState: Personas = {
@@ -28,6 +28,16 @@ const personasReducer = createReducer(initialState,
 
   on(reorderPersonas, (state, { moved }) => {
     return assoc('personas', moved)(state);
+  }),
+
+  on(personaSelectionChange, (state, { personaId, path, value }) => {
+    const personaLens = lensPath([
+      findIndex(whereEq({ id: personaId }))(state.personas ?? []),
+      ...path
+    ]);
+    return evolve({
+      personas: set(personaLens, value) as () => Persona[],
+    })(state);
   }),
 
   on(loadContactsSuccess, (state, { personaId, contacts, contactsCount }) => {
@@ -64,16 +74,16 @@ const sortPersonas = sortWith<Persona>([
   ascend(prop('order'))
 ]);
 
-export function contactCtor(contact: ContactDto): Contact {
+export function contactMapper(dto: ContactDto): Contact {
   return {
-    id: contact.id,
-    image: contact.image,
-    fullName: contact.firstName + ' ' + contact.lastName,
-    jobTitle: contact.job.title || 'Mock job title',
+    id: dto.id,
+    image: dto.image,
+    fullName: dto.firstName + ' ' + dto.lastName,
+    jobTitle: dto.job.title || 'Mock job title',
     lastActivityDate: '' || 'Mock date',
-    email: contact.email,
-    phone: contact.phoneNumber || 'mock 111 11 11',
-    company: contact.company || 'Mock company',
+    email: dto.email,
+    phone: dto.phoneNumber || 'mock 111 11 11',
+    company: dto.company || 'Mock company',
     industry: '' || 'Mock industry',
     companyLocation: '' || 'Mock company location',
     technologies: ['Mock technology'],
@@ -83,7 +93,7 @@ export function contactCtor(contact: ContactDto): Contact {
   };
 }
 
-export function numberOfEmployeesCtor(
+export function numberOfEmployeesMapper(
   { min, max }: { min: number; max: number; }
 ): string {
   if (max !== -1) {
@@ -91,4 +101,53 @@ export function numberOfEmployeesCtor(
   } else {
     return `${min}+ employees`;
   }
+}
+
+export function personaMapper(dto: PersonaDto): Persona {
+  return {
+    id: dto.id,
+    name: dto.name,
+    active: dto.active,
+    order: dto.order,
+    contactsAttributes: {
+      jobDepartment: dto.job.department,
+      jobTitle: conditionalKeywordsInit(dto.job.title),
+      seniority: dto.job.seniority,
+    },
+    contactsLocation: null!,
+    companyAttributes: {
+      revenue: (dto.company.revenue),
+      fundingStage: dto.company.fundingStage,
+      numberOfEmployees: [numberOfEmployeesMapper(dto.company.employees)]
+    },
+    companyLocation: null!,
+    industry: conditionalKeywordsInit(dto.company.industry),
+    technologies: conditionalKeywordsInit(dto.company.technologies),
+    contactsCount: 0,
+  };
+}
+
+function conditionalKeywordsInit(dto: ConditionalKeywordsDto): ConditionalKeywords {
+  if (dto.known) {
+    return {
+      condition: Condition.isKnown,
+      keywords: [],
+    };
+  }
+  if (dto.unKnown) {
+    return {
+      condition: Condition.isUnknown,
+      keywords: [],
+    };
+  }
+  if (dto.anyOf.length) {
+    return {
+      condition: Condition.isAnyOf,
+      keywords: dto.anyOf,
+    };
+  }
+  return {
+    condition: Condition.isNoneOf,
+    keywords: dto.noneOf,
+  };
 }

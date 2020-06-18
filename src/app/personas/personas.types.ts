@@ -33,13 +33,9 @@ interface ContactsAttributes {
 }
 
 interface CompanyAttributes {
-  revenue: {
-    condition: Condition;
-    min: number;
-    max: number;
-  };
+  revenue: ConditionalRevenue;
   fundingStage: string[];
-  numberOfEmployee: string[];
+  numberOfEmployees: string[];
 }
 
 export interface Contact {
@@ -57,6 +53,70 @@ export interface Contact {
   contactLocation: string;
   fundingStage: string;
   numberOfEmployees: number;
+}
+
+export type SelectOptions = string[];
+
+export type ConditionalKeywords = {
+  condition: Condition;
+  keywords: string[];
+}
+  ;
+export type ConditionalRevenue = {
+  condition: Condition;
+  min: number;
+  max: number;
+};
+
+interface Location {
+  city: string[];
+  state: string[];
+  country: string[];
+  zipCode: string[];
+}
+
+
+
+
+
+
+
+export interface PersonaDto {
+  id: string;
+  order: number;
+  active: boolean;
+  name: string;
+  job: {
+    title: ConditionalKeywordsDto;
+    department: string[];
+    seniority: string[];
+  };
+  location: {
+    city: string[];
+    state: string[];
+    country: string[];
+    zipCode: string[];
+  };
+  company: {
+    industry: ConditionalKeywordsDto;
+    revenue: any;
+    fundingStage: string[];
+    employees: any;
+    location: {
+      city: string[];
+      state: string[];
+      country: string[];
+      zipCode: string[];
+    };
+    technologies: ConditionalKeywordsDto;
+  };
+}
+
+export interface ConditionalKeywordsDto {
+  anyOf: string[];
+  known: boolean;
+  noneOf: string[];
+  unKnown: boolean;
 }
 
 export interface ContactDto {
@@ -78,18 +138,4 @@ export interface ContactDto {
     zipCode: string;
   };
   phoneNumber: string;
-}
-
-export type SelectOptions = string[];
-
-type ConditionalKeywords = {
-  condition: Condition;
-  keywords: string[];
-};
-
-interface Location {
-  city: string[];
-  state: string[];
-  country: string[];
-  zipCode: string[];
 }

@@ -4,8 +4,8 @@ import { switchMap, map, tap, shareReplay } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
 import { loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas } from './personas.constants';
-import { Persona, ContactDto, SelectOptions } from './personas.types';
-import { contactCtor, numberOfEmployeesCtor } from './personas.model';
+import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
+import { contactMapper, numberOfEmployeesMapper, personaMapper } from './personas.model';
 import { memoizeWith, identity } from 'ramda';
 import { forkJoin } from 'rxjs';
 
@@ -16,20 +16,21 @@ export class PersonasEffects {
     ofType(loadPersonas),
     switchMap(() => forkJoin([
       this.getDataSets(),
-      this.api.request<Persona[]>({
+      this.api.request<{ personas: PersonaDto[] }>({
         endpoint: this.api.endpoint.getPersonas,
+        queryParams: { limit: 100 },
       })
     ]).pipe(
       map(([
         [{ fundingStage }, { seniority }, { jobDepartment }, { numberOfEmployees }],
-        personas
+        personasResp
       ]) => loadPersonasSuccess({
-        personas,
+        personas: personasResp.personas.map(personaMapper),
         dataSets: {
           fundingStage,
           seniority,
           jobDepartment,
-          numberOfEmployees: numberOfEmployees.map(numberOfEmployeesCtor),
+          numberOfEmployees: numberOfEmployees.map(numberOfEmployeesMapper),
         }
       }))
     )))
@@ -51,7 +52,7 @@ export class PersonasEffects {
     }).pipe(
       map(resp => loadContactsSuccess({
         personaId,
-        contacts: resp.contacts.map(contactCtor),
+        contacts: resp.contacts.map(contactMapper),
         contactsCount: resp.count,
       }))
     ))

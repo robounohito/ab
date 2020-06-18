@@ -21,7 +21,6 @@ export class PersonasComponent implements OnInit {
 
   constructor(
     private store: Store<App>,
-
   ) { }
 
   ngOnInit() {
@@ -39,8 +38,8 @@ export class PersonasComponent implements OnInit {
 
   addPersona() { }
 
-  trackByFn(index: number, item: Persona) {
-    return item.id || index;
+  trackByFn(index: number, item: { key: string }) {
+    return item.key || index;
   }
 
 }

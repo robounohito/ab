@@ -1,37 +1,37 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form';
-import { Persona, SelectOptions, Personas } from '../personas.types';
+import { Persona, Personas, ConditionalKeywords } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelectChange } from '@angular/material/select';
-import { Condition } from '../personas.constants';
+import { Condition, personaSelectionChange } from '../personas.constants';
+import { Store } from '@ngrx/store';
+import { App } from 'src/app/app.types';
+import { path, compose, filter, append } from 'ramda';
+import { MatRadioChange } from '@angular/material/radio';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
   active: boolean;
-  jobDepartment: string[];
-  seniority: string[];
-  jobTitleOption: Condition;
-  jobTitles: string[];
-  fundingStage: SelectOptions;
-  numberOfEmployees: SelectOptions;
   revenueOption: Condition;
   revenueMin: string;
   revenueMax: string;
-  industryOption: Condition;
-  industries: string[];
-  technologiesOption: Condition;
-  technologies: string[];
-  contactsCities: string[];
-  contactsCountries: string[];
-  contactsStates: string[];
-  contactsZipCodes: string[];
-  companyCities: string[];
-  companyCountries: string[];
-  companyStates: string[];
-  companyZipCodes: string[];
 }
+
+type PathTo = [
+  keyof Persona,
+  keyof Persona['contactsAttributes']
+  | keyof Persona['companyAttributes']
+  | keyof Location
+  | keyof ConditionalKeywords,
+] | [
+    keyof Persona,
+    keyof Persona['contactsAttributes']
+    | keyof Persona['companyAttributes'],
+    keyof ConditionalKeywords
+    | keyof Persona['companyAttributes']['revenue']
+  ];
 
 @Component({
   selector: 'ab-persona',
@@ -49,33 +49,16 @@ export class PersonaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private store: Store<App>,
   ) { }
 
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
       expanded: [{ block: true, /* location: true */ }],
       active: [true],
-      jobDepartment: [[]],
-      seniority: [[]],
-      jobTitleOption: [Condition.contains],
-      jobTitles: [[]],
-      revenueOption: [Condition.contains],
+      revenueOption: [Condition.isAnyOf],
       revenueMin: [''],
       revenueMax: [''],
-      fundingStage: [[]],
-      numberOfEmployees: [[]],
-      industryOption: [Condition.contains],
-      industries: [[]],
-      technologiesOption: [Condition.contains],
-      technologies: [[]],
-      contactsCities: [[]],
-      contactsCountries: [[]],
-      contactsStates: [[]],
-      contactsZipCodes: [[]],
-      companyCities: [[]],
-      companyCountries: [[]],
-      companyStates: [[]],
-      companyZipCodes: [[]],
     });
   }
 
@@ -88,31 +71,55 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  selectChange(event: MatSelectChange) {
-    console.log(event);
+  selectChange(pathTo: PathTo, event: MatSelectChange | MatRadioChange) {
+    this.store.dispatch(personaSelectionChange({
+      personaId: this.persona.id,
+      path: pathTo,
+      value: event.value
+    }));
   }
 
-  tagRemove(controlName: keyof PersonaForm, item: string) {
-    formPatchValue(this.form, {
-      [controlName]: (this.form.value[controlName] as string[])
-        .filter(v => v !== item)
-    });
+  inputBlur(pathTo: PathTo, event: InputEvent) {
+    const value = (event.target as HTMLInputElement).value;
+    if (value == null) { return; }
+    this.store.dispatch(personaSelectionChange({
+      personaId: this.persona.id,
+      path: pathTo,
+      value
+    }));
   }
 
-  tagAdd(controlName: keyof PersonaForm, event: MatChipInputEvent) {
+  tagRemove(pathTo: PathTo, item: string) {
+    this.store.dispatch(personaSelectionChange({
+      personaId: this.persona.id,
+      path: pathTo,
+      value: compose(
+        filter(it => it !== item) as () => string[],
+        path(pathTo)
+      )(this.persona)
+    }));
+  }
+
+  tagAdd(pathTo: PathTo, event: MatChipInputEvent) {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      formPatchValue(this.form, {
-        [controlName]: [
-          ...this.form.value[controlName] as string[],
-          value.trim()
-        ]
-      });
+      this.store.dispatch(personaSelectionChange({
+        personaId: this.persona.id,
+        path: pathTo,
+        value: compose(
+          append(value.trim()) as () => string[],
+          path(pathTo)
+        )(this.persona)
+      }));
     }
     if (input) {
       input.value = '';
     }
+  }
+
+  valueFromPath(pathTo: PathTo) {
+    return path(pathTo, this.persona);
   }
 
 }

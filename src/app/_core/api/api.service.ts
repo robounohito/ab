@@ -26,7 +26,7 @@ export const apiEndpoint = {
   getLogout: { method: 'get', url: 'auth/logout' },
   getNumberOfEmployees: { method: 'get', url: 'misc/values/numberOfEmployees' },
   getOutreachMetrics: { method: 'get', url: 'sales_rep_dashboard' }, // not implemented
-  getPersonas: { method: 'get', url: 'personas' }, // not implemented
+  getPersonas: { method: 'get', url: 'personas' },
   getSeniority: { method: 'get', url: 'misc/values/seniority' },
   getSidebar: { method: 'get', url: 'sidebar' }, // not implemented
   getStats: { method: 'get', url: 'stats' }, // not implemented
