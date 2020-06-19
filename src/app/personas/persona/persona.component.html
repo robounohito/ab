@@ -27,7 +27,22 @@
     </ab-arrow>
   </div>
 
-  <h1>{{persona.name}}</h1>
+  <div class="text-edit">
+    <h1 *ngIf="!form.value.nameEdit">
+      {{persona.name}}
+    </h1>
+    <mat-icon *ngIf="!form.value.nameEdit"
+              (click)="toggleNameEdit(form.value.nameEdit, nameEdit)">
+      edit
+    </mat-icon>
+    <input [hidden]="!form.value.nameEdit"
+           #nameEdit
+           maxlength="50"
+           [value]="persona.name"
+           (keydown.escape)="toggleNameEdit(form.value.nameEdit, nameEdit); nameEdit.value = persona.name;"
+           (keyup.enter)="nameEdit.blur()"
+           (blur)="nameEditBlur(['name'], form.value.nameEdit, nameEdit, $event)">
+  </div>
 
   <p>{{persona.contacts ? persona.contactsCount : 34}} contacts</p>
 
@@ -60,7 +75,7 @@
                           [floatLabel]="'never'">
 
             <mat-select placeholder="Select job department"
-                        (selectionChange)="selectChange(['contactsAttributes', 'jobDepartment'], $event)"
+                        (selectionChange)="selectRadioChange(['contactsAttributes', 'jobDepartment'], $event)"
                         [value]="persona.contactsAttributes.jobDepartment"
                         [disabled]="!form.value.active"
                         multiple>
@@ -95,7 +110,7 @@
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
                            [value]="persona.contactsAttributes.jobTitle.condition"
-                           (change)="selectChange(['contactsAttributes', 'jobTitle', 'condition'], $event)"
+                           (change)="selectRadioChange(['contactsAttributes', 'jobTitle', 'condition'], $event)"
                            [disabled]="!form.value.active">
 
             <mat-radio-button [value]="condition.isAnyOf">
@@ -139,7 +154,7 @@
 
             <mat-select placeholder="Select seniority"
                         [value]="persona.contactsAttributes.seniority"
-                        (selectionChange)="selectChange(['contactsAttributes', 'seniority'], $event)"
+                        (selectionChange)="selectRadioChange(['contactsAttributes', 'seniority'], $event)"
                         [disabled]="!form.value.active"
                         multiple>
 
@@ -219,7 +234,7 @@
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
                            [value]="persona.companyAttributes.revenue.condition"
-                           (change)="selectChange(['companyAttributes', 'revenue', 'condition'], $event)">
+                           (change)="selectRadioChange(['companyAttributes', 'revenue', 'condition'], $event)">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Is between
@@ -261,7 +276,7 @@
 
             <mat-select placeholder="Select funding stage"
                         [value]="persona.companyAttributes.fundingStage"
-                        (selectionChange)="selectChange(['companyAttributes', 'fundingStage'], $event)"
+                        (selectionChange)="selectRadioChange(['companyAttributes', 'fundingStage'], $event)"
                         multiple>
 
               <mat-select-trigger>
@@ -295,7 +310,7 @@
 
             <mat-select placeholder="Select number of employees"
                         [value]="persona.companyAttributes.numberOfEmployees"
-                        (selectionChange)="selectChange(['companyAttributes', 'numberOfEmployees'], $event)"
+                        (selectionChange)="selectRadioChange(['companyAttributes', 'numberOfEmployees'], $event)"
                         multiple>
 
               <mat-select-trigger>
@@ -371,7 +386,7 @@
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
                            [value]="persona.industry.condition"
-                           (change)="selectChange(['industry', 'condition'], $event)">
+                           (change)="selectRadioChange(['industry', 'condition'], $event)">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Is any of
@@ -431,7 +446,7 @@
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
                            [value]="persona.technologies.condition"
-                           (change)="selectChange(['technologies', 'condition'], $event)">
+                           (change)="selectRadioChange(['technologies', 'condition'], $event)">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Is any of
@@ -487,6 +502,7 @@
         <mat-icon matChipRemove>close</mat-icon>
       </mat-chip>
       <input autocomplete="off"
+             maxlength=30
              [placeholder]="placeholder"
              [matChipInputFor]="chipList"
              [matChipInputAddOnBlur]="true"

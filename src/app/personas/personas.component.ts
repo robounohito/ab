@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Personas, Persona } from './personas.types';
 import { selectPersonas } from './personas.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { reorderPersonas } from './personas.constants';
+import { reorderPersonas, personaCreate } from './personas.constants';
 import { customFadeAnimation } from '../_core/animations/animations';
 
 @Component({
@@ -36,7 +36,9 @@ export class PersonasComponent implements OnInit {
     }));
   }
 
-  addPersona() { }
+  addPersona(order: number) {
+    this.store.dispatch(personaCreate({ order: order + 1 }));
+  }
 
   trackByFn(index: number, item: { key: string }) {
     return item.key || index;

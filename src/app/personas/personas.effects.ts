@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { switchMap, map, tap, shareReplay, concatMap, withLatestFrom } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
-import { loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas, personaSelectionChange } from './personas.constants';
+import { loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas, personaChange, /* personaCreate */ } from './personas.constants';
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
 import { contactMapper, numberOfEmployeesMapper, personaFromDtoMapper, selectCurrentPersona, personaToDtoMapper } from './personas.model';
-import { memoizeWith, identity,  } from 'ramda';
+import { memoizeWith, identity, } from 'ramda';
 import { forkJoin, of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { App } from '../app.types';
@@ -47,21 +47,28 @@ export class PersonasEffects {
   ), { dispatch: false });
 
   updatePersona$ = createEffect(() => this.actions$.pipe(
-    ofType(personaSelectionChange),
+    ofType(personaChange),
     concatMap(action => of(action).pipe(
       withLatestFrom(this.store.pipe(select(selectCurrentPersona)))
     )),
-
     switchMap(([{ personaId, path }, persona]) => {
-      console.log('effect persona', persona);
-      // const dtoPath = (path as any)([pathTo[0]], persona)['jobDepartmentDtoPath'];
       return this.api.request({
-        endpoint: this.api.endpoint.patchPersonas,
+        endpoint: this.api.endpoint.patchPersona,
         urlParams: { id: personaId },
         data: persona ? personaToDtoMapper(persona, path[0]) : {},
       });
     })
   ), { dispatch: false });
+
+  /* createPersona$ = createEffect(() => this.actions$.pipe(
+    ofType(personaCreate),
+    switchMap(({ order }) => {
+      return this.api.request({
+        endpoint: this.api.endpoint.postPersona,
+        data: { order },
+      });
+    })
+  ), { dispatch: false }); */
 
   loadContacts$ = createEffect(() => this.actions$.pipe(
     ofType(loadContacts),

@@ -60,8 +60,8 @@ export type SelectOptions = string[];
 export type ConditionalKeywords = {
   condition: Condition;
   keywords: string[];
-}
-  ;
+};
+
 export type ConditionalRevenue = {
   condition: Condition;
   min: number;
@@ -77,11 +77,13 @@ interface Location {
 
 export type PersonaSubsetPath = [
   keyof Persona,
-  keyof Persona['contactsAttributes']
-  | keyof Persona['companyAttributes']
-  | keyof Location
-  | keyof ConditionalKeywords,
 ] | [
+    keyof Persona,
+    keyof Persona['contactsAttributes']
+    | keyof Persona['companyAttributes']
+    | keyof Location
+    | keyof ConditionalKeywords,
+  ] | [
     keyof Persona,
     keyof Persona['contactsAttributes']
     | keyof Persona['companyAttributes'],
@@ -126,10 +128,8 @@ export interface PersonaDto {
 }
 
 export interface ConditionalKeywordsDto {
-  anyOf: string[];
-  known: boolean;
-  noneOf: string[];
-  unKnown: boolean;
+  type: Condition;
+  keywords: string[];
 }
 
 export interface ContactDto {

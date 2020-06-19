@@ -33,8 +33,8 @@ export const loadContactsSuccess = createAction(
   }>()
 );
 
-export const personaSelectionChange = createAction(
-  '[Personas] Persona Selection Change',
+export const personaChange = createAction(
+  '[Personas] Persona Change',
   props<{
     personaId: string;
     path: PersonaSubsetPath;
@@ -42,9 +42,20 @@ export const personaSelectionChange = createAction(
   }>()
 );
 
+export const personaCreate = createAction(
+  '[Personas] Persona Create',
+  props<{ order: number; }>()
+);
+
+export const personaCreateSuccess = createAction(
+  '[Personas] Persona Create Success',
+  props<{ personaId: string; }>()
+);
+
 export enum Condition {
-  isAnyOf,
-  isNoneOf,
-  isKnown,
-  isUnknown,
+  isAnyOf = 'anyOf',
+  isNoneOf = 'noneOf',
+  isKnown = 'known',
+  isUnknown = 'unKnown',
+  isInBetween = 'inBetween',
 }

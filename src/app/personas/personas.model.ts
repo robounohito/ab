@@ -1,8 +1,8 @@
 
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto, ConditionalKeywords } from './personas.types';
-import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaSelectionChange, Condition } from './personas.constants';
-import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose, lensPath, set } from 'ramda';
+import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaChange, personaCreate } from './personas.constants';
+import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose, lensPath, set, append } from 'ramda';
 import { selectRouteParam } from '../app.model';
 
 const initialState: Personas = {
@@ -30,7 +30,7 @@ const personasReducer = createReducer(initialState,
     return assoc('personas', moved)(state);
   }),
 
-  on(personaSelectionChange, (state, { personaId, path, value }) => {
+  on(personaChange, (state, { personaId, path, value }) => {
     const personaLens = lensPath([
       findIndex(whereEq({ id: personaId }))(state.personas ?? []),
       ...path
@@ -39,6 +39,18 @@ const personasReducer = createReducer(initialState,
       personas: set(personaLens, value) as () => Persona[],
     })(state);
   }),
+
+  on(personaCreate, (state, { order }) => {
+    return evolve({
+      personas: append({ order }) as () => Persona[]
+    })(state);
+  }),
+
+  /* on(personaCreate, (state, { order }) => {
+    return evolve({
+      personas: append({ order }) as () => Persona[]
+    })(state);
+  }), */
 
   on(loadContactsSuccess, (state, { personaId, contacts, contactsCount }) => {
     const personaLens = lensIndex(
@@ -182,67 +194,33 @@ export function personaToDtoMapper(
     },
   };
   if (subsetPath) {
+    if (subsetMapper[subsetPath]) {
+      return {
+        [subsetMapper[subsetPath]!]:
+          dto[subsetMapper[subsetPath] as keyof PersonaDto]
+      };
+    }
     return {
-      [subsetMapper[subsetPath] as string]: dto[subsetMapper[subsetPath]!]
+      [subsetPath]: dto[subsetPath as keyof PersonaDto]
     };
   }
   return dto;
 }
 
-function conditionalKeywordsFromDto(dto: ConditionalKeywordsDto): ConditionalKeywords {
-  if (dto.known) {
-    return {
-      condition: Condition.isKnown,
-      keywords: [],
-    };
-  }
-  if (dto.unKnown) {
-    return {
-      condition: Condition.isUnknown,
-      keywords: [],
-    };
-  }
-  if (dto.anyOf.length) {
-    return {
-      condition: Condition.isAnyOf,
-      keywords: dto.anyOf,
-    };
-  }
+function conditionalKeywordsFromDto(
+  dto: ConditionalKeywordsDto
+): ConditionalKeywords {
   return {
-    condition: Condition.isNoneOf,
-    keywords: dto.noneOf,
+    condition: dto.type,
+    keywords: dto.keywords,
   };
 }
 
-function conditionalKeywordsToDto(conditionalKeywords: ConditionalKeywords): ConditionalKeywordsDto {
-  switch (conditionalKeywords.condition) {
-    case Condition.isAnyOf:
-      return {
-        anyOf: conditionalKeywords.keywords,
-        noneOf: [],
-        known: false,
-        unKnown: false,
-      };
-    case Condition.isNoneOf:
-      return {
-        anyOf: [],
-        noneOf: conditionalKeywords.keywords,
-        known: false,
-        unKnown: false,
-      };
-    case Condition.isKnown:
-      return {
-        anyOf: [],
-        noneOf: [],
-        known: true,
-        unKnown: false,
-      };
-    case Condition.isUnknown:
-      return {
-        anyOf: [],
-        noneOf: [],
-        known: false,
-        unKnown: true,
-      };
-  }
+function conditionalKeywordsToDto(
+  conditionalKeywords: ConditionalKeywords
+): ConditionalKeywordsDto {
+  return {
+    type: conditionalKeywords.condition,
+    keywords: conditionalKeywords.keywords,
+  };
 }

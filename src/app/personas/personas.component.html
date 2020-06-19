@@ -28,7 +28,7 @@
 
     <div class="add-persona">
       <button mat-button
-              (click)="addPersona()">
+              (click)="addPersona(model.personas[model.personas.length - 1].order)">
         <mat-icon>add</mat-icon>
         <span>Add Persona</span>
       </button>

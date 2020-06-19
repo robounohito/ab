@@ -5,7 +5,7 @@ import { Persona, Personas, PersonaSubsetPath } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelectChange } from '@angular/material/select';
-import { Condition, personaSelectionChange } from '../personas.constants';
+import { Condition, personaChange } from '../personas.constants';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
 import { path, compose, filter, append } from 'ramda';
@@ -14,9 +14,7 @@ import { MatRadioChange } from '@angular/material/radio';
 interface PersonaForm {
   expanded: { [key: string]: boolean };
   active: boolean;
-  revenueOption: Condition;
-  revenueMin: string;
-  revenueMax: string;
+  nameEdit: boolean;
 }
 
 @Component({
@@ -42,9 +40,7 @@ export class PersonaComponent implements OnInit {
     this.form = formCreate<PersonaForm>(this.fb, {
       expanded: [{ block: true, /* location: true */ }],
       active: [true],
-      revenueOption: [Condition.isAnyOf],
-      revenueMin: [''],
-      revenueMax: [''],
+      nameEdit: [false],
     });
   }
 
@@ -57,8 +53,8 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  selectChange(pathTo: PersonaSubsetPath, event: MatSelectChange | MatRadioChange) {
-    this.store.dispatch(personaSelectionChange({
+  selectRadioChange(pathTo: PersonaSubsetPath, event: MatSelectChange | MatRadioChange) {
+    this.store.dispatch(personaChange({
       personaId: this.persona.id,
       path: pathTo,
       value: event.value
@@ -68,7 +64,7 @@ export class PersonaComponent implements OnInit {
   inputBlur(pathTo: PersonaSubsetPath, event: InputEvent) {
     const value = (event.target as HTMLInputElement).value;
     if (value == null) { return; }
-    this.store.dispatch(personaSelectionChange({
+    this.store.dispatch(personaChange({
       personaId: this.persona.id,
       path: pathTo,
       value
@@ -76,7 +72,7 @@ export class PersonaComponent implements OnInit {
   }
 
   tagRemove(pathTo: PersonaSubsetPath, item: string) {
-    this.store.dispatch(personaSelectionChange({
+    this.store.dispatch(personaChange({
       personaId: this.persona.id,
       path: pathTo,
       value: compose(
@@ -90,7 +86,7 @@ export class PersonaComponent implements OnInit {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      this.store.dispatch(personaSelectionChange({
+      this.store.dispatch(personaChange({
         personaId: this.persona.id,
         path: pathTo,
         value: compose(
@@ -106,6 +102,31 @@ export class PersonaComponent implements OnInit {
 
   valueFromPath(pathTo: PersonaSubsetPath) {
     return path(pathTo, this.persona);
+  }
+
+  toggleNameEdit(nameEdit: boolean, nameEditEl: HTMLElement) {
+    console.log('nameEdit', nameEdit);
+    formPatchValue(this.form, { nameEdit: !nameEdit });
+    if (!nameEdit) {
+      setTimeout(() => nameEditEl.focus());
+    }
+  }
+
+  nameEditBlur(
+    pathTo: PersonaSubsetPath,
+    nameEdit: boolean,
+    nameEditEl: HTMLElement,
+    event: InputEvent
+  ) {
+    if (!nameEdit) { return; }
+    this.toggleNameEdit(nameEdit, nameEditEl);
+    const value = (event.target as HTMLInputElement).value;
+    if (!value || this.persona.name === value) { return; }
+    this.store.dispatch(personaChange({
+      personaId: this.persona.id,
+      path: pathTo,
+      value
+    }));
   }
 
 }

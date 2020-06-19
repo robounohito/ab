@@ -92,6 +92,39 @@
     @include h1-text;
   }
 
+  .text-edit {
+
+    cursor: default;
+    display: flex;
+
+    &:hover .mat-icon {
+      opacity: 1;
+    }
+
+    .mat-icon {
+      opacity: 0;
+      font-size: 17px;
+      color: var.$aqua;
+      position: relative;
+      top: 2px;
+      left: 4px;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 6px;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      border: 1px solid var.$aqua;
+      outline: none;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      width: 100%;
+    }
+
+  }
+
   p {
 
     @include personas.p-text;
