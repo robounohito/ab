@@ -225,7 +225,8 @@
               Is between
             </mat-radio-button>
 
-            <div class="range-inputs-wrapper">
+            <div class="range-inputs-wrapper"
+                 *ngIf="persona.companyAttributes.revenue.condition===condition.isAnyOf">
               <label>
                 <input (blur)="inputBlur(['companyAttributes', 'revenue', 'min'], $event)"
                        (change)="$event.stopPropagation()"
@@ -376,9 +377,7 @@
               Is any of
             </mat-radio-button>
 
-            <ng-container *ngIf="persona.industry.condition===condition.isAnyOf 
-                                  || persona.industry.condition===condition.isKnown 
-                                  || persona.industry.condition===condition.isUnknown">
+            <ng-container *ngIf="persona.industry.condition===condition.isAnyOf">
               <ng-container *ngTemplateOutlet="chipsInput; 
                 context: { pathTo: ['industry', 'keywords'], placeholder: 'Input industries' }">
               </ng-container>
@@ -438,9 +437,7 @@
               Is any of
             </mat-radio-button>
 
-            <ng-container *ngIf="persona.technologies.condition===condition.isAnyOf 
-                                  || persona.technologies.condition===condition.isKnown 
-                                  || persona.technologies.condition===condition.isUnknown">
+            <ng-container *ngIf="persona.technologies.condition===condition.isAnyOf">
               <ng-container *ngTemplateOutlet="chipsInput; 
                 context: { pathTo: ['technologies', 'keywords'], placeholder: 'Input technologies' }">
               </ng-container>
