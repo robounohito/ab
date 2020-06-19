@@ -114,7 +114,7 @@ export function personaFromDtoMapper(dto: PersonaDto): Persona {
       jobTitle: conditionalKeywordsFromDto(dto.job.title),
       seniority: dto.job.seniority,
     },
-    contactsLocation: {
+    contactLocation: {
       city: dto.location.city,
       state: dto.location.state,
       country: dto.location.country,
@@ -145,7 +145,7 @@ export function personaToDtoMapper(
     [key in keyof Partial<Persona>]: keyof PersonaDto
   } = {
     contactsAttributes: 'job',
-    contactsLocation: 'location',
+    contactLocation: 'location',
     companyAttributes: 'company',
     companyLocation: 'company',
     industry: 'company',
@@ -162,10 +162,10 @@ export function personaToDtoMapper(
       seniority: persona.contactsAttributes.seniority
     },
     location: {
-      city: persona.contactsLocation.city,
-      state: persona.contactsLocation.state,
-      country: persona.contactsLocation.country,
-      zipCode: persona.contactsLocation.zipCode,
+      city: persona.contactLocation.city,
+      state: persona.contactLocation.state,
+      country: persona.contactLocation.country,
+      zipCode: persona.contactLocation.zipCode,
     },
     company: {
       industry: conditionalKeywordsToDto(persona.industry),

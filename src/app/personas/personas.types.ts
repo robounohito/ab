@@ -17,7 +17,7 @@ export interface Persona {
   active: boolean;
   name: string;
   contactsAttributes: ContactsAttributes;
-  contactsLocation: Location;
+  contactLocation: Location;
   companyAttributes: CompanyAttributes;
   companyLocation: Location;
   industry: ConditionalKeywords;

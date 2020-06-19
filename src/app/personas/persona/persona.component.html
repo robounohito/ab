@@ -173,22 +173,22 @@
     <div class="info-block">
 
       <div class="info-block-header"
-           (click)="toggleItem('contactsLocation')">
+           (click)="toggleItem('contactLocation')">
         <h4>
           <mat-icon>person_pin_circle</mat-icon>
-          Contacts Location
+          Contact Location
         </h4>
-        <ab-arrow [expanded]="form.value.expanded['contactsLocation']"
-                  (toggle)="toggleItem('contactsLocation')">
+        <ab-arrow [expanded]="form.value.expanded['contactLocation']"
+                  (toggle)="toggleItem('contactLocation')">
         </ab-arrow>
       </div>
 
       <div class="group-wrapper"
-           *ngIf="form.value.expanded['contactsLocation']"
+           *ngIf="form.value.expanded['contactLocation']"
            [@slideInOut]>
 
         <ng-container *ngTemplateOutlet="location; 
-           context: { parent: 'contactsLocation' }">
+           context: { parent: 'contactLocation' }">
         </ng-container>
 
       </div>
