@@ -3,13 +3,21 @@ import { Injectable } from '@angular/core';
 import { switchMap, map, tap, shareReplay, concatMap, withLatestFrom } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
-import { loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas, personaChange, /* personaCreate */ } from './personas.constants';
+import {
+  loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas,
+  personaChange, personaCreate, personaCreateSuccess, removePersona
+} from './personas.constants';
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
-import { contactMapper, numberOfEmployeesMapper, personaFromDtoMapper, selectCurrentPersona, personaToDtoMapper } from './personas.model';
+import {
+  contactMapper, numberOfEmployeesMapper, personaFromDtoMapper, selectCurrentPersona,
+  personaToDtoMapper, createPersona
+} from './personas.model';
 import { memoizeWith, identity, } from 'ramda';
 import { forkJoin, of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { App } from '../app.types';
+import { Router } from '@angular/router';
+import { Route } from '../app.constants';
 
 @Injectable()
 export class PersonasEffects {
@@ -60,15 +68,37 @@ export class PersonasEffects {
     })
   ), { dispatch: false });
 
-  /* createPersona$ = createEffect(() => this.actions$.pipe(
+  createPersona$ = createEffect(() => this.actions$.pipe(
     ofType(personaCreate),
     switchMap(({ order }) => {
-      return this.api.request({
+      const newPersona = createPersona(order);
+      return this.api.request<{ id: string; }>({
         endpoint: this.api.endpoint.postPersona,
-        data: { order },
+        data: personaToDtoMapper(newPersona),
+      }).pipe(
+        map(resp => personaCreateSuccess({
+          persona: {
+            ...newPersona,
+            id: resp.id,
+          }
+        })),
+        tap(({ persona }) => {
+          this.router.navigate([`/${Route.persona}/${persona.id}`]);
+        })
+      );
+    }),
+  ));
+
+  removePersona$ = createEffect(() => this.actions$.pipe(
+    ofType(removePersona),
+    switchMap(({ personaId }) => {
+      return this.api.request<{ id: string; }>({
+        endpoint: this.api.endpoint.deletePersona,
+        urlParams: { id: personaId }
       });
-    })
-  ), { dispatch: false }); */
+    }),
+    tap(() => this.router.navigate(['/', Route.persona]))
+  ), { dispatch: false });
 
   loadContacts$ = createEffect(() => this.actions$.pipe(
     ofType(loadContacts),
@@ -110,6 +140,7 @@ export class PersonasEffects {
     private actions$: Actions,
     private api: ApiService,
     private store: Store<App>,
+    private router: Router,
   ) { }
 
 }

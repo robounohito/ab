@@ -48,6 +48,7 @@ export enum Route {
   signup = 'signup',
   recovery = 'recovery',
   reset = 'reset',
+  persona = 'persona',
   notFound = 'not-found',
 }
 

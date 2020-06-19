@@ -5,7 +5,7 @@ import { Persona, Personas, PersonaSubsetPath } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelectChange } from '@angular/material/select';
-import { Condition, personaChange } from '../personas.constants';
+import { Condition, personaChange, removePersona } from '../personas.constants';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
 import { path, compose, filter, append } from 'ramda';
@@ -127,6 +127,10 @@ export class PersonaComponent implements OnInit {
       path: pathTo,
       value
     }));
+  }
+
+  removePersona(personaId: string) {
+    this.store.dispatch(removePersona({ personaId }));
   }
 
 }

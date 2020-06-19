@@ -1,8 +1,14 @@
 
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto, ConditionalKeywords } from './personas.types';
-import { loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaChange, personaCreate } from './personas.constants';
-import { sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose, lensPath, set, append } from 'ramda';
+import {
+  loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaChange, personaCreateSuccess,
+  Condition, removePersona
+} from './personas.constants';
+import {
+  sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose,
+  lensPath, set, append, reject
+} from 'ramda';
 import { selectRouteParam } from '../app.model';
 
 const initialState: Personas = {
@@ -40,17 +46,17 @@ const personasReducer = createReducer(initialState,
     })(state);
   }),
 
-  on(personaCreate, (state, { order }) => {
+  on(personaCreateSuccess, (state, { persona }) => {
     return evolve({
-      personas: append({ order }) as () => Persona[]
+      personas: append(persona) as () => Persona[]
     })(state);
   }),
 
-  /* on(personaCreate, (state, { order }) => {
+  on(removePersona, (state, { personaId }) => {
     return evolve({
-      personas: append({ order }) as () => Persona[]
+      personas: reject(whereEq({ id: personaId })) as () => Persona[]
     })(state);
-  }), */
+  }),
 
   on(loadContactsSuccess, (state, { personaId, contacts, contactsCount }) => {
     const personaLens = lensIndex(
@@ -205,6 +211,51 @@ export function personaToDtoMapper(
     };
   }
   return dto;
+}
+
+export function createPersona(order: number): Persona {
+  return {
+    id: '',
+    order,
+    active: true,
+    name: 'Your new persona',
+    contactsAttributes: {
+      jobDepartment: [],
+      jobTitle: {
+        condition: Condition.isUnknown,
+        keywords: []
+      },
+      seniority: [],
+    },
+    contactLocation: {
+      city: [],
+      state: [],
+      country: [],
+      zipCode: [],
+    },
+    companyAttributes: {
+      revenue: {
+        condition: Condition.isUnknown,
+      },
+      fundingStage: [],
+      numberOfEmployees: [],
+    },
+    companyLocation: {
+      city: [],
+      state: [],
+      country: [],
+      zipCode: [],
+    },
+    industry: {
+      condition: Condition.isUnknown,
+      keywords: []
+    },
+    technologies: {
+      condition: Condition.isUnknown,
+      keywords: []
+    },
+    contactsCount: 0,
+  };
 }
 
 function conditionalKeywordsFromDto(

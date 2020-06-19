@@ -14,7 +14,8 @@
         <mat-icon>more_vert</mat-icon>
       </span>
       <mat-menu #removeMenu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item
+                (click)="removePersona(persona.id)">
           <mat-icon>delete</mat-icon>
           <span>Remove persona</span>
         </button>

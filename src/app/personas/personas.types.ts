@@ -64,8 +64,8 @@ export type ConditionalKeywords = {
 
 export type ConditionalRevenue = {
   condition: Condition;
-  min: number;
-  max: number;
+  min?: number;
+  max?: number;
 };
 
 interface Location {

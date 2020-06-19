@@ -49,6 +49,11 @@ export const personaCreate = createAction(
 
 export const personaCreateSuccess = createAction(
   '[Personas] Persona Create Success',
+  props<{ persona: Persona; }>()
+);
+
+export const removePersona = createAction(
+  '[Personas] Remove Persona',
   props<{ personaId: string; }>()
 );
 

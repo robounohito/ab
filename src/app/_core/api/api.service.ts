@@ -33,6 +33,7 @@ export const apiEndpoint = {
   getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' }, // not implemented
   getUserProfile: { method: 'get', url: 'userProfile' },
   patchPersona: { method: 'patch', url: 'personas/{id}' },
+  deletePersona: { method: 'delete', url: 'personas/{id}' },
   postAttachment: { method: 'post', url: 'attachments' },
   postLogin: { method: 'post', url: 'auth/login' },
   postPersona: { method: 'post', url: 'personas' },
