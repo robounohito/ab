@@ -105,7 +105,6 @@ export class PersonaComponent implements OnInit {
   }
 
   toggleNameEdit(nameEdit: boolean, nameEditEl: HTMLElement) {
-    console.log('nameEdit', nameEdit);
     formPatchValue(this.form, { nameEdit: !nameEdit });
     if (!nameEdit) {
       setTimeout(() => nameEditEl.focus());

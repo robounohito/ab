@@ -51,7 +51,15 @@ export class PersonasEffects {
     tap(({ original, moved }) => console.log(
       'reorder effect',
       moved.filter((m, i) => m.id !== original[i].id)
-    ))
+    )),
+    switchMap(({ original, moved }) => {
+      const reordered = moved.filter((m, i) => m.id !== original[i].id);
+      return forkJoin(reordered.map(p => this.api.request({
+        endpoint: this.api.endpoint.patchPersona,
+        urlParams: { id: p.id },
+        data: { order: p.order },
+      })));
+    })
   ), { dispatch: false });
 
   updatePersona$ = createEffect(() => this.actions$.pipe(

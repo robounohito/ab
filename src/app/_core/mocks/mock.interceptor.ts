@@ -65,7 +65,7 @@ export class MockInterceptor implements HttpInterceptor {
         status: 200, body: dashboard()
       })).pipe(delay(50));
     }
-    if (request.url.endsWith('contacts-')
+    if (request.url.endsWith('contacts')
       && request.method === 'GET') {
       // return throwError(new HttpErrorResponse({ error: { code: 1035 } })).pipe(delay(50));
       return of(new HttpResponse({
