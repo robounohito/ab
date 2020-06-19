@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { App } from '../app.types';
 import { Store } from '@ngrx/store';
 import { Personas, Persona } from './personas.types';
-import { selectPersonas } from './personas.model';
+import { selectPersonas, selectCurrentPersona } from './personas.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { reorderPersonas, personaCreate } from './personas.constants';
 import { customFadeAnimation } from '../_core/animations/animations';
@@ -18,6 +18,7 @@ import { customFadeAnimation } from '../_core/animations/animations';
 export class PersonasComponent implements OnInit {
 
   model$!: Observable<Personas>;
+  selectedPersona$!: Observable<Persona | undefined>;
 
   constructor(
     private store: Store<App>,
@@ -25,6 +26,7 @@ export class PersonasComponent implements OnInit {
 
   ngOnInit() {
     this.model$ = this.store.select(selectPersonas);
+    this.selectedPersona$ = this.store.select(selectCurrentPersona);
   }
 
   drop(event: CdkDragDrop<string[]>, personas: Persona[]) {

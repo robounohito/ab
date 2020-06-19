@@ -52,7 +52,6 @@
 
       .add-persona {
 
-        // border: 2px dotted var.$grey4;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -85,10 +84,32 @@
     }
 
     &.right {
+
       width: 1082px;
       max-width: 1800px;
       padding: 20px;
       border-left: solid 1px var.$grey4;
+
+      .empty {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 40px);
+        color: var.$grey9;
+        letter-spacing: 0.2px;
+        padding-bottom: 30px;
+
+        .mat-icon {
+          font-size: 120px;
+          height: auto;
+          width: auto;
+          color: var.$grey2;
+        }
+
+      }
+
     }
 
   }
@@ -97,7 +118,7 @@
 
 .personas-list {
   max-width: 100%;
-  min-height: 60px;
+  // min-height: 60px;
   display: block;
   overflow: hidden;
 }
