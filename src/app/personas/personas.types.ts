@@ -75,6 +75,19 @@ interface Location {
   zipCode: string[];
 }
 
+export type PersonaSubsetPath = [
+  keyof Persona,
+  keyof Persona['contactsAttributes']
+  | keyof Persona['companyAttributes']
+  | keyof Location
+  | keyof ConditionalKeywords,
+] | [
+    keyof Persona,
+    keyof Persona['contactsAttributes']
+    | keyof Persona['companyAttributes'],
+    keyof ConditionalKeywords
+    | keyof Persona['companyAttributes']['revenue']
+  ];
 
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form';
-import { Persona, Personas, ConditionalKeywords } from '../personas.types';
+import { Persona, Personas, PersonaSubsetPath } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelectChange } from '@angular/material/select';
@@ -18,20 +18,6 @@ interface PersonaForm {
   revenueMin: string;
   revenueMax: string;
 }
-
-type PathTo = [
-  keyof Persona,
-  keyof Persona['contactsAttributes']
-  | keyof Persona['companyAttributes']
-  | keyof Location
-  | keyof ConditionalKeywords,
-] | [
-    keyof Persona,
-    keyof Persona['contactsAttributes']
-    | keyof Persona['companyAttributes'],
-    keyof ConditionalKeywords
-    | keyof Persona['companyAttributes']['revenue']
-  ];
 
 @Component({
   selector: 'ab-persona',
@@ -71,7 +57,7 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  selectChange(pathTo: PathTo, event: MatSelectChange | MatRadioChange) {
+  selectChange(pathTo: PersonaSubsetPath, event: MatSelectChange | MatRadioChange) {
     this.store.dispatch(personaSelectionChange({
       personaId: this.persona.id,
       path: pathTo,
@@ -79,7 +65,7 @@ export class PersonaComponent implements OnInit {
     }));
   }
 
-  inputBlur(pathTo: PathTo, event: InputEvent) {
+  inputBlur(pathTo: PersonaSubsetPath, event: InputEvent) {
     const value = (event.target as HTMLInputElement).value;
     if (value == null) { return; }
     this.store.dispatch(personaSelectionChange({
@@ -89,7 +75,7 @@ export class PersonaComponent implements OnInit {
     }));
   }
 
-  tagRemove(pathTo: PathTo, item: string) {
+  tagRemove(pathTo: PersonaSubsetPath, item: string) {
     this.store.dispatch(personaSelectionChange({
       personaId: this.persona.id,
       path: pathTo,
@@ -100,7 +86,7 @@ export class PersonaComponent implements OnInit {
     }));
   }
 
-  tagAdd(pathTo: PathTo, event: MatChipInputEvent) {
+  tagAdd(pathTo: PersonaSubsetPath, event: MatChipInputEvent) {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
@@ -118,7 +104,7 @@ export class PersonaComponent implements OnInit {
     }
   }
 
-  valueFromPath(pathTo: PathTo) {
+  valueFromPath(pathTo: PersonaSubsetPath) {
     return path(pathTo, this.persona);
   }
 

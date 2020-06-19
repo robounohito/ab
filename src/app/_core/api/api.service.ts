@@ -32,6 +32,7 @@ export const apiEndpoint = {
   getStats: { method: 'get', url: 'stats' }, // not implemented
   getSuggestedCampaigns: { method: 'get', url: 'autobound/suggested' }, // not implemented
   getUserProfile: { method: 'get', url: 'userProfile' },
+  patchPersonas: { method: 'patch', url: 'personas/{id}' },
   postAttachment: { method: 'post', url: 'attachments' },
   postLogin: { method: 'post', url: 'auth/login' },
   postRecover: { method: 'post', url: 'auth/recover' },

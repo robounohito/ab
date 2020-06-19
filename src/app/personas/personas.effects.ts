@@ -1,13 +1,15 @@
 
 import { Injectable } from '@angular/core';
-import { switchMap, map, tap, shareReplay } from 'rxjs/operators';
+import { switchMap, map, tap, shareReplay, concatMap, withLatestFrom } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
-import { loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas } from './personas.constants';
+import { loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas, personaSelectionChange } from './personas.constants';
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
-import { contactMapper, numberOfEmployeesMapper, personaMapper } from './personas.model';
-import { memoizeWith, identity } from 'ramda';
-import { forkJoin } from 'rxjs';
+import { contactMapper, numberOfEmployeesMapper, personaFromDtoMapper, selectCurrentPersona, personaToDtoMapper } from './personas.model';
+import { memoizeWith, identity,  } from 'ramda';
+import { forkJoin, of } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { App } from '../app.types';
 
 @Injectable()
 export class PersonasEffects {
@@ -25,7 +27,7 @@ export class PersonasEffects {
         [{ fundingStage }, { seniority }, { jobDepartment }, { numberOfEmployees }],
         personasResp
       ]) => loadPersonasSuccess({
-        personas: personasResp.personas.map(personaMapper),
+        personas: personasResp.personas.map(personaFromDtoMapper),
         dataSets: {
           fundingStage,
           seniority,
@@ -42,6 +44,23 @@ export class PersonasEffects {
       'reorder effect',
       moved.filter((m, i) => m.id !== original[i].id)
     ))
+  ), { dispatch: false });
+
+  updatePersona$ = createEffect(() => this.actions$.pipe(
+    ofType(personaSelectionChange),
+    concatMap(action => of(action).pipe(
+      withLatestFrom(this.store.pipe(select(selectCurrentPersona)))
+    )),
+
+    switchMap(([{ personaId, path }, persona]) => {
+      console.log('effect persona', persona);
+      // const dtoPath = (path as any)([pathTo[0]], persona)['jobDepartmentDtoPath'];
+      return this.api.request({
+        endpoint: this.api.endpoint.patchPersonas,
+        urlParams: { id: personaId },
+        data: persona ? personaToDtoMapper(persona, path[0]) : {},
+      });
+    })
   ), { dispatch: false });
 
   loadContacts$ = createEffect(() => this.actions$.pipe(
@@ -83,6 +102,7 @@ export class PersonasEffects {
   constructor(
     private actions$: Actions,
     private api: ApiService,
+    private store: Store<App>,
   ) { }
 
 }

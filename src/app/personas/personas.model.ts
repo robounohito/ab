@@ -103,7 +103,7 @@ export function numberOfEmployeesMapper(
   }
 }
 
-export function personaMapper(dto: PersonaDto): Persona {
+export function personaFromDtoMapper(dto: PersonaDto): Persona {
   return {
     id: dto.id,
     name: dto.name,
@@ -111,23 +111,85 @@ export function personaMapper(dto: PersonaDto): Persona {
     order: dto.order,
     contactsAttributes: {
       jobDepartment: dto.job.department,
-      jobTitle: conditionalKeywordsInit(dto.job.title),
+      jobTitle: conditionalKeywordsFromDto(dto.job.title),
       seniority: dto.job.seniority,
     },
-    contactsLocation: null!,
+    contactsLocation: {
+      city: dto.location.city,
+      state: dto.location.state,
+      country: dto.location.country,
+      zipCode: dto.location.zipCode,
+    },
     companyAttributes: {
       revenue: (dto.company.revenue),
       fundingStage: dto.company.fundingStage,
       numberOfEmployees: [numberOfEmployeesMapper(dto.company.employees)]
     },
-    companyLocation: null!,
-    industry: conditionalKeywordsInit(dto.company.industry),
-    technologies: conditionalKeywordsInit(dto.company.technologies),
+    companyLocation: {
+      city: dto.company.location.city,
+      state: dto.company.location.state,
+      country: dto.company.location.country,
+      zipCode: dto.company.location.zipCode,
+    },
+    industry: conditionalKeywordsFromDto(dto.company.industry),
+    technologies: conditionalKeywordsFromDto(dto.company.technologies),
     contactsCount: 0,
   };
 }
 
-function conditionalKeywordsInit(dto: ConditionalKeywordsDto): ConditionalKeywords {
+export function personaToDtoMapper(
+  persona: Persona,
+  subsetPath?: keyof Persona
+): Partial<PersonaDto> {
+  const subsetMapper: {
+    [key in keyof Partial<Persona>]: keyof PersonaDto
+  } = {
+    contactsAttributes: 'job',
+    contactsLocation: 'location',
+    companyAttributes: 'company',
+    companyLocation: 'company',
+    industry: 'company',
+    technologies: 'company',
+  };
+  const dto: PersonaDto = {
+    id: persona.id,
+    name: persona.name,
+    active: persona.active,
+    order: persona.order,
+    job: {
+      title: conditionalKeywordsToDto(persona.contactsAttributes.jobTitle),
+      department: persona.contactsAttributes.jobDepartment,
+      seniority: persona.contactsAttributes.seniority
+    },
+    location: {
+      city: persona.contactsLocation.city,
+      state: persona.contactsLocation.state,
+      country: persona.contactsLocation.country,
+      zipCode: persona.contactsLocation.zipCode,
+    },
+    company: {
+      industry: conditionalKeywordsToDto(persona.industry),
+      revenue: persona.companyAttributes.revenue,
+      fundingStage: persona.companyAttributes.fundingStage,
+      employees: persona.companyAttributes.numberOfEmployees,
+      location: {
+        city: persona.companyLocation.city,
+        state: persona.companyLocation.state,
+        country: persona.companyLocation.country,
+        zipCode: persona.companyLocation.zipCode,
+      },
+      technologies: conditionalKeywordsToDto(persona.technologies),
+    },
+  };
+  if (subsetPath) {
+    return {
+      [subsetMapper[subsetPath] as string]: dto[subsetMapper[subsetPath]!]
+    };
+  }
+  return dto;
+}
+
+function conditionalKeywordsFromDto(dto: ConditionalKeywordsDto): ConditionalKeywords {
   if (dto.known) {
     return {
       condition: Condition.isKnown,
@@ -150,4 +212,37 @@ function conditionalKeywordsInit(dto: ConditionalKeywordsDto): ConditionalKeywor
     condition: Condition.isNoneOf,
     keywords: dto.noneOf,
   };
+}
+
+function conditionalKeywordsToDto(conditionalKeywords: ConditionalKeywords): ConditionalKeywordsDto {
+  switch (conditionalKeywords.condition) {
+    case Condition.isAnyOf:
+      return {
+        anyOf: conditionalKeywords.keywords,
+        noneOf: [],
+        known: false,
+        unKnown: false,
+      };
+    case Condition.isNoneOf:
+      return {
+        anyOf: [],
+        noneOf: conditionalKeywords.keywords,
+        known: false,
+        unKnown: false,
+      };
+    case Condition.isKnown:
+      return {
+        anyOf: [],
+        noneOf: [],
+        known: true,
+        unKnown: false,
+      };
+    case Condition.isUnknown:
+      return {
+        anyOf: [],
+        noneOf: [],
+        known: false,
+        unKnown: true,
+      };
+  }
 }

@@ -102,9 +102,7 @@
               Contains
             </mat-radio-button>
 
-            <ng-container *ngIf="persona.contactsAttributes.jobTitle.condition===condition.isAnyOf 
-                                  || persona.contactsAttributes.jobTitle.condition===condition.isKnown 
-                                  || persona.contactsAttributes.jobTitle.condition===condition.isUnknown">
+            <ng-container *ngIf="persona.contactsAttributes.jobTitle.condition===condition.isAnyOf">
               <ng-container *ngTemplateOutlet="chipsInput; 
                 context: { pathTo: ['contactsAttributes', 'jobTitle', 'keywords'], placeholder: 'Input job titles' }">
               </ng-container>
