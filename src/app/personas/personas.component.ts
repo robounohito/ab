@@ -42,8 +42,8 @@ export class PersonasComponent implements OnInit {
     this.store.dispatch(personaCreate({ order: order + 1 }));
   }
 
-  trackByFn(index: number, item: { key: string }) {
-    return item.key || index;
+  trackByFn(index: number, item: Persona) {
+    return item.id || index;
   }
 
 }
