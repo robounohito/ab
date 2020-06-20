@@ -9,8 +9,8 @@ import {
 } from './personas.constants';
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
 import {
-  contactMapper, numberOfEmployeesMapper, personaFromDtoMapper, selectCurrentPersona,
-  personaToDtoMapper, createPersona
+  contactMapper, numberOfEmployeesFromDto, personaFromDto, selectCurrentPersona,
+  personaToDto, createPersona
 } from './personas.model';
 import { memoizeWith, identity, } from 'ramda';
 import { forkJoin, of } from 'rxjs';
@@ -35,12 +35,12 @@ export class PersonasEffects {
         [{ fundingStage }, { seniority }, { jobDepartment }, { numberOfEmployees }],
         personasResp
       ]) => loadPersonasSuccess({
-        personas: personasResp.personas.map(personaFromDtoMapper),
+        personas: personasResp.personas.map(personaFromDto),
         dataSets: {
           fundingStage,
           seniority,
           jobDepartment,
-          numberOfEmployees: numberOfEmployees.map(numberOfEmployeesMapper),
+          numberOfEmployees: numberOfEmployees.map(numberOfEmployeesFromDto),
         }
       }))
     )))
@@ -67,7 +67,7 @@ export class PersonasEffects {
       return this.api.request({
         endpoint: this.api.endpoint.patchPersona,
         urlParams: { id: personaId },
-        data: persona ? personaToDtoMapper(persona, path[0]) : {},
+        data: persona ? personaToDto(persona, path[0]) : {},
       });
     })
   ), { dispatch: false });
@@ -78,7 +78,7 @@ export class PersonasEffects {
       const newPersona = createPersona(order);
       return this.api.request<{ id: string; }>({
         endpoint: this.api.endpoint.postPersona,
-        data: personaToDtoMapper(newPersona),
+        data: personaToDto(newPersona),
       }).pipe(
         map(resp => personaCreateSuccess({
           persona: {

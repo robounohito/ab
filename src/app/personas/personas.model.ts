@@ -1,6 +1,9 @@
 
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
-import { Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto, ConditionalKeywords, ConditionalRevenueDto, ConditionalRevenue } from './personas.types';
+import {
+  Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto,
+  ConditionalKeywords, ConditionalRevenueDto, ConditionalRevenue, NumberOfEmployeesDto
+} from './personas.types';
 import {
   loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaChange, personaCreateSuccess,
   Condition, removePersona
@@ -111,8 +114,8 @@ export function contactMapper(dto: ContactDto): Contact {
   };
 }
 
-export function numberOfEmployeesMapper(
-  { min, max }: { min: number; max: number; }
+export function numberOfEmployeesFromDto(
+  { min, max }: NumberOfEmployeesDto
 ): string {
   if (max !== -1) {
     return `${min}-${max}`;
@@ -121,7 +124,24 @@ export function numberOfEmployeesMapper(
   }
 }
 
-export function personaFromDtoMapper(dto: PersonaDto): Persona {
+export function numberOfEmployeesToDto(
+  numberOfEmployees: string
+): NumberOfEmployeesDto {
+  const plus = numberOfEmployees.split('+');
+  if (plus.length > 1) {
+    return {
+      min: parseInt(plus[0], 10),
+      max: -1
+    };
+  }
+  const minus = numberOfEmployees.split('-');
+  return {
+    min: parseInt(minus[0], 10),
+    max: parseInt(minus[1], 10)
+  };
+}
+
+export function personaFromDto(dto: PersonaDto): Persona {
   return {
     id: dto.id,
     name: dto.name,
@@ -141,7 +161,7 @@ export function personaFromDtoMapper(dto: PersonaDto): Persona {
     companyAttributes: {
       revenue: conditionalRevenueFromDto(dto.company.revenue),
       fundingStage: dto.company.fundingStage,
-      numberOfEmployees: [numberOfEmployeesMapper(dto.company.employees)]
+      numberOfEmployees: [numberOfEmployeesFromDto(dto.company.employees)]
     },
     companyLocation: {
       city: dto.company.location.city,
@@ -155,7 +175,7 @@ export function personaFromDtoMapper(dto: PersonaDto): Persona {
   };
 }
 
-export function personaToDtoMapper(
+export function personaToDto(
   persona: Persona,
   subsetPath?: keyof Persona
 ): Partial<PersonaDto> {
@@ -189,7 +209,7 @@ export function personaToDtoMapper(
       industry: conditionalKeywordsToDto(persona.industry),
       revenue: conditionalRevenueToDto(persona.companyAttributes.revenue),
       fundingStage: persona.companyAttributes.fundingStage,
-      employees: persona.companyAttributes.numberOfEmployees,
+      employees: persona.companyAttributes.numberOfEmployees.map(numberOfEmployeesToDto)[0], // TODO should be a collection
       location: {
         city: persona.companyLocation.city,
         state: persona.companyLocation.state,

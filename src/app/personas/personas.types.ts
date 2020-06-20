@@ -111,7 +111,7 @@ export interface PersonaDto {
     industry: ConditionalKeywordsDto;
     revenue: ConditionalRevenueDto;
     fundingStage: string[];
-    employees: any;
+    employees: NumberOfEmployeesDto;
     location: {
       city: string[];
       state: string[];
@@ -152,4 +152,9 @@ export interface ContactDto {
     zipCode: string;
   };
   phoneNumber: string;
+}
+
+export interface NumberOfEmployeesDto {
+  min: number;
+  max: number;
 }
