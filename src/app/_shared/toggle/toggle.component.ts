@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroupDirective, ControlContainer } from '@angular/forms';
 
 @Component({
@@ -12,5 +12,7 @@ import { FormGroupDirective, ControlContainer } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToggleComponent {
+  @Input() value!: boolean;
   @Input() inputFormControlName!: string;
+  @Output() toggle = new EventEmitter<boolean>();
 }

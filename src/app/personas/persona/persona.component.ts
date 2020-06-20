@@ -4,16 +4,13 @@ import { formPatchValue, FormGroupT, formCreate } from 'src/app/_core/form/form'
 import { Persona, Personas, PersonaSubsetPath } from '../personas.types';
 import { slideInOut } from 'src/app/_core/animations/animations';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { MatSelectChange } from '@angular/material/select';
 import { Condition, personaChange, removePersona } from '../personas.constants';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
 import { path, compose, filter, append } from 'ramda';
-import { MatRadioChange } from '@angular/material/radio';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
-  active: boolean;
   nameEdit: boolean;
 }
 
@@ -39,7 +36,6 @@ export class PersonaComponent implements OnInit {
   ngOnInit() {
     this.form = formCreate<PersonaForm>(this.fb, {
       expanded: [{ block: true, /* location: true */ }],
-      active: [true],
       nameEdit: [false],
     });
   }
@@ -53,11 +49,11 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  selectRadioChange(pathTo: PersonaSubsetPath, event: MatSelectChange | MatRadioChange) {
+  change(pathTo: PersonaSubsetPath, value: string | string[] | boolean) {
     this.store.dispatch(personaChange({
       personaId: this.persona.id,
       path: pathTo,
-      value: event.value
+      value
     }));
   }
 

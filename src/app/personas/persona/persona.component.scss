@@ -54,8 +54,14 @@
   padding: 10px;
 
   .block-disabled {
+
     pointer-events: none;
     opacity: 0.8;
+    
+    h1, p {
+      color: var.$grey10;
+    }
+
   }
 
   .controls-wrapper {

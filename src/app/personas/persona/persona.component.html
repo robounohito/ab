@@ -20,7 +20,8 @@
           <span>Remove persona</span>
         </button>
       </mat-menu>
-      <ab-toggle inputFormControlName="active">
+      <ab-toggle [value]="persona.active"
+                 (toggle)="change(['active'], $event)">
       </ab-toggle>
     </div>
     <ab-arrow [expanded]="form.value.expanded['block']"
@@ -28,27 +29,31 @@
     </ab-arrow>
   </div>
 
-  <div class="text-edit">
+  <div class="text-edit"
+       [ngClass]="!persona.active && 'block-disabled'">
     <h1 *ngIf="!form.value.nameEdit">
       {{persona.name}}
     </h1>
-    <mat-icon *ngIf="!form.value.nameEdit"
+    <mat-icon *ngIf="!form.value.nameEdit && persona.active"
               (click)="toggleNameEdit(form.value.nameEdit, nameEdit)">
       edit
     </mat-icon>
     <input [hidden]="!form.value.nameEdit"
            #nameEdit
            maxlength="50"
+           [disabled]="!persona.active"
            [value]="persona.name"
            (keydown.escape)="toggleNameEdit(form.value.nameEdit, nameEdit); nameEdit.value = persona.name;"
            (keyup.enter)="nameEdit.blur()"
            (blur)="nameEditBlur(['name'], form.value.nameEdit, nameEdit, $event)">
   </div>
 
-  <p>{{persona.contacts ? persona.contactsCount : 34}} contacts</p>
+  <p [ngClass]="!persona.active && 'block-disabled'">
+    {{persona.contacts ? persona.contactsCount : 34}} contacts
+  </p>
 
   <div class="block-wrapper"
-       [ngClass]="!form.value.active && 'block-disabled'"
+       [ngClass]="!persona.active && 'block-disabled'"
        *ngIf="form.value.expanded['block']">
 
     <div class="info-block">
@@ -76,14 +81,14 @@
                           [floatLabel]="'never'">
 
             <mat-select placeholder="Select job department"
-                        (selectionChange)="selectRadioChange(['contactsAttributes', 'jobDepartment'], $event)"
+                        (selectionChange)="change(['contactsAttributes', 'jobDepartment'], $event.value)"
                         [value]="persona.contactsAttributes.jobDepartment"
-                        [disabled]="!form.value.active"
+                        [disabled]="!persona.active"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate
-                               [disabled]="!form.value.active">
+                               [disabled]="!persona.active">
                   <mat-chip *ngFor="let job of persona.contactsAttributes.jobDepartment"
                             [removable]="true"
                             (removed)="tagRemove(['contactsAttributes', 'jobDepartment'], job)">
@@ -111,8 +116,8 @@
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
                            [value]="persona.contactsAttributes.jobTitle.condition"
-                           (change)="selectRadioChange(['contactsAttributes', 'jobTitle', 'condition'], $event)"
-                           [disabled]="!form.value.active">
+                           (change)="change(['contactsAttributes', 'jobTitle', 'condition'], $event.value)"
+                           [disabled]="!persona.active">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Contains
@@ -155,13 +160,13 @@
 
             <mat-select placeholder="Select seniority"
                         [value]="persona.contactsAttributes.seniority"
-                        (selectionChange)="selectRadioChange(['contactsAttributes', 'seniority'], $event)"
-                        [disabled]="!form.value.active"
+                        (selectionChange)="change(['contactsAttributes', 'seniority'], $event.value)"
+                        [disabled]="!persona.active"
                         multiple>
 
               <mat-select-trigger>
                 <mat-chip-list abTagsTruncate
-                               [disabled]="!form.value.active">
+                               [disabled]="!persona.active">
                   <mat-chip *ngFor="let level of persona.contactsAttributes.seniority"
                             [removable]="true"
                             (removed)="tagRemove(['contactsAttributes', 'seniority'], level)">
@@ -234,8 +239,9 @@
 
           <mat-radio-group aria-label="Select an option"
                            class="radio-group ab chips-input"
+                           [disabled]="!persona.active"
                            [value]="persona.companyAttributes.revenue.condition"
-                           (change)="selectRadioChange(['companyAttributes', 'revenue', 'condition'], $event)">
+                           (change)="change(['companyAttributes', 'revenue', 'condition'], $event.value)">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Is between
@@ -276,12 +282,14 @@
                           [floatLabel]="'never'">
 
             <mat-select placeholder="Select funding stage"
+                        [disabled]="!persona.active"
                         [value]="persona.companyAttributes.fundingStage"
-                        (selectionChange)="selectRadioChange(['companyAttributes', 'fundingStage'], $event)"
+                        (selectionChange)="change(['companyAttributes', 'fundingStage'], $event.value)"
                         multiple>
 
               <mat-select-trigger>
-                <mat-chip-list abTagsTruncate>
+                <mat-chip-list abTagsTruncate
+                               [disabled]="!persona.active">
                   <mat-chip *ngFor="let stage of persona.companyAttributes.fundingStage"
                             [removable]="true"
                             (removed)="tagRemove(['companyAttributes', 'fundingStage'], stage)">
@@ -310,12 +318,14 @@
                           [floatLabel]="'never'">
 
             <mat-select placeholder="Select number of employees"
+                        [disabled]="!persona.active"
                         [value]="persona.companyAttributes.numberOfEmployees"
-                        (selectionChange)="selectRadioChange(['companyAttributes', 'numberOfEmployees'], $event)"
+                        (selectionChange)="change(['companyAttributes', 'numberOfEmployees'], $event.value)"
                         multiple>
 
               <mat-select-trigger>
-                <mat-chip-list abTagsTruncate>
+                <mat-chip-list abTagsTruncate
+                               [disabled]="!persona.active">
                   <mat-chip *ngFor="let number of persona.companyAttributes.numberOfEmployees"
                             [removable]="true"
                             (removed)="tagRemove(['companyAttributes', 'numberOfEmployees'], number)">
@@ -385,9 +395,10 @@
         <div class="group">
 
           <mat-radio-group aria-label="Select an option"
+                           [disabled]="!persona.active"
                            class="radio-group ab chips-input"
                            [value]="persona.industry.condition"
-                           (change)="selectRadioChange(['industry', 'condition'], $event)">
+                           (change)="change(['industry', 'condition'], $event.value)">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Is any of
@@ -445,9 +456,10 @@
         <div class="group">
 
           <mat-radio-group aria-label="Select an option"
+                           [disabled]="!persona.active"
                            class="radio-group ab chips-input"
                            [value]="persona.technologies.condition"
-                           (change)="selectRadioChange(['technologies', 'condition'], $event)">
+                           (change)="change(['technologies', 'condition'], $event.value)">
 
             <mat-radio-button [value]="condition.isAnyOf">
               Is any of
@@ -494,7 +506,7 @@
              let-placeholder="placeholder">
   <mat-form-field [floatLabel]="'never'">
     <mat-chip-list #chipList
-                   [disabled]="!form.value.active"
+                   [disabled]="!persona.active"
                    aria-label="Tags selection">
       <mat-chip *ngFor="let item of valueFromPath(pathTo)"
                 [removable]="true"

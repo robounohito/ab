@@ -38,7 +38,7 @@ export const personaChange = createAction(
   props<{
     personaId: string;
     path: PersonaSubsetPath;
-    value: string[] | string;
+    value: string[] | string | boolean;
   }>()
 );
 
