@@ -95,7 +95,7 @@ const sortPersonas = sortWith<Persona>([
   ascend(prop('order'))
 ]);
 
-export function contactMapper(dto: ContactDto): Contact {
+export function contactFromDto(dto: ContactDto): Contact {
   return {
     id: dto.id,
     image: dto.image,
@@ -209,7 +209,7 @@ export function personaToDto(
       industry: conditionalKeywordsToDto(persona.industry),
       revenue: conditionalRevenueToDto(persona.companyAttributes.revenue),
       fundingStage: persona.companyAttributes.fundingStage,
-      employees: persona.companyAttributes.numberOfEmployees.map(numberOfEmployeesToDto)[0], // TODO should be a collection
+      employees: persona.companyAttributes.numberOfEmployees.map(numberOfEmployeesToDto)[0] || [], // TODO should be a collection
       location: {
         city: persona.companyLocation.city,
         state: persona.companyLocation.state,

@@ -44,6 +44,7 @@
            maxlength="50"
            [disabled]="!persona.active"
            [value]="persona.name"
+           (mousedown)="$event.stopPropagation()"
            (keydown.escape)="toggleNameEdit(form.value.nameEdit, nameEdit); nameEdit.value = persona.name;"
            (keyup.enter)="nameEdit.blur()"
            (blur)="nameEditBlur(['name'], form.value.nameEdit, nameEdit, $event)">

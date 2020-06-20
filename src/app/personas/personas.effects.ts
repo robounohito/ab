@@ -9,7 +9,7 @@ import {
 } from './personas.constants';
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
 import {
-  contactMapper, numberOfEmployeesFromDto, personaFromDto, selectCurrentPersona,
+  contactFromDto, numberOfEmployeesFromDto, personaFromDto, selectCurrentPersona,
   personaToDto, createPersona
 } from './personas.model';
 import { memoizeWith, identity, } from 'ramda';
@@ -112,7 +112,7 @@ export class PersonasEffects {
     }).pipe(
       map(resp => loadContactsSuccess({
         personaId,
-        contacts: resp.contacts.map(contactMapper),
+        contacts: resp.contacts.map(contactFromDto),
         contactsCount: resp.count,
       }))
     ))

@@ -24,14 +24,14 @@
         </ab-persona>
       </div>
 
-    </div>
+      <div class="persona-item add-persona">
+        <button mat-button
+                (click)="addPersona(model.personas[model.personas.length - 1]?.order || 0)">
+          <mat-icon>add</mat-icon>
+          <span>Add Persona</span>
+        </button>
+      </div>
 
-    <div class="add-persona">
-      <button mat-button
-              (click)="addPersona(model.personas[model.personas.length - 1]?.order || 0)">
-        <mat-icon>add</mat-icon>
-        <span>Add Persona</span>
-      </button>
     </div>
 
   </div>

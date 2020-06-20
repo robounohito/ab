@@ -41,14 +41,15 @@
 
     p {
       @include p-text;
-      margin-bottom: 18px;
+      margin: auto 20px 18px auto;
     }
 
     &.left {
 
-      width: 250px;
+      width: 272px;
       max-width: 400px;
-      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
 
       .add-persona {
 
@@ -59,6 +60,10 @@
         margin: 20px 0;
         padding: 15px;
         background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='rgb(183,190,216)' stroke-width='5' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
+        &:first-child {
+          margin-top: 0;
+        }
 
         button {
 
@@ -89,6 +94,7 @@
       max-width: 1800px;
       padding: 20px;
       border-left: solid 1px var.$grey4;
+      position: relative;
 
       .empty {
 
@@ -96,7 +102,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: calc(100vh - 40px);
+        height: calc(100vh - 50px);
         color: var.$grey9;
         letter-spacing: 0.2px;
         padding-bottom: 30px;
@@ -119,7 +125,10 @@
 .personas-list {
   max-width: 100%;
   display: block;
-  overflow: hidden;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-right: 16px;
+  flex-grow: 1;
 }
 
 .persona-item {

@@ -16,6 +16,7 @@ export const customFadeAnimation = trigger('customFadeAnimation', [
       style({
         opacity: 0,
         position: 'absolute',
+        display: 'inherit',
         top: '-9999px'
       })
     ], { optional: true }
