@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, AbstractControlOptions } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 export interface FormGroupT<T> extends FormGroup {
@@ -13,9 +13,10 @@ export interface FormArrayT<T> extends FormArray {
 
 export function formCreate<T>(
   fb: FormBuilder,
-  formObject: { [K in keyof T]: T[K] extends FormArray ? T[K] : [T[K], any?, any?]; }
+  formObject: { [K in keyof T]: T[K] extends FormArray ? T[K] : [T[K], any?, any?]; },
+  options?: AbstractControlOptions | { [key: string]: any; },
 ): FormGroupT<T> {
-  return fb.group(formObject);
+  return fb.group(formObject, options);
 }
 
 export function formPatchValue<T>(

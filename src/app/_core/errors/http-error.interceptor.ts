@@ -46,7 +46,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   errorHandler(err: HttpErrorResponse) {
     this.store.dispatch(notification({
-      message: err?.error?.message
+      message: err?.error?.error?.message
         || err?.error?.ErrorDetails?.Description
         || 'Something went wrong',
       action: 'Dismiss',

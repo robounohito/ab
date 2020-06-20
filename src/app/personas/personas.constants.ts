@@ -1,6 +1,6 @@
 
 import { createAction, props } from '@ngrx/store';
-import { Persona, Contact, Personas, PersonaSubsetPath } from './personas.types';
+import { Persona, Contact, Personas, PersonaSubsetPath, ConditionalRevenue } from './personas.types';
 
 export const loadPersonas = createAction(
   '[Personas] Load Personas',
@@ -38,7 +38,7 @@ export const personaChange = createAction(
   props<{
     personaId: string;
     path: PersonaSubsetPath;
-    value: string[] | string | boolean;
+    value: string[] | string | boolean | ConditionalRevenue;
   }>()
 );
 
@@ -62,5 +62,5 @@ export enum Condition {
   isNoneOf = 'noneOf',
   isKnown = 'known',
   isUnknown = 'unKnown',
-  isInBetween = 'inBetween',
+  isBetween = 'inBetween',
 }

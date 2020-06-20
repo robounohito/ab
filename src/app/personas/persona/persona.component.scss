@@ -267,6 +267,7 @@
               }
 
               input {
+                
                 width: 100%;
                 height: 30px;
                 padding: 5px 5px 5px 19px;
@@ -276,6 +277,11 @@
                 border: solid 1px var.$grey4;
                 background-color: white;
                 outline: none;
+
+                &.error {
+                  border: 1px solid var.$red;
+                }
+
               }
 
             }

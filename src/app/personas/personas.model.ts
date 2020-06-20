@@ -1,6 +1,6 @@
 
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
-import { Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto, ConditionalKeywords } from './personas.types';
+import { Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto, ConditionalKeywords, ConditionalRevenueDto, ConditionalRevenue } from './personas.types';
 import {
   loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaChange, personaCreateSuccess,
   Condition, removePersona
@@ -139,7 +139,7 @@ export function personaFromDtoMapper(dto: PersonaDto): Persona {
       zipCode: dto.location.zipCode,
     },
     companyAttributes: {
-      revenue: (dto.company.revenue),
+      revenue: conditionalRevenueFromDto(dto.company.revenue),
       fundingStage: dto.company.fundingStage,
       numberOfEmployees: [numberOfEmployeesMapper(dto.company.employees)]
     },
@@ -187,7 +187,7 @@ export function personaToDtoMapper(
     },
     company: {
       industry: conditionalKeywordsToDto(persona.industry),
-      revenue: persona.companyAttributes.revenue,
+      revenue: conditionalRevenueToDto(persona.companyAttributes.revenue),
       fundingStage: persona.companyAttributes.fundingStage,
       employees: persona.companyAttributes.numberOfEmployees,
       location: {
@@ -202,7 +202,7 @@ export function personaToDtoMapper(
   if (subsetPath) {
     if (subsetMapper[subsetPath]) {
       return {
-        [subsetMapper[subsetPath]!]:
+        [subsetMapper[subsetPath] as keyof PersonaDto]:
           dto[subsetMapper[subsetPath] as keyof PersonaDto]
       };
     }
@@ -236,6 +236,8 @@ export function createPersona(order: number): Persona {
     companyAttributes: {
       revenue: {
         condition: Condition.isUnknown,
+        min: '',
+        max: '',
       },
       fundingStage: [],
       numberOfEmployees: [],
@@ -273,5 +275,25 @@ function conditionalKeywordsToDto(
   return {
     type: conditionalKeywords.condition,
     keywords: conditionalKeywords.keywords,
+  };
+}
+
+function conditionalRevenueFromDto(
+  dto: ConditionalRevenueDto
+): ConditionalRevenue {
+  return {
+    condition: dto.type,
+    min: dto.min,
+    max: dto.max,
+  };
+}
+
+function conditionalRevenueToDto(
+  revenue: ConditionalRevenue
+): ConditionalRevenueDto {
+  return {
+    type: revenue.condition,
+    min: revenue.min,
+    max: revenue.max,
   };
 }

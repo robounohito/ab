@@ -245,22 +245,34 @@
                            [value]="persona.companyAttributes.revenue.condition"
                            (change)="change(['companyAttributes', 'revenue', 'condition'], $event.value)">
 
-            <mat-radio-button [value]="condition.isAnyOf">
+            <mat-radio-button [value]="condition.isBetween">
               Is between
             </mat-radio-button>
 
             <div class="range-inputs-wrapper"
-                 *ngIf="persona.companyAttributes.revenue.condition===condition.isAnyOf">
+                 *ngIf="persona.companyAttributes.revenue.condition===condition.isBetween">
               <label>
-                <input (blur)="inputBlur(['companyAttributes', 'revenue', 'min'], $event)"
+                <input #revenueMin
+                       [ngClass]="form.controls.revenueMin.dirty 
+                                    && form.controls.revenueMin.invalid 
+                                    && 'error'"
+                       (blur)="changeRevenue(revenueMin.value, revenueMax.value)"
+                       formControlName="revenueMin"
+                       (keyup.enter)="revenueMin.blur()"
                        (change)="$event.stopPropagation()"
                        mask="000000000000000">
               </label>
               <span>and</span>
               <label>
-                <input mask="000000000000000"
+                <input #revenueMax
+                       [ngClass]="form.controls.revenueMax.dirty 
+                                    && form.controls.revenueMax.invalid 
+                                    && 'error'"
+                       mask="000000000000000"
+                       formControlName="revenueMax"
+                       (keyup.enter)="revenueMax.blur()"
                        (change)="$event.stopPropagation()"
-                       (blur)="inputBlur(['companyAttributes', 'revenue', 'max'], $event)">
+                       (blur)="changeRevenue(revenueMin.value, revenueMax.value)">
               </label>
             </div>
 
@@ -533,7 +545,7 @@
     <div class="group-label">City</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { pathTo: [parent, 'cities'], placeholder: 'Input cities' }">
+        context: { pathTo: [parent, 'city'], placeholder: 'Input cities' }">
       </ng-container>
     </div>
   </div>
@@ -542,7 +554,7 @@
     <div class="group-label">State</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { pathTo: [parent, 'states'], placeholder: 'Input states' }">
+        context: { pathTo: [parent, 'state'], placeholder: 'Input states' }">
       </ng-container>
     </div>
   </div>
@@ -551,7 +563,7 @@
     <div class="group-label">Country</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { pathTo: [parent, 'countries'], placeholder: 'Input countries' }">
+        context: { pathTo: [parent, 'country'], placeholder: 'Input countries' }">
       </ng-container>
     </div>
   </div>
@@ -560,7 +572,7 @@
     <div class="group-label">Zip code</div>
     <div class="ab chips-input">
       <ng-container *ngTemplateOutlet="chipsInput; 
-        context: { pathTo: [parent, 'zipCodes'], placeholder: 'Input zip codes' }">
+        context: { pathTo: [parent, 'zipCode'], placeholder: 'Input zip codes' }">
       </ng-container>
     </div>
   </div>

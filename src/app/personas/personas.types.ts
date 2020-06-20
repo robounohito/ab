@@ -64,8 +64,8 @@ export type ConditionalKeywords = {
 
 export type ConditionalRevenue = {
   condition: Condition;
-  min?: number;
-  max?: number;
+  min: string;
+  max: string;
 };
 
 interface Location {
@@ -91,11 +91,6 @@ export type PersonaSubsetPath = [
     | keyof Persona['companyAttributes']['revenue']
   ];
 
-
-
-
-
-
 export interface PersonaDto {
   id: string;
   order: number;
@@ -114,7 +109,7 @@ export interface PersonaDto {
   };
   company: {
     industry: ConditionalKeywordsDto;
-    revenue: any;
+    revenue: ConditionalRevenueDto;
     fundingStage: string[];
     employees: any;
     location: {
@@ -130,6 +125,12 @@ export interface PersonaDto {
 export interface ConditionalKeywordsDto {
   type: Condition;
   keywords: string[];
+}
+
+export interface ConditionalRevenueDto {
+  type: Condition;
+  min: string;
+  max: string;
 }
 
 export interface ContactDto {
