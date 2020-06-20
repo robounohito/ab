@@ -42,6 +42,25 @@ body {
 
 .ab {
 
+  &.mat-menu-panel {
+
+    max-height: calc(100vh - 30px);
+    min-height: unset;
+
+    .mat-menu-item {
+
+      height: 30px;
+      line-height: 30px;
+      
+      .mat-icon {
+        font-size: 19px;
+        margin-right: 0px;
+      }
+  
+    }
+
+  }
+
   .mat-select {
 
     width: 100%;

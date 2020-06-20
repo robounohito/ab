@@ -13,11 +13,12 @@
             aria-label="Remove persona">
         <mat-icon>more_vert</mat-icon>
       </span>
-      <mat-menu #removeMenu="matMenu">
+      <mat-menu #removeMenu="matMenu"
+                [class]="'ab'">
         <button mat-menu-item
                 (click)="removePersona(persona.id)">
           <mat-icon>delete</mat-icon>
-          <span>Remove persona</span>
+          <span>Remove</span>
         </button>
       </mat-menu>
       <ab-toggle [value]="persona.active"
@@ -53,6 +54,7 @@
   </p>
 
   <div class="block-wrapper"
+       (mousedown)="$event.stopPropagation()"
        [ngClass]="!persona.active && 'block-disabled'"
        *ngIf="form.value.expanded['block']">
 
