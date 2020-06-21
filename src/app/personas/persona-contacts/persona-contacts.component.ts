@@ -17,7 +17,7 @@ import { ApiService } from 'src/app/_core/api/api.service';
 })
 export class PersonaContactsComponent implements OnInit {
 
-  displayedColumns = ['fullName', 'jobTitle', 'lastActivityDate', 'email', 'phone', 'company', 'industry', 'companyLocation', 'technologies', 'contactLocation', 'fundingStage', 'numberOfEmployees'];
+  displayedColumns = ['fullName', 'jobTitle', 'email', 'phone', 'company', 'industry', 'technologies'];
 
   model$!: Observable<Persona | undefined>;
 

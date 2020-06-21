@@ -11,12 +11,18 @@
       <p>{{model.contactsCount}} contacts</p>
     </div>
 
-    <mat-form-field>
-      <mat-label>Search</mat-label>
-      <input matInput
-             (keyup)="applyFilter($event)"
-             placeholder="Filter prospects">
-    </mat-form-field>
+    <div class="search-wrapper ab">
+      <label class="search">
+        <input matInput
+               (keyup)="applyFilter($event)"
+               placeholder="Search...">
+        <mat-icon matSuffix>search</mat-icon>
+      </label>
+      <button mat-flat-button
+              color="primary">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
 
   </div>
 
