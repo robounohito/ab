@@ -14,14 +14,9 @@ export class AppEffects {
 
   readToken$ = createEffect(() => this.actions$.pipe(
     ofType(readToken),
-    switchMap(() => {
-      const authToken = localStorage.getItem(authTokenKey);
-      return [
-        readTokenSuccess({
-          authToken: authToken ? JSON.parse(authToken) : null
-        }),
-      ];
-    })
+    map(() => readTokenSuccess({
+      authToken: localStorage.getItem(authTokenKey)
+    }))
   ));
 
   navigateToLogin$ = createEffect(() => this.actions$.pipe(

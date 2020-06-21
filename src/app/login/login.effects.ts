@@ -5,7 +5,6 @@ import { login, signup, recovery, reset, loginError, LoginError } from './login.
 import { Router } from '@angular/router';
 import { ApiService } from '../_core/api/api.service';
 import { readToken, authTokenKey } from '../app.constants';
-import { AuthToken } from '../app.types';
 import { Route } from '../app.constants';
 import { of, EMPTY } from 'rxjs';
 
@@ -14,7 +13,7 @@ export class LoginEffects {
 
   login$ = createEffect(() => this.actions$.pipe(
     ofType(login),
-    switchMap(({ payload }) => this.api.request<{ token: AuthToken; }>({
+    switchMap(({ payload }) => this.api.request<{ token: string; }>({
       endpoint: this.api.endpoint.postLogin,
       data: {
         email: payload.email,
@@ -24,7 +23,7 @@ export class LoginEffects {
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(resp => {
-        localStorage.setItem(authTokenKey, JSON.stringify(resp.token));
+        localStorage.setItem(authTokenKey, resp.token);
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
@@ -34,13 +33,13 @@ export class LoginEffects {
 
   signup$ = createEffect(() => this.actions$.pipe(
     ofType(signup),
-    switchMap(({ payload }) => this.api.request<{ token: AuthToken; }>({
+    switchMap(({ payload }) => this.api.request<{ token: string; }>({
       endpoint: this.api.endpoint.postSignup,
       data: payload,
       queryParams: { bypassHttpErrorInterceptor: true }
     }).pipe(
       tap(resp => {
-        localStorage.setItem(authTokenKey, JSON.stringify(resp.token));
+        localStorage.setItem(authTokenKey, resp.token);
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
@@ -65,7 +64,7 @@ export class LoginEffects {
 
   reset$ = createEffect(() => this.actions$.pipe(
     ofType(reset),
-    switchMap(({ payload }) => this.api.request<{ token: AuthToken; }>({
+    switchMap(({ payload }) => this.api.request<{ token: string; }>({
       endpoint: this.api.endpoint.postReset,
       data: {
         email: payload.email,
@@ -75,7 +74,7 @@ export class LoginEffects {
       queryParams: { bypassHttpErrorInterceptor: true },
     }).pipe(
       tap(resp => {
-        localStorage.setItem(authTokenKey, JSON.stringify(resp.token));
+        localStorage.setItem(authTokenKey, resp.token);
         this.router.navigate(['/']);
       }),
       map(() => readToken()),
