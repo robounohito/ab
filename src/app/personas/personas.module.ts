@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducer } from './personas.model';
 import { PersonasEffects } from './personas.effects';
-import { TagsTruncateDirective } from './tags-truncate/tags-truncate.directive';
+import { TagsTruncateDirective } from './persona/tags-truncate/tags-truncate.directive';
 import { PersonaContactsComponent } from './persona-contacts/persona-contacts.component';
 import { PersonaComponent } from './persona/persona.component';
 import { PersonaGuard } from './persona-guard.service';

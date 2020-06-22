@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>
+  Confirmation
+</h2>
+
+<mat-dialog-content [innerHtml]="sanitizer.bypassSecurityTrustHtml(data.content)">
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button
+          mat-dialog-close>Cancel</button>
+  <button mat-button
+          (click)="confirmationClick()">
+    {{data.confirmText || 'Yes'}}
+  </button>
+</mat-dialog-actions>

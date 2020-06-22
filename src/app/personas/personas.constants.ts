@@ -64,3 +64,19 @@ export enum Condition {
   isUnknown = 'unKnown',
   isBetween = 'inBetween',
 }
+
+export const contactsTableColumns = {
+  fullName: 'Full name',
+  jobTitle: 'Job title',
+  lastActivityDate: 'Last activity date',
+  email: 'Email',
+  phone: 'Phone',
+  company: 'Company',
+  industry: 'Industry',
+  companyLocation: 'Company location',
+  technologies: 'Technologies',
+  contactLocation: 'Contact location',
+  fundingStage: 'Funding stage',
+  numberOfEmployees: 'Number of employees',
+};
+

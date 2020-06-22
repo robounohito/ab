@@ -1,5 +1,6 @@
 <div class="animate"
-     *ngIf="model$ | async as model">
+     *ngIf="model$ | async as model"
+     [formGroup]="form">
 
   <div class="header">
 
@@ -19,8 +20,19 @@
         <mat-icon matSuffix>search</mat-icon>
       </label>
       <button mat-flat-button
+              (click)="select.open()"
               color="primary">
         <mat-icon>filter_list</mat-icon>
+        <mat-select #select
+                    class="ab"
+                    formControlName="displayedColumns"
+                    [value]="[1, 2, 3]"
+                    multiple>
+          <mat-option *ngFor="let column of allColumns"
+                      [value]="column">
+            {{contactsTableColumns[column]}}
+          </mat-option>
+        </mat-select>
       </button>
     </div>
 
@@ -186,9 +198,9 @@
       </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns">
+    <mat-header-row *matHeaderRowDef="form.controls.displayedColumns.value">
     </mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    <mat-row *matRowDef="let row; columns: form.controls.displayedColumns.value;">
     </mat-row>
 
   </mat-table>

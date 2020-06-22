@@ -5,9 +5,15 @@ import { selectCurrentPersona } from '../personas.model';
 import { Observable } from 'rxjs';
 import { Persona, Contact } from '../personas.types';
 import { PageEvent } from '@angular/material/paginator';
-import { loadContacts } from '../personas.constants';
+import { loadContacts, contactsTableColumns } from '../personas.constants';
 import { Sort } from '@angular/material/sort';
 import { ApiService } from 'src/app/_core/api/api.service';
+import { formCreate, FormGroupT } from 'src/app/_core/form/form';
+import { FormBuilder } from '@angular/forms';
+
+interface PersonaContactsForm {
+  displayedColumns: string[];
+}
 
 @Component({
   selector: 'ab-contacts',
@@ -17,19 +23,24 @@ import { ApiService } from 'src/app/_core/api/api.service';
 })
 export class PersonaContactsComponent implements OnInit {
 
-  displayedColumns = ['fullName', 'jobTitle', 'email', 'phone', 'company', 'industry', 'technologies'];
-
+  contactsTableColumns: { [key: string]: string } = contactsTableColumns;
+  allColumns = Object.keys(contactsTableColumns);
   model$!: Observable<Persona | undefined>;
+  form!: FormGroupT<PersonaContactsForm>;
 
   applyFilter = (_: any) => { };
 
   constructor(
     private store: Store<App>,
     public api: ApiService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.model$ = this.store.select(selectCurrentPersona);
+    this.form = formCreate<PersonaContactsForm>(this.fb, {
+      displayedColumns: [['fullName', 'jobTitle', 'email', 'phone', 'company', 'industry', 'technologies']],
+    });
   }
 
   pageChange(event: PageEvent, personaId: string) {

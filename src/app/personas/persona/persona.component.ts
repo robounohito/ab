@@ -8,6 +8,8 @@ import { Condition, personaChange, removePersona } from '../personas.constants';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
 import { path, compose, filter, append } from 'ramda';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/_shared/confirmation-dialog/confirmation-dialog.component';
 
 interface PersonaForm {
   expanded: { [key: string]: boolean };
@@ -33,6 +35,7 @@ export class PersonaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<App>,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -135,7 +138,18 @@ export class PersonaComponent implements OnInit {
   }
 
   removePersona(personaId: string) {
-    this.store.dispatch(removePersona({ personaId }));
+    this.dialog.open(ConfirmationDialogComponent, {
+      width: '450px',
+      data: {
+        content: `You currently have <b>34 campaign</b> suggestions
+          involving this persona, <b>are you sure you want to delete it?</b><br><br>
+          <font color="red">This action cannot be undone!</font>`,
+        confirmText: 'Delete',
+        onConfirmCb: () => {
+          this.store.dispatch(removePersona({ personaId }));
+        }
+      }
+    });
   }
 
   private minMaxValidator(revenueMin: string, revenueMax: string) {
