@@ -33,6 +33,11 @@ export const loadContactsSuccess = createAction(
   }>()
 );
 
+export const searchContacts = createAction(
+  '[Personas] Search Contacts',
+  props<{ personaId: string; searchTerm: string; }>()
+);
+
 export const personaChange = createAction(
   '[Personas] Persona Change',
   props<{

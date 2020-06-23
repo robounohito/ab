@@ -1,11 +1,11 @@
 
 import { Injectable } from '@angular/core';
-import { switchMap, map, tap, shareReplay, concatMap, withLatestFrom } from 'rxjs/operators';
+import { switchMap, map, tap, shareReplay, concatMap, withLatestFrom, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from '../_core/api/api.service';
 import {
   loadContacts, loadContactsSuccess, loadPersonas, loadPersonasSuccess, reorderPersonas,
-  personaChange, personaCreate, personaCreateSuccess, removePersona
+  personaChange, personaCreate, personaCreateSuccess, removePersona, searchContacts
 } from './personas.constants';
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
 import {
@@ -13,7 +13,7 @@ import {
   personaToDto, createPersona
 } from './personas.model';
 import { memoizeWith, identity, } from 'ramda';
-import { forkJoin, of } from 'rxjs';
+import { forkJoin, of, asyncScheduler } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { App } from '../app.types';
 import { Router } from '@angular/router';
@@ -117,6 +117,14 @@ export class PersonasEffects {
       }))
     ))
   ));
+
+  searchContacts$ = createEffect(() => ({ debounce = 500, scheduler = asyncScheduler } = {}) =>
+    this.actions$.pipe(
+      ofType(searchContacts),
+      debounceTime(debounce, scheduler),
+      distinctUntilChanged(null!, ({ searchTerm }) => searchTerm),
+      map(({ personaId, /* searchTerm */ }) => loadContacts({ personaId, offset: 0, limit: 10 }))
+    ));
 
   private getDataSets = memoizeWith(
     identity as () => string,

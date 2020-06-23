@@ -15,7 +15,7 @@
     <div class="search-wrapper ab">
       <label class="search">
         <input matInput
-               (keyup)="applyFilter($event)"
+               (keyup)="searchContacts($event.target.value, model.id)"
                placeholder="Search...">
         <mat-icon matSuffix>search</mat-icon>
       </label>
@@ -58,8 +58,12 @@
                 matTooltipPosition="above">
         <div>
           <div>
-            <!-- <img src="{{this.api.getAttachment(element.image)}}" alt="User's picture"> -->
-            {{userInitials(element.fullName)}}
+            <img *ngIf="element.image"
+                 src="{{this.api.getAttachment(element.image)}}"
+                 alt="User's picture">
+            <figure *ngIf="!element.image">
+              {{userInitials(element.fullName)}}
+            </figure>
           </div>
           <div>{{element.fullName}}</div>
         </div>

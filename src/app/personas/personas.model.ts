@@ -222,8 +222,7 @@ export function personaToDto(
   if (subsetPath) {
     if (subsetMapper[subsetPath]) {
       return {
-        [subsetMapper[subsetPath] as keyof PersonaDto]:
-          dto[subsetMapper[subsetPath] as keyof PersonaDto]
+        [subsetMapper[subsetPath]!]: dto[subsetMapper[subsetPath]!]
       };
     }
     return {

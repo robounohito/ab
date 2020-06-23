@@ -5,7 +5,7 @@ import { selectCurrentPersona } from '../personas.model';
 import { Observable } from 'rxjs';
 import { Persona, Contact } from '../personas.types';
 import { PageEvent } from '@angular/material/paginator';
-import { loadContacts, contactsTableColumns } from '../personas.constants';
+import { loadContacts, contactsTableColumns, searchContacts } from '../personas.constants';
 import { Sort } from '@angular/material/sort';
 import { ApiService } from 'src/app/_core/api/api.service';
 import { formCreate, FormGroupT } from 'src/app/_core/form/form';
@@ -28,15 +28,13 @@ export class PersonaContactsComponent implements OnInit {
   model$!: Observable<Persona | undefined>;
   form!: FormGroupT<PersonaContactsForm>;
 
-  applyFilter = (_: any) => { };
-
   constructor(
     private store: Store<App>,
     public api: ApiService,
     private fb: FormBuilder,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.model$ = this.store.select(selectCurrentPersona);
     this.form = formCreate<PersonaContactsForm>(this.fb, {
       displayedColumns: [['fullName', 'jobTitle', 'email', 'phone', 'company', 'industry', 'technologies']],
@@ -53,6 +51,13 @@ export class PersonaContactsComponent implements OnInit {
 
   sortContacts(sort: Sort) {
     console.log('sort', sort);
+  }
+
+  searchContacts(searchTerm: string, personaId: string) {
+    this.store.dispatch(searchContacts({
+      personaId,
+      searchTerm
+    }));
   }
 
   userInitials(fullName: string) {
