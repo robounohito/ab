@@ -149,7 +149,14 @@ export interface ContactDto {
   image: string;
   firstName: string;
   lastName: string;
-  company: string;
+  company: {
+    name: string;
+    fundingStage: string;
+    technologies: string[];
+    industry: string;
+    location: PersonaDto['company']['location'];
+    employees: number;
+  };
   email: string;
   job: {
     department: string[];
