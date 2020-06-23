@@ -1,6 +1,5 @@
-
 import { createAction, props } from '@ngrx/store';
-import { Persona, Contact, Personas, PersonaSubsetPath, ConditionalRevenue } from './personas.types';
+import { Persona, Contact, Personas, PersonaSubsetPath, ConditionalRevenue, ContactsPage } from './personas.types';
 
 export const loadPersonas = createAction(
   '[Personas] Load Personas',
@@ -21,7 +20,7 @@ export const reorderPersonas = createAction(
 
 export const loadContacts = createAction(
   '[Personas] Load Contacts',
-  props<{ personaId: string; offset: number; limit: number; }>()
+  props<{ personaId: string; contactsPage: ContactsPage; }>()
 );
 
 export const loadContactsSuccess = createAction(
@@ -85,3 +84,4 @@ export const contactsTableColumns = {
   numberOfEmployees: 'Number of employees',
 };
 
+export const pageSizes = [15, 30, 45] as const;

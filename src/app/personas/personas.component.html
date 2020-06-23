@@ -38,11 +38,8 @@
 
   <div class="column right"
        [@customFadeAnimation]="o.isActivated ? (o.activatedRoute.paramMap | async)?.get('personaId') : ''">
-    <div class="empty"
-         *ngIf="!(selectedPersona$ | async)">
-      <mat-icon>person</mat-icon>
-      <div>Select or create persona to see its contacts here.</div>
-    </div>
+    <ab-empty-persona *ngIf="!(selectedPersona$ | async)">
+    </ab-empty-persona>
     <router-outlet #o="outlet"></router-outlet>
   </div>
 

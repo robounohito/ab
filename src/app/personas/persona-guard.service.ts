@@ -18,10 +18,15 @@ export class PersonaGuard implements CanActivate {
   canActivate() {
     return this.store.select(selectPersonas).pipe(
       filter(state => !!state.personas),
-      exhaustMap(() => this.store.select(selectCurrentPersona)),
+      exhaustMap(personas => this.store.select(selectCurrentPersona).pipe(
+        map(persona => ({ persona, contactsPage: personas.contactsPage }))
+      )),
       take(1),
-      tap(persona => {
-        return persona && this.store.dispatch(loadContacts({ personaId: persona.id, offset: 0, limit: 10 }));
+      tap(({ persona, contactsPage }) => {
+        return persona && this.store.dispatch(loadContacts({
+          personaId: persona.id,
+          contactsPage: { ...contactsPage, pageIndex: 0 }
+        }));
       }),
       map(persona => !!persona || this.router.parseUrl(`/${Route.notFound}`)),
     );

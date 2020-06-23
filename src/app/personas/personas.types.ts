@@ -1,8 +1,9 @@
-import { Condition } from './personas.constants';
+import { Condition, pageSizes } from './personas.constants';
 
 export interface Personas {
   loading: boolean;
   personas: Persona[] | null;
+  contactsPage: ContactsPage;
   selectOptions: {
     fundingStage: SelectOptions;
     seniority: SelectOptions;
@@ -90,6 +91,16 @@ export type PersonaSubsetPath = [
     keyof ConditionalKeywords
     | keyof Persona['companyAttributes']['revenue']
   ];
+
+export interface ContactsPage {
+  pageIndex: number;
+  pageSize: (typeof pageSizes)[number];
+  pageSizeOptions: typeof pageSizes;
+  sort: {
+    order: 'asc' | 'desc';
+    field: keyof Contact;
+  };
+}
 
 export interface PersonaDto {
   id: string;

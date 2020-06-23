@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
-import { selectCurrentPersona } from '../personas.model';
+import { selectCurrentPersona, selectContactsPage } from '../personas.model';
 import { Observable } from 'rxjs';
-import { Persona, Contact } from '../personas.types';
+import { Persona, Contact, ContactsPage } from '../personas.types';
 import { PageEvent } from '@angular/material/paginator';
 import { loadContacts, contactsTableColumns, searchContacts } from '../personas.constants';
 import { Sort } from '@angular/material/sort';
@@ -26,6 +26,7 @@ export class PersonaContactsComponent implements OnInit {
   contactsTableColumns: { [key: string]: string } = contactsTableColumns;
   allColumns = Object.keys(contactsTableColumns);
   model$!: Observable<Persona | undefined>;
+  contactsPage$!: Observable<ContactsPage>;
   form!: FormGroupT<PersonaContactsForm>;
 
   constructor(
@@ -36,16 +37,22 @@ export class PersonaContactsComponent implements OnInit {
 
   ngOnInit() {
     this.model$ = this.store.select(selectCurrentPersona);
+    this.contactsPage$ = this.store.select(selectContactsPage);
     this.form = formCreate<PersonaContactsForm>(this.fb, {
       displayedColumns: [['fullName', 'jobTitle', 'email', 'phone', 'company', 'industry', 'technologies']],
     });
   }
 
-  pageChange(event: PageEvent, personaId: string) {
+  pageChange(event: PageEvent, personaId: string, contactsPage: ContactsPage) {
     this.store.dispatch(loadContacts({
       personaId,
-      offset: (event.pageIndex * event.pageSize),
-      limit: event.pageSize
+      contactsPage: {
+        ...contactsPage,
+        pageSize: event.pageSize as ContactsPage['pageSize'],
+        pageIndex: event.pageIndex
+      }
+      /* offset: (event.pageIndex * event.pageSize),
+      limit: event.pageSize */
     }));
   }
 

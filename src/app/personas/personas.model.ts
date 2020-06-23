@@ -1,4 +1,3 @@
-
 import { on, createReducer, Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   Personas, Persona, Contact, ContactDto, PersonaDto, ConditionalKeywordsDto,
@@ -6,17 +5,26 @@ import {
 } from './personas.types';
 import {
   loadContactsSuccess, loadPersonasSuccess, reorderPersonas, personaChange, personaCreateSuccess,
-  Condition, removePersona
+  Condition, removePersona, pageSizes, loadContacts
 } from './personas.constants';
 import {
-  sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over, compose,
-  lensPath, set, append, reject
+  sortWith, ascend, prop, assoc, find, whereEq, evolve, always, lensIndex, findIndex, over,
+  lensPath, set, append, reject, mergeLeft
 } from 'ramda';
 import { selectRouteParam } from '../app.model';
 
 const initialState: Personas = {
   loading: false,
   personas: null,
+  contactsPage: {
+    pageIndex: 0,
+    pageSize: 15,
+    pageSizeOptions: pageSizes,
+    sort: {
+      order: 'asc',
+      field: 'fullName',
+    }
+  },
   selectOptions: {
     fundingStage: [],
     seniority: [],
@@ -27,8 +35,9 @@ const initialState: Personas = {
 
 const personasReducer = createReducer(initialState,
 
-  on(loadPersonasSuccess, (_, { personas, dataSets }) => {
+  on(loadPersonasSuccess, (state, { personas, dataSets }) => {
     return {
+      ...state,
       loading: false,
       personas: sortPersonas(personas),
       selectOptions: dataSets,
@@ -61,6 +70,10 @@ const personasReducer = createReducer(initialState,
     })(state);
   }),
 
+  on(loadContacts, (state, { contactsPage }) => {
+    return assoc('contactsPage', contactsPage)(state);
+  }),
+
   on(loadContactsSuccess, (state, { personaId, contacts, contactsCount }) => {
     const personaLens = lensIndex(
       findIndex(whereEq({ id: personaId }))(state.personas ?? [])
@@ -69,10 +82,7 @@ const personasReducer = createReducer(initialState,
       loading: always(false),
       personas: over(
         personaLens,
-        compose(
-          assoc('contactsCount', contactsCount),
-          assoc('contacts', contacts)
-        )
+        mergeLeft({ contacts, contactsCount }),
       ) as () => Persona[],
     })(state);
   }),
@@ -89,6 +99,11 @@ export const selectCurrentPersona = createSelector(
   selectRouteParam('personaId'),
   selectPersonas,
   (personaId, { personas }) => find(whereEq({ id: personaId }), personas ?? [])
+);
+
+export const selectContactsPage = createSelector(
+  selectPersonas,
+  personas => personas.contactsPage
 );
 
 const sortPersonas = sortWith<Persona>([

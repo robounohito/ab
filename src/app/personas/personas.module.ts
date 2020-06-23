@@ -13,13 +13,15 @@ import { PersonaComponent } from './persona/persona.component';
 import { PersonaGuard } from './persona-guard.service';
 import { PersonasGuard } from './personas-guard.service';
 import { NgxMaskModule } from 'ngx-mask';
+import { EmptyPersonaComponent } from './empty-persona/empty-persona.component';
 
 @NgModule({
   declarations: [
     PersonasComponent,
     TagsTruncateDirective,
     PersonaContactsComponent,
-    PersonaComponent
+    PersonaComponent,
+    EmptyPersonaComponent
   ],
   imports: [
     CommonModule,

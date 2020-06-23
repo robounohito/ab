@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { switchMap, map, tap, shareReplay, concatMap, withLatestFrom, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -10,11 +9,11 @@ import {
 import { ContactDto, SelectOptions, PersonaDto } from './personas.types';
 import {
   contactFromDto, numberOfEmployeesFromDto, personaFromDto, selectCurrentPersona,
-  personaToDto, createPersona
+  personaToDto, createPersona, selectPersonas
 } from './personas.model';
 import { memoizeWith, identity, } from 'ramda';
-import { forkJoin, of, asyncScheduler } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import { forkJoin, of, asyncScheduler, combineLatest } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { App } from '../app.types';
 import { Router } from '@angular/router';
 import { Route } from '../app.constants';
@@ -61,16 +60,22 @@ export class PersonasEffects {
   updatePersona$ = createEffect(() => this.actions$.pipe(
     ofType(personaChange),
     concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.pipe(select(selectCurrentPersona)))
+      withLatestFrom(combineLatest([
+        this.store.select(selectPersonas),
+        this.store.select(selectCurrentPersona)
+      ]))
     )),
-    switchMap(([{ personaId, path }, persona]) => {
+    switchMap(([{ personaId, path }, [personas, persona]]) => {
       return this.api.request({
         endpoint: this.api.endpoint.patchPersona,
         urlParams: { id: personaId },
         data: persona ? personaToDto(persona, path[0]) : {},
-      });
-    })
-  ), { dispatch: false });
+      }).pipe(
+        map(() => ({ personaId, contactsPage: personas.contactsPage }))
+      );
+    }),
+    map(({ personaId, contactsPage }) => loadContacts({ personaId, contactsPage }))
+  ));
 
   createPersona$ = createEffect(() => this.actions$.pipe(
     ofType(personaCreate),
@@ -106,9 +111,13 @@ export class PersonasEffects {
 
   loadContacts$ = createEffect(() => this.actions$.pipe(
     ofType(loadContacts),
-    switchMap(({ personaId, offset, limit }) => this.api.request<{ contacts: ContactDto[]; count: number; }>({
-      endpoint: this.api.endpoint.getContacts,
-      queryParams: { limit, offset },
+    switchMap(({ personaId, contactsPage }) => this.api.request<{ contacts: ContactDto[]; count: number; }>({
+      endpoint: this.api.endpoint.getPersonaContacts,
+      urlParams: { id: personaId },
+      queryParams: {
+        limit: contactsPage.pageSize,
+        offset: contactsPage.pageIndex * contactsPage.pageSize,
+      },
     }).pipe(
       map(resp => loadContactsSuccess({
         personaId,
@@ -118,12 +127,12 @@ export class PersonasEffects {
     ))
   ));
 
-  searchContacts$ = createEffect(() => ({ debounce = 500, scheduler = asyncScheduler } = {}) =>
+  searchContacts$ = createEffect(() => ({ debounce = 300, scheduler = asyncScheduler } = {}) =>
     this.actions$.pipe(
       ofType(searchContacts),
       debounceTime(debounce, scheduler),
       distinctUntilChanged(null!, ({ searchTerm }) => searchTerm),
-      map(({ personaId, /* searchTerm */ }) => loadContacts({ personaId, offset: 0, limit: 10 }))
+      map(({ personaId, /* searchTerm */ }) => loadContacts({ personaId, contactsPage: null! }))
     ));
 
   private getDataSets = memoizeWith(

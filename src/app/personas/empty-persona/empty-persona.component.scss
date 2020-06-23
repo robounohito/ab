@@ -1,0 +1,22 @@
+@use '../../../styles/variables' as var;
+
+.empty {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 110px);
+  color: var.$grey9;
+  letter-spacing: 0.2px;
+  padding-bottom: 30px;
+  text-align: center;
+
+  .mat-icon {
+    font-size: 120px;
+    height: auto;
+    width: auto;
+    color: var.$grey2;
+  }
+
+}
