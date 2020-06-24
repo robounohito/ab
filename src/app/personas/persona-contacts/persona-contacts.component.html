@@ -39,17 +39,17 @@
 
   </div>
 
-  <ab-empty-persona *ngIf="!model?.contactsCount">
-  </ab-empty-persona>
-
   <ng-container *ngIf="contactsPage$ | async as contactsPage">
 
     <div [ngClass]="(loading$ | async) && 'spinner'">
 
       <div class="spinner-wrapper ab"
-           *ngIf="(loading$ | async) && model?.contactsCount">
+           *ngIf="(loading$ | async)">
         <mat-spinner></mat-spinner>
       </div>
+
+      <ab-empty-persona *ngIf="!model?.contactsCount">
+      </ab-empty-persona>
 
       <mat-table mat-table
                  [dataSource]="model.contacts"
