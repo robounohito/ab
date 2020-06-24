@@ -25,7 +25,7 @@ export const customFadeAnimation = trigger('customFadeAnimation', [
       style({
         opacity: 0,
       }),
-      animate('.5s',
+      animate('.3s',
         style({
           opacity: 1,
         })
@@ -50,7 +50,7 @@ export const routerFadeAnimation = trigger('routerFadeAnimation', [
         opacity: 0,
         display: 'inherit',
       }),
-      animate('.5s',
+      animate('.3s',
         style({ opacity: 1 })
       ),
     ], { optional: true }

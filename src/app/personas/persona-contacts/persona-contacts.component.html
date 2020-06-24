@@ -47,8 +47,8 @@
     <div [ngClass]="(loading$ | async) && 'spinner'">
 
       <div class="spinner-wrapper ab"
-           *ngIf="loading$ | async">
-        <mat-spinner color="accent"></mat-spinner>
+           *ngIf="(loading$ | async) && model?.contactsCount">
+        <mat-spinner></mat-spinner>
       </div>
 
       <mat-table mat-table
