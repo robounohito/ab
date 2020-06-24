@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 export const materialImports = [
   MatFormFieldModule,
@@ -38,4 +39,5 @@ export const materialImports = [
   MatChipsModule,
   DragDropModule,
   MatRadioModule,
+  MatProgressSpinnerModule,
 ];

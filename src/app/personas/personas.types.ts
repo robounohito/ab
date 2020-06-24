@@ -50,7 +50,7 @@ export interface Contact {
   company: string;
   industry: string;
   companyLocation: string;
-  technologies: string[];
+  technologies: string;
   contactLocation: string;
   fundingStage: string;
   numberOfEmployees: number;
@@ -153,7 +153,7 @@ export interface ContactDto {
     name: string;
     fundingStage: string;
     technologies: string[];
-    industry: string;
+    industry: string[];
     location: PersonaDto['company']['location'];
     employees: number;
   };

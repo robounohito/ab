@@ -71,7 +71,10 @@ const personasReducer = createReducer(initialState,
   }),
 
   on(loadContacts, (state, { contactsPage }) => {
-    return assoc('contactsPage', contactsPage)(state);
+    return evolve({
+      loading: always(true),
+      contactsPage: always(contactsPage),
+    })(state);
   }),
 
   on(loadContactsSuccess, (state, { personaId, contacts, contactsCount }) => {
@@ -106,6 +109,11 @@ export const selectContactsPage = createSelector(
   personas => personas.contactsPage
 );
 
+export const selectLoading = createSelector(
+  selectPersonas,
+  personas => personas.loading
+);
+
 const sortPersonas = sortWith<Persona>([
   ascend(prop('order'))
 ]);
@@ -120,9 +128,9 @@ export function contactFromDto(dto: ContactDto): Contact {
     email: dto.email,
     phone: dto.phoneNumber,
     company: dto.company.name,
-    industry: dto.company.industry,
+    industry: dto.company.industry.join(', '),
     companyLocation: dto.company.location?.city + ', ' + dto.company.location?.country,
-    technologies: dto.company.technologies || [],
+    technologies: dto.company.technologies.join(', '),
     contactLocation: dto.location.city + ', ' + dto.location.country,
     fundingStage: dto.company.fundingStage,
     numberOfEmployees: dto.company.employees,

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { App } from 'src/app/app.types';
-import { selectCurrentPersona, selectContactsPage } from '../personas.model';
+import { selectCurrentPersona, selectContactsPage, selectLoading } from '../personas.model';
 import { Observable } from 'rxjs';
 import { Persona, Contact, ContactsPage } from '../personas.types';
 import { PageEvent } from '@angular/material/paginator';
@@ -27,6 +27,7 @@ export class PersonaContactsComponent implements OnInit {
   allColumns = Object.keys(contactsTableColumns);
   model$!: Observable<Persona | undefined>;
   contactsPage$!: Observable<ContactsPage>;
+  loading$!: Observable<boolean>;
   form!: FormGroupT<PersonaContactsForm>;
 
   constructor(
@@ -38,6 +39,7 @@ export class PersonaContactsComponent implements OnInit {
   ngOnInit() {
     this.model$ = this.store.select(selectCurrentPersona);
     this.contactsPage$ = this.store.select(selectContactsPage);
+    this.loading$ = this.store.select(selectLoading);
     this.form = formCreate<PersonaContactsForm>(this.fb, {
       displayedColumns: [['fullName', 'jobTitle', 'email', 'phone', 'company', 'industry', 'technologies']],
     });
