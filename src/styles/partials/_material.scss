@@ -42,6 +42,10 @@ body {
 
 .ab {
 
+  .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: var.$aqua;
+  }
+
   &.mat-menu-panel {
 
     max-height: calc(100vh - 30px);
