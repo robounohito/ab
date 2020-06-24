@@ -137,11 +137,11 @@ export class PersonaComponent implements OnInit {
     }));
   }
 
-  removePersona(personaId: string) {
+  removePersona(personaId: string, contactsCount: number) {
     this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
       data: {
-        content: `You currently have <b>34 campaign</b> suggestions
+        content: `You currently have <b>${contactsCount} campaign</b> suggestions
           involving this persona, <b>are you sure you want to delete it?</b><br><br>
           <font color="red">This action cannot be undone!</font>`,
         confirmText: 'Delete',

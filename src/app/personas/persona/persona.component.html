@@ -16,7 +16,7 @@
       <mat-menu #removeMenu="matMenu"
                 [class]="'ab'">
         <button mat-menu-item
-                (click)="removePersona(persona.id)">
+                (click)="removePersona(persona.id, persona.contactsCount)">
           <mat-icon>delete</mat-icon>
           <span>Remove</span>
         </button>
